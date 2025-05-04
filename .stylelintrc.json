@@ -1,0 +1,12 @@
+{
+    "extends": [
+        "stylelint-config-standard",
+        "stylelint-config-clean-order",
+        "stylelint-config-standard-scss"
+    ],
+    "rules": {
+        "unit-allowed-list": ["em", "rem", "px", "%", "vh", "fr"],
+        "block-no-empty": true,
+        "no-empty-source": null
+    }
+}
