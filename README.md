@@ -20,10 +20,9 @@ Task description: [https://github.com/rolling-scopes-school/tasks/tree/master/st
 ## 🧠 Features
 
 - 🔐 User authentication (login/register)
-- 🛒 Product catalog and filters
-  <!-- - 💳 Shopping cart and checkout flow -->
+- 🛒 Product catalog with categorization, sorting and search
 - 📦 Order details
-  <!-- - 🛠️ Admin dashboard to manage products, users, and orders -->
+- 🛠️ User dashboard to manage their personal details and addresses
 - 💻 Fully responsive (desktop-first)
 
 ## ✅ Application Content
@@ -35,6 +34,7 @@ Task description: [https://github.com/rolling-scopes-school/tasks/tree/master/st
 - Detailed Product page
 - User Profile page
 - Basket page
+- About Us page
 
 ## 🚀 Getting Started
 
