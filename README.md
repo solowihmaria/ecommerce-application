@@ -13,10 +13,6 @@ This is a [training](https://github.com/rolling-scopes-school/tasks/tree/master/
 
 Task description: [https://github.com/rolling-scopes-school/tasks/tree/master/stage2/modules/final-task]().
 
-## 📸 Screenshot
-
-![https://i.pinimg.com/1200x/8f/92/dc/8f92dcaef982a70963392191e9b82fc9.jpg](https://i.pinimg.com/1200x/8f/92/dc/8f92dcaef982a70963392191e9b82fc9.jpg)
-
 ## 🧠 Features
 
 - 🔐 User authentication (login/register)
@@ -94,27 +90,41 @@ Test configuration can be found in [jest.config.js]().
 
 ### 📜 NPM Scripts
 
-| Command              | Description                      |
-| -------------------- | -------------------------------- |
-| `npm run dev`        | Start the development server     |
-| `npm run lint`       | Run ESLint to check code quality |
-| `npm run format`     | Format code using Prettier       |
-| `npm test`           | Run tests using Jest             |
-| `npm run test:watch` | Run tests in watch mode          |
-| `npm run build`      | Build the project for production |
+| Command        | Description                                      |
+|----------------|--------------------------------------------------|
+| `start-dev`    | Start dev server using development config        |
+| `start-prod`   | Start dev server using production config         |
+| `build-dev`    | Build the project with development config        |
+| `build-prod`   | Build the project with production config         |
+| `format`       | Format source files in `./src` using Prettier    |
+| `ci:format`    | Check formatting in `./src`        |
+| `lint`         | Run ESLint on `./src`                            |
+| `stylelint`    | Lint SCSS styles in `./src`                      |
+| `prepare`      | Initialize Git hooks with Husky                  |
+| `test`         | Run tests using Jest                             |
 
 ## 📂 Project Structure
 
 ```
 ecommerce-application/
-├── src/              # Source code
-├── tests/            # Test files
-├── public/           # Static assets
-├── .eslintrc         # ESLint config
-├── .prettierrc       # Prettier config
-├── jest.config.js    # Jest config
-├── package.json      # Project metadata and scripts
-└── README.md         # Project overview
+├── src/                   # Source code
+│   ├── api/               # API request functions and services
+│   ├── assets/            # Static assets (images, fonts, etc.)
+│   ├── components/        # Reusable UI components
+│   ├── features/          # Feature-specific modules
+│   ├── interfaces/        # TypeScript interfaces and types
+│   ├── pages/             # Top-level pages and views
+│   ├── router/            # Application routing configuration
+│   ├── store/             # State management
+│   └── utilities/         # Helper functions and utilities
+├── .lintstagedrc.json     # Lint-staged config
+├── .prettierrc            # Prettier config
+├── .stylelintrc.json      # Stylelint config
+├── commitlint.config.js   # Commitlint config
+├── eslint.config.mjs      # ESLint config 
+├── jest.config.js         # Jest config
+├── package.json           # Project metadata and scripts
+└── README.md              # Project overview
 
 ```
 
