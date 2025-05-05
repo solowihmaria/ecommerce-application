@@ -50,7 +50,7 @@ npm install
 ### Running the Project
 
 ```
-npm run start
+npm run start-prod
 ```
 
 ## 🛠️ Development Tools
@@ -70,7 +70,7 @@ npm run lint
 npm run format
 ```
 
-Configuration files: [.eslintrc](), [.prettierrc]().
+Configuration files: [eslint.config.mjs](https://github.com/solowihmaria/ecommerce-application/blob/develop/eslint.config.mjs), [.prettierrc](https://github.com/solowihmaria/ecommerce-application/blob/develop/.prettierrc).
 
 ### 🧪 Testing
 
@@ -80,13 +80,7 @@ Configuration files: [.eslintrc](), [.prettierrc]().
 npm test
 ```
 
-To run tests in watch mode:
-
-```
-npm run test:watch
-```
-
-Test configuration can be found in [jest.config.js]().
+Test configuration can be found in [jest.config.js](https://github.com/solowihmaria/ecommerce-application/blob/develop/jest.config.js).
 
 ### 📜 NPM Scripts
 
@@ -125,7 +119,6 @@ ecommerce-application/
 ├── jest.config.js         # Jest config
 ├── package.json           # Project metadata and scripts
 └── README.md              # Project overview
-
 ```
 
 ## 🔧 Built With
@@ -139,7 +132,7 @@ ecommerce-application/
 - Jest
 - Commercetools API
 
-## 📬 Contact
+## 👩‍💻 Team
 
 - Maria Solowih: [@solowihmaria](https://github.com/solowihmaria)
 - Violetta Batsura: [@violettab21](https://github.com/violettab21)
