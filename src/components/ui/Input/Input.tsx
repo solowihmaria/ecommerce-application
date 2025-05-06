@@ -22,7 +22,9 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
                     {...props}
                 />
                 {error && errorMessage && (
-                    <span className={styles.errorMessage}>{errorMessage}</span>
+                    <span className={styles['error-message']}>
+                        {errorMessage}
+                    </span>
                 )}
             </div>
         );
