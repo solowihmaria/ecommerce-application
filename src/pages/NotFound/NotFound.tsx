@@ -6,9 +6,9 @@ import styles from './NotFound.module.scss';
 
 const NotFoundPage: React.FC = () => {
     return (
-        <div className={styles.notFound}>
+        <div className={styles.notfound}>
             <div className={styles.content}>
-                <div className={styles.errorCode}>404</div>
+                <div className={styles.errorcode}>404</div>
                 <Heading level="h1" className={styles.title}>
                     Page Not Found
                 </Heading>
@@ -16,7 +16,7 @@ const NotFoundPage: React.FC = () => {
                     Oops! The page you&apos;re looking for doesn&apos;t exist or
                     has been moved.
                 </p>
-                <Link to="/" className={styles.homeLink}>
+                <Link to="/" className={styles.homelink}>
                     <Button className={styles.button}>Go to Homepage</Button>
                 </Link>
             </div>
