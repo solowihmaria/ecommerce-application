@@ -7,12 +7,13 @@ const Button = ({
     className = '',
     onClick,
     disabled = false,
+    variant = 'primary',
     children,
 }: ButtonProps): React.JSX.Element => {
     return (
         <button
             type={type}
-            className={`${styles.button} ${className}`}
+            className={`${styles.button} ${styles[variant]} ${className}`}
             onClick={onClick}
             disabled={disabled}
         >
