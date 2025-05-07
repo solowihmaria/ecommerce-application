@@ -1,17 +1,18 @@
 .notfound {
+    position: fixed;
+    inset: 0;
     overflow: hidden;
     display: flex;
     align-items: center;
     justify-content: center;
-    height: 100vh;
     padding: 2rem;
     text-align: center;
     background-color: #f8f9fa;
 }
 
 .content {
+    width: 100%;
     max-width: 26rem;
-    margin: auto;
     padding: 2rem;
 }
 
