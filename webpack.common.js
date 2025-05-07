@@ -34,11 +34,7 @@ module.exports = {
                 test: /\.html$/i,
                 loader: 'html-loader',
             },
-            {
-                test: /\.ts$/i,
-                use: 'ts-loader',
-                include: [path.resolve(__dirname, 'src')],
-            },
+
             {
                 test: /\.(c|sa|sc)ss$/i,
                 use: [
@@ -80,7 +76,20 @@ module.exports = {
             {
                 test: /\.(ts|tsx|js|jsx)$/,
                 exclude: /node_modules/,
-                use: 'babel-loader',
+                use: {
+                    loader: 'babel-loader',
+                    options: {
+                        presets: [
+                            '@babel/preset-env',
+                            '@babel/preset-typescript',
+                            ['@babel/preset-react', { runtime: 'automatic' }],
+                        ],
+                        plugins: [
+                            process.env.NODE_ENV === 'development' &&
+                                require.resolve('react-refresh/babel'),
+                        ].filter(Boolean),
+                    },
+                },
             },
         ],
     },
