@@ -4,27 +4,70 @@
     align-items: center;
     justify-content: center;
     padding: 0.75rem 1.5rem;
-    border: 1px solid #000;
+    border: 1px solid transparent;
     border-radius: 0.25rem;
     font-family: inherit;
     font-size: 1rem;
     font-weight: 500;
     line-height: 1.5;
-    color: #000;
-    background-color: #fff;
     transition: all 0.2s ease;
 
     &:disabled {
         cursor: not-allowed;
-        border-color: #ccc;
-        opacity: 0.6;
-    }
-
-    &:hover:not(:disabled) {
-        background-color: #f0f0f0;
-    }
-
-    &:active:not(:disabled) {
+        color: #a0a0a0;
+        opacity: 0.5;
         background-color: #e0e0e0;
+    }
+
+    &.primary {
+        border-color: #000;
+        color: #fff;
+        background-color: #000;
+
+        &:hover:not(:disabled) {
+            background-color: #333;
+        }
+    }
+
+    &.secondary {
+        border-color: #e0e0e0;
+        color: #000;
+        background-color: #f5f5f5;
+
+        &:hover:not(:disabled) {
+            background-color: #e8e8e8;
+        }
+    }
+
+    &.danger {
+        border-color: #ff4d4f;
+        color: #ff4d4f;
+        background-color: #fff;
+
+        &:hover:not(:disabled) {
+            background-color: #fff2f2;
+        }
+    }
+
+    &.outline {
+        border-color: #000;
+        color: #000;
+        background-color: transparent;
+
+        &:hover:not(:disabled) {
+            background-color: rgb(0 0 0 / 5%);
+        }
+    }
+
+    &.ghost {
+        padding: 0.5rem 1rem;
+        border-color: transparent;
+        color: #000;
+        background-color: transparent;
+
+        &:hover:not(:disabled) {
+            text-decoration: underline;
+            background-color: rgb(0 0 0 / 5%);
+        }
     }
 }
