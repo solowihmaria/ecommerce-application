@@ -1,14 +1,13 @@
 const path = require('path');
 
-const devtool = 'source-map';
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const ESLintPlugin = require('eslint-webpack-plugin');
+
 module.exports = {
-    devtool,
     devServer: {
         open: true,
         historyApiFallback: true,
+        hot: true,
     },
     entry: './src/index.tsx',
     output: {
@@ -23,9 +22,6 @@ module.exports = {
         new HtmlWebpackPlugin({
             template: path.resolve(__dirname, './src/index.html'),
         }),
-        new MiniCssExtractPlugin({
-            filename: 'main.[contenthash].css',
-        }),
         new ESLintPlugin({ extensions: ['ts', 'tsx'] }),
     ],
     module: {
@@ -33,41 +29,6 @@ module.exports = {
             {
                 test: /\.html$/i,
                 loader: 'html-loader',
-            },
-
-            {
-                test: /\.(c|sa|sc)ss$/i,
-                use: [
-                    MiniCssExtractPlugin.loader,
-                    {
-                        loader: 'css-loader',
-                        options: {
-                            importLoaders: 1,
-                            modules: false,
-                        },
-                    },
-                    'sass-loader',
-                ],
-                exclude: /\.module\.scss$/,
-            },
-            {
-                test: /\.(sa|sc)ss$/i,
-                use: [
-                    MiniCssExtractPlugin.loader,
-                    {
-                        loader: 'css-loader',
-                        options: {
-                            importLoaders: 1,
-                            modules: {
-                                mode: 'local',
-                                exportOnlyLocals: false,
-                                namedExport: false,
-                            },
-                        },
-                    },
-                    'sass-loader',
-                ],
-                include: /\.module\.scss$/,
             },
             {
                 test: /\.jpe?g$|\.svg$|\.png$|\.ico$|\.mp3$/,
