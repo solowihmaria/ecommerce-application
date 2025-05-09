@@ -4,6 +4,8 @@ import tseslint from 'typescript-eslint';
 import pluginJs from '@eslint/js';
 import reactPlugin from 'eslint-plugin-react';
 import eslintPluginUnicorn from 'eslint-plugin-unicorn';
+import reactHooks from 'eslint-plugin-react-hooks';
+import jsxA11y from 'eslint-plugin-jsx-a11y';
 
 /** @type {import('eslint').Linter.Config[]} */
 export default [
@@ -78,12 +80,17 @@ export default [
             'max-lines-per-function': ['error', 40],
             'react/jsx-uses-react': 'error',
             'react/jsx-uses-vars': 'error',
+            'react-hooks/rules-of-hooks': 'error',
+            'react-hooks/exhaustive-deps': 'warn',
         },
     },
     {
         plugins: {
             prettier: prettier,
             tseslint: tseslint,
+            react: reactPlugin,
+            reactHooks: reactHooks,
+            jsxA11y: jsxA11y,
         },
     },
     {
@@ -93,7 +100,8 @@ export default [
             },
         },
     },
-
+    reactHooks.configs['recommended-latest'],
+    jsxA11y.flatConfigs.recommended,
     reactPlugin.configs.flat.recommended,
     pluginJs.configs.recommended,
     ...tseslint.configs.recommendedTypeChecked,
