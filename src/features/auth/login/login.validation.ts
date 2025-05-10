@@ -11,7 +11,7 @@ export const loginSchema = yup.object().shape({
         )
         .test(
             'contains-at-and-domain',
-            'Email must include "@" and a valid domain',
+            'Email must be in format: user@example.com (no spaces allowed)',
             (value) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value || '')
         ),
 
