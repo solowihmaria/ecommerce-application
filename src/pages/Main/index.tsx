@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-const MainPage = (): React.JSX.Element => (
+export const MainPage = (): React.JSX.Element => (
     <div>
         <h1>Главная</h1>
         <nav>
@@ -10,5 +10,3 @@ const MainPage = (): React.JSX.Element => (
         </nav>
     </div>
 );
-
-export default MainPage;

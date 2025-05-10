@@ -4,7 +4,7 @@ import Heading from '../../components/ui/Heading/Heading';
 import Button from '../../components/ui/Button/Button';
 import styles from './NotFound.module.scss';
 
-const NotFoundPage: React.FC = () => {
+export const NotFoundPage: React.FC = () => {
     return (
         <div className={styles.notfound}>
             <div className={styles.content}>
@@ -23,5 +23,3 @@ const NotFoundPage: React.FC = () => {
         </div>
     );
 };
-
-export default NotFoundPage;
