@@ -15,4 +15,12 @@ export interface InputProps {
     className?: string;
     error?: boolean;
     errorMessage?: string;
+    hasPasswordToggle?: boolean;
+    onTogglePassword?: () => void;
+    showPassword?: boolean;
+}
+
+export interface InputToggleButtonProps {
+    showPassword: boolean;
+    onTogglePassword: () => void;
 }
