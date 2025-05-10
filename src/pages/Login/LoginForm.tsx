@@ -45,7 +45,8 @@ const EmailField = ({
         </Label>
         <Input
             id="email"
-            type="email"
+            type="text"
+            autoComplete="email"
             error={Boolean(errors?.email)}
             errorMessage={errors?.email?.message}
             {...register('email')}
