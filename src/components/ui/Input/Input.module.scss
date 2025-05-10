@@ -2,12 +2,18 @@
     display: flex;
     flex-direction: column;
     gap: 0.25rem;
+    width: 20rem;
+}
+
+.inputWrapper {
+    position: relative;
     width: 100%;
 }
 
 .input {
     width: 100%;
     padding: 0.75rem 1rem;
+    padding-right: 2rem;
     border: 1px solid #ddd;
     border-radius: 0.25rem;
     font-family: inherit;
@@ -29,8 +35,30 @@
     }
 }
 
+.toggleButton {
+    cursor: pointer;
+    position: absolute;
+    top: 55%;
+    right: -2rem;
+    transform: translateY(-50%);
+    padding: 0;
+    border: none;
+    color: #666;
+    background: none;
+
+    &:hover {
+        color: #333;
+    }
+
+    &:focus {
+        outline: none;
+    }
+}
+
 .errorMessage {
     min-height: 1.25rem;
     font-size: 0.7rem;
     color: #d32f2f;
+    word-wrap: break-word;
+    white-space: normal;
 }
