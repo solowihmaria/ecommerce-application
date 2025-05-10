@@ -8,7 +8,7 @@ export const Label = ({
     className = '',
     required = false,
     disabled = false,
-}: LabelProps): React.JSX.Element => {
+}: LabelProps) => {
     return (
         <label
             htmlFor={htmlFor}

@@ -7,7 +7,7 @@ export const Heading = ({
     className = '',
     children,
     ...props
-}: HeadingProps): React.JSX.Element => {
+}: HeadingProps) => {
     const Tag = level;
 
     return (
