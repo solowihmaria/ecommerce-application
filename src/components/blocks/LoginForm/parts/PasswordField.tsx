@@ -1,7 +1,7 @@
 import React from 'react';
 import type { PasswordFieldProps } from '../Login.types';
-import Input from '../../../ui/Input';
-import Label from '../../../ui/Label';
+import { Input } from '../../../ui/Input';
+import { Label } from '../../../ui/Label';
 
 export const PasswordField = ({
     register,

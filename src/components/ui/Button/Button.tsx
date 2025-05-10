@@ -2,7 +2,7 @@ import React from 'react';
 import styles from './Button.module.scss';
 import type { ButtonProps } from './Button.types';
 
-const Button = ({
+export const Button = ({
     type = 'button',
     className = '',
     onClick,
@@ -21,5 +21,3 @@ const Button = ({
         </button>
     );
 };
-
-export default Button;

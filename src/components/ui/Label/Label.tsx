@@ -2,7 +2,7 @@ import React from 'react';
 import styles from './Label.module.scss';
 import type { LabelProps } from './Label.types';
 
-const Label = ({
+export const Label = ({
     htmlFor,
     children,
     className = '',
@@ -21,5 +21,3 @@ const Label = ({
         </label>
     );
 };
-
-export default Label;

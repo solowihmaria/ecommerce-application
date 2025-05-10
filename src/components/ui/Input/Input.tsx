@@ -3,7 +3,7 @@ import styles from './Input.module.scss';
 import type { InputProps } from './Input.types';
 import { InputToggleButton } from './InputToggle';
 
-const Input = React.forwardRef<HTMLInputElement, InputProps>(
+export const Input = React.forwardRef<HTMLInputElement, InputProps>(
     (
         {
             type = 'text',
@@ -42,5 +42,3 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
 );
 
 Input.displayName = 'Input';
-
-export default Input;

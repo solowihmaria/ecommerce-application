@@ -4,7 +4,7 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import styles from './LoginForm.module.scss';
 import { loginSchema } from './features/login.validation';
 import type { LoginFormData, LoginSubmitHandler } from './Login.types';
-import Form from '../../../components/ui/Form';
+import { Form } from '../../../components/ui/Form';
 import { FormTitle } from './parts/FormTitle';
 import { EmailField } from './parts/EmailField';
 import { PasswordField } from './parts/PasswordField';

@@ -2,7 +2,7 @@ import React from 'react';
 import styles from './Heading.module.scss';
 import type { HeadingProps } from './Heading.types';
 
-const Heading = ({
+export const Heading = ({
     level = 'h1',
     className = '',
     children,
@@ -19,5 +19,3 @@ const Heading = ({
         </Tag>
     );
 };
-
-export default Heading;
