@@ -66,18 +66,14 @@ const PasswordField = ({
         </Label>
         <Input
             id="password"
-            type={showPassword ? 'text' : 'password'}
+            type="password"
             error={Boolean(errors?.password)}
             errorMessage={errors?.password?.message}
+            hasPasswordToggle
+            showPassword={showPassword}
+            onTogglePassword={togglePasswordVisibility}
             {...register('password')}
         />
-        <Button
-            type="button"
-            variant="ghost"
-            onClick={togglePasswordVisibility}
-        >
-            {showPassword ? 'Скрыть' : 'Показать'} пароль
-        </Button>
     </div>
 );
 
@@ -93,9 +89,6 @@ const onSubmit: LoginSubmitHandler = (data: LoginFormData): void => {
     // Здесь будет интеграция с API
 };
 
-/**
- * Страница входа в систему
- */
 const LoginPage: React.FC = () => {
     // Получаем методы и состояние формы из хука
     const {
