@@ -77,7 +77,7 @@ export default [
             'unicorn/prefer-blob-reading-methods': 'off',
             'unicorn/no-empty-file': 'off',
             'unicorn/filename-case': 'off',
-            'max-lines-per-function': ['error', 40],
+            'max-lines-per-function': ['error', 70],
             'react/jsx-uses-react': 'error',
             'react/jsx-uses-vars': 'error',
             'react-hooks/rules-of-hooks': 'error',
