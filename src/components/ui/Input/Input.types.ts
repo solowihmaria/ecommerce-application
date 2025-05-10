@@ -9,6 +9,7 @@ export interface InputProps {
     required?: boolean;
     disabled?: boolean;
     readOnly?: boolean;
+    autoComplete?: string;
     onChange?: (event_: ChangeEvent<HTMLInputElement>) => void;
     onBlur?: (event_: FocusEvent<HTMLInputElement>) => void;
     className?: string;
