@@ -6,9 +6,9 @@ import styles from './NotFound.module.scss';
 
 export const NotFoundPage = () => {
     return (
-        <div className={styles.notfound}>
+        <div className={styles.notFound}>
             <div className={styles.content}>
-                <div className={styles.errorcode}>404</div>
+                <div className={styles.errorCode}>404</div>
                 <Heading level="h1" className={styles.title}>
                     Page Not Found
                 </Heading>
@@ -16,7 +16,7 @@ export const NotFoundPage = () => {
                     Oops! The page you&apos;re looking for doesn&apos;t exist or
                     has been moved.
                 </p>
-                <Link to="/" className={styles.homelink}>
+                <Link to="/" className={styles.homeLink}>
                     <Button className={styles.button}>Go to Homepage</Button>
                 </Link>
             </div>
