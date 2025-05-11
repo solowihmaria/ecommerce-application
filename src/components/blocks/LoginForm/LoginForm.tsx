@@ -9,6 +9,7 @@ import { FormTitle } from './parts/FormTitle';
 import { EmailField } from './parts/EmailField';
 import { PasswordField } from './parts/PasswordField';
 import { SubmitButton } from './parts/SubmitButton';
+import { SignUpRedirect } from './parts/SignUpRedirect';
 
 const onSubmit: LoginSubmitHandler = (data) => {
     console.log('Form submitted:', data);
@@ -41,6 +42,7 @@ export const LoginForm = () => {
                     onTogglePassword={() => setShowPassword(!showPassword)}
                 />
                 <SubmitButton />
+                <SignUpRedirect />
             </Form>
         </div>
     );
