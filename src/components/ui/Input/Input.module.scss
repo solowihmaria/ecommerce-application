@@ -2,7 +2,8 @@
     display: flex;
     flex-direction: column;
     gap: 0.25rem;
-    width: 20rem;
+    width: 100%;
+    max-width: 16rem;
 }
 
 .inputWrapper {
@@ -11,9 +12,9 @@
 }
 
 .input {
+    box-sizing: border-box;
     width: 100%;
-    padding: 0.75rem 1rem;
-    padding-right: 2rem;
+    padding: 0.75rem 2.5rem 0.75rem 1rem;
     border: 1px solid #ddd;
     border-radius: 0.25rem;
     font-family: inherit;
@@ -39,7 +40,7 @@
     cursor: pointer;
     position: absolute;
     top: 55%;
-    right: -2rem;
+    right: 0.75rem;
     transform: translateY(-50%);
     padding: 0;
     border: none;
@@ -56,9 +57,11 @@
 }
 
 .errorMessage {
+    display: block;
+    width: 100%;
     min-height: 1.25rem;
     font-size: 0.7rem;
     color: #d32f2f;
-    word-wrap: break-word;
+    overflow-wrap: break-word;
     white-space: normal;
 }
