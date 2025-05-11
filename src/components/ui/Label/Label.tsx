@@ -1,6 +1,7 @@
 import React from 'react';
 import styles from './Label.module.scss';
 import type { LabelProps } from './Label.types';
+import clsx from 'clsx';
 
 export const Label = ({
     htmlFor,
@@ -12,9 +13,11 @@ export const Label = ({
     return (
         <label
             htmlFor={htmlFor}
-            className={`${styles.label} ${className} ${
-                disabled ? styles.disabled : ''
-            }`}
+            className={clsx(
+                styles.label,
+                className,
+                disabled && styles.disabled
+            )}
         >
             {children}
             {required && <span className={styles.required}>*</span>}

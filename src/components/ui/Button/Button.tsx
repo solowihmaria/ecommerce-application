@@ -1,6 +1,7 @@
 import React from 'react';
 import styles from './Button.module.scss';
 import type { ButtonProps } from './Button.types';
+import clsx from 'clsx';
 
 export const Button = ({
     type = 'button',
@@ -13,7 +14,12 @@ export const Button = ({
     return (
         <button
             type={type}
-            className={`${styles.button} ${styles[variant]} ${className}`}
+            className={clsx(
+                styles.button,
+                styles[variant],
+                className,
+                disabled && styles.disabled
+            )}
             onClick={onClick}
             disabled={disabled}
         >

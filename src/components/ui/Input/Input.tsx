@@ -2,6 +2,7 @@ import React from 'react';
 import styles from './Input.module.scss';
 import type { InputProps } from './Input.types';
 import { InputToggleButton } from './InputToggle';
+import clsx from 'clsx';
 
 export const Input = React.forwardRef<HTMLInputElement, InputProps>(
     (
@@ -22,7 +23,11 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(
                 <input
                     ref={reference}
                     type={showPassword ? 'text' : type}
-                    className={`${styles.input} ${error ? styles.error : ''} ${className}`}
+                    className={clsx(
+                        styles.input,
+                        error && styles.error,
+                        className
+                    )}
                     {...props}
                 />
                 {hasPasswordToggle &&

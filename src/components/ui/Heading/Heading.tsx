@@ -1,6 +1,7 @@
 import React from 'react';
 import styles from './Heading.module.scss';
 import type { HeadingProps } from './Heading.types';
+import clsx from 'clsx';
 
 export const Heading = ({
     level = 'h1',
@@ -12,7 +13,11 @@ export const Heading = ({
 
     return (
         <Tag
-            className={`${styles.heading} ${styles[`heading--${level}`]} ${className}`}
+            className={clsx(
+                styles.heading,
+                styles[`heading--${level}`],
+                className
+            )}
             {...props}
         >
             {children}
