@@ -15,7 +15,7 @@ export const PasswordField = ({
         </Label>
         <Input
             id="password"
-            type={showPassword ? 'text' : 'password'}
+            type="password"
             placeholder="Enter your password"
             error={Boolean(error)}
             errorMessage={error?.message}
