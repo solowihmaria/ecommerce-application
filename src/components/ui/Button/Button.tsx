@@ -9,7 +9,7 @@ export const Button = ({
     disabled = false,
     variant = 'primary',
     children,
-}: ButtonProps): React.JSX.Element => {
+}: ButtonProps) => {
     return (
         <button
             type={type}
