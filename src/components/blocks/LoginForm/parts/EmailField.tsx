@@ -12,6 +12,7 @@ export const EmailField = ({ register, error }: EmailFieldProps) => (
             id="email"
             type="text"
             autoComplete="email"
+            placeholder="Enter your email"
             error={Boolean(error)}
             errorMessage={error?.message}
             {...register('email')}

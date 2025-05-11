@@ -16,6 +16,7 @@ export const PasswordField = ({
         <Input
             id="password"
             type={showPassword ? 'text' : 'password'}
+            placeholder="Enter your password"
             error={Boolean(error)}
             errorMessage={error?.message}
             hasPasswordToggle
