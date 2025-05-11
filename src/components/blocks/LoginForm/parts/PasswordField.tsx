@@ -9,7 +9,7 @@ export const PasswordField = ({
     showPassword,
     onTogglePassword,
 }: PasswordFieldProps) => (
-    <div className="form-group">
+    <div className="formGroup">
         <Label htmlFor="password" required>
             Password
         </Label>

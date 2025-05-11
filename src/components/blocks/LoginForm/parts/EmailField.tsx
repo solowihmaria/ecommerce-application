@@ -4,7 +4,7 @@ import { Input } from '../../../ui/Input';
 import { Label } from '../../../ui/Label';
 
 export const EmailField = ({ register, error }: EmailFieldProps) => (
-    <div className="form-group">
+    <div className="formGroup">
         <Label htmlFor="email" required>
             Email
         </Label>

@@ -30,7 +30,7 @@ export const LoginForm = () => {
     };
 
     return (
-        <div className={styles['login-container']}>
+        <div className={styles.loginContainer}>
             <Form onSubmit={handleFormSubmission}>
                 <FormTitle />
                 <EmailField register={register} error={errors.email} />
