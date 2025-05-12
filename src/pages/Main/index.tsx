@@ -1,12 +1,9 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Header } from '../../components/blocks/Header/Header';
 
 export const MainPage = (): React.JSX.Element => (
     <div>
-        <h1>Главная</h1>
-        <nav>
-            <Link to="/login">Вход</Link> |{' '}
-            <Link to="/register">Регистрация</Link>
-        </nav>
+        <Header />
+        <h1>Main Page Content</h1>
     </div>
 );
