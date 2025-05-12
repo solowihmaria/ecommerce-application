@@ -3,6 +3,6 @@ import { Button } from '../../../ui/Button';
 
 export const SubmitButton = () => (
     <Button type="submit" variant="primary">
-        Login Your Account
+        Log In
     </Button>
 );
