@@ -2,6 +2,7 @@ import React from 'react';
 import type { PasswordFieldProps } from '../Login.types';
 import { Input } from '../../../ui/Input';
 import { Label } from '../../../ui/Label';
+import styles from '../LoginForm.module.scss';
 
 export const PasswordField = ({
     register,
@@ -9,7 +10,7 @@ export const PasswordField = ({
     showPassword,
     onTogglePassword,
 }: PasswordFieldProps) => (
-    <div className="formGroup">
+    <div className={styles.formGroup}>
         <Label htmlFor="password" required>
             Password
         </Label>
