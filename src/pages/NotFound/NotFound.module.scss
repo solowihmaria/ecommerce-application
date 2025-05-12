@@ -1,4 +1,4 @@
-.notfound {
+.notFound {
     position: fixed;
     inset: 0;
     overflow: hidden;
@@ -16,7 +16,7 @@
     padding: 2rem;
 }
 
-.errorcode {
+.errorCode {
     margin-bottom: 0;
     font-size: 8rem;
     font-weight: 800;
@@ -39,7 +39,7 @@
     color: #6c757d;
 }
 
-.homelink {
+.homeLink {
     display: inline-block;
     margin-top: 1rem;
     text-decoration: none;
@@ -50,7 +50,7 @@
 }
 
 @media (width <= 768px) {
-    .errorcode {
+    .errorCode {
         font-size: 5rem;
     }
 

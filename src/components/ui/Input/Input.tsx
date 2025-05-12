@@ -1,36 +1,49 @@
 import React from 'react';
 import styles from './Input.module.scss';
 import type { InputProps } from './Input.types';
+import { InputToggleButton } from './InputToggle';
+import clsx from 'clsx';
 
-const Input = React.forwardRef<HTMLInputElement, InputProps>(
+export const Input = React.forwardRef<HTMLInputElement, InputProps>(
     (
         {
             type = 'text',
             className = '',
             error = false,
             errorMessage,
+            hasPasswordToggle = false,
+            onTogglePassword,
+            showPassword,
             ...props
         },
         reference
-    ) => {
-        return (
-            <div className={styles.inputContainer}>
+    ) => (
+        <div className={styles.inputContainer}>
+            <div className={styles.inputWrapper}>
                 <input
                     ref={reference}
-                    type={type}
-                    className={`${styles.input} ${error ? styles.error : ''} ${className}`}
+                    type={showPassword ? 'text' : type}
+                    className={clsx(
+                        styles.input,
+                        error && styles.error,
+                        className
+                    )}
                     {...props}
                 />
-                {error && errorMessage && (
-                    <span className={styles['error-message']}>
-                        {errorMessage}
-                    </span>
-                )}
+                {hasPasswordToggle &&
+                    type === 'password' &&
+                    onTogglePassword && (
+                        <InputToggleButton
+                            showPassword={!!showPassword}
+                            onTogglePassword={onTogglePassword}
+                        />
+                    )}
             </div>
-        );
-    }
+            {error && (
+                <span className={styles.errorMessage}>{errorMessage}</span>
+            )}
+        </div>
+    )
 );
 
-Input.displayName = 'Input'; // Для отладки в DevTools (пишут, что так удобнее)
-
-export default Input;
+Input.displayName = 'Input';
