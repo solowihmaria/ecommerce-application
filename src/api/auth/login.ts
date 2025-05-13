@@ -1,12 +1,5 @@
 import axios from 'axios';
-
-interface LoginResponse {
-    access_token: string;
-    expires_in: number;
-    scope: string;
-    refresh_token: string;
-    token_type: string;
-}
+import type { LoginResponse } from './auth.types';
 
 export const login = async (
     email: string,
