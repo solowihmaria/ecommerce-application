@@ -11,7 +11,7 @@ import { PasswordField } from './parts/PasswordField';
 import { SubmitButton } from './parts/SubmitButton';
 import { SignUpRedirect } from './parts/SignUpRedirect';
 import { login } from '../../../api/auth/login';
-import { setToken } from '../../../utilities/storage';
+import { setToken } from '../../../features/auth/token';
 import { useNavigate } from 'react-router-dom';
 import { useAuthErrors } from './features/useAuthErrors';
 
