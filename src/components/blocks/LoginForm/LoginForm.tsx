@@ -10,13 +10,14 @@ import { EmailField } from './parts/EmailField';
 import { PasswordField } from './parts/PasswordField';
 import { SubmitButton } from './parts/SubmitButton';
 import { SignUpRedirect } from './parts/SignUpRedirect';
-
-const onSubmit: LoginSubmitHandler = (data) => {
-    console.log('Form submitted:', data);
-};
+import { login } from '../../../api/auth/login';
+import { setToken } from '../../../utilities/storage';
+import { useNavigate } from 'react-router-dom';
 
 export const LoginForm = () => {
     const [showPassword, setShowPassword] = React.useState(false);
+    const navigate = useNavigate();
+
     const {
         register,
         handleSubmit,
@@ -25,6 +26,17 @@ export const LoginForm = () => {
         resolver: yupResolver(loginSchema),
         mode: 'onChange',
     });
+
+    const onSubmit: LoginSubmitHandler = async (data) => {
+        try {
+            const response = await login(data.email, data.password);
+            setToken(response.access_token);
+            console.log('Login success:', response);
+            void navigate('/main');
+        } catch (error) {
+            console.error('Login failed:', error);
+        }
+    };
 
     const handleFormSubmission = (event?: React.BaseSyntheticEvent): void => {
         void handleSubmit(onSubmit)(event).catch(console.error);
