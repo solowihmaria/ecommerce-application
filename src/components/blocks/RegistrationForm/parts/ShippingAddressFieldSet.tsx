@@ -4,7 +4,8 @@ import { AddressType } from '../Registration.types';
 import { CityField } from './CityField';
 import { PostalCodeField } from './PostalCodeField';
 import { CountryField } from './CountryField';
-import { SetAsDefaultField } from './SetAsDefaultField';
+import { SetAsDefaultAddressField } from './SetAsDefaultAddressField';
+import { SetAsBillingAddressField } from './SetAsBillingAddressField';
 import styles from '../RegistrationForm.module.scss';
 import clsx from 'clsx';
 
@@ -19,7 +20,11 @@ export const ShippingAddressFieldSet = () => {
             <CityField type={type} />
             <CountryField type={type} />
             <PostalCodeField type={type} />
-            <SetAsDefaultField type={type} />
+
+            <div className={styles.checkboxesContainer}>
+                <SetAsDefaultAddressField type={type} />
+                <SetAsBillingAddressField />
+            </div>
         </fieldset>
     );
 };

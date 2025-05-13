@@ -24,6 +24,6 @@ export interface PostalCodeFieldProps {
     type: AddressType;
 }
 
-export interface SetAsDefaultFieldProps {
+export interface SetAsDefaultAddressFieldProps {
     type: AddressType;
 }

@@ -16,15 +16,19 @@
     margin-bottom: 20px;
 }
 
-.checkboxContainer {
-    display: flex;
+.checkboxesContainer {
     grid-column: 1 / -1;
+}
+
+.checkboxWrapper {
+    display: flex;
     gap: 0.5rem;
     align-items: baseline;
     justify-content: start;
 }
 
 .fieldset {
+    padding-top: 1em;
     border: none;
     border-top: 1px solid #999;
 }

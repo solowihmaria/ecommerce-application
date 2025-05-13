@@ -3,7 +3,7 @@ import { Input } from '../../../ui/Input';
 import { Label } from '../../../ui/Label';
 
 export const FirstNameField = () => (
-    <div className="formGroup">
+    <div>
         <Label htmlFor="firstName" required>
             First Name
         </Label>

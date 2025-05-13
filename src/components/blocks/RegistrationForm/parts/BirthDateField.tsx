@@ -3,7 +3,7 @@ import { Input } from '../../../ui/Input';
 import { Label } from '../../../ui/Label';
 
 export const BirthDateField = () => (
-    <div className="formGroup">
+    <div>
         <Label htmlFor="birthDate" required>
             Date of Birth
         </Label>

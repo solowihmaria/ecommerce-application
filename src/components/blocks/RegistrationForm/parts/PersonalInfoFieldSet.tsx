@@ -6,7 +6,7 @@ import styles from '../RegistrationForm.module.scss';
 import clsx from 'clsx';
 
 export const PersonalInfoFieldSet = () => (
-    <fieldset className={clsx(styles.fieldset, styles.grid3)}>
+    <fieldset className={clsx(styles.formGroup, styles.fieldset, styles.grid3)}>
         <legend className={styles.legend}>Personal Info</legend>
 
         <FirstNameField />

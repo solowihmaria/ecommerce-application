@@ -6,6 +6,10 @@
 
     // без max-width при длинных error-message компонент расползается
     // max-width: 16rem;
+
+    &.checkbox {
+        width: auto;
+    }
 }
 
 .inputWrapper {
