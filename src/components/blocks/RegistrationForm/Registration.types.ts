@@ -23,3 +23,7 @@ export interface CountryFieldProps {
 export interface PostalCodeFieldProps {
     type: AddressType;
 }
+
+export interface SetAsDefaultFieldProps {
+    type: AddressType;
+}

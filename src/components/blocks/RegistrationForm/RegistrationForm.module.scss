@@ -16,6 +16,14 @@
     margin-bottom: 20px;
 }
 
+.checkboxContainer {
+    display: flex;
+    grid-column: 1 / -1;
+    gap: 0.5rem;
+    align-items: baseline;
+    justify-content: start;
+}
+
 .fieldset {
     border: none;
     border-top: 1px solid #999;
