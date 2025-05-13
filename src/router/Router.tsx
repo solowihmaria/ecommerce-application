@@ -1,9 +1,10 @@
+import React from 'react';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import { MainPage } from '../pages/Main';
 import { LoginPage } from '../pages/Login';
 import { RegistrationPage } from '../pages/Registration';
 import { NotFoundPage } from '../pages/NotFound';
-import React from 'react';
+import { RedirectIfAuth } from './guards/RedirectIfAuth';
 
 const router = createBrowserRouter([
     {
@@ -16,7 +17,11 @@ const router = createBrowserRouter([
     },
     {
         path: '/login',
-        element: <LoginPage />,
+        element: (
+            <RedirectIfAuth>
+                <LoginPage />
+            </RedirectIfAuth>
+        ),
     },
     {
         path: '/register',
