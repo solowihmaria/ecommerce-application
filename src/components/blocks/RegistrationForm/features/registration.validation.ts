@@ -21,6 +21,9 @@ const ruleForPassword = yup
 
 const ruleForBirthDate = yup
     .date()
+    .transform((value: Date, originalValue: unknown): Date | undefined =>
+        originalValue === '' ? undefined : value
+    )
     .required('Date of birth is required')
     .max(
         new Date(Date.now() - 13 * 365 * 24 * 60 * 60 * 1000),
