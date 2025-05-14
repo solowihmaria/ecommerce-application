@@ -2,8 +2,8 @@ import { useState, useEffect, useRef } from 'react';
 import type { FieldError } from 'react-hook-form';
 
 export interface ApiError {
-    field?: 'email' | 'password';
-    message: string;
+    field?: 'email' | 'password' | 'both';
+    message?: string;
 }
 
 export const useAuthErrors = (isSubmitting: boolean) => {
@@ -23,20 +23,30 @@ export const useAuthErrors = (isSubmitting: boolean) => {
     const getFieldError = (
         field: 'email' | 'password'
     ): FieldError | undefined => {
+        if (apiError?.field === 'both') {
+            const message =
+                field === 'email'
+                    ? '⚠️ Please check the spelling of your email.'
+                    : '⚠️ Customer account with the given credentials not found.';
+            return {
+                type: 'manual',
+                message,
+            };
+        }
+
         if (apiError?.field === field) {
             return {
                 type: 'manual',
                 message: apiError.message,
             };
         }
+
         return undefined;
     };
 
     const handleAuthError = (): ApiError => {
         return {
-            field: 'password',
-            message:
-                '⚠️ Please check the spelling of your email or password. Customer account with the given credentials not found.',
+            field: 'both',
         };
     };
 
