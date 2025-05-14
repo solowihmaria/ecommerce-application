@@ -4,6 +4,8 @@ import { Label } from '../../../ui/Label';
 import type { PasswordFieldProps } from '../Registration.types';
 
 export const PasswordField = ({
+    register,
+    error,
     showPassword,
     onTogglePassword,
 }: PasswordFieldProps) => (
@@ -16,9 +18,12 @@ export const PasswordField = ({
             id="password"
             type="password"
             placeholder="Create your password"
+            error={Boolean(error)}
+            errorMessage={error?.message}
             hasPasswordToggle
             showPassword={showPassword}
             onTogglePassword={onTogglePassword}
+            {...register('password')}
         />
     </div>
 );

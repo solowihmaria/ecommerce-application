@@ -6,11 +6,11 @@ import { Select } from '../../../ui/Select/Select';
 
 export const CountryField = ({ type }: CountryFieldProps) => (
     <div className={styles.formGroup}>
-        <Label htmlFor={`${type}-country`} required>
+        <Label htmlFor={`${type}Country`} required>
             Country
         </Label>
 
-        <Select name={`${type}-country`}>
+        <Select name={`${type}Country`}>
             <option value="usa">United States</option>
             <option value="canada">Canada</option>
         </Select>
