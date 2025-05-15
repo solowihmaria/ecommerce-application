@@ -18,11 +18,12 @@ export const login = async (
     const tokenUrl = `${authUrl}/oauth/${projectKey}/customers/token`;
     const credentials = btoa(`${clientId}:${clientSecret}`);
 
-    const parameters = new URLSearchParams();
-    parameters.append('grant_type', 'password');
-    parameters.append('username', email);
-    parameters.append('password', password);
-    parameters.append('scope', scope);
+    const parameters = new URLSearchParams({
+        grant_type: 'password',
+        username: email,
+        password: password,
+        scope: scope,
+    });
 
     const response = await axios.post<LoginResponse>(tokenUrl, parameters, {
         headers: {

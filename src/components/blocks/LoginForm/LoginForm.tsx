@@ -10,10 +10,9 @@ import { EmailField } from './parts/EmailField';
 import { PasswordField } from './parts/PasswordField';
 import { SubmitButton } from './parts/SubmitButton';
 import { SignUpRedirect } from './parts/SignUpRedirect';
-import { login } from '../../../api/auth/login';
-import { setToken } from '../../../features/auth/token';
 import { useNavigate } from 'react-router-dom';
 import { useAuthErrors } from './features/useAuthErrors';
+import { authenticateUser } from '../../../api/auth/authService';
 
 export const LoginForm = () => {
     const [showPassword, setShowPassword] = React.useState(false);
@@ -40,9 +39,9 @@ export const LoginForm = () => {
 
     const onSubmit: LoginSubmitHandler = async (data) => {
         try {
-            const response = await login(data.email, data.password);
-            setToken(response.access_token);
-            void navigate('/main');
+            await authenticateUser(data.email, data.password, () => {
+                void navigate('/main');
+            });
         } catch {
             setApiError(handleAuthError());
         }
