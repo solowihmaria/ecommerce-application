@@ -6,10 +6,9 @@ interface Props {
     children: React.ReactNode;
 }
 
-export const RedirectIfAuth: React.FC<Props> = ({ children }) => {
+export const RedirectIfAuth = ({ children }: Props) => {
     const token = getToken();
 
-    // Если токен есть (пользователь авторизован) — перекидываем сразу на /main
     if (token) {
         return <Navigate to="/main" replace />;
     }
