@@ -6,7 +6,7 @@ import styles from './NotFound.module.scss';
 
 export const NotFoundPage = () => {
     return (
-        <div className={styles.notFound}>
+        <div data-testid="test-id-not-found-page" className={styles.notFound}>
             <div className={styles.content}>
                 <div className={styles.errorCode}>404</div>
                 <Heading level="h1" className={styles.title}>

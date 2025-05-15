@@ -23,6 +23,7 @@ describe('<Label/> component', () => {
         render(<Label {...properties} />);
         const label = screen.getByText(/labeltext/i);
         expect(label).toBeInTheDocument();
+        expect(label).toHaveClass('labelClass');
         expect(label).toMatchSnapshot();
     });
     test('Render Label component - required field', () => {
@@ -51,6 +52,7 @@ describe('<Label/> component', () => {
         render(<Label {...properties} />);
         const label = screen.getByText(/labeltext/i);
         expect(label).toBeInTheDocument();
+        expect(label).toHaveClass('disabled');
         expect(label).toMatchSnapshot();
     });
 });

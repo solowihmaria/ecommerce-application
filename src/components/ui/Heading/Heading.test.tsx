@@ -20,6 +20,7 @@ describe('<Heading/> component', () => {
         render(<Heading {...properties} />);
         const heading = screen.getByText(/heading2/i);
         expect(heading).toBeInTheDocument();
+        expect(heading).toHaveClass('classExample');
         expect(heading).toMatchSnapshot();
     });
 });

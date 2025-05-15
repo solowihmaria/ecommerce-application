@@ -13,7 +13,8 @@
         "lint": "eslint ./src",
         "stylelint": "stylelint ./src/**/*.scss",
         "prepare": "husky .husky",
-        "test": "jest"
+        "test": "jest",
+        "coverage": "jest --coverage"
     },
     "author": "",
     "license": "ISC",
@@ -31,6 +32,7 @@
         "@pmmmwh/react-refresh-webpack-plugin": "^0.6.0",
         "@testing-library/jest-dom": "^6.6.3",
         "@testing-library/react": "^16.3.0",
+        "@testing-library/user-event": "^14.6.1",
         "@types/jest": "^29.5.14",
         "@types/react": "^19.1.2",
         "@types/react-dom": "^19.1.3",

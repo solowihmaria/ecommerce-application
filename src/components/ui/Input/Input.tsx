@@ -19,6 +19,7 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(
         reference
     ) => (
         <div
+            data-testid="input-test-id"
             className={clsx(
                 styles.inputContainer,
                 type === 'checkbox' && styles.checkbox
