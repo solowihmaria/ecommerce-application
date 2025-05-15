@@ -28,7 +28,7 @@ export const LoginForm = () => {
         mode: 'onChange',
     });
 
-    const { setApiError, clearApiError, getFieldError, handleAuthError } =
+    const { setApiError, clearApiError, getFieldError } =
         useAuthErrors(isSubmitting);
 
     // Очищаем ошибки API при изменении полей
@@ -43,7 +43,7 @@ export const LoginForm = () => {
                 void navigate('/main');
             });
         } catch {
-            setApiError(handleAuthError());
+            setApiError({ field: 'both' });
         }
     };
 

@@ -1,5 +1,6 @@
 import { useState, useEffect, useRef } from 'react';
 import type { FieldError } from 'react-hook-form';
+import { AUTH_ERROR_MESSAGES } from './constants';
 
 export interface ApiError {
     field?: 'email' | 'password' | 'both';
@@ -26,8 +27,8 @@ export const useAuthErrors = (isSubmitting: boolean) => {
         if (apiError?.field === 'both') {
             const message =
                 field === 'email'
-                    ? '⚠️ Please check the spelling of your email.'
-                    : '⚠️ Customer account with the given credentials not found.';
+                    ? AUTH_ERROR_MESSAGES.EMAIL_INCORRECT
+                    : AUTH_ERROR_MESSAGES.CREDENTIALS_NOT_FOUND;
             return {
                 type: 'manual',
                 message,
@@ -44,17 +45,10 @@ export const useAuthErrors = (isSubmitting: boolean) => {
         return undefined;
     };
 
-    const handleAuthError = (): ApiError => {
-        return {
-            field: 'both',
-        };
-    };
-
     return {
         apiError,
         setApiError,
         clearApiError,
         getFieldError,
-        handleAuthError,
     };
 };
