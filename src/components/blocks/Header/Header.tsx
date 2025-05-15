@@ -1,11 +1,21 @@
-import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import React, { useContext } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
 import { Button } from '../../ui/Button';
 import styles from './Header.module.scss';
+import { logoutUser } from '../../../api/auth/authService';
+import { LoginContext } from '../../../App';
 
 export const Header = () => {
-    const [isLogined, setIsLogined] = useState(true);
-
+    const { loginStatus, setLoginStatus } = useContext(LoginContext);
+    const navigate = useNavigate();
+    const onLogout = () => {
+        logoutUser()
+            .then(() => {
+                void navigate('/main');
+                setLoginStatus(false);
+            })
+            .catch((error) => console.log(error));
+    };
     return (
         <nav className={styles.header}>
             <div className={styles.logoContainer}>
@@ -14,14 +24,8 @@ export const Header = () => {
                 </Link>
             </div>
             <div className={styles.menu}>
-                {isLogined ? (
-                    <>
-                        <Link to="/login">
-                            <Button onClick={() => setIsLogined(false)}>
-                                Logout
-                            </Button>
-                        </Link>
-                    </>
+                {loginStatus ? (
+                    <Button onClick={onLogout}>Logout</Button>
                 ) : (
                     <>
                         <Link to="/login">
