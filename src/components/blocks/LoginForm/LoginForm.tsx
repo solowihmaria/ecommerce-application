@@ -10,34 +10,58 @@ import { EmailField } from './parts/EmailField';
 import { PasswordField } from './parts/PasswordField';
 import { SubmitButton } from './parts/SubmitButton';
 import { SignUpRedirect } from './parts/SignUpRedirect';
-
-const onSubmit: LoginSubmitHandler = (data) => {
-    console.log('Form submitted:', data);
-};
+import { useNavigate } from 'react-router-dom';
+import { useAuthErrors } from './features/useAuthErrors';
+import { authenticateUser } from '../../../api/auth/authService';
 
 export const LoginForm = () => {
     const [showPassword, setShowPassword] = React.useState(false);
+    const navigate = useNavigate();
+
     const {
         register,
         handleSubmit,
-        formState: { errors },
+        formState: { errors, isSubmitting },
+        watch,
     } = useForm<LoginFormData>({
         resolver: yupResolver(loginSchema),
         mode: 'onChange',
     });
 
+    const { setApiError, clearApiError, getFieldError } =
+        useAuthErrors(isSubmitting);
+
+    // Очищаем ошибки API при изменении полей
+    React.useEffect(() => {
+        const subscription = watch(() => clearApiError());
+        return () => subscription.unsubscribe();
+    }, [watch, clearApiError]);
+
+    const onSubmit: LoginSubmitHandler = async (data) => {
+        try {
+            await authenticateUser(data.email, data.password, () => {
+                void navigate('/main');
+            });
+        } catch {
+            setApiError({ field: 'both' });
+        }
+    };
+
     const handleFormSubmission = (event?: React.BaseSyntheticEvent): void => {
-        void handleSubmit(onSubmit)(event).catch(console.error);
+        handleSubmit(onSubmit)(event).catch(() => {});
     };
 
     return (
         <div className={styles.loginContainer}>
             <Form onSubmit={handleFormSubmission}>
                 <FormTitle />
-                <EmailField register={register} error={errors.email} />
+                <EmailField
+                    register={register}
+                    error={errors.email || getFieldError('email')}
+                />
                 <PasswordField
                     register={register}
-                    error={errors.password}
+                    error={errors.password || getFieldError('password')}
                     showPassword={showPassword}
                     onTogglePassword={() => setShowPassword(!showPassword)}
                 />

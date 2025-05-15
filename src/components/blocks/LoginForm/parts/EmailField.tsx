@@ -2,9 +2,10 @@ import React from 'react';
 import type { EmailFieldProps } from '../Login.types';
 import { Input } from '../../../ui/Input';
 import { Label } from '../../../ui/Label';
+import styles from '../LoginForm.module.scss';
 
 export const EmailField = ({ register, error }: EmailFieldProps) => (
-    <div className="formGroup">
+    <div className={styles.formGroup}>
         <Label htmlFor="email" required>
             Email
         </Label>
