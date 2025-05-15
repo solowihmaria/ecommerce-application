@@ -1,0 +1,68 @@
+.registrationContainer {
+    min-width: 25rem;
+    margin: 0 auto;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+}
+
+.formTitle {
+    margin-bottom: 24px;
+    color: #333;
+    text-align: center;
+}
+
+.formGroup {
+    margin-bottom: 20px;
+}
+
+.checkboxesContainer {
+    grid-column: 1 / -1;
+}
+
+.checkboxWrapper {
+    display: flex;
+    gap: 0.5rem;
+    align-items: baseline;
+    justify-content: start;
+}
+
+.fieldset {
+    padding-top: 1em;
+    border: none;
+    border-top: 1px solid #999;
+}
+
+.legend {
+    font-weight: 700;
+    color: #666;
+}
+
+.signInRedirect {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.grid2 {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+    width: 100%;
+}
+
+.grid3 {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+    width: 100%;
+}
+
+.grid4 {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+    width: 100%;
+}

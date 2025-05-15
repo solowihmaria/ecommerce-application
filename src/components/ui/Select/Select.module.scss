@@ -1,23 +1,17 @@
-.inputContainer {
+.selectContainer {
     display: flex;
     flex-direction: column;
     gap: 0.25rem;
     width: 100%;
-
-    // без max-width при длинных error-message компонент расползается
-    // max-width: 16rem;
-
-    &.checkbox {
-        width: auto;
-    }
+    max-width: 16rem;
 }
 
-.inputWrapper {
+.selectWrapper {
     position: relative;
     width: 100%;
 }
 
-.input {
+.select {
     box-sizing: border-box;
     width: 100%;
     padding: 0.75rem 1rem;
@@ -39,30 +33,6 @@
 
     &.error {
         border-color: #d32f2f;
-    }
-
-    &.password {
-        padding: 0.75rem 2.5rem 0.75rem 1rem;
-    }
-}
-
-.toggleButton {
-    cursor: pointer;
-    position: absolute;
-    top: 55%;
-    right: 0.75rem;
-    transform: translateY(-50%);
-    padding: 0;
-    border: none;
-    color: #666;
-    background: none;
-
-    &:hover {
-        color: #333;
-    }
-
-    &:focus {
-        outline: none;
     }
 }
 

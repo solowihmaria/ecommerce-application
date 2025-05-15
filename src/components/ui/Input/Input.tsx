@@ -18,7 +18,12 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(
         },
         reference
     ) => (
-        <div className={styles.inputContainer}>
+        <div
+            className={clsx(
+                styles.inputContainer,
+                type === 'checkbox' && styles.checkbox
+            )}
+        >
             <div className={styles.inputWrapper}>
                 <input
                     ref={reference}
@@ -26,6 +31,7 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(
                     className={clsx(
                         styles.input,
                         error && styles.error,
+                        hasPasswordToggle && styles.password,
                         className
                     )}
                     {...props}
