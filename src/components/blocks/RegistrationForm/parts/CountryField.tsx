@@ -11,8 +11,9 @@ export const CountryField = ({ type }: CountryFieldProps) => (
         </Label>
 
         <Select name={`${type}Country`}>
-            <option value="usa">United States</option>
-            <option value="canada">Canada</option>
+            <option value="france">France</option>
+            <option value="germany">Germany</option>
+            <option value="italy">Italy</option>
         </Select>
     </div>
 );

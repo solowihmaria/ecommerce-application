@@ -32,9 +32,5 @@ export const loginSchema = yup.object().shape({
             /[a-z]/,
             'Password must contain at least one lowercase letter (a-z)'
         )
-        .matches(/\d/, 'Password must contain at least one digit (0-9)')
-        .matches(
-            /[!#$%&*@^]/,
-            'Password must contain at least one special character (!#$%&*@^)'
-        ),
+        .matches(/\d/, 'Password must contain at least one digit (0-9)'),
 });

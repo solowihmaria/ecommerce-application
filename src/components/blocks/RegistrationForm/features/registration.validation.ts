@@ -56,10 +56,7 @@ const ruleForCity = yup
 const ruleForPostalCode = yup
     .string()
     .required('Postal code is required')
-    .matches(
-        /^\d{5}(-\d{4})?$|^[A-Za-z]\d[A-Za-z] ?\d[A-Za-z]\d$/,
-        'Invalid postal code'
-    );
+    .matches(/^\d{5}$/, 'Postal code must be exactly 5 digits');
 
 export const registrationSchema = yup.object().shape({
     email: ruleForEmail,
