@@ -6,8 +6,8 @@ import type { LabelProps } from './Label.types';
 export const Label = ({
     htmlFor,
     className = '',
-    required = false,
-    disabled = false,
+    required,
+    disabled,
     children,
     ...props
 }: LabelProps) => {

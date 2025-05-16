@@ -6,8 +6,8 @@ import type { SelectProps } from './Select.types';
 export const Select = ({
     name,
     className = '',
-    required = false,
-    disabled = false,
+    required,
+    disabled,
     children,
     ...props
 }: SelectProps) => {

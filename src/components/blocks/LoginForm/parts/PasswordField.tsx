@@ -1,21 +1,37 @@
 import React from 'react';
-import type { PasswordFieldProps } from '../Login.types';
-import { PasswordInput } from '../../../ui/Input/PasswordInput';
+import { useFormContext } from 'react-hook-form';
+import { PasswordInput } from '../../../ui/Input';
 import { Label } from '../../../ui/Label';
 import styles from '../LoginForm.module.scss';
+import type { FieldError } from 'react-hook-form';
 
-export const PasswordField = ({ register, error }: PasswordFieldProps) => (
-    <div className={styles.formGroup}>
-        <Label htmlFor="password" required>
-            Password
-        </Label>
+interface PasswordFieldProps {
+    error?: FieldError;
+    showPassword: boolean;
+    onTogglePassword: () => void;
+}
 
-        <PasswordInput
-            id="password"
-            placeholder="Enter your password"
-            error={Boolean(error)}
-            errorMessage={error?.message}
-            {...register('password')}
-        />
-    </div>
-);
+export const PasswordField = ({
+    error,
+    showPassword,
+    onTogglePassword,
+}: PasswordFieldProps) => {
+    const { register } = useFormContext();
+
+    return (
+        <div className={styles.formGroup}>
+            <Label htmlFor="password" required>
+                Password
+            </Label>
+            <PasswordInput
+                id="password"
+                placeholder="Enter your password"
+                error={!!error}
+                errorMessage={error?.message}
+                showPassword={showPassword}
+                onTogglePassword={onTogglePassword}
+                {...register('password')}
+            />
+        </div>
+    );
+};

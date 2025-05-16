@@ -12,8 +12,8 @@ export const Header = () => {
     const onLogout = () => {
         logoutUser()
             .then(() => {
-                void navigate('/main');
                 setLoginStatus(false);
+                void navigate('/main');
             })
             .catch((error) => console.log(error));
     };

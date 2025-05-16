@@ -2,9 +2,7 @@ import React, { useState } from 'react';
 import { FaEye, FaEyeSlash } from 'react-icons/fa';
 import styles from './Input.module.scss';
 import clsx from 'clsx';
-import type { InputProps } from './Input.types';
-
-type PasswordInputProps = Omit<InputProps, 'type'>;
+import type { PasswordInputProps } from './Input.types';
 
 export const PasswordInput = React.forwardRef<
     HTMLInputElement,

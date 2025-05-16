@@ -4,7 +4,7 @@ import type {
     UseFormRegister,
     FieldError,
 } from 'react-hook-form';
-import type { loginSchema } from './features/login.validation';
+import type { loginSchema } from './lib/login.validation';
 
 export type LoginFormData = InferType<typeof loginSchema>;
 export type LoginSubmitHandler = SubmitHandler<LoginFormData>;

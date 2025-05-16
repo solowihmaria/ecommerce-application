@@ -15,7 +15,7 @@ import type {
     RegistrationFormData,
     RegistrationSubmitHandler,
 } from './Registration.types';
-import { registrationSchema } from './features/registration.validation';
+import { registrationSchema } from './lib/registration.validation';
 
 const onSubmit: RegistrationSubmitHandler = (data) => {
     console.log('Form submitted:', data);

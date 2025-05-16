@@ -8,16 +8,8 @@ export const Heading = ({
     className = '',
     ...props
 }: HeadingProps) => {
-    const Tag = level;
-
-    return (
-        <Tag
-            className={clsx(
-                styles.heading,
-                styles[`heading--${level}`],
-                className
-            )}
-            {...props}
-        />
-    );
+    return React.createElement(level, {
+        className: clsx(styles.heading, styles[`heading--${level}`], className),
+        ...props,
+    });
 };
