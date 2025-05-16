@@ -26,7 +26,9 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(
                     type={type}
                     className={clsx(
                         styles.input,
-                        error && styles.error,
+                        {
+                            [styles.error]: error,
+                        },
                         className
                     )}
                     {...props}

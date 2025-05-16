@@ -10,12 +10,9 @@ export const Button = ({
 }: ButtonProps) => {
     return (
         <button
-            className={clsx(
-                styles.button,
-                styles[variant],
-                className,
-                props.disabled && styles.disabled
-            )}
+            className={clsx(styles.button, styles[variant], className, {
+                [styles.disabled]: props.disabled,
+            })}
             {...props}
         />
     );

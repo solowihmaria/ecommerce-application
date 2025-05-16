@@ -32,8 +32,8 @@ export const useLoginForm = () => {
     const onSubmit = async (data: LoginFormData) => {
         try {
             await authenticateUser(data.email, data.password, () => {
-                void navigate('/main');
                 setLoginStatus(true);
+                void navigate('/main');
             });
         } catch {
             setApiError({ field: 'both' });
