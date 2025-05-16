@@ -1,0 +1,29 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Button/> component Render Button component - disabled 1`] = `
+<button
+  class="button secondary testClass disabled"
+  disabled=""
+  type="button"
+>
+  button name
+</button>
+`;
+
+exports[`<Button/> component Render Button component - without any properties 1`] = `
+<button
+  class="button primary"
+  type="button"
+>
+  button name
+</button>
+`;
+
+exports[`<Button/> component Render Button component with properties 1`] = `
+<button
+  class="button secondary testClass"
+  type="button"
+>
+  button name
+</button>
+`;

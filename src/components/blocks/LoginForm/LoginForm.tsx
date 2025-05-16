@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import styles from './LoginForm.module.scss';
@@ -13,10 +13,12 @@ import { SignUpRedirect } from './parts/SignUpRedirect';
 import { useNavigate } from 'react-router-dom';
 import { useAuthErrors } from './features/useAuthErrors';
 import { authenticateUser } from '../../../api/auth/authService';
+import { LoginContext } from '../../../App';
 
 export const LoginForm = () => {
     const [showPassword, setShowPassword] = React.useState(false);
     const navigate = useNavigate();
+    const { setLoginStatus } = useContext(LoginContext);
 
     const {
         register,
@@ -41,6 +43,7 @@ export const LoginForm = () => {
         try {
             await authenticateUser(data.email, data.password, () => {
                 void navigate('/main');
+                setLoginStatus(true);
             });
         } catch {
             setApiError({ field: 'both' });

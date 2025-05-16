@@ -1,6 +1,7 @@
 import { login as loginRequest } from './login';
-import { setToken } from '../../features/auth/token';
+import { getToken, removeToken, setToken } from '../../features/auth/token';
 import type { LoginResponse } from './auth.types';
+import { logout } from './login';
 
 export const authenticateUser = async (
     email: string,
@@ -17,7 +18,11 @@ export const authenticateUser = async (
     return response;
 };
 
-/**
- * тут же думаю можно и логаут сделать и если что и рефреш сюда же
- * export const logoutUser
- */
+export const logoutUser = async () => {
+    const token = getToken();
+
+    if (!token) return;
+
+    await logout(token);
+    removeToken();
+};

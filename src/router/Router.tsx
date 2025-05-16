@@ -25,7 +25,11 @@ const router = createBrowserRouter([
     },
     {
         path: '/register',
-        element: <RegistrationPage />,
+        element: (
+            <RedirectIfAuth>
+                <RegistrationPage />
+            </RedirectIfAuth>
+        ),
     },
     {
         path: '*',
