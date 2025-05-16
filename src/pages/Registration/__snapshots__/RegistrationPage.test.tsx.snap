@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`<MainPage/> component Render MainPage component 1`] = `
+exports[`<RegistrationPage/> component Render RegistrationPage component 1`] = `
 <div
   class="registrationPage"
   data-testid="test-id-registration-page"
@@ -8,9 +8,7 @@ exports[`<MainPage/> component Render MainPage component 1`] = `
   <nav
     class="header"
   >
-    <div
-      class="logoContainer"
-    >
+    <div>
       <a
         data-discover="true"
         href="/main"

@@ -27,12 +27,3 @@ exports[`<Button/> component Render Button component with properties 1`] = `
   button name
 </button>
 `;
-
-exports[`<Button/> component Render Button component without any properties 1`] = `
-<button
-  class="button primary"
-  type="button"
->
-  button name
-</button>
-`;

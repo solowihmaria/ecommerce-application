@@ -8,9 +8,7 @@ exports[`<LoginPage/> component Render LoginPage component 1`] = `
   <nav
     class="header"
   >
-    <div
-      class="logoContainer"
-    >
+    <div>
       <a
         data-discover="true"
         href="/main"
