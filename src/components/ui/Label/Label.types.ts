@@ -1,9 +1,7 @@
-import type { ReactNode } from 'react';
+import type { LabelHTMLAttributes } from 'react';
 
-export interface LabelProps {
+export interface LabelProps extends LabelHTMLAttributes<HTMLLabelElement> {
     htmlFor?: string;
-    children: ReactNode;
-    className?: string;
     required?: boolean;
     disabled?: boolean;
 }

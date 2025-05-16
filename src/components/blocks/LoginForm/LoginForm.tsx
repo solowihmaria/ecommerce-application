@@ -1,76 +1,64 @@
-import React, { useContext } from 'react';
-import { useForm } from 'react-hook-form';
-import { yupResolver } from '@hookform/resolvers/yup';
+import React from 'react';
+import { FormProvider } from 'react-hook-form';
 import styles from './LoginForm.module.scss';
-import { loginSchema } from './features/login.validation';
-import type { LoginFormData, LoginSubmitHandler } from './Login.types';
 import { Form } from '../../../components/ui/Form';
-import { FormTitle } from './parts/FormTitle';
 import { EmailField } from './parts/EmailField';
 import { PasswordField } from './parts/PasswordField';
-import { SubmitButton } from './parts/SubmitButton';
-import { SignUpRedirect } from './parts/SignUpRedirect';
-import { useNavigate } from 'react-router-dom';
-import { useAuthErrors } from './features/useAuthErrors';
-import { authenticateUser } from '../../../api/auth/authService';
-import { LoginContext } from '../../../App';
+import { useLoginForm } from './lib/useLoginForm';
+import { Heading } from '../../../components/ui/Heading';
+import { Button } from '../../../components/ui/Button';
+import { Link } from 'react-router-dom';
 
 export const LoginForm = () => {
-    const [showPassword, setShowPassword] = React.useState(false);
-    const navigate = useNavigate();
-    const { setLoginStatus } = useContext(LoginContext);
-
     const {
-        register,
-        handleSubmit,
-        formState: { errors, isSubmitting },
-        watch,
-    } = useForm<LoginFormData>({
-        resolver: yupResolver(loginSchema),
-        mode: 'onChange',
-    });
-
-    const { setApiError, clearApiError, getFieldError } =
-        useAuthErrors(isSubmitting);
-
-    // Очищаем ошибки API при изменении полей
-    React.useEffect(() => {
-        const subscription = watch(() => clearApiError());
-        return () => subscription.unsubscribe();
-    }, [watch, clearApiError]);
-
-    const onSubmit: LoginSubmitHandler = async (data) => {
-        try {
-            await authenticateUser(data.email, data.password, () => {
-                void navigate('/main');
-                setLoginStatus(true);
-            });
-        } catch {
-            setApiError({ field: 'both' });
-        }
-    };
-
-    const handleFormSubmission = (event?: React.BaseSyntheticEvent): void => {
-        handleSubmit(onSubmit)(event).catch(() => {});
-    };
+        isPasswordVisible,
+        setIsPasswordVisible,
+        methods,
+        errors,
+        getFieldError,
+        handleFormSubmission,
+        isSubmitting,
+    } = useLoginForm();
 
     return (
         <div className={styles.loginContainer}>
-            <Form onSubmit={handleFormSubmission}>
-                <FormTitle />
-                <EmailField
-                    register={register}
-                    error={errors.email || getFieldError('email')}
-                />
-                <PasswordField
-                    register={register}
-                    error={errors.password || getFieldError('password')}
-                    showPassword={showPassword}
-                    onTogglePassword={() => setShowPassword(!showPassword)}
-                />
-                <SubmitButton />
-                <SignUpRedirect />
-            </Form>
+            <FormProvider {...methods}>
+                <Form onSubmit={handleFormSubmission}>
+                    <Heading level="h2" className={styles.formTitle}>
+                        Login
+                    </Heading>
+
+                    <EmailField
+                        error={errors.email || getFieldError('email')}
+                    />
+
+                    <PasswordField
+                        error={errors.password || getFieldError('password')}
+                        showPassword={isPasswordVisible}
+                        onTogglePassword={() =>
+                            setIsPasswordVisible(!isPasswordVisible)
+                        }
+                    />
+
+                    <Button
+                        type="submit"
+                        variant="primary"
+                        disabled={isSubmitting}
+                        className={styles.submitButton}
+                    >
+                        {isSubmitting ? 'Logging in...' : 'Log In'}
+                    </Button>
+
+                    <div className={styles.signUpRedirect}>
+                        <p className={styles.signUpText}>
+                            Don&apos;t have an account?
+                        </p>
+                        <Link to="/register" className={styles.signUpLink}>
+                            Sign Up
+                        </Link>
+                    </div>
+                </Form>
+            </FormProvider>
         </div>
     );
 };

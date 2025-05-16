@@ -1,8 +1,7 @@
 import React from 'react';
 import styles from './Input.module.scss';
-import type { InputProps } from './Input.types';
-import { InputToggleButton } from './InputToggle';
 import clsx from 'clsx';
+import type { InputProps } from './Input.types';
 
 export const Input = React.forwardRef<HTMLInputElement, InputProps>(
     (
@@ -11,15 +10,11 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(
             className = '',
             error = false,
             errorMessage,
-            hasPasswordToggle = false,
-            onTogglePassword,
-            showPassword,
             ...props
         },
         reference
     ) => (
         <div
-            data-testid="input-test-id"
             className={clsx(
                 styles.inputContainer,
                 type === 'checkbox' && styles.checkbox
@@ -28,25 +23,18 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(
             <div className={styles.inputWrapper}>
                 <input
                     ref={reference}
-                    type={showPassword ? 'text' : type}
+                    type={type}
                     className={clsx(
                         styles.input,
-                        error && styles.error,
-                        hasPasswordToggle && styles.password,
+                        {
+                            [styles.error]: error,
+                        },
                         className
                     )}
                     {...props}
                 />
-                {hasPasswordToggle &&
-                    type === 'password' &&
-                    onTogglePassword && (
-                        <InputToggleButton
-                            showPassword={!!showPassword}
-                            onTogglePassword={onTogglePassword}
-                        />
-                    )}
             </div>
-            {error && (
+            {error && errorMessage && (
                 <span className={styles.errorMessage}>{errorMessage}</span>
             )}
         </div>

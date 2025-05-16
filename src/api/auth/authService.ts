@@ -1,5 +1,5 @@
 import { login as loginRequest } from './login';
-import { getToken, removeToken, setToken } from '../../features/auth/token';
+import { getToken, removeToken, setToken } from '../token';
 import type { LoginResponse } from './auth.types';
 import { logout } from './login';
 

@@ -1,14 +1,15 @@
 import React from 'react';
 import styles from './Label.module.scss';
-import type { LabelProps } from './Label.types';
 import clsx from 'clsx';
+import type { LabelProps } from './Label.types';
 
 export const Label = ({
     htmlFor,
-    children,
     className = '',
-    required = false,
-    disabled = false,
+    required,
+    disabled,
+    children,
+    ...props
 }: LabelProps) => {
     return (
         <label
@@ -16,11 +17,13 @@ export const Label = ({
             className={clsx(
                 styles.label,
                 className,
-                disabled && styles.disabled
+                disabled && styles.disabled,
+                required && styles.required
             )}
+            {...props}
         >
             {children}
-            {required && <span className={styles.required}>*</span>}
+            {required && <span aria-hidden="true">*</span>}
         </label>
     );
 };

@@ -1,26 +1,14 @@
-import type { ChangeEvent, FocusEvent } from 'react';
+import type { InputHTMLAttributes } from 'react';
 
-export interface InputProps {
-    type?: string;
-    value?: string;
-    name?: string;
-    id?: string;
-    placeholder?: string;
-    required?: boolean;
-    disabled?: boolean;
-    readOnly?: boolean;
-    autoComplete?: string;
-    onChange?: (event_: ChangeEvent<HTMLInputElement>) => void;
-    onBlur?: (event_: FocusEvent<HTMLInputElement>) => void;
-    className?: string;
+export interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
     error?: boolean;
     errorMessage?: string;
-    hasPasswordToggle?: boolean;
-    onTogglePassword?: () => void;
-    showPassword?: boolean;
 }
 
-export interface InputToggleButtonProps {
+export interface PasswordInputProps
+    extends InputHTMLAttributes<HTMLInputElement> {
     showPassword: boolean;
     onTogglePassword: () => void;
+    error?: boolean;
+    errorMessage?: string;
 }

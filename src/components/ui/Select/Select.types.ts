@@ -1,9 +1,7 @@
-import type { ReactNode } from 'react';
+import type { SelectHTMLAttributes } from 'react';
 
-export interface SelectProps {
+export interface SelectProps extends SelectHTMLAttributes<HTMLSelectElement> {
     name: string;
-    children: ReactNode;
-    className?: string;
     required?: boolean;
     disabled?: boolean;
 }

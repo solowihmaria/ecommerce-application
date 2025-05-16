@@ -5,7 +5,7 @@ import type {
     FieldErrors,
 } from 'react-hook-form';
 import type { InferType } from 'yup';
-import type { registrationSchema } from './features/registration.validation';
+import type { registrationSchema } from './lib/registration.validation';
 
 export type RegistrationFormData = InferType<typeof registrationSchema>;
 export type RegistrationSubmitHandler = SubmitHandler<RegistrationFormData>;

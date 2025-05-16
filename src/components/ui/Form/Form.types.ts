@@ -1,6 +1,3 @@
-import type { FormHTMLAttributes, ReactNode } from 'react';
+import type { FormHTMLAttributes } from 'react';
 
-export interface FormProps extends FormHTMLAttributes<HTMLFormElement> {
-    children: ReactNode;
-    className?: string;
-}
+export interface FormProps extends FormHTMLAttributes<HTMLFormElement> {}

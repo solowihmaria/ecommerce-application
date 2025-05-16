@@ -105,4 +105,9 @@ export default [
     reactPlugin.configs.flat.recommended,
     pluginJs.configs.recommended,
     ...tseslint.configs.recommendedTypeChecked,
+    {
+        rules: {
+            '@typescript-eslint/no-empty-object-type': 'off',
+        },
+    },
 ];
