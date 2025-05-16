@@ -1,0 +1,56 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<MainPage/> component Render MainPage component 1`] = `
+<div
+  data-testid="main-page-test-id"
+>
+  <nav
+    class="header"
+  >
+    <div>
+      <a
+        data-discover="true"
+        href="/main"
+      >
+        <button
+          class="button primary"
+          type="button"
+        >
+          Main
+        </button>
+      </a>
+    </div>
+    <div
+      class="menu"
+    >
+      <a
+        data-discover="true"
+        href="/login"
+      >
+        <button
+          class="button primary"
+          type="button"
+        >
+          Sign In
+        </button>
+      </a>
+      <a
+        data-discover="true"
+        href="/register"
+      >
+        <button
+          class="button primary"
+          type="button"
+        >
+          Sign Up
+        </button>
+      </a>
+    </div>
+  </nav>
+  <main>
+    <h1>
+      Main Page Content
+    </h1>
+  </main>
+</div>
+`;

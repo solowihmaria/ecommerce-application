@@ -1,0 +1,46 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Label/> component Render Label component - disabled 1`] = `
+<label
+  class="label labelClass disabled"
+  for="someInput"
+>
+  LabelText
+  <span
+    class="required"
+  >
+    *
+  </span>
+</label>
+`;
+
+exports[`<Label/> component Render Label component - optional field 1`] = `
+<label
+  class="label labelClass"
+  for="someInput"
+>
+  LabelText
+</label>
+`;
+
+exports[`<Label/> component Render Label component - required field 1`] = `
+<label
+  class="label labelClass"
+  for="someInput"
+>
+  LabelText
+  <span
+    class="required"
+  >
+    *
+  </span>
+</label>
+`;
+
+exports[`<Label/> component Render Label component without any properties 1`] = `
+<label
+  class="label"
+>
+  label text
+</label>
+`;

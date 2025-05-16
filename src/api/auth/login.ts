@@ -34,3 +34,30 @@ export const login = async (
 
     return response.data;
 };
+
+export const logout = async (token: string) => {
+    const authUrl = process.env.CTP_AUTH_URL;
+    const projectKey = process.env.CTP_PROJECT_KEY;
+    const clientId = process.env.CTP_CLIENT_ID;
+    const clientSecret = process.env.CTP_CLIENT_SECRET;
+    const scope = process.env.CTP_SCOPES;
+
+    if (!authUrl || !projectKey || !clientId || !clientSecret || !scope) {
+        throw new Error('Environment variables are missing!');
+    }
+
+    const tokenUrl = `${authUrl}/oauth/token/revoke`;
+    const credentials = btoa(`${clientId}:${clientSecret}`);
+
+    const body = {
+        token: token,
+        token_type_hint: 'access_token',
+    };
+
+    await axios.post<number>(tokenUrl, body, {
+        headers: {
+            Authorization: `Basic ${credentials}`,
+            'Content-Type': 'application/x-www-form-urlencoded',
+        },
+    });
+};
