@@ -35,7 +35,7 @@ export const login = async (
     return response.data;
 };
 
-export const logout = async (token: string): Promise<number> => {
+export const logout = async (token: string) => {
     const authUrl = process.env.CTP_AUTH_URL;
     const projectKey = process.env.CTP_PROJECT_KEY;
     const clientId = process.env.CTP_CLIENT_ID;
@@ -54,12 +54,10 @@ export const logout = async (token: string): Promise<number> => {
         token_type_hint: 'access_token',
     };
 
-    const response = await axios.post<number>(tokenUrl, body, {
+    await axios.post<number>(tokenUrl, body, {
         headers: {
             Authorization: `Basic ${credentials}`,
             'Content-Type': 'application/x-www-form-urlencoded',
         },
     });
-
-    return response.status;
 };

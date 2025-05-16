@@ -1,11 +1,12 @@
 import React from 'react';
 import styles from './LoginPage.module.scss';
 import { LoginForm } from '../../components/blocks/LoginForm/LoginForm';
+import { Header } from '../../components/blocks/Header/Header';
 
 export const LoginPage = () => {
     return (
-        <div className={styles.loginPage}>
-            {/*потом тут будет хэдер добавлеен и остальные составляющиее странички*/}
+        <div data-testid="test-id-login-page" className={styles.loginPage}>
+            <Header />
             <main className={styles.loginContent}>
                 <LoginForm />
             </main>

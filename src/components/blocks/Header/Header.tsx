@@ -8,6 +8,7 @@ import { LoginContext } from '../../../App';
 export const Header = () => {
     const { loginStatus, setLoginStatus } = useContext(LoginContext);
     const navigate = useNavigate();
+
     const onLogout = () => {
         logoutUser()
             .then(() => {
@@ -16,9 +17,10 @@ export const Header = () => {
             })
             .catch((error) => console.log(error));
     };
+
     return (
         <nav className={styles.header}>
-            <div className={styles.logoContainer}>
+            <div>
                 <Link to="/main">
                     <Button>Main</Button>
                 </Link>

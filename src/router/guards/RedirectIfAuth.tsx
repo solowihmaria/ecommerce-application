@@ -8,6 +8,7 @@ interface Props {
 }
 
 export const RedirectIfAuth = ({ children }: Props) => {
+    //Take status from context instead of local storage check
     const { loginStatus } = useContext(LoginContext);
     if (loginStatus) {
         return <Navigate to="/main" replace />;

@@ -23,7 +23,6 @@ export const logoutUser = async () => {
 
     if (!token) return;
 
-    const code = await logout(token);
+    await logout(token);
     removeToken();
-    return code;
 };
