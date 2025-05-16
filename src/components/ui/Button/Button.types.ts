@@ -1,5 +1,5 @@
-import type { ReactNode } from 'react';
-// стандартные варианты типов кнопок, чтобы хранился набор кастомных вариантов уже готовых
+import type { ButtonHTMLAttributes } from 'react';
+
 export type ButtonVariant =
     | 'primary'
     | 'secondary'
@@ -7,11 +7,6 @@ export type ButtonVariant =
     | 'outline'
     | 'ghost';
 
-export interface ButtonProps {
-    type?: 'button' | 'submit' | 'reset';
-    className?: string;
-    onClick?: () => void;
-    disabled?: boolean;
-    children: ReactNode;
+export interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
     variant?: ButtonVariant;
 }

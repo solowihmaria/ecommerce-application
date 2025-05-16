@@ -1,12 +1,11 @@
 import React from 'react';
 import styles from './Heading.module.scss';
-import type { HeadingProps } from './Heading.types';
 import clsx from 'clsx';
+import type { HeadingProps } from './Heading.types';
 
 export const Heading = ({
     level = 'h1',
     className = '',
-    children,
     ...props
 }: HeadingProps) => {
     const Tag = level;
@@ -19,8 +18,6 @@ export const Heading = ({
                 className
             )}
             {...props}
-        >
-            {children}
-        </Tag>
+        />
     );
 };

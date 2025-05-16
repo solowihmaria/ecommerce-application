@@ -1,8 +1,8 @@
-import type { ReactNode } from 'react';
+import type { HTMLAttributes, ReactNode } from 'react';
 
 export type ToastVariant = 'success' | 'error' | 'warning' | 'info';
 
-export interface ToastProps {
+export interface ToastProps extends HTMLAttributes<HTMLDivElement> {
     variant?: ToastVariant;
     message: ReactNode;
     duration?: number;

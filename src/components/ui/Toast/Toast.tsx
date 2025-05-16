@@ -9,21 +9,28 @@ export const Toast = ({
     duration = 3000,
     onClose,
     className = '',
+    ...props
 }: ToastProps) => {
     useEffect(() => {
-        if (duration > 0) {
-            const timer = setTimeout(() => onClose?.(), duration);
+        if (duration > 0 && onClose) {
+            const timer = setTimeout(onClose, duration);
             return () => clearTimeout(timer);
         }
     }, [duration, onClose]);
 
     return (
         <div
-            className={clsx(styles.toast, styles[variant], className)}
-            role="alert"
+            className={clsx(
+                styles.toast,
+                styles[`toast--${variant}`],
+                className
+            )}
+            role="status"
             aria-live="polite"
+            aria-atomic="true"
+            {...props}
         >
-            <div className={styles.content}>{message}</div>
+            <div className={styles.toastContent}>{message}</div>
         </div>
     );
 };
