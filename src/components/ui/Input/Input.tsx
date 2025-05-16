@@ -1,7 +1,6 @@
 import React from 'react';
 import styles from './Input.module.scss';
 import type { InputProps } from './Input.types';
-import { InputToggleButton } from './InputToggle';
 import clsx from 'clsx';
 
 export const Input = React.forwardRef<HTMLInputElement, InputProps>(
@@ -11,9 +10,6 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(
             className = '',
             error = false,
             errorMessage,
-            hasPasswordToggle = false,
-            onTogglePassword,
-            showPassword,
             ...props
         },
         reference
@@ -27,23 +23,14 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(
             <div className={styles.inputWrapper}>
                 <input
                     ref={reference}
-                    type={showPassword ? 'text' : type}
+                    type={type}
                     className={clsx(
                         styles.input,
                         error && styles.error,
-                        hasPasswordToggle && styles.password,
                         className
                     )}
                     {...props}
                 />
-                {hasPasswordToggle &&
-                    type === 'password' &&
-                    onTogglePassword && (
-                        <InputToggleButton
-                            showPassword={!!showPassword}
-                            onTogglePassword={onTogglePassword}
-                        />
-                    )}
             </div>
             {error && (
                 <span className={styles.errorMessage}>{errorMessage}</span>
