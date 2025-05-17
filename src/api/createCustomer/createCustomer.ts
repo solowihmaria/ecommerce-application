@@ -1,8 +1,16 @@
 import type { RegistrationFormData } from '../../components/blocks/RegistrationForm/Registration.types';
-import { createCustomerRequest } from './createCustomerRequest';
+import { requestCreateCustomer } from './requestCreateCustomer';
 
-export const createCustomer = async (formData: RegistrationFormData) => {
-    const response = await createCustomerRequest(formData);
+export const createCustomer = async (
+    formData: RegistrationFormData,
+    onSuccess?: () => void
+) => {
+    const response = await requestCreateCustomer(formData);
 
+    if (typeof onSuccess === 'function') {
+        onSuccess();
+    }
+
+    console.log('CUSTOMER', response);
     return response;
 };

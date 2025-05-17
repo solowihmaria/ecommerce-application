@@ -1,18 +1,18 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
-// import { useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { registrationSchema } from '../lib/registration.validation';
 import type { RegistrationFormData } from '../Registration.types';
 import { useRegistrationErrors } from './useRegistrationErrors';
 import { createCustomer } from '../../../../api/createCustomer/createCustomer';
-// import { authenticateUser } from '../../../../api/auth/authService';
-// import { LoginContext } from '../../../../App';
+import { authenticateUser } from '../../../../api/auth/authService';
+import { LoginContext } from '../../../../App';
 
 export const useRegistrationForm = () => {
     const [isPasswordVisible, setIsPasswordVisible] = React.useState(false);
-    // const navigate = useNavigate();
-    // const { setLoginStatus } = useContext(LoginContext);
+    const navigate = useNavigate();
+    const { setLoginStatus } = useContext(LoginContext);
 
     const methods = useForm<RegistrationFormData>({
         resolver: yupResolver(registrationSchema),
@@ -32,8 +32,12 @@ export const useRegistrationForm = () => {
 
     const onSubmit = async (data: RegistrationFormData) => {
         try {
-            console.log(data);
             await createCustomer(data);
+
+            await authenticateUser(data.email, data.password, () => {
+                setLoginStatus(true);
+                void navigate('/main');
+            });
         } catch {
             // setApiError({ field: 'both' });
         }

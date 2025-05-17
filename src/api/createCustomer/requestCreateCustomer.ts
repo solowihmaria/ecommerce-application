@@ -33,7 +33,7 @@ const getAdminToken = async () => {
     return response.data;
 };
 
-export const createCustomerRequest = async ({
+export const requestCreateCustomer = async ({
     email,
     password,
     firstName,
