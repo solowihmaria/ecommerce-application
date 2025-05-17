@@ -11,12 +11,11 @@ export type RegistrationFormData = InferType<typeof registrationSchema>;
 export type RegistrationSubmitHandler = SubmitHandler<RegistrationFormData>;
 
 export interface FormPartProps {
-    register: UseFormRegister<RegistrationFormData>;
-    errors: FieldErrors<RegistrationFormData>;
+    register?: UseFormRegister<RegistrationFormData>;
+    errors?: FieldErrors<RegistrationFormData>;
 }
 
 export interface baseFieldProps {
-    register: UseFormRegister<RegistrationFormData>;
     error?: FieldError;
 }
 
@@ -33,25 +32,5 @@ export enum AddressType {
 }
 
 export interface addressFieldProps extends baseFieldProps {
-    type: AddressType;
-}
-
-export interface StreetFieldProps {
-    type: AddressType;
-}
-
-export interface CityFieldProps {
-    type: AddressType;
-}
-
-export interface CountryFieldProps {
-    type: AddressType;
-}
-
-export interface PostalCodeFieldProps {
-    type: AddressType;
-}
-
-export interface SetAsDefaultAddressFieldProps {
     type: AddressType;
 }

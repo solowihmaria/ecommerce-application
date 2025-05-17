@@ -1,0 +1,59 @@
+import React from 'react';
+import { useForm } from 'react-hook-form';
+import { yupResolver } from '@hookform/resolvers/yup';
+// import { useNavigate } from 'react-router-dom';
+import { registrationSchema } from '../lib/registration.validation';
+import type { RegistrationFormData } from '../Registration.types';
+import { useRegistrationErrors } from './useRegistrationErrors';
+// import { authenticateUser } from '../../../../api/auth/authService';
+// import { LoginContext } from '../../../../App';
+
+export const useRegistrationForm = () => {
+    const [isPasswordVisible, setIsPasswordVisible] = React.useState(false);
+    // const navigate = useNavigate();
+    // const { setLoginStatus } = useContext(LoginContext);
+
+    const methods = useForm<RegistrationFormData>({
+        resolver: yupResolver(registrationSchema),
+        mode: 'onChange',
+    });
+
+    // Хук для обработки ошибок API
+    const { getFieldError } = useRegistrationErrors(
+        methods.formState.isSubmitting
+    );
+
+    // Для очистки ошибок при изменении полей формы
+    // React.useEffect(() => {
+    //     const subscription = methods.watch(() => clearApiError());
+    //     return () => subscription.unsubscribe();
+    // }, [methods, clearApiError]);
+
+    const onSubmit = (data: RegistrationFormData) => {
+        try {
+            console.log(data);
+            // await authenticateUser(data.email, data.password, () => {
+            //     setLoginStatus(true);
+            //     void navigate('/main');
+            // });
+        } catch {
+            // setApiError({ field: 'both' });
+        }
+    };
+
+    const handleFormSubmission = (event?: React.BaseSyntheticEvent) => {
+        methods
+            .handleSubmit(onSubmit)(event)
+            .catch(() => {});
+    };
+
+    return {
+        isPasswordVisible,
+        setIsPasswordVisible,
+        methods,
+        errors: methods.formState.errors,
+        isSubmitting: methods.formState.isSubmitting,
+        getFieldError,
+        handleFormSubmission,
+    };
+};
