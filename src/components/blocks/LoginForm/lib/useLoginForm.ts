@@ -7,11 +7,13 @@ import type { LoginFormData } from '../Login.types';
 import { useAuthErrors } from '../lib/useAuthErrors';
 import { authenticateUser } from '../../../../api/auth/authService';
 import { LoginContext } from '../../../../App';
+import { ToastContext } from '../../../ui/Toast/ToastContext';
 
 export const useLoginForm = () => {
     const [isPasswordVisible, setIsPasswordVisible] = React.useState(false);
     const navigate = useNavigate();
     const { setLoginStatus } = useContext(LoginContext);
+    const { showToast } = useContext(ToastContext);
 
     const methods = useForm<LoginFormData>({
         resolver: yupResolver(loginSchema),
@@ -33,6 +35,10 @@ export const useLoginForm = () => {
         try {
             await authenticateUser(data.email, data.password, () => {
                 setLoginStatus(true);
+                showToast({
+                    message: 'Login successful!',
+                    variant: 'success',
+                });
                 void navigate('/main');
             });
         } catch {
