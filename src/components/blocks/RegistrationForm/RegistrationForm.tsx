@@ -31,7 +31,7 @@ export const RegistrationForm = () => {
                         Registration
                     </Heading>
 
-                    <div className={styles.grid2}>
+                    <div className={styles.loginInfo}>
                         <EmailField
                             error={errors.email || getFieldError('email')}
                         />

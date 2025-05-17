@@ -13,7 +13,7 @@ export const BillingAddressFieldSet = ({ errors }: FormPartProps) => {
     const type: AddressType = AddressType.billing;
 
     return (
-        <fieldset className={clsx(styles.fieldset, styles.grid4)}>
+        <fieldset className={clsx(styles.fieldset, styles.addressInfo)}>
             <legend className={styles.legend}>Billing Address</legend>
 
             <StreetField type={type} error={errors?.billingStreet} />

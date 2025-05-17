@@ -8,7 +8,7 @@ export const EmailField = ({ error }: { error?: FieldError }) => {
     const { register } = useFormContext();
 
     return (
-        <div className="formGroup">
+        <div>
             <Label htmlFor="email" required>
                 Email
             </Label>

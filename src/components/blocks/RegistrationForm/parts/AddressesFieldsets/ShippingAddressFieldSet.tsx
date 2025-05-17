@@ -14,7 +14,7 @@ export const ShippingAddressFieldSet = ({ errors }: FormPartProps) => {
     const type: AddressType = AddressType.shipping;
 
     return (
-        <fieldset className={clsx(styles.fieldset, styles.grid4)}>
+        <fieldset className={clsx(styles.fieldset, styles.addressInfo)}>
             <legend className={styles.legend}>Shipping Address</legend>
 
             <StreetField type={type} error={errors?.shippingStreet} />

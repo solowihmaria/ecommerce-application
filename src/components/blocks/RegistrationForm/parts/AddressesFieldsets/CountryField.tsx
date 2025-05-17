@@ -1,11 +1,10 @@
 import React from 'react';
-import styles from '../../RegistrationForm.module.scss';
 import type { addressFieldProps } from '../../Registration.types';
 import { Label } from '../../../../ui/Label/Label';
 import { Select } from '../../../../ui/Select/Select';
 
 export const CountryField = ({ type }: addressFieldProps) => (
-    <div className={styles.formGroup}>
+    <div>
         <Label htmlFor={`${type}Country`} required>
             Country
         </Label>

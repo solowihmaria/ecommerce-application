@@ -18,7 +18,7 @@ export const PasswordField = ({
     const { register } = useFormContext();
 
     return (
-        <div className="formGroup">
+        <div>
             <Label htmlFor="password" required>
                 Password
             </Label>
