@@ -71,3 +71,38 @@
         }
     }
 }
+
+.spinner {
+    display: inline-block;
+    width: 1rem;
+    height: 1rem;
+    margin-left: 0.75rem;
+    border: 2px solid rgb(255 255 255 / 30%);
+    border-top-color: currentcolor;
+    border-radius: 50%;
+    animation: spin 0.8s linear infinite;
+
+    .secondary &,
+    .outline &,
+    .ghost & {
+        border-top-color: #000;
+    }
+
+    .danger & {
+        border-top-color: #ff4d4f;
+    }
+}
+
+@keyframes spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+.button.loading {
+    cursor: wait;
+
+    &.primary .spinner {
+        border-top-color: white;
+    }
+}

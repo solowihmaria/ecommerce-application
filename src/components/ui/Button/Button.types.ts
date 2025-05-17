@@ -9,4 +9,5 @@ export type ButtonVariant =
 
 export interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
     variant?: ButtonVariant;
+    loading?: boolean;
 }

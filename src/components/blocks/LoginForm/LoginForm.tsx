@@ -44,6 +44,7 @@ export const LoginForm = () => {
                         type="submit"
                         variant="primary"
                         disabled={isSubmitting}
+                        loading={isSubmitting}
                         className={styles.submitButton}
                     >
                         {isSubmitting ? 'Logging in...' : 'Log In'}
