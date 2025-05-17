@@ -4,23 +4,23 @@ import type { FieldError } from 'react-hook-form';
 import { Input } from '../../../../ui/Input';
 import { Label } from '../../../../ui/Label';
 
-export const BirthDateField = ({ error }: { error?: FieldError }) => {
+export const DateOfBirthField = ({ error }: { error?: FieldError }) => {
     const { register } = useFormContext();
 
     return (
         <div>
-            <Label htmlFor="birthDate" required>
+            <Label htmlFor="dateOfBirth" required>
                 Date of Birth
             </Label>
 
             <Input
-                id="birthDate"
+                id="dateOfBirth"
                 type="date"
                 autoComplete="bday"
                 placeholder="Enter your date of birth"
                 error={Boolean(error)}
                 errorMessage={error?.message}
-                {...register('birthDate')}
+                {...register('dateOfBirth')}
             />
         </div>
     );

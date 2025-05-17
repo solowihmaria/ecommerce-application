@@ -1,18 +1,24 @@
 import React from 'react';
+import { useFormContext } from 'react-hook-form';
 import type { addressFieldProps } from '../../Registration.types';
 import { Label } from '../../../../ui/Label/Label';
 import { Select } from '../../../../ui/Select/Select';
+import { CountryCode } from '../../../../../api/createCustomer/createCustomer.types';
 
-export const CountryField = ({ type }: addressFieldProps) => (
-    <div>
-        <Label htmlFor={`${type}Country`} required>
-            Country
-        </Label>
+export const CountryField = ({ type }: addressFieldProps) => {
+    const { register } = useFormContext();
 
-        <Select name={`${type}Country`}>
-            <option value="france">France</option>
-            <option value="germany">Germany</option>
-            <option value="italy">Italy</option>
-        </Select>
-    </div>
-);
+    return (
+        <div>
+            <Label htmlFor={`${type}Country`} required>
+                Country
+            </Label>
+
+            <Select {...register(`${type}Country`)}>
+                <option value={CountryCode.FR}>France</option>
+                <option value={CountryCode.DE}>Germany</option>
+                <option value={CountryCode.FR}>Italy</option>
+            </Select>
+        </div>
+    );
+};

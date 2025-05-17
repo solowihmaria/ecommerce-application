@@ -5,6 +5,7 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import { registrationSchema } from '../lib/registration.validation';
 import type { RegistrationFormData } from '../Registration.types';
 import { useRegistrationErrors } from './useRegistrationErrors';
+import { createCustomer } from '../../../../api/createCustomer/createCustomer';
 // import { authenticateUser } from '../../../../api/auth/authService';
 // import { LoginContext } from '../../../../App';
 
@@ -29,13 +30,10 @@ export const useRegistrationForm = () => {
     //     return () => subscription.unsubscribe();
     // }, [methods, clearApiError]);
 
-    const onSubmit = (data: RegistrationFormData) => {
+    const onSubmit = async (data: RegistrationFormData) => {
         try {
             console.log(data);
-            // await authenticateUser(data.email, data.password, () => {
-            //     setLoginStatus(true);
-            //     void navigate('/main');
-            // });
+            await createCustomer(data);
         } catch {
             // setApiError({ field: 'both' });
         }
