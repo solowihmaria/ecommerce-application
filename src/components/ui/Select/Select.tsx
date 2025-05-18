@@ -8,7 +8,6 @@ export const Select = ({
     className = '',
     required,
     disabled,
-    children,
     ...props
 }: SelectProps) => {
     return (
@@ -24,9 +23,8 @@ export const Select = ({
                 disabled={disabled}
                 required={required}
                 {...props}
-            >
-                {children}
-            </select>
+            ></select>
+
             {required && <span className={styles.requiredMarker}>*</span>}
         </div>
     );
