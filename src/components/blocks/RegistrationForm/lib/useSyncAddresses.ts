@@ -21,11 +21,17 @@ export const useSyncAddresses = () => {
     } = shippingAddress || {};
 
     useEffect(() => {
+        const options = {
+            shouldValidate: true,
+            shouldDirty: true,
+            shouldTouch: true,
+        };
+
         if (isBillingEqualsShipping) {
-            setValue('billingAddress.streetName', shippingStreet);
-            setValue('billingAddress.city', shippingCity);
-            setValue('billingAddress.country', shippingCountry);
-            setValue('billingAddress.postalCode', shippingCode);
+            setValue('billingAddress.streetName', shippingStreet, options);
+            setValue('billingAddress.city', shippingCity, options);
+            setValue('billingAddress.country', shippingCountry, options);
+            setValue('billingAddress.postalCode', shippingCode, options);
         }
     }, [
         isBillingEqualsShipping,

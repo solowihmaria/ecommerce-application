@@ -9,69 +9,71 @@ import { createCustomer } from '../../../../api/createCustomer/createCustomer';
 import { authenticateUser } from '../../../../api/auth/authService';
 import { LoginContext } from '../../../../App';
 import { ToastContext } from '../../../ui/Toast/ToastContext';
-
-const onError = (error: unknown) => {
-    console.log('SUBMISSION ERROR', error);
-};
+import { AxiosError } from 'axios';
 
 export const useRegistrationForm = () => {
     const [isPasswordVisible, setIsPasswordVisible] = React.useState(false);
-    // const [registrationError, setRegistrationError] = React.useState<
-    //     string | null
-    // >(null);
     const navigate = useNavigate();
     const { setLoginStatus } = useContext(LoginContext);
     const { showToast } = useContext(ToastContext);
-
     const methods = useForm<RegistrationFormData>({
         resolver: yupResolver(registrationSchema),
         mode: 'onChange',
     });
 
     // Хук для обработки ошибок API
-    const { getFieldError } = useRegistrationErrors(
-        methods.formState.isSubmitting
-    );
+    const {
+        registrationError,
+        setRegistrationError,
+        setFieldError,
+        clearApiError,
+        getFieldError,
+    } = useRegistrationErrors(methods.formState.isSubmitting);
 
     // Для очистки ошибок при изменении полей формы
-    // React.useEffect(() => {
-    //     const subscription = methods.watch(() => clearApiError());
-    //     return () => subscription.unsubscribe();
-    // }, [methods, clearApiError]);
+    React.useEffect(() => {
+        const subscription = methods.watch(() => clearApiError());
+        return () => subscription.unsubscribe();
+    }, [methods, clearApiError]);
 
     const onSubmit = async (data: RegistrationFormData) => {
         try {
-            await createCustomer(data);
-
-            await authenticateUser(data.email, data.password, () => {
-                setLoginStatus(true);
-                showToast({
-                    message: 'Account created successfully! Logging you in...',
-                    variant: 'success',
+            await createCustomer(data, async () => {
+                await authenticateUser(data.email, data.password, () => {
+                    setLoginStatus(true);
+                    showToast({
+                        message:
+                            'Account created successfully! Logging you in...',
+                        variant: 'success',
+                    });
+                    void navigate('/main');
                 });
-                void navigate('/main');
             });
         } catch (error) {
-            console.log('ERROR', error);
-            throw error;
+            if (
+                error instanceof AxiosError
+                // typeof error.response?.data?.message === 'string'
+            ) {
+                console.log(error);
+                // setRegistrationError(`Registration failed: ${error.message}`);
+                setRegistrationError(`Registration failed`);
+                if (error.status === 400) {
+                    setFieldError({ field: 'email' });
+                }
+            }
         }
     };
 
     const handleFormSubmission = (event?: React.BaseSyntheticEvent) => {
         methods
-            .handleSubmit(
-                onSubmit,
-                onError
-            )(event)
-            .catch((error) => {
-                console.log('HFS ERROR', error);
-            });
+            .handleSubmit(onSubmit)(event)
+            .catch(() => {});
     };
 
     return {
         isPasswordVisible,
         setIsPasswordVisible,
-        // registrationError,
+        registrationError,
         methods,
         errors: methods.formState.errors,
         isSubmitting: methods.formState.isSubmitting,

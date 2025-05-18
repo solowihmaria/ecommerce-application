@@ -17,7 +17,7 @@ export const DateOfBirthField = ({ error }: { error?: FieldError }) => {
                 id="dateOfBirth"
                 type="date"
                 autoComplete="bday"
-                placeholder="Enter your date of birth"
+                value="2000-01-01" // TODO: remove default values
                 error={Boolean(error)}
                 errorMessage={error?.message}
                 {...register('dateOfBirth')}
