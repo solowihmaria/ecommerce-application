@@ -5,12 +5,16 @@ export const createCustomer = async (
     formData: RegistrationFormData,
     onSuccess?: () => void
 ) => {
-    const response = await requestCreateCustomer(formData);
+    try {
+        const response = await requestCreateCustomer(formData);
 
-    if (typeof onSuccess === 'function') {
-        onSuccess();
+        if (typeof onSuccess === 'function') {
+            onSuccess();
+        }
+
+        console.log('CUSTOMER', response);
+        return response;
+    } catch (error) {
+        console.log('CREATECUSTOMER ERROR', error);
     }
-
-    console.log('CUSTOMER', response);
-    return response;
 };

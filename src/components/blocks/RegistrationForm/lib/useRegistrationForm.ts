@@ -10,8 +10,15 @@ import { authenticateUser } from '../../../../api/auth/authService';
 import { LoginContext } from '../../../../App';
 import { ToastContext } from '../../../ui/Toast/ToastContext';
 
+const onError = (error: unknown) => {
+    console.log('SUBMISSION ERROR', error);
+};
+
 export const useRegistrationForm = () => {
     const [isPasswordVisible, setIsPasswordVisible] = React.useState(false);
+    // const [registrationError, setRegistrationError] = React.useState<
+    //     string | null
+    // >(null);
     const navigate = useNavigate();
     const { setLoginStatus } = useContext(LoginContext);
     const { showToast } = useContext(ToastContext);
@@ -44,20 +51,27 @@ export const useRegistrationForm = () => {
                 });
                 void navigate('/main');
             });
-        } catch {
-            // setApiError({ field: 'both' });
+        } catch (error) {
+            console.log('ERROR', error);
+            throw error;
         }
     };
 
     const handleFormSubmission = (event?: React.BaseSyntheticEvent) => {
         methods
-            .handleSubmit(onSubmit)(event)
-            .catch(() => {});
+            .handleSubmit(
+                onSubmit,
+                onError
+            )(event)
+            .catch((error) => {
+                console.log('HFS ERROR', error);
+            });
     };
 
     return {
         isPasswordVisible,
         setIsPasswordVisible,
+        // registrationError,
         methods,
         errors: methods.formState.errors,
         isSubmitting: methods.formState.isSubmitting,

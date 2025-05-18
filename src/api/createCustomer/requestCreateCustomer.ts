@@ -64,6 +64,7 @@ export const requestCreateCustomer = async ({
         parameters.defaultBillingAddress = 1; // addresses[1]
     }
 
+    // try {
     const response = await axios.post<CreateCustomerResponse>(
         tokenUrl,
         parameters,
@@ -76,4 +77,8 @@ export const requestCreateCustomer = async ({
     );
 
     return response.data;
+    // } catch (error) {
+    //     console.log('REQUEST ERROR', error);
+    //     throw error;
+    // }
 };

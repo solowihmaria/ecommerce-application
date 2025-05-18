@@ -48,6 +48,8 @@ export const RegistrationForm = () => {
                     <ShippingAddressFieldSet errors={errors} />
                     <BillingAddressFieldSet errors={errors} />
 
+                    {/* {registrationError && <p className="">{registrationError}</p>} */}
+
                     <Button
                         type="submit"
                         variant="primary"
