@@ -34,7 +34,7 @@ export const LoginForm = () => {
 
                     <PasswordField
                         error={errors.password || getFieldError('password')}
-                        showPassword={isPasswordVisible}
+                        isPasswordVisible={isPasswordVisible}
                         onTogglePassword={() =>
                             setIsPasswordVisible(!isPasswordVisible)
                         }
@@ -44,6 +44,7 @@ export const LoginForm = () => {
                         type="submit"
                         variant="primary"
                         disabled={isSubmitting}
+                        loading={isSubmitting}
                         className={styles.submitButton}
                     >
                         {isSubmitting ? 'Logging in...' : 'Log In'}

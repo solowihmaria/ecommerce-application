@@ -1,3 +1,5 @@
+@use '../../../assets/styles/constants.module' as c;
+
 .selectContainer {
     display: flex;
     flex-direction: column;
@@ -14,25 +16,26 @@
 .select {
     box-sizing: border-box;
     width: 100%;
-    padding: 0.75rem 1rem;
-    border: 1px solid #ddd;
-    border-radius: 0.25rem;
+    padding: 0 1rem;
+    border: 1px solid c.$color-gray-300;
+    border-radius: 1rem;
     font-family: inherit;
     font-size: 1rem;
+    background-color: c.$color-primary-light;
     transition: border-color 0.2s ease;
 
     &:focus {
-        border-color: #555;
+        border-color: c.$color-gray-800;
         outline: none;
     }
 
     &:disabled {
         cursor: not-allowed;
-        background-color: #f5f5f5;
+        background-color: c.$color-gray-100;
     }
 
     &.error {
-        border-color: #d32f2f;
+        border-color: c.$color-error;
     }
 }
 
@@ -40,8 +43,8 @@
     display: block;
     width: 100%;
     min-height: 1.25rem;
+    border-color: c.$color-error;
     font-size: 0.7rem;
-    color: #d32f2f;
     overflow-wrap: break-word;
     white-space: normal;
 }

@@ -1,3 +1,5 @@
+@use '../../../assets/styles/constants.module' as c;
+
 .label {
     display: inline-block;
     margin-bottom: 0.5rem;
@@ -5,15 +7,15 @@
     font-size: 1rem;
     font-weight: 500;
     line-height: 1.5;
-    color: #333;
+    color: c.$color-text-primary;
 
     &.disabled {
         cursor: not-allowed;
-        color: #999;
+        color: c.$color-gray-500;
     }
-}
 
-.required {
-    margin-left: 0.25rem;
-    color: #d32f2f;
+    span[aria-hidden='true'] {
+        margin-left: 0.25rem;
+        color: c.$color-error;
+    }
 }

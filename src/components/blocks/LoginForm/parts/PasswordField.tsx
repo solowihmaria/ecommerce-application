@@ -7,13 +7,13 @@ import type { FieldError } from 'react-hook-form';
 
 interface PasswordFieldProps {
     error?: FieldError;
-    showPassword: boolean;
+    isPasswordVisible: boolean;
     onTogglePassword: () => void;
 }
 
 export const PasswordField = ({
     error,
-    showPassword,
+    isPasswordVisible,
     onTogglePassword,
 }: PasswordFieldProps) => {
     const { register } = useFormContext();
@@ -28,8 +28,8 @@ export const PasswordField = ({
                 placeholder="Enter your password"
                 error={!!error}
                 errorMessage={error?.message}
-                showPassword={showPassword}
-                onTogglePassword={onTogglePassword}
+                isPasswordVisible={isPasswordVisible}
+                onVisibilityToggle={onTogglePassword}
                 {...register('password')}
             />
         </div>

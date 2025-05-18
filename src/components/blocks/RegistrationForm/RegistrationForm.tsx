@@ -38,7 +38,7 @@ export const RegistrationForm = () => {
 
                         <PasswordField
                             error={errors.password || getFieldError('password')}
-                            showPassword={isPasswordVisible}
+                            isPasswordVisible={isPasswordVisible}
                             onTogglePassword={() =>
                                 setIsPasswordVisible(!isPasswordVisible)
                             }
@@ -54,7 +54,7 @@ export const RegistrationForm = () => {
                         disabled={isSubmitting}
                         className={styles.submitButton}
                     >
-                        {isSubmitting ? 'Logging in...' : 'Log In'}
+                        {isSubmitting ? 'Signing up...' : 'Sign Up'}
                     </Button>
 
                     <div className={styles.signInRedirect}>

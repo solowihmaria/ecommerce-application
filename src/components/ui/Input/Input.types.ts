@@ -7,8 +7,8 @@ export interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
 
 export interface PasswordInputProps
     extends InputHTMLAttributes<HTMLInputElement> {
-    showPassword: boolean;
-    onTogglePassword: () => void;
+    isPasswordVisible?: boolean;
+    onVisibilityToggle?: () => void;
     error?: boolean;
     errorMessage?: string;
 }

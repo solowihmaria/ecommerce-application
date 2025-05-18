@@ -8,11 +8,13 @@ import { useRegistrationErrors } from './useRegistrationErrors';
 import { createCustomer } from '../../../../api/createCustomer/createCustomer';
 import { authenticateUser } from '../../../../api/auth/authService';
 import { LoginContext } from '../../../../App';
+import { ToastContext } from '../../../ui/Toast/ToastContext';
 
 export const useRegistrationForm = () => {
     const [isPasswordVisible, setIsPasswordVisible] = React.useState(false);
     const navigate = useNavigate();
     const { setLoginStatus } = useContext(LoginContext);
+    const { showToast } = useContext(ToastContext);
 
     const methods = useForm<RegistrationFormData>({
         resolver: yupResolver(registrationSchema),
@@ -36,6 +38,10 @@ export const useRegistrationForm = () => {
 
             await authenticateUser(data.email, data.password, () => {
                 setLoginStatus(true);
+                showToast({
+                    message: 'Account created successfully! Logging you in...',
+                    variant: 'success',
+                });
                 void navigate('/main');
             });
         } catch {

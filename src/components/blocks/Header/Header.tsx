@@ -4,6 +4,7 @@ import { Button } from '../../ui/Button';
 import styles from './Header.module.scss';
 import { logoutUser } from '../../../api/auth/authService';
 import { LoginContext } from '../../../App';
+import { ReactComponent as HomeIcon } from '../../../assets/icons/main.svg';
 
 export const Header = () => {
     const { loginStatus, setLoginStatus } = useContext(LoginContext);
@@ -21,20 +22,36 @@ export const Header = () => {
     return (
         <nav className={styles.header}>
             <div>
-                <Link to="/main">
-                    <Button>Main</Button>
+                <Link to="/main" className={styles.iconLink}>
+                    <HomeIcon className={styles.icon} />
                 </Link>
             </div>
             <div className={styles.menu}>
                 {loginStatus ? (
-                    <Button onClick={onLogout}>Logout</Button>
+                    <Button
+                        variant="ghost"
+                        className={styles.headerButton}
+                        onClick={onLogout}
+                    >
+                        Logout
+                    </Button>
                 ) : (
                     <>
                         <Link to="/login">
-                            <Button>Sign In</Button>
+                            <Button
+                                variant="ghost"
+                                className={styles.headerButton}
+                            >
+                                Sign In
+                            </Button>
                         </Link>
                         <Link to="/register">
-                            <Button>Sign Up</Button>
+                            <Button
+                                variant="ghost"
+                                className={styles.headerButton}
+                            >
+                                Sign Up
+                            </Button>
                         </Link>
                     </>
                 )}

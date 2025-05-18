@@ -20,14 +20,9 @@ export const Toast = ({
 
     return (
         <div
-            className={clsx(
-                styles.toast,
-                styles[`toast--${variant}`],
-                className
-            )}
-            role="status"
-            aria-live="polite"
-            aria-atomic="true"
+            className={clsx(styles.toast, styles[variant], className)}
+            role="alert"
+            aria-live="assertive"
             {...props}
         >
             <div className={styles.toastContent}>{message}</div>

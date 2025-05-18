@@ -5,7 +5,18 @@
         "stylelint-config-standard-scss"
     ],
     "rules": {
-        "unit-allowed-list": ["em", "rem", "px", "%", "vh", "fr", "s", "ms"],
+        "unit-allowed-list": [
+            "em",
+            "rem",
+            "px",
+            "%",
+            "vh",
+            "fr",
+            "s",
+            "ms",
+            "vw",
+            "deg"
+        ],
         "block-no-empty": true,
         "no-empty-source": null,
         "selector-class-pattern": "^[a-z][a-zA-Z0-9]+$"

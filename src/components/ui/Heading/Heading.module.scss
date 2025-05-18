@@ -1,9 +1,11 @@
+@use '../../../assets/styles/constants.module' as c;
+
 .heading {
     margin: 0 0 1rem;
     font-family: inherit;
     font-weight: 600;
     line-height: 1.2;
-    color: inherit;
+    color: c.$color-text-primary;
 
     &--h1 {
         font-size: 2.5rem;
