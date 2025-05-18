@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { FaEye, FaEyeSlash } from 'react-icons/fa';
 import styles from './Input.module.scss';
 import clsx from 'clsx';
+import { FiAlertCircle } from 'react-icons/fi';
 import type { PasswordInputProps } from './Input.types';
 
 export const PasswordInput = React.forwardRef<
@@ -36,7 +37,10 @@ export const PasswordInput = React.forwardRef<
                 </button>
             </div>
             {error && errorMessage && (
-                <span className={styles.errorMessage}>{errorMessage}</span>
+                <div className={styles.errorMessage}>
+                    <FiAlertCircle className={styles.errorIcon} />
+                    <span>{errorMessage}</span>
+                </div>
             )}
         </div>
     );

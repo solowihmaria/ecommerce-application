@@ -1,73 +1,94 @@
+@use '../../../assets/styles/constants.module' as c;
+
 .button {
     cursor: pointer;
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    padding: 0.75rem 1.5rem;
-    border: 1px solid transparent;
-    border-radius: 0.25rem;
+    padding: 0.75rem 3rem;
+    border: 1px solid c.$color-primary-light;
+    border-radius: 9999px;
     font-family: inherit;
     font-size: 1rem;
     font-weight: 500;
     line-height: 1.5;
-    transition: all 0.2s ease;
+    transition: all 0.5s ease;
 
     &:disabled {
         cursor: not-allowed;
-        color: #a0a0a0;
+        color: c.$color-gray-500;
         opacity: 0.5;
-        background-color: #e0e0e0;
+        background-color: c.$color-gray-300;
     }
 
     &.primary {
-        border-color: #000;
-        color: #fff;
-        background-color: #000;
+        color: c.$color-text-primary;
+        background-color: c.$color-primary;
 
         &:hover:not(:disabled) {
-            background-color: #333;
+            border-color: c.$color-primary;
+            background-color: c.$color-accent-dark;
         }
     }
 
+    // не застилизовала
     &.secondary {
-        border-color: #e0e0e0;
-        color: #000;
-        background-color: #f5f5f5;
+        border-color: c.$color-gray-300;
+        color: c.$color-black;
+        background-color: c.$color-gray-100;
 
         &:hover:not(:disabled) {
-            background-color: #e8e8e8;
+            background-color: c.$color-gray-200;
         }
     }
 
+    // не застилизовала
     &.danger {
-        border-color: #ff4d4f;
-        color: #ff4d4f;
-        background-color: #fff;
+        border-color: c.$color-error;
+        color: c.$color-error;
+        background-color: c.$color-white;
 
         &:hover:not(:disabled) {
-            background-color: #fff2f2;
+            background-color: c.$color-gray-200;
         }
     }
 
+    // не застилизовала
     &.outline {
-        border-color: #000;
-        color: #000;
+        border-color: c.$color-black;
+        color: c.$color-black;
         background-color: transparent;
 
         &:hover:not(:disabled) {
-            background-color: rgb(0 0 0 / 5%);
+            background-color: c.$opacity-5;
         }
     }
 
     &.ghost {
+        position: relative;
         padding: 0.5rem 1rem;
         border-color: transparent;
-        color: #000;
+        color: c.$color-text-primary;
         background-color: transparent;
 
+        &::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2.5px;
+            background-color: currentcolor;
+            transition: width 0.3s ease;
+        }
+
         &:hover:not(:disabled) {
-            text-decoration: underline;
-            background-color: rgb(0 0 0 / 5%);
+            text-decoration: none;
+            background-color: transparent;
+        }
+
+        &:hover:not(:disabled)::after {
+            width: 100%;
         }
     }
 }
@@ -77,7 +98,7 @@
     width: 1rem;
     height: 1rem;
     margin-left: 0.75rem;
-    border: 2px solid rgb(255 255 255 / 30%);
+    border: 2px solid c.$opacity-30;
     border-top-color: currentcolor;
     border-radius: 50%;
     animation: spin 0.8s linear infinite;
@@ -85,11 +106,11 @@
     .secondary &,
     .outline &,
     .ghost & {
-        border-top-color: #000;
+        border-top-color: c.$color-black;
     }
 
     .danger & {
-        border-top-color: #ff4d4f;
+        border-top-color: c.$color-error;
     }
 }
 
@@ -103,6 +124,6 @@
     cursor: wait;
 
     &.primary .spinner {
-        border-top-color: white;
+        border-top-color: c.$color-white;
     }
 }

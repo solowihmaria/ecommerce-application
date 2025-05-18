@@ -1,6 +1,7 @@
 import React from 'react';
 import styles from './Input.module.scss';
 import clsx from 'clsx';
+import { FiAlertCircle } from 'react-icons/fi';
 import type { InputProps } from './Input.types';
 
 export const Input = React.forwardRef<HTMLInputElement, InputProps>(
@@ -35,7 +36,10 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(
                 />
             </div>
             {error && errorMessage && (
-                <span className={styles.errorMessage}>{errorMessage}</span>
+                <div className={styles.errorMessage}>
+                    <FiAlertCircle className={styles.errorIcon} />
+                    <span>{errorMessage}</span>
+                </div>
             )}
         </div>
     )

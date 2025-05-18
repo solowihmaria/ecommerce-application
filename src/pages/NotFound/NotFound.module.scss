@@ -1,3 +1,5 @@
+@use '../../assets//styles/constants.module' as c;
+
 .notFound {
     position: fixed;
     inset: 0;
@@ -7,7 +9,7 @@
     justify-content: center;
     padding: 2rem;
     text-align: center;
-    background-color: #f8f9fa;
+    background: c.$color-accent-dark;
 }
 
 .content {
@@ -21,22 +23,22 @@
     font-size: 8rem;
     font-weight: 800;
     line-height: 1;
-    color: #dc3545;
-    text-shadow: 0 0.125rem 0.25rem rgb(0 0 0 / 10%);
+    color: c.$color-error;
+    text-shadow: 0 0.125rem 0.25rem c.$opacity-5;
 }
 
 .title {
     margin: 0.5rem 0;
     font-size: 2rem;
     font-weight: 700;
-    color: #212529;
+    color: c.$color-error;
 }
 
 .message {
     margin: 1rem 0 1.5rem;
     font-size: 1.125rem;
     line-height: 1.5;
-    color: #6c757d;
+    color: c.$color-text-primary;
 }
 
 .homeLink {
