@@ -32,6 +32,46 @@ module.exports = {
                 test: /\.html$/i,
                 loader: 'html-loader',
             },
+            // SVG
+            {
+                test: /\.svg$/i,
+                oneOf: [
+                    {
+                        issuer: /\.(tsx|jsx)$/,
+                        use: [
+                            {
+                                loader: '@svgr/webpack',
+                                options: {
+                                    svgo: true,
+                                    svgoConfig: {
+                                        plugins: [
+                                            {
+                                                name: 'removeTitle',
+                                                active: true,
+                                            },
+                                            {
+                                                name: 'removeDesc',
+                                                active: true,
+                                            },
+                                            {
+                                                name: 'removeViewBox',
+                                                active: false,
+                                            },
+                                        ],
+                                    },
+                                },
+                            },
+                        ],
+                    },
+                    {
+                        type: 'asset/resource',
+                        generator: {
+                            filename: 'images/[hash][ext][query]',
+                        },
+                    },
+                ],
+            },
+
             {
                 test: /\.jpe?g$|\.svg$|\.png$|\.ico$|\.mp3$/,
                 use: ['file-loader'],

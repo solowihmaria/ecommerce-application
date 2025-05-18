@@ -4,6 +4,7 @@ import { Button } from '../../ui/Button';
 import styles from './Header.module.scss';
 import { logoutUser } from '../../../api/auth/authService';
 import { LoginContext } from '../../../App';
+import { ReactComponent as HomeIcon } from '../../../assets/icons/main.svg';
 
 export const Header = () => {
     const { loginStatus, setLoginStatus } = useContext(LoginContext);
@@ -21,8 +22,8 @@ export const Header = () => {
     return (
         <nav className={styles.header}>
             <div>
-                <Link to="/main" className={styles.logo}>
-                    <img src="../" alt="Plant Store Logo" />
+                <Link to="/main" className={styles.iconLink}>
+                    <HomeIcon className={styles.icon} />
                 </Link>
             </div>
             <div className={styles.menu}>
