@@ -1,4 +1,5 @@
 import * as yup from 'yup';
+import { CountryCode } from '../../../../api/createCustomer/createCustomer.types';
 
 const ruleForEmail = yup
     .string()
@@ -19,7 +20,7 @@ const ruleForPassword = yup
     )
     .matches(/\d/, 'Password must contain at least one digit (0-9)');
 
-const ruleForBirthDate = yup
+const ruleForDateOfBirth = yup
     .date()
     .transform((value: Date, originalValue: unknown): Date | undefined =>
         originalValue === '' ? undefined : value
@@ -53,6 +54,11 @@ const ruleForCity = yup
         'City must not contain special characters or numbers'
     );
 
+const ruleForCountry = yup
+    .mixed<CountryCode>()
+    .oneOf(Object.values(CountryCode))
+    .required('Country is required');
+
 const ruleForPostalCode = yup
     .string()
     .required('Postal code is required')
@@ -64,13 +70,23 @@ export const registrationSchema = yup.object().shape({
 
     firstName: ruleForNames,
     lastName: ruleForNames,
-    birthDate: ruleForBirthDate,
+    dateOfBirth: ruleForDateOfBirth,
 
-    shippingStreet: ruleForStreet,
-    shippingCity: ruleForCity,
-    shippingCode: ruleForPostalCode,
+    shippingAddress: yup.object({
+        streetName: ruleForStreet,
+        city: ruleForCity,
+        country: ruleForCountry,
+        postalCode: ruleForPostalCode,
+    }),
+    shippingDefault: yup.boolean().required(),
 
-    billingStreet: ruleForStreet,
-    billingCity: ruleForCity,
-    billingCode: ruleForPostalCode,
+    billingAddress: yup.object({
+        streetName: ruleForStreet,
+        city: ruleForCity,
+        country: ruleForCountry,
+        postalCode: ruleForPostalCode,
+    }),
+    billingDefault: yup.boolean().required(),
+
+    isBillingEqualsShipping: yup.boolean().required(),
 });

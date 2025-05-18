@@ -1,7 +1,7 @@
 @use '../../../assets/styles/constants.module' as c;
 
 .registrationContainer {
-    min-width: 25rem;
+    min-width: 300px;
     margin: 0 auto;
     padding: 4.5rem 3rem;
     border: 1px solid c.$color-primary-light;
@@ -13,10 +13,6 @@
     margin-bottom: 24px;
     color: c.$color-gray-800;
     text-align: center;
-}
-
-.formGroup {
-    margin-bottom: 20px;
 }
 
 .checkboxesContainer {
@@ -31,7 +27,10 @@
 }
 
 .fieldset {
-    padding-top: 1em;
+    display: grid;
+    gap: 16px;
+    width: 100%;
+    padding: 0.35em 0;
     border: none;
     border-top: 1px solid c.$color-text-primary;
 }
@@ -77,23 +76,37 @@
     }
 }
 
-.grid2 {
+.loginInfo {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     gap: 16px;
     width: 100%;
+
+    @media (width <= 560px) {
+        grid-template-columns: 1fr;
+    }
 }
 
-.grid3 {
-    display: grid;
+.personalInfo {
     grid-template-columns: repeat(3, 1fr);
-    gap: 16px;
-    width: 100%;
+
+    @media (width <= 740px) {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    @media (width <= 560px) {
+        grid-template-columns: 1fr;
+    }
 }
 
-.grid4 {
-    display: grid;
+.addressInfo {
     grid-template-columns: repeat(4, 1fr);
-    gap: 16px;
-    width: 100%;
+
+    @media (width <= 820px) {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    @media (width <= 560px) {
+        grid-template-columns: 1fr;
+    }
 }
