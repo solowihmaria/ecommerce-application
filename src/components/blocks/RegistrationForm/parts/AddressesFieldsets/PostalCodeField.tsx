@@ -4,7 +4,11 @@ import { Input } from '../../../../ui/Input';
 import { Label } from '../../../../ui/Label';
 import type { addressFieldProps } from '../../Registration.types';
 
-export const PostalCodeField = ({ type, error }: addressFieldProps) => {
+export const PostalCodeField = ({
+    type,
+    error,
+    disabled,
+}: addressFieldProps) => {
     const { register } = useFormContext();
 
     return (
@@ -20,6 +24,7 @@ export const PostalCodeField = ({ type, error }: addressFieldProps) => {
                 placeholder="Postal code"
                 error={Boolean(error)}
                 errorMessage={error?.message}
+                disabled={disabled}
                 {...register(`${type}Address.postalCode`)}
             />
         </div>

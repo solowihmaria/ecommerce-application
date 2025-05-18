@@ -5,7 +5,7 @@ import { Label } from '../../../../ui/Label/Label';
 import { Select } from '../../../../ui/Select/Select';
 import { CountryCode } from '../../../../../api/createCustomer/createCustomer.types';
 
-export const CountryField = ({ type }: addressFieldProps) => {
+export const CountryField = ({ type, disabled }: addressFieldProps) => {
     const { register } = useFormContext();
 
     return (
@@ -14,7 +14,7 @@ export const CountryField = ({ type }: addressFieldProps) => {
                 Country
             </Label>
 
-            <Select {...register(`${type}Address.country`)}>
+            <Select disabled={disabled} {...register(`${type}Address.country`)}>
                 <option value={CountryCode.FR}>France</option>
                 <option value={CountryCode.DE}>Germany</option>
                 <option value={CountryCode.FR}>Italy</option>

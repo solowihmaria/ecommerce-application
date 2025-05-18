@@ -33,4 +33,5 @@ export enum AddressType {
 
 export interface addressFieldProps extends baseFieldProps {
     type: AddressType;
+    disabled?: boolean;
 }

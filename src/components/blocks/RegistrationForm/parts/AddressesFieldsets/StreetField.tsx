@@ -4,7 +4,7 @@ import { Input } from '../../../../ui/Input';
 import { Label } from '../../../../ui/Label';
 import type { addressFieldProps } from '../../Registration.types';
 
-export const StreetField = ({ type, error }: addressFieldProps) => {
+export const StreetField = ({ type, error, disabled }: addressFieldProps) => {
     const { register } = useFormContext();
 
     return (
@@ -20,6 +20,7 @@ export const StreetField = ({ type, error }: addressFieldProps) => {
                 placeholder="Street"
                 error={Boolean(error)}
                 errorMessage={error?.message}
+                disabled={disabled}
                 {...register(`${type}Address.streetName`)}
             />
         </div>

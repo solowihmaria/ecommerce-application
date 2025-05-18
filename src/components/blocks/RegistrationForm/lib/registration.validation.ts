@@ -87,4 +87,6 @@ export const registrationSchema = yup.object().shape({
         postalCode: ruleForPostalCode,
     }),
     billingDefault: yup.boolean().required(),
+
+    isBillingEqualsShipping: yup.boolean().required(),
 });
