@@ -72,15 +72,19 @@ export const registrationSchema = yup.object().shape({
     lastName: ruleForNames,
     dateOfBirth: ruleForDateOfBirth,
 
-    shippingStreet: ruleForStreet,
-    shippingCity: ruleForCity,
-    shippingCountry: ruleForCountry,
-    shippingCode: ruleForPostalCode,
+    shippingAddress: yup.object({
+        streetName: ruleForStreet,
+        city: ruleForCity,
+        country: ruleForCountry,
+        postalCode: ruleForPostalCode,
+    }),
     shippingDefault: yup.boolean().required(),
 
-    billingStreet: ruleForStreet,
-    billingCity: ruleForCity,
-    billingCountry: ruleForCountry,
-    billingCode: ruleForPostalCode,
+    billingAddress: yup.object({
+        streetName: ruleForStreet,
+        city: ruleForCity,
+        country: ruleForCountry,
+        postalCode: ruleForPostalCode,
+    }),
     billingDefault: yup.boolean().required(),
 });

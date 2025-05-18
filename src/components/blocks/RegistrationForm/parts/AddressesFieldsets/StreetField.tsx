@@ -20,7 +20,7 @@ export const StreetField = ({ type, error }: addressFieldProps) => {
                 placeholder="Street"
                 error={Boolean(error)}
                 errorMessage={error?.message}
-                {...register(`${type}Street`)}
+                {...register(`${type}Address.streetName`)}
             />
         </div>
     );

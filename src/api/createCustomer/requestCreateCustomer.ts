@@ -39,14 +39,8 @@ export const requestCreateCustomer = async ({
     firstName,
     lastName,
     dateOfBirth,
-    shippingStreet,
-    shippingCity,
-    shippingCountry,
-    shippingCode,
-    billingStreet,
-    billingCity,
-    billingCountry,
-    billingCode,
+    shippingAddress,
+    billingAddress,
     shippingDefault,
     billingDefault,
 }: RegistrationFormData) => {
@@ -61,26 +55,11 @@ export const requestCreateCustomer = async ({
         firstName,
         lastName,
         dateOfBirth: dateOfBirth.toISOString().split('T')[0],
-        addresses: [
-            {
-                country: shippingCountry,
-                city: shippingCity,
-                streetName: shippingStreet,
-                postalCode: shippingCode,
-            },
-            {
-                country: billingCountry,
-                city: billingCity,
-                streetName: billingStreet,
-                postalCode: billingCode,
-            },
-        ],
+        addresses: [shippingAddress, billingAddress],
     };
-
     if (shippingDefault) {
         parameters.defaultShippingAddress = 0; // addresses[0]
     }
-
     if (billingDefault) {
         parameters.defaultBillingAddress = 1; // addresses[1]
     }

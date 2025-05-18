@@ -20,7 +20,7 @@ export const PostalCodeField = ({ type, error }: addressFieldProps) => {
                 placeholder="Postal code"
                 error={Boolean(error)}
                 errorMessage={error?.message}
-                {...register(`${type}Code`)}
+                {...register(`${type}Address.postalCode`)}
             />
         </div>
     );

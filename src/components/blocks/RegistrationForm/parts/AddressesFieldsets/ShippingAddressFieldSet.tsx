@@ -17,10 +17,16 @@ export const ShippingAddressFieldSet = ({ errors }: FormPartProps) => {
         <fieldset className={clsx(styles.fieldset, styles.addressInfo)}>
             <legend className={styles.legend}>Shipping Address</legend>
 
-            <StreetField type={type} error={errors?.shippingStreet} />
-            <CityField type={type} error={errors?.shippingCity} />
+            <StreetField
+                type={type}
+                error={errors?.shippingAddress?.streetName}
+            />
+            <CityField type={type} error={errors?.shippingAddress?.city} />
             <CountryField type={type} />
-            <PostalCodeField type={type} error={errors?.shippingCode} />
+            <PostalCodeField
+                type={type}
+                error={errors?.shippingAddress?.postalCode}
+            />
 
             <div className={styles.checkboxesContainer}>
                 <SetAsDefaultAddressField type={type} />
