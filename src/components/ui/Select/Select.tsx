@@ -1,4 +1,3 @@
-import React from 'react';
 import styles from './Select.module.scss';
 import clsx from 'clsx';
 import type { SelectProps } from './Select.types';

@@ -1,4 +1,3 @@
-import React from 'react';
 import { Header } from '../../components/blocks/Header/Header';
 import styles from './MainPage.module.scss';
 

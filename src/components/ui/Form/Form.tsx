@@ -1,4 +1,3 @@
-import React from 'react';
 import styles from './Form.module.scss';
 import clsx from 'clsx';
 import type { FormProps } from './Form.types';

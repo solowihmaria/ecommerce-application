@@ -1,7 +1,6 @@
 import { render, screen } from '@testing-library/react';
 import '@testing-library/jest-dom';
 import { Form } from './Form';
-import React from 'react';
 
 describe('<Form/> component', () => {
     test('Render Form component without any properties', () => {

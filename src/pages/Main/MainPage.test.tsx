@@ -1,7 +1,6 @@
 import { render, screen } from '@testing-library/react';
 import '@testing-library/jest-dom';
 import { MainPage } from './MainPage';
-import React from 'react';
 import { MemoryRouter } from 'react-router-dom';
 
 describe('<MainPage/> component', () => {

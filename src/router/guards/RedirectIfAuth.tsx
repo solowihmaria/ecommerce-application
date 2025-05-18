@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import { useContext } from 'react';
 import { Navigate } from 'react-router-dom';
 /*import { getToken } from '../../features/auth/token';*/
 import { LoginContext } from '../../App';

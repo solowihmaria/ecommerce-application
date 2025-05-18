@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import { useEffect } from 'react';
 import styles from './Toast.module.scss';
 import clsx from 'clsx';
 import type { ToastProps } from './Toast.types';

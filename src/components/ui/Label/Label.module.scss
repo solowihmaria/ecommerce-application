@@ -10,6 +10,7 @@
     color: c.$color-text-primary;
 
     &.disabled {
+        color: #999;
         cursor: not-allowed;
         color: c.$color-gray-500;
     }

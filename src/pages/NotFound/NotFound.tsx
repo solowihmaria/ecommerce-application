@@ -1,4 +1,3 @@
-import React from 'react';
 import { Link } from 'react-router-dom';
 import { Heading } from '../../components/ui/Heading/Heading';
 import { Button } from '../../components/ui/Button/Button';
