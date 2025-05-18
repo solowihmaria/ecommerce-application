@@ -5,7 +5,7 @@ import { Input } from './Input';
 describe('<Input/> component', () => {
     test('Render Input component - without any properties', () => {
         render(<Input />);
-        const inputElement = screen.getByTestId('input-test-id');
+        const inputElement = screen.getByTestId('test-id-input-field');
         expect(inputElement).toBeInTheDocument();
         expect(inputElement).toMatchSnapshot();
     });
@@ -36,7 +36,7 @@ describe('<Input/> component', () => {
                 errorMessage={testErrorMessage}
             />
         );
-        const inputElement = screen.getByTestId('input-test-id');
+        const inputElement = screen.getByTestId('test-id-input-field');
         expect(inputElement).toBeInTheDocument();
         expect(inputElement).toMatchSnapshot();
         const errorElement = screen.getByText(testErrorMessage);

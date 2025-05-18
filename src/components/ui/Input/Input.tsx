@@ -23,6 +23,7 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(
         >
             <div className={styles.inputWrapper}>
                 <input
+                    data-testid="test-id-input-field"
                     ref={reference}
                     type={type}
                     className={clsx(
@@ -38,7 +39,9 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(
             {error && errorMessage && (
                 <div className={styles.errorMessage}>
                     <FiAlertCircle className={styles.errorIcon} />
-                    <span>{errorMessage}</span>
+                    <span data-testid="error-input-test-id">
+                        {errorMessage}
+                    </span>
                 </div>
             )}
         </div>

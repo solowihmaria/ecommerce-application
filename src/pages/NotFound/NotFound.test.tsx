@@ -3,7 +3,7 @@ import '@testing-library/jest-dom';
 import { NotFoundPage } from './NotFound';
 import { MemoryRouter, Route, Routes } from 'react-router-dom';
 import userEvent from '@testing-library/user-event';
-import { MainPage } from '../Main';
+import { MainPage } from '../Main/MainPage';
 
 describe('<NotFoundPage/> component', () => {
     test('Render NotFoundPage component', () => {

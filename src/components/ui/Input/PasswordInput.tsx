@@ -50,7 +50,9 @@ export const PasswordInput = React.forwardRef<
                 {error && errorMessage && (
                     <div className={styles.errorMessage}>
                         <FiAlertCircle className={styles.errorIcon} />
-                        <span>{errorMessage}</span>
+                        <span data-testid="error-input-password-test-id">
+                            {errorMessage}
+                        </span>
                     </div>
                 )}
             </div>

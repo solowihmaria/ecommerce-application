@@ -31,6 +31,34 @@ export default [
             reportUnusedDisableDirectives: 'warn',
         },
     },
+
+    {
+        plugins: {
+            prettier: prettier,
+            tseslint: tseslint,
+            react: reactPlugin,
+            reactHooks: reactHooks,
+            jsxA11y: jsxA11y,
+        },
+    },
+    {
+        settings: {
+            react: {
+                version: 'detect',
+            },
+        },
+    },
+    reactHooks.configs['recommended-latest'],
+    jsxA11y.flatConfigs.recommended,
+    reactPlugin.configs.flat.recommended,
+    reactPlugin.configs.flat['jsx-runtime'],
+    pluginJs.configs.recommended,
+    ...tseslint.configs.recommendedTypeChecked,
+    {
+        rules: {
+            '@typescript-eslint/no-empty-object-type': 'off',
+        },
+    },
     {
         rules: {
             'no-debugger': 'off',
@@ -78,33 +106,6 @@ export default [
 
             'react-hooks/rules-of-hooks': 'error',
             'react-hooks/exhaustive-deps': 'warn',
-        },
-    },
-    {
-        plugins: {
-            prettier: prettier,
-            tseslint: tseslint,
-            react: reactPlugin,
-            reactHooks: reactHooks,
-            jsxA11y: jsxA11y,
-        },
-    },
-    {
-        settings: {
-            react: {
-                version: 'detect',
-            },
-        },
-    },
-    reactHooks.configs['recommended-latest'],
-    jsxA11y.flatConfigs.recommended,
-    reactPlugin.configs.flat.recommended,
-    reactPlugin.configs.flat['jsx-runtime'],
-    pluginJs.configs.recommended,
-    ...tseslint.configs.recommendedTypeChecked,
-    {
-        rules: {
-            '@typescript-eslint/no-empty-object-type': 'off',
         },
     },
 ];

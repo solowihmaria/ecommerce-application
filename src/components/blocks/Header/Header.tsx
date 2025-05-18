@@ -20,7 +20,7 @@ export const Header = () => {
     };
 
     return (
-        <nav className={styles.header}>
+        <nav data-testid="test-id-header" className={styles.header}>
             <div>
                 <Link to="/main" className={styles.iconLink}>
                     <HomeIcon className={styles.icon} />

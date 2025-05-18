@@ -30,7 +30,9 @@ export const authenticateUser = async (
 export const logoutUser = async (): Promise<void> => {
     try {
         const token = getToken();
-        if (!token) return;
+        if (!token) {
+            return;
+        }
 
         await logout(token);
         removeToken();

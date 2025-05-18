@@ -22,7 +22,10 @@ export const LoginForm = () => {
     return (
         <div className={styles.loginContainer}>
             <FormProvider {...methods}>
-                <Form onSubmit={handleFormSubmission}>
+                <Form
+                    data-testid="test-id-login-form"
+                    onSubmit={handleFormSubmission}
+                >
                     <Heading level="h2" className={styles.formTitle}>
                         Login
                     </Heading>
@@ -53,7 +56,11 @@ export const LoginForm = () => {
                         <p className={styles.signUpText}>
                             Don&apos;t have an account?
                         </p>
-                        <Link to="/register" className={styles.signUpLink}>
+                        <Link
+                            data-testid="sign-up-link"
+                            to="/register"
+                            className={styles.signUpLink}
+                        >
                             Sign Up
                         </Link>
                     </div>

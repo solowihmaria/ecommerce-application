@@ -1,4 +1,4 @@
-import React, { createContext, useState } from 'react';
+import { createContext, useState } from 'react';
 import { Toast } from './Toast';
 import type { ToastVariant } from './Toast.types';
 
