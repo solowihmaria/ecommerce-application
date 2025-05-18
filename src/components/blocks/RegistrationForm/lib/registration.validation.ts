@@ -76,9 +76,11 @@ export const registrationSchema = yup.object().shape({
     shippingCity: ruleForCity,
     shippingCountry: ruleForCountry,
     shippingCode: ruleForPostalCode,
+    shippingDefault: yup.boolean().required(),
 
     billingStreet: ruleForStreet,
     billingCity: ruleForCity,
     billingCountry: ruleForCountry,
     billingCode: ruleForPostalCode,
+    billingDefault: yup.boolean().required(),
 });

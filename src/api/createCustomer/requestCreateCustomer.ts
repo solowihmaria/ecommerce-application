@@ -47,14 +47,13 @@ export const requestCreateCustomer = async ({
     billingCity,
     billingCountry,
     billingCode,
+    shippingDefault,
+    billingDefault,
 }: RegistrationFormData) => {
     const apiUrl = process.env.CTP_API_URL;
     const projectKey = process.env.CTP_PROJECT_KEY;
-    const adminToken = await getAdminToken();
-
-    console.log('adminToken', adminToken);
-
     const tokenUrl = `${apiUrl}/${projectKey}/customers`;
+    const adminToken = await getAdminToken();
 
     const parameters: Customer = {
         email,
@@ -76,9 +75,15 @@ export const requestCreateCustomer = async ({
                 postalCode: billingCode,
             },
         ],
-        defaultShippingAddress: 0,
-        defaultBillingAddress: 1,
     };
+
+    if (shippingDefault) {
+        parameters.defaultShippingAddress = 0; // addresses[0]
+    }
+
+    if (billingDefault) {
+        parameters.defaultBillingAddress = 1; // addresses[1]
+    }
 
     const response = await axios.post<CreateCustomerResponse>(
         tokenUrl,

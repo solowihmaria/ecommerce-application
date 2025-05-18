@@ -30,8 +30,8 @@ export interface Customer {
     lastName: string;
     dateOfBirth: string;
     addresses: Address[];
-    defaultShippingAddress: number;
-    defaultBillingAddress: number;
+    defaultShippingAddress?: number;
+    defaultBillingAddress?: number;
 }
 
 export interface CreateCustomerResponse {
