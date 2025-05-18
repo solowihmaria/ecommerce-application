@@ -8,21 +8,35 @@ export const authenticateUser = async (
     password: string,
     onSuccess?: () => void
 ): Promise<LoginResponse> => {
-    const response = await loginRequest(email, password);
-    setToken(response.access_token);
+    try {
+        const response = await loginRequest(email, password);
 
-    if (typeof onSuccess === 'function') {
-        onSuccess();
+        if (response?.access_token) {
+            setToken(response.access_token);
+        } else {
+            throw new Error('Invalid response structure');
+        }
+
+        onSuccess?.();
+        return response;
+    } catch (error: unknown) {
+        if (error instanceof Error) {
+            throw new TypeError(`Authentication failed: ${error.message}`);
+        }
+        throw new Error('Unknown authentication error');
     }
-
-    return response;
 };
 
-export const logoutUser = async () => {
-    const token = getToken();
+export const logoutUser = async (): Promise<void> => {
+    try {
+        const token = getToken();
+        if (!token) return;
 
-    if (!token) return;
-
-    await logout(token);
-    removeToken();
+        await logout(token);
+        removeToken();
+    } catch (error: unknown) {
+        if (error instanceof Error) {
+            console.error('Logout failed:', error.message);
+        }
+    }
 };

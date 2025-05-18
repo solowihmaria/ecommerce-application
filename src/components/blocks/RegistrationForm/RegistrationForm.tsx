@@ -38,7 +38,7 @@ export const RegistrationForm = () => {
 
                         <PasswordField
                             error={errors.password || getFieldError('password')}
-                            showPassword={isPasswordVisible}
+                            isPasswordVisible={isPasswordVisible}
                             onTogglePassword={() =>
                                 setIsPasswordVisible(!isPasswordVisible)
                             }

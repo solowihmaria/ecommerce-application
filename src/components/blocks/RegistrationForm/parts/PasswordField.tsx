@@ -6,13 +6,13 @@ import { Label } from '../../../ui/Label';
 
 interface PasswordFieldProps {
     error?: FieldError;
-    showPassword: boolean;
+    isPasswordVisible: boolean;
     onTogglePassword: () => void;
 }
 
 export const PasswordField = ({
     error,
-    showPassword,
+    isPasswordVisible,
     onTogglePassword,
 }: PasswordFieldProps) => {
     const { register } = useFormContext();
@@ -28,8 +28,8 @@ export const PasswordField = ({
                 placeholder="Create your password"
                 error={Boolean(error)}
                 errorMessage={error?.message}
-                showPassword={showPassword}
-                onTogglePassword={onTogglePassword}
+                isPasswordVisible={isPasswordVisible}
+                onVisibilityToggle={onTogglePassword}
                 {...register('password')}
             />
         </div>

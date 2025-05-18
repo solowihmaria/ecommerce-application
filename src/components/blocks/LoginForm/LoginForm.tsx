@@ -34,7 +34,7 @@ export const LoginForm = () => {
 
                     <PasswordField
                         error={errors.password || getFieldError('password')}
-                        showPassword={isPasswordVisible}
+                        isPasswordVisible={isPasswordVisible}
                         onTogglePassword={() =>
                             setIsPasswordVisible(!isPasswordVisible)
                         }
