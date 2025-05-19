@@ -14,7 +14,7 @@ export const EmailField = ({ error }: { error?: FieldError }) => {
             </Label>
             <Input
                 id="email"
-                type="email"
+                type="text"
                 autoComplete="email"
                 placeholder="Enter your email"
                 error={!!error}
