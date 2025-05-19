@@ -22,7 +22,7 @@ module.exports = {
     plugins: [
         new HtmlWebpackPlugin({
             template: path.resolve(__dirname, './src/index.html'),
-            favicon: './src/assets/icons/main.svg',
+            favicon: './src/assets/icons/favicon.svg',
         }),
         new ESLintPlugin({ extensions: ['ts', 'tsx'] }),
         new Dotenv(),
