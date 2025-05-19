@@ -56,6 +56,8 @@ export const requestCreateCustomer = async ({
         lastName,
         dateOfBirth: dateOfBirth.toISOString().split('T')[0],
         addresses: [shippingAddress, billingAddress],
+        shippingAddresses: [0],
+        billingAddresses: [1],
     };
     if (shippingDefault) {
         parameters.defaultShippingAddress = 0; // addresses[0]

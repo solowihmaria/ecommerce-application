@@ -9,6 +9,5 @@ export const createCustomer = async (
 
     await onSuccess?.();
 
-    console.log('CUSTOMER', response);
     return response;
 };
