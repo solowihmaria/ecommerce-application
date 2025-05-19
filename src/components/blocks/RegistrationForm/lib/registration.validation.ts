@@ -9,6 +9,11 @@ const ruleForEmail = yup
 const ruleForPassword = yup
     .string()
     .required('Password is required')
+    .test(
+        'no-spaces',
+        'Password must not contain leading or trailing spaces',
+        (value) => !value || value === value.trim()
+    )
     .min(8, 'Password must be at least 8 characters')
     .matches(
         /[A-Z]/,
