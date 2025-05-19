@@ -30,6 +30,8 @@ export interface Customer {
     lastName: string;
     dateOfBirth: string;
     addresses: Address[];
+    shippingAddresses: number[];
+    billingAddresses: number[];
     defaultShippingAddress?: number;
     defaultBillingAddress?: number;
 }
