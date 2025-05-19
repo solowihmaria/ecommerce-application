@@ -52,8 +52,8 @@ export const RegistrationForm = () => {
 
                     {registrationError && (
                         <div className={styles.registrationError}>
-                            <span>{registrationError}</span>
                             <FiFrown className={styles.errorIcon} />
+                            <span>{registrationError}</span>
                         </div>
                     )}
 

@@ -2,12 +2,12 @@
 
 exports[`<Label/> component Render Label component - disabled 1`] = `
 <label
-  class="label labelClass disabled"
+  class="label labelClass disabled required"
   for="someInput"
 >
   LabelText
   <span
-    class="required"
+    aria-hidden="true"
   >
     *
   </span>
@@ -25,12 +25,12 @@ exports[`<Label/> component Render Label component - optional field 1`] = `
 
 exports[`<Label/> component Render Label component - required field 1`] = `
 <label
-  class="label labelClass"
+  class="label labelClass required"
   for="someInput"
 >
   LabelText
   <span
-    class="required"
+    aria-hidden="true"
   >
     *
   </span>

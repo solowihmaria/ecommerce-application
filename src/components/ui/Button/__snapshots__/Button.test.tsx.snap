@@ -13,7 +13,6 @@ exports[`<Button/> component Render Button component - disabled 1`] = `
 exports[`<Button/> component Render Button component - without any properties 1`] = `
 <button
   class="button primary"
-  type="button"
 >
   button name
 </button>

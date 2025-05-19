@@ -9,7 +9,6 @@ import { createCustomer } from '../../../../api/createCustomer/createCustomer';
 import { authenticateUser } from '../../../../api/auth/authService';
 import { LoginContext } from '../../../../App';
 import { ToastContext } from '../../../ui/Toast/ToastContext';
-import { AxiosError } from 'axios';
 
 export const useRegistrationForm = () => {
     const [isPasswordVisible, setIsPasswordVisible] = React.useState(false);
@@ -22,13 +21,8 @@ export const useRegistrationForm = () => {
     });
 
     // Хук для обработки ошибок API
-    const {
-        registrationError,
-        setRegistrationError,
-        setFieldError,
-        clearApiError,
-        getFieldError,
-    } = useRegistrationErrors(methods.formState.isSubmitting);
+    const { registrationError, handleError, clearApiError, getFieldError } =
+        useRegistrationErrors(methods.formState.isSubmitting);
 
     // Для очистки ошибок при изменении полей формы
     React.useEffect(() => {
@@ -50,17 +44,7 @@ export const useRegistrationForm = () => {
                 });
             });
         } catch (error) {
-            if (
-                error instanceof AxiosError
-                // typeof error.response?.data?.message === 'string'
-            ) {
-                console.log(error);
-                // setRegistrationError(`Registration failed: ${error.message}`);
-                setRegistrationError(`Registration failed`);
-                if (error.status === 400) {
-                    setFieldError({ field: 'email' });
-                }
-            }
+            handleError(error);
         }
     };
 

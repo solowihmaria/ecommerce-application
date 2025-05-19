@@ -1,6 +1,7 @@
 import { useState, useEffect, useRef } from 'react';
 import type { FieldError } from 'react-hook-form';
 import { REGISTRATION_ERROR_MESSAGES } from './constants';
+import { AxiosError } from 'axios';
 
 export interface ApiError {
     field?: 'email' | 'password';
@@ -38,6 +39,23 @@ export const useRegistrationErrors = (isSubmitting: boolean) => {
         return undefined;
     };
 
+    const handleError = (error: unknown) => {
+        if (error instanceof AxiosError) {
+            if (error.response) {
+                if (error.status === 400) {
+                    setFieldError({ field: 'email' });
+                }
+                setRegistrationError(REGISTRATION_ERROR_MESSAGES.STATUS_FAIL);
+            } else if (error.request) {
+                setRegistrationError(REGISTRATION_ERROR_MESSAGES.NO_RESPONSE);
+            } else {
+                setRegistrationError(REGISTRATION_ERROR_MESSAGES.UNKNOWN_ERROR);
+            }
+        } else {
+            console.error(`Unexpexted error:`, error);
+        }
+    };
+
     return {
         fieldError,
         setFieldError,
@@ -45,5 +63,6 @@ export const useRegistrationErrors = (isSubmitting: boolean) => {
         setRegistrationError,
         clearApiError,
         getFieldError,
+        handleError,
     };
 };
