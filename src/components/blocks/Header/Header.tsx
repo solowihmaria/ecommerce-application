@@ -4,7 +4,7 @@ import { Button } from '../../ui/Button';
 import styles from './Header.module.scss';
 import { logoutUser } from '../../../api/auth/authService';
 import { LoginContext } from '../../../App';
-import { ReactComponent as HomeIcon } from '../../../assets/icons/main.svg';
+import HomeIcon from '../../../assets/icons/main.svg';
 
 export const Header = () => {
     const { loginStatus, setLoginStatus } = useContext(LoginContext);

@@ -72,7 +72,11 @@ export const RegistrationForm = () => {
                         <p className={styles.signInText}>
                             Already have an account?
                         </p>
-                        <Link to="/login" className={styles.signInLink}>
+                        <Link
+                            data-testid="sign-in-link"
+                            to="/login"
+                            className={styles.signInLink}
+                        >
                             Sign In
                         </Link>
                     </div>

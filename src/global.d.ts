@@ -7,10 +7,8 @@ declare module '*.module.scss' {
 
 declare module '*.svg' {
     import type * as React from 'react';
-
-    export const ReactComponent: React.FunctionComponent<
-        React.SVGProps<SVGSVGElement>
+    const ReactComponent: React.FunctionComponent<
+        React.SVGProps<SVGSVGElement> & { title?: string }
     >;
-    const source: string;
-    export default source;
+    export default ReactComponent;
 }

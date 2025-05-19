@@ -1,15 +1,12 @@
 import globals from 'globals';
-import prettier from 'prettier';
 import tseslint from 'typescript-eslint';
 import pluginJs from '@eslint/js';
 import reactPlugin from 'eslint-plugin-react';
-import eslintPluginUnicorn from 'eslint-plugin-unicorn';
 import reactHooks from 'eslint-plugin-react-hooks';
 import jsxA11y from 'eslint-plugin-jsx-a11y';
 
 /** @type {import('eslint').Linter.Config[]} */
 export default [
-    eslintPluginUnicorn.configs.recommended,
     { files: ['**/*.{js,mjs,cjs,ts,tsx}'] },
     {
         languageOptions: {
@@ -34,7 +31,6 @@ export default [
 
     {
         plugins: {
-            prettier: prettier,
             tseslint: tseslint,
             react: reactPlugin,
             reactHooks: reactHooks,
@@ -56,14 +52,11 @@ export default [
     ...tseslint.configs.recommendedTypeChecked,
     {
         rules: {
-            '@typescript-eslint/no-empty-object-type': 'off',
-        },
-    },
-    {
-        rules: {
             'no-debugger': 'off',
             'no-console': 0,
             curly: 'warn',
+            'max-lines-per-function': ['warn', 70],
+
             '@typescript-eslint/no-explicit-any': 'error',
             '@typescript-eslint/consistent-type-assertions': [
                 'error',
@@ -75,23 +68,8 @@ export default [
                 'warn',
                 'interface',
             ],
-
-            'unicorn/better-regex': 'warn',
-            'unicorn/no-null': 'off',
-            'unicorn/no-array-callback-reference': 'off',
-            'unicorn/no-array-for-each': 'off',
-            'unicorn/no-array-reduce': 'off',
-            'unicorn/prevent-abbreviations': 'off',
-            'unicorn/prefer-logical-operator-over-ternary': 'off',
-            'unicorn/prefer-blob-reading-methods': 'off',
-            'unicorn/no-empty-file': 'warn',
-            'unicorn/filename-case': 'off',
-            'unicorn/no-negated-condition': 'off',
-            'unicorn/no-negation-in-equality-check': 'off',
-            'unicorn/prefer-global-this': 'off',
-            'unicorn/prevent-abbreviations': 'off',
-
-            'max-lines-per-function': ['warn', 70],
+            '@typescript-eslint/no-unsafe-assignment': 'off',
+            '@typescript-eslint/no-empty-object-type': 'off',
 
             'react/react-in-jsx-scope': 'off',
             'react/jsx-uses-react': 'off',

@@ -2,6 +2,7 @@
 
 exports[`<MainPage/> component Render MainPage component 1`] = `
 <div
+  class="mainPageContainer"
   data-testid="main-page-test-id"
 >
   <nav
@@ -53,8 +54,13 @@ exports[`<MainPage/> component Render MainPage component 1`] = `
       <h1
         class="title"
       >
-        Main Page Content
+        Evergreen
       </h1>
+      <h3
+        class="titleSecondary"
+      >
+        Find your perfect plant
+      </h3>
     </div>
   </main>
 </div>
