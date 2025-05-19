@@ -1,4 +1,3 @@
-import React from 'react';
 import styles from './LoginPage.module.scss';
 import { LoginForm } from '../../components/blocks/LoginForm/LoginForm';
 import { Header } from '../../components/blocks/Header/Header';

@@ -1,7 +1,6 @@
 import { render, screen } from '@testing-library/react';
 import '@testing-library/jest-dom';
 import { Label } from './Label';
-import React from 'react';
 import type { LabelProps } from './Label.types';
 
 describe('<Label/> component', () => {
@@ -26,6 +25,7 @@ describe('<Label/> component', () => {
         expect(label).toHaveClass('labelClass');
         expect(label).toMatchSnapshot();
     });
+
     test('Render Label component - required field', () => {
         const properties: LabelProps = {
             htmlFor: 'someInput',
@@ -35,12 +35,15 @@ describe('<Label/> component', () => {
             disabled: false,
         };
         render(<Label {...properties} />);
+
         const label = screen.getByText(/labeltext/i);
         const requiredMark = screen.getByText(/\*/i);
+
         expect(label).toBeInTheDocument();
         expect(requiredMark).toBeInTheDocument();
         expect(label).toMatchSnapshot();
     });
+
     test('Render Label component - disabled', () => {
         const properties: LabelProps = {
             htmlFor: 'someInput',

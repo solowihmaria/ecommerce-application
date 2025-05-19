@@ -1,0 +1,44 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Render Header component 1`] = `
+<nav
+  class="header"
+  data-testid="test-id-header"
+>
+  <div>
+    <a
+      class="iconLink"
+      data-discover="true"
+      href="/main"
+    >
+      <svg
+        data-testid="mock-svg"
+      />
+    </a>
+  </div>
+  <div
+    class="menu"
+  >
+    <a
+      data-discover="true"
+      href="/login"
+    >
+      <button
+        class="button ghost headerButton"
+      >
+        Sign In
+      </button>
+    </a>
+    <a
+      data-discover="true"
+      href="/register"
+    >
+      <button
+        class="button ghost headerButton"
+      >
+        Sign Up
+      </button>
+    </a>
+  </div>
+</nav>
+`;

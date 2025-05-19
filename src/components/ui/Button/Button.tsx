@@ -1,4 +1,3 @@
-import React from 'react';
 import styles from './Button.module.scss';
 import clsx from 'clsx';
 import type { ButtonProps } from './Button.types';

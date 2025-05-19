@@ -1,10 +1,9 @@
 import { render, screen } from '@testing-library/react';
 import '@testing-library/jest-dom';
 import { NotFoundPage } from './NotFound';
-import React from 'react';
 import { MemoryRouter, Route, Routes } from 'react-router-dom';
 import userEvent from '@testing-library/user-event';
-import { MainPage } from '../Main';
+import { MainPage } from '../Main/MainPage';
 
 describe('<NotFoundPage/> component', () => {
     test('Render NotFoundPage component', () => {
@@ -17,6 +16,7 @@ describe('<NotFoundPage/> component', () => {
         expect(notFoundPage).toBeInTheDocument();
         expect(notFoundPage).toMatchSnapshot();
     });
+
     test('Render NotFoundPage component - click Go Home Button', async () => {
         render(
             <MemoryRouter initialEntries={['/test']}>
@@ -28,6 +28,7 @@ describe('<NotFoundPage/> component', () => {
         );
         const button = screen.getByRole('button', { name: /go to homepage/i });
         await userEvent.click(button);
+
         const mainPage = screen.getByTestId('main-page-test-id');
         expect(mainPage).toBeInTheDocument();
     });

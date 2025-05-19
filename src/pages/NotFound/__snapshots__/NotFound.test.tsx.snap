@@ -30,7 +30,6 @@ exports[`<NotFoundPage/> component Render NotFoundPage component 1`] = `
     >
       <button
         class="button primary button"
-        type="button"
       >
         Go to Homepage
       </button>

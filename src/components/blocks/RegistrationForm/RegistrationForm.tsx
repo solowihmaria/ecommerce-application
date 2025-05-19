@@ -1,4 +1,3 @@
-import React from 'react';
 import { FormProvider } from 'react-hook-form';
 import styles from './RegistrationForm.module.scss';
 import { Form } from '../../../components/ui/Form';
@@ -26,7 +25,10 @@ export const RegistrationForm = () => {
     } = useRegistrationForm();
 
     return (
-        <div className={styles.registrationContainer}>
+        <div
+            data-testid="test-id-register-form"
+            className={styles.registrationContainer}
+        >
             <FormProvider {...methods}>
                 <Form onSubmit={handleFormSubmission}>
                     <Heading level="h2" className={styles.formTitle}>
@@ -70,7 +72,11 @@ export const RegistrationForm = () => {
                         <p className={styles.signInText}>
                             Already have an account?
                         </p>
-                        <Link to="/login" className={styles.signInLink}>
+                        <Link
+                            data-testid="sign-in-link"
+                            to="/login"
+                            className={styles.signInLink}
+                        >
                             Sign In
                         </Link>
                     </div>

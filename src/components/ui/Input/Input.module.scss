@@ -57,7 +57,6 @@
 }
 
 .toggleButton {
-    cursor: pointer;
     position: absolute;
     top: 55%;
     right: 0.75rem;
@@ -66,6 +65,7 @@
     border: none;
     color: c.$color-gray-800;
     background: none;
+    cursor: pointer;
 
     &:hover {
         color: c.$color-black;

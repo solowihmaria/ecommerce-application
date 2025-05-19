@@ -1,4 +1,3 @@
-import React from 'react';
 import { StreetField } from './StreetField';
 import { AddressType } from '../../Registration.types';
 import { CityField } from './CityField';

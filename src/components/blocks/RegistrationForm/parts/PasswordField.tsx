@@ -1,4 +1,3 @@
-import React from 'react';
 import { useFormContext } from 'react-hook-form';
 import type { FieldError } from 'react-hook-form';
 import { PasswordInput } from '../../../ui/Input/PasswordInput';

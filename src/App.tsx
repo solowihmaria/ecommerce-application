@@ -1,5 +1,5 @@
 import { AppRouter } from './router/Router';
-import React, { useState } from 'react';
+import { useState } from 'react';
 import './assets/styles/main.module.scss';
 import { createContext } from 'react';
 import { getToken } from './api/token';

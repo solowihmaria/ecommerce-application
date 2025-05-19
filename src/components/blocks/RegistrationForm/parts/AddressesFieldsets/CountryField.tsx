@@ -1,4 +1,3 @@
-import React from 'react';
 import { useFormContext } from 'react-hook-form';
 import type { addressFieldProps } from '../../Registration.types';
 import { Label } from '../../../../ui/Label/Label';

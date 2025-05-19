@@ -1,10 +1,10 @@
-import React, { useContext } from 'react';
+import { useContext } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { Button } from '../../ui/Button';
 import styles from './Header.module.scss';
 import { logoutUser } from '../../../api/auth/authService';
 import { LoginContext } from '../../../App';
-import { ReactComponent as HomeIcon } from '../../../assets/icons/main.svg';
+import HomeIcon from '../../../assets/icons/main.svg';
 
 export const Header = () => {
     const { loginStatus, setLoginStatus } = useContext(LoginContext);
@@ -20,7 +20,7 @@ export const Header = () => {
     };
 
     return (
-        <nav className={styles.header}>
+        <nav data-testid="test-id-header" className={styles.header}>
             <div>
                 <Link to="/main" className={styles.iconLink}>
                     <HomeIcon className={styles.icon} />

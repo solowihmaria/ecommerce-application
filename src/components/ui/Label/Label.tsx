@@ -1,4 +1,3 @@
-import React from 'react';
 import styles from './Label.module.scss';
 import clsx from 'clsx';
 import type { LabelProps } from './Label.types';

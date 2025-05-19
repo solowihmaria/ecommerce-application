@@ -2,22 +2,22 @@
 
 exports[`<MainPage/> component Render MainPage component 1`] = `
 <div
+  class="mainPageContainer"
   data-testid="main-page-test-id"
 >
   <nav
     class="header"
+    data-testid="test-id-header"
   >
     <div>
       <a
+        class="iconLink"
         data-discover="true"
         href="/main"
       >
-        <button
-          class="button primary"
-          type="button"
-        >
-          Main
-        </button>
+        <svg
+          data-testid="mock-svg"
+        />
       </a>
     </div>
     <div
@@ -28,8 +28,7 @@ exports[`<MainPage/> component Render MainPage component 1`] = `
         href="/login"
       >
         <button
-          class="button primary"
-          type="button"
+          class="button ghost headerButton"
         >
           Sign In
         </button>
@@ -39,18 +38,30 @@ exports[`<MainPage/> component Render MainPage component 1`] = `
         href="/register"
       >
         <button
-          class="button primary"
-          type="button"
+          class="button ghost headerButton"
         >
           Sign Up
         </button>
       </a>
     </div>
   </nav>
-  <main>
-    <h1>
-      Main Page Content
-    </h1>
+  <main
+    class="main"
+  >
+    <div
+      class="titleWrapper"
+    >
+      <h1
+        class="title"
+      >
+        Evergreen
+      </h1>
+      <h3
+        class="titleSecondary"
+      >
+        Find your perfect plant
+      </h3>
+    </div>
   </main>
 </div>
 `;

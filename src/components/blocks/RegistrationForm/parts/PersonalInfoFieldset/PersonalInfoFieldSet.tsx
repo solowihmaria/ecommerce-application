@@ -1,4 +1,3 @@
-import React from 'react';
 import { FirstNameField } from './FirstNameField';
 import { LastNameField } from './LastNameField';
 import { DateOfBirthField } from './DateOfBirthField';

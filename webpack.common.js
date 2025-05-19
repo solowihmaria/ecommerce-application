@@ -76,8 +76,11 @@ module.exports = {
             },
 
             {
-                test: /\.jpe?g$|\.svg$|\.png$|\.ico$|\.mp3$/,
-                use: ['file-loader'],
+                test: /(\.png$|\.jpe?g$)/i,
+                type: 'asset/resource',
+                generator: {
+                    filename: 'images/[hash][ext][query]',
+                },
             },
             {
                 test: /\.(ts|tsx|js|jsx)$/,

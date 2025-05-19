@@ -1,7 +1,6 @@
 import { render, screen } from '@testing-library/react';
 import '@testing-library/jest-dom';
 import { Heading } from './Heading';
-import React from 'react';
 import type { HeadingProps } from './Heading.types';
 
 describe('<Heading/> component', () => {
@@ -11,6 +10,7 @@ describe('<Heading/> component', () => {
         expect(heading).toBeInTheDocument();
         expect(heading).toMatchSnapshot();
     });
+
     test('Render Heading component with properties', () => {
         const properties: HeadingProps = {
             level: 'h2',
