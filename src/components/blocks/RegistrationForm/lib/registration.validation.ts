@@ -4,7 +4,16 @@ import { CountryCode } from '../../../../api/createCustomer/createCustomer.types
 const ruleForEmail = yup
     .string()
     .required('Email is required')
-    .email('Email must be in format: user@example.com (no spaces allowed)');
+    .test(
+        'no-spaces',
+        'Email must not contain leading or trailing spaces',
+        (value) => !value || value === value.trim()
+    )
+    .test(
+        'contains-at-and-domain',
+        'Email must be in format: user@example.com (no spaces allowed)',
+        (value) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value || '')
+    );
 
 const ruleForPassword = yup
     .string()
