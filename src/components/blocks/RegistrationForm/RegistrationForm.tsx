@@ -11,11 +11,13 @@ import { useRegistrationForm } from './lib/useRegistrationForm';
 import { Heading } from '../../ui/Heading';
 import { Link } from 'react-router-dom';
 import { Button } from '../../../components/ui/Button';
+import { FiFrown } from 'react-icons/fi';
 
 export const RegistrationForm = () => {
     const {
         isPasswordVisible,
         setIsPasswordVisible,
+        registrationError,
         methods,
         errors,
         getFieldError,
@@ -47,6 +49,13 @@ export const RegistrationForm = () => {
                     <PersonalInfoFieldSet errors={errors} />
                     <ShippingAddressFieldSet errors={errors} />
                     <BillingAddressFieldSet errors={errors} />
+
+                    {registrationError && (
+                        <div className={styles.registrationError}>
+                            <FiFrown className={styles.errorIcon} />
+                            <span>{registrationError}</span>
+                        </div>
+                    )}
 
                     <Button
                         type="submit"

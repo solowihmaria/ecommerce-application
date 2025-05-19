@@ -3,13 +3,11 @@ import { requestCreateCustomer } from './requestCreateCustomer';
 
 export const createCustomer = async (
     formData: RegistrationFormData,
-    onSuccess?: () => void
+    onSuccess?: () => void | Promise<void>
 ) => {
     const response = await requestCreateCustomer(formData);
 
-    if (typeof onSuccess === 'function') {
-        onSuccess();
-    }
+    await onSuccess?.();
 
     console.log('CUSTOMER', response);
     return response;

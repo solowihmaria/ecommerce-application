@@ -15,37 +15,36 @@ export const useRegistrationForm = () => {
     const navigate = useNavigate();
     const { setLoginStatus } = useContext(LoginContext);
     const { showToast } = useContext(ToastContext);
-
     const methods = useForm<RegistrationFormData>({
         resolver: yupResolver(registrationSchema),
         mode: 'onChange',
     });
 
     // Хук для обработки ошибок API
-    const { getFieldError } = useRegistrationErrors(
-        methods.formState.isSubmitting
-    );
+    const { registrationError, handleError, clearApiError, getFieldError } =
+        useRegistrationErrors(methods.formState.isSubmitting);
 
     // Для очистки ошибок при изменении полей формы
-    // React.useEffect(() => {
-    //     const subscription = methods.watch(() => clearApiError());
-    //     return () => subscription.unsubscribe();
-    // }, [methods, clearApiError]);
+    React.useEffect(() => {
+        const subscription = methods.watch(() => clearApiError());
+        return () => subscription.unsubscribe();
+    }, [methods, clearApiError]);
 
     const onSubmit = async (data: RegistrationFormData) => {
         try {
-            await createCustomer(data);
-
-            await authenticateUser(data.email, data.password, () => {
-                setLoginStatus(true);
-                showToast({
-                    message: 'Account created successfully! Logging you in...',
-                    variant: 'success',
+            await createCustomer(data, async () => {
+                await authenticateUser(data.email, data.password, () => {
+                    setLoginStatus(true);
+                    showToast({
+                        message:
+                            'Account created successfully! Logging you in...',
+                        variant: 'success',
+                    });
+                    void navigate('/main');
                 });
-                void navigate('/main');
             });
-        } catch {
-            // setApiError({ field: 'both' });
+        } catch (error) {
+            handleError(error);
         }
     };
 
@@ -58,6 +57,7 @@ export const useRegistrationForm = () => {
     return {
         isPasswordVisible,
         setIsPasswordVisible,
+        registrationError,
         methods,
         errors: methods.formState.errors,
         isSubmitting: methods.formState.isSubmitting,

@@ -1,14 +1,18 @@
 import { useState, useEffect, useRef } from 'react';
 import type { FieldError } from 'react-hook-form';
 import { REGISTRATION_ERROR_MESSAGES } from './constants';
+import { AxiosError } from 'axios';
 
 export interface ApiError {
-    field?: 'email' | 'password' | 'both';
+    field?: 'email' | 'password';
     message?: string;
 }
 
 export const useRegistrationErrors = (isSubmitting: boolean) => {
-    const [apiError, setApiError] = useState<ApiError | null>(null);
+    const [fieldError, setFieldError] = useState<ApiError | null>(null);
+    const [registrationError, setRegistrationError] = useState<string | null>(
+        null
+    );
     const isSubmittingReference = useRef(false);
 
     useEffect(() => {
@@ -17,38 +21,48 @@ export const useRegistrationErrors = (isSubmitting: boolean) => {
 
     const clearApiError = () => {
         if (!isSubmittingReference.current) {
-            setApiError(null);
+            setFieldError(null);
+            setRegistrationError(null);
         }
     };
 
     const getFieldError = (
         field: 'email' | 'password'
     ): FieldError | undefined => {
-        if (apiError?.field === 'both') {
-            const message =
-                field === 'email'
-                    ? REGISTRATION_ERROR_MESSAGES.EMAIL_INCORRECT
-                    : REGISTRATION_ERROR_MESSAGES.CREDENTIALS_NOT_FOUND;
+        if (fieldError?.field === field) {
             return {
                 type: 'manual',
-                message,
-            };
-        }
-
-        if (apiError?.field === field) {
-            return {
-                type: 'manual',
-                message: apiError.message,
+                message: REGISTRATION_ERROR_MESSAGES.CUSTOMER_ALREADY_EXIST,
             };
         }
 
         return undefined;
     };
 
+    const handleError = (error: unknown) => {
+        if (error instanceof AxiosError) {
+            if (error.response) {
+                if (error.status === 400) {
+                    setFieldError({ field: 'email' });
+                }
+                setRegistrationError(REGISTRATION_ERROR_MESSAGES.STATUS_FAIL);
+            } else if (error.request) {
+                setRegistrationError(REGISTRATION_ERROR_MESSAGES.NO_RESPONSE);
+            } else {
+                setRegistrationError(REGISTRATION_ERROR_MESSAGES.UNKNOWN_ERROR);
+            }
+        } else {
+            console.error(`Unexpexted error:`, error);
+        }
+    };
+
     return {
-        apiError,
-        setApiError,
+        fieldError,
+        setFieldError,
+        registrationError,
+        setRegistrationError,
         clearApiError,
         getFieldError,
+        handleError,
     };
 };
