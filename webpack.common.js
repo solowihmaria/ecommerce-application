@@ -15,7 +15,6 @@ module.exports = {
         path: path.resolve(__dirname, 'dist'),
         filename: 'bundle.[contenthash].js',
         clean: true,
-        assetModuleFilename: 'images/[hash][ext][query]',
     },
     resolve: {
         extensions: ['.ts', '.js', '.tsx', '.jsx'],
@@ -79,11 +78,6 @@ module.exports = {
             {
                 test: /(\.png$|\.jpe?g$)/i,
                 type: 'asset/resource',
-                parser: {
-                    dataUrlCondition: {
-                        maxSize: 8 * 1024, // Inline files smaller than 8KB
-                    },
-                },
                 generator: {
                     filename: 'images/[hash][ext][query]',
                 },
