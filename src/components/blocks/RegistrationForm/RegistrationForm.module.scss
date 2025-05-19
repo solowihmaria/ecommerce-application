@@ -1,9 +1,10 @@
 @use '../../../assets/styles/constants.module' as c;
 
 .registrationContainer {
+    width: 80%;
     min-width: 300px;
     margin: 0 auto;
-    padding: 4.5rem 3rem;
+    padding: 4rem 2rem;
     border: 1px solid c.$color-primary-light;
     border-radius: 20px;
     background-color: c.$color-primary-dark;

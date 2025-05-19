@@ -17,7 +17,8 @@
     box-sizing: border-box;
     width: 100%;
     padding: 0 1rem;
-    border: 1px solid c.$color-gray-300;
+    border-color: transparent;
+    border-width: 3px;
     border-radius: 1rem;
     font-family: inherit;
     font-size: 1rem;
@@ -25,13 +26,15 @@
     transition: border-color 0.2s ease;
 
     &:focus {
-        border-color: c.$color-gray-800;
+        border-color: c.$color-accent-primary;
         outline: none;
     }
 
     &:disabled {
         cursor: not-allowed;
-        background-color: c.$color-gray-100;
+
+        // background-color: c.$color-gray-100;
+        opacity: 0.7;
     }
 
     &.error {
