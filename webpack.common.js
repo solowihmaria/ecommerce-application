@@ -26,8 +26,6 @@ module.exports = {
         new ESLintPlugin({ extensions: ['ts', 'tsx'] }),
         new Dotenv({
             systemvars: true, // Читает переменные из Netlify и системы
-            safe: true,
-            defaults: true,
         }),
     ],
     module: {
