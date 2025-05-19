@@ -7,11 +7,13 @@ import { useLoginForm } from './lib/useLoginForm';
 import { Heading } from '../../../components/ui/Heading';
 import { Button } from '../../../components/ui/Button';
 import { Link } from 'react-router-dom';
+import { FiFrown } from 'react-icons/fi';
 
 export const LoginForm = () => {
     const {
         isPasswordVisible,
         setIsPasswordVisible,
+        authError,
         methods,
         errors,
         getFieldError,
@@ -41,6 +43,13 @@ export const LoginForm = () => {
                             setIsPasswordVisible(!isPasswordVisible)
                         }
                     />
+
+                    {authError && (
+                        <div className={styles.authError}>
+                            <FiFrown className={styles.errorIcon} />
+                            <span>{authError}</span>
+                        </div>
+                    )}
 
                     <Button
                         type="submit"

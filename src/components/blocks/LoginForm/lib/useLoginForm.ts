@@ -20,12 +20,9 @@ export const useLoginForm = () => {
         mode: 'onChange',
     });
 
-    // Хук для обработки ошибок API
-    const { setApiError, clearApiError, getFieldError } = useAuthErrors(
-        methods.formState.isSubmitting
-    );
+    const { authError, handleError, clearApiError, getFieldError } =
+        useAuthErrors(methods.formState.isSubmitting);
 
-    // Для очистки ошибок при изменении полей формы
     React.useEffect(() => {
         const subscription = methods.watch(() => clearApiError());
         return () => subscription.unsubscribe();
@@ -41,8 +38,8 @@ export const useLoginForm = () => {
                 });
                 void navigate('/main');
             });
-        } catch {
-            setApiError({ field: 'both' });
+        } catch (error) {
+            handleError(error);
         }
     };
 
@@ -55,6 +52,7 @@ export const useLoginForm = () => {
     return {
         isPasswordVisible,
         setIsPasswordVisible,
+        authError,
         methods,
         errors: methods.formState.errors,
         isSubmitting: methods.formState.isSubmitting,
