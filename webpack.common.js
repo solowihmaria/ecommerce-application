@@ -24,7 +24,11 @@ module.exports = {
             template: path.resolve(__dirname, './src/index.html'),
         }),
         new ESLintPlugin({ extensions: ['ts', 'tsx'] }),
-        new Dotenv(),
+        new Dotenv({
+            systemvars: true, // Читает переменные из Netlify и системы
+            safe: true,
+            defaults: true,
+        }),
     ],
     module: {
         rules: [

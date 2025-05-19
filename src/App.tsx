@@ -12,6 +12,10 @@ export const LoginContext = createContext<{
 
 export const App = () => {
     const initialStatus = getToken() ? true : false;
+    console.log('Environment:', {
+        CTP_AUTH_URL: process.env.CTP_AUTH_URL,
+        CTP_PROJECT_KEY: process.env.CTP_PROJECT_KEY,
+    });
     const [loginStatus, setLoginStatus] = useState(initialStatus);
     return (
         <ToastProvider>
