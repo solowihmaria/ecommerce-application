@@ -25,7 +25,9 @@ module.exports = {
             favicon: './src/assets/icons/favicon.svg',
         }),
         new ESLintPlugin({ extensions: ['ts', 'tsx'] }),
-        new Dotenv(),
+        new Dotenv({
+            systemvars: true, // Читает переменные из Netlify и системы
+        }),
     ],
     module: {
         rules: [
