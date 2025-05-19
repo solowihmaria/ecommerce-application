@@ -1,0 +1,53 @@
+@use '../../../assets/styles/constants.module' as c;
+
+.selectContainer {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+    width: 100%;
+    max-width: 16rem;
+}
+
+.selectWrapper {
+    position: relative;
+    width: 100%;
+}
+
+.select {
+    box-sizing: border-box;
+    width: 100%;
+    padding: 0 1rem;
+    border-color: transparent;
+    border-width: 3px;
+    border-radius: 1rem;
+    font-family: inherit;
+    font-size: 1rem;
+    background-color: c.$color-primary-light;
+    transition: border-color 0.2s ease;
+
+    &:focus {
+        border-color: c.$color-accent-primary;
+        outline: none;
+    }
+
+    &:disabled {
+        cursor: not-allowed;
+
+        // background-color: c.$color-gray-100;
+        opacity: 0.7;
+    }
+
+    &.error {
+        border-color: c.$color-error;
+    }
+}
+
+.errorMessage {
+    display: block;
+    width: 100%;
+    min-height: 1.25rem;
+    border-color: c.$color-error;
+    font-size: 0.7rem;
+    overflow-wrap: break-word;
+    white-space: normal;
+}

@@ -1,14 +1,14 @@
 const path = require('path');
+const Dotenv = require('dotenv-webpack');
 
-const devtool = 'source-map';
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const ESLintPlugin = require('eslint-webpack-plugin');
+
 module.exports = {
-    devtool,
     devServer: {
         open: true,
         historyApiFallback: true,
+        hot: true,
     },
     entry: './src/index.tsx',
     output: {
@@ -22,11 +22,12 @@ module.exports = {
     plugins: [
         new HtmlWebpackPlugin({
             template: path.resolve(__dirname, './src/index.html'),
-        }),
-        new MiniCssExtractPlugin({
-            filename: 'main.[contenthash].css',
+            favicon: './src/assets/icons/favicon.svg',
         }),
         new ESLintPlugin({ extensions: ['ts', 'tsx'] }),
+        new Dotenv({
+            systemvars: true, // Читает переменные из Netlify и системы
+        }),
     ],
     module: {
         rules: [
@@ -34,53 +35,70 @@ module.exports = {
                 test: /\.html$/i,
                 loader: 'html-loader',
             },
+            // SVG
             {
-                test: /\.ts$/i,
-                use: 'ts-loader',
-                include: [path.resolve(__dirname, 'src')],
-            },
-            {
-                test: /\.(c|sa|sc)ss$/i,
-                use: [
-                    MiniCssExtractPlugin.loader,
+                test: /\.svg$/i,
+                oneOf: [
                     {
-                        loader: 'css-loader',
-                        options: {
-                            importLoaders: 1,
-                            modules: false,
-                        },
-                    },
-                    'sass-loader',
-                ],
-                exclude: /\.module\.scss$/,
-            },
-            {
-                test: /\.(sa|sc)ss$/i,
-                use: [
-                    MiniCssExtractPlugin.loader,
-                    {
-                        loader: 'css-loader',
-                        options: {
-                            importLoaders: 1,
-                            modules: {
-                                mode: 'local',
-                                exportOnlyLocals: false,
-                                namedExport: false,
+                        issuer: /\.(tsx|jsx)$/,
+                        use: [
+                            {
+                                loader: '@svgr/webpack',
+                                options: {
+                                    svgo: true,
+                                    svgoConfig: {
+                                        plugins: [
+                                            {
+                                                name: 'removeTitle',
+                                                active: true,
+                                            },
+                                            {
+                                                name: 'removeDesc',
+                                                active: true,
+                                            },
+                                            {
+                                                name: 'removeViewBox',
+                                                active: false,
+                                            },
+                                        ],
+                                    },
+                                },
                             },
+                        ],
+                    },
+                    {
+                        type: 'asset/resource',
+                        generator: {
+                            filename: 'images/[hash][ext][query]',
                         },
                     },
-                    'sass-loader',
                 ],
-                include: /\.module\.scss$/,
             },
+
             {
-                test: /\.jpe?g$|\.svg$|\.png$|\.ico$|\.mp3$/,
-                use: ['file-loader'],
+                test: /(\.png$|\.jpe?g$)/i,
+                type: 'asset/resource',
+                generator: {
+                    filename: 'images/[hash][ext][query]',
+                },
             },
             {
                 test: /\.(ts|tsx|js|jsx)$/,
                 exclude: /node_modules/,
-                use: 'babel-loader',
+                use: {
+                    loader: 'babel-loader',
+                    options: {
+                        presets: [
+                            '@babel/preset-env',
+                            '@babel/preset-typescript',
+                            ['@babel/preset-react', { runtime: 'automatic' }],
+                        ],
+                        plugins: [
+                            process.env.NODE_ENV === 'development' &&
+                                require.resolve('react-refresh/babel'),
+                        ].filter(Boolean),
+                    },
+                },
             },
         ],
     },

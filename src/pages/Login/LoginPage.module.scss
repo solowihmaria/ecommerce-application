@@ -1,0 +1,17 @@
+@use '../../assets//styles/constants.module' as c;
+
+.loginPage {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    background: c.$color-accent-dark;
+}
+
+.loginContent {
+    display: flex;
+    flex-grow: 1;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    padding: 2em 0;
+}
