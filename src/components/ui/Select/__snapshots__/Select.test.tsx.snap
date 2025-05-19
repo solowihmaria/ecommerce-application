@@ -1,0 +1,9 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Select/> component Render Select component 1`] = `
+<select
+  class="select"
+  data-testid="test-id-select-field"
+  name="selectTest"
+/>
+`;

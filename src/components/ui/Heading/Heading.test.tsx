@@ -10,6 +10,7 @@ describe('<Heading/> component', () => {
         expect(heading).toBeInTheDocument();
         expect(heading).toMatchSnapshot();
     });
+
     test('Render Heading component with properties', () => {
         const properties: HeadingProps = {
             level: 'h2',

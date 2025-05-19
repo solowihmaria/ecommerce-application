@@ -20,18 +20,39 @@
     align-items: center;
     justify-content: center;
     width: 100%;
-    min-height: 80vh;
+    padding: 0 10px;
     border-radius: 20px;
     background-image: url('../../assets/images/main-image-test.jpg');
     background-size: cover;
 }
 
 .title {
-    font-size: 5em;
+    font-size: 5rem;
     color: c.$color-text-primary;
 }
 
 .titleSecondary {
-    font-size: 2em;
+    font-size: 2rem;
     color: c.$color-text-primary;
+    text-align: center;
+}
+
+@media (width <= 700px) {
+    .main {
+        display: flex;
+        flex-grow: 1;
+        justify-content: center;
+        padding: 40px 0;
+        background-color: c.$color-primary;
+    }
+
+    .title {
+        font-size: 3rem;
+        color: c.$color-text-primary;
+    }
+
+    .titleSecondary {
+        font-size: 2rem;
+        color: c.$color-text-primary;
+    }
 }

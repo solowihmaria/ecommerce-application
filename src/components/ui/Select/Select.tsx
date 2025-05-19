@@ -12,6 +12,7 @@ export const Select = ({
     return (
         <div className={styles.selectWrapper}>
             <select
+                data-testid="test-id-select-field"
                 name={name}
                 className={clsx(
                     styles.select,

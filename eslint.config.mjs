@@ -55,7 +55,6 @@ export default [
             'no-debugger': 'off',
             'no-console': 0,
             curly: 'warn',
-            'max-lines-per-function': ['warn', 70],
 
             '@typescript-eslint/no-explicit-any': 'error',
             '@typescript-eslint/consistent-type-assertions': [

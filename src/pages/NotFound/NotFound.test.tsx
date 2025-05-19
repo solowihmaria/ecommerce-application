@@ -16,6 +16,7 @@ describe('<NotFoundPage/> component', () => {
         expect(notFoundPage).toBeInTheDocument();
         expect(notFoundPage).toMatchSnapshot();
     });
+
     test('Render NotFoundPage component - click Go Home Button', async () => {
         render(
             <MemoryRouter initialEntries={['/test']}>
@@ -27,6 +28,7 @@ describe('<NotFoundPage/> component', () => {
         );
         const button = screen.getByRole('button', { name: /go to homepage/i });
         await userEvent.click(button);
+
         const mainPage = screen.getByTestId('main-page-test-id');
         expect(mainPage).toBeInTheDocument();
     });

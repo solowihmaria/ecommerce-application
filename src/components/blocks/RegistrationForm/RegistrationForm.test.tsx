@@ -24,6 +24,7 @@ describe('<RegistrationForm/> component', () => {
         );
         const emailField = screen.getByPlaceholderText('Enter your email');
         await userEvent.type(emailField, 'someEmail');
+
         const error = screen.getByTestId('error-input-test-id');
         expect(error).toBeInTheDocument();
         expect(error).toHaveTextContent(
@@ -41,6 +42,7 @@ describe('<RegistrationForm/> component', () => {
             'Create your password'
         );
         await userEvent.type(passwordField, '12QWq!');
+
         const error = screen.getByTestId('error-input-password-test-id');
         expect(error).toBeInTheDocument();
         expect(error).toHaveTextContent(
@@ -58,6 +60,7 @@ describe('<RegistrationForm/> component', () => {
             'Create your password'
         );
         await userEvent.type(passwordField, '12QWq!');
+
         const error = screen.getByTestId('error-input-password-test-id');
         expect(error).toBeInTheDocument();
         expect(error).toHaveTextContent(
