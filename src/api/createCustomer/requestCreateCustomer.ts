@@ -33,6 +33,13 @@ const getAdminToken = async () => {
     return response.data;
 };
 
+function formatDateToYYYYMMDD(date: Date): string {
+    const year = date.getFullYear();
+    const month = `${date.getMonth() + 1}`.padStart(2, '0');
+    const day = `${date.getDate()}`.padStart(2, '0');
+    return `${year}-${month}-${day}`;
+}
+
 export const requestCreateCustomer = async ({
     email,
     password,
@@ -54,7 +61,7 @@ export const requestCreateCustomer = async ({
         password,
         firstName,
         lastName,
-        dateOfBirth: dateOfBirth.toISOString().split('T')[0],
+        dateOfBirth: formatDateToYYYYMMDD(dateOfBirth),
         addresses: [shippingAddress, billingAddress],
         shippingAddresses: [0],
         billingAddresses: [1],

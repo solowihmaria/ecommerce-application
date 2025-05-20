@@ -339,13 +339,51 @@ exports[`<RegistrationForm/> component Render Registration Form component - Vali
           >
             <input
               autocomplete="bday"
-              class="input"
+              class="input error"
               data-testid="test-id-input-field"
               id="dateOfBirth"
               name="dateOfBirth"
               type="date"
-              value="2000-01-01"
             />
+          </div>
+          <div
+            class="errorMessage"
+          >
+            <svg
+              class="errorIcon"
+              fill="none"
+              height="1em"
+              stroke="currentColor"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              viewBox="0 0 24 24"
+              width="1em"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <circle
+                cx="12"
+                cy="12"
+                r="10"
+              />
+              <line
+                x1="12"
+                x2="12"
+                y1="8"
+                y2="12"
+              />
+              <line
+                x1="12"
+                x2="12.01"
+                y1="16"
+                y2="16"
+              />
+            </svg>
+            <span
+              data-testid="error-input-test-id"
+            >
+              Date of birth is required
+            </span>
           </div>
         </div>
       </div>
@@ -1160,7 +1198,6 @@ exports[`<RegistrationForm/> component Render Registration Form component 1`] = 
               id="dateOfBirth"
               name="dateOfBirth"
               type="date"
-              value="2000-01-01"
             />
           </div>
         </div>
