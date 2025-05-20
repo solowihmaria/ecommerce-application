@@ -235,7 +235,6 @@ exports[`<RegistrationPage/> component Render RegistrationPage component 1`] = `
                   id="dateOfBirth"
                   name="dateOfBirth"
                   type="date"
-                  value="2000-01-01"
                 />
               </div>
             </div>

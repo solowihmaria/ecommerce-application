@@ -37,7 +37,7 @@ exports[`<LoginForm/> component Render LoginForm component 1`] = `
           id="email"
           name="email"
           placeholder="Enter your email"
-          type="email"
+          type="text"
         />
       </div>
     </div>

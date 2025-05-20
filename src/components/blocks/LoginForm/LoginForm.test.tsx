@@ -39,7 +39,7 @@ describe('<LoginForm/> component', () => {
             </MemoryRouter>
         );
         const emailField = screen.getByPlaceholderText('Enter your email');
-        await userEvent.type(emailField, ' someEmail@com');
+        await userEvent.type(emailField, 'someEmail@com');
 
         const error = screen.getByTestId('error-input-test-id');
         expect(error).toBeInTheDocument();
