@@ -7,6 +7,7 @@ import { RedirectIfAuth } from './guards/RedirectIfAuth';
 import { CatalogPage } from '../pages/Catalog';
 import { ProductPage } from '../pages/Product';
 import { ProfilePage } from '../pages/Profile';
+import { RequireAuth } from './guards/RequireAuth';
 
 const router = createBrowserRouter([
     {
@@ -43,9 +44,12 @@ const router = createBrowserRouter([
     },
     {
         path: '/profile',
-        element: <ProfilePage />, //ДОБАВИТЬ ПРОХОД ТОЛЬКО ПОСЛЕ ЛОГИНА
+        element: (
+            <RequireAuth>
+                <ProfilePage />
+            </RequireAuth>
+        ),
     },
-
     {
         path: '*',
         element: <NotFoundPage />,
