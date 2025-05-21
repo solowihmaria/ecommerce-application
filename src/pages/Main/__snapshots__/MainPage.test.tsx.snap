@@ -5,46 +5,95 @@ exports[`<MainPage/> component Render MainPage component 1`] = `
   class="mainPageContainer"
   data-testid="main-page-test-id"
 >
-  <nav
-    class="header"
+  <header
+    class="headerWrapper"
     data-testid="test-id-header"
   >
-    <div>
-      <a
-        class="iconLink"
-        data-discover="true"
-        href="/main"
-      >
-        <svg
-          data-testid="mock-svg"
-        />
-      </a>
-    </div>
-    <div
-      class="menu"
+    <nav
+      class="header"
     >
-      <a
-        data-discover="true"
-        href="/login"
+      <div
+        class="leftSection"
       >
-        <button
-          class="button ghost headerButton"
+        <a
+          class="logoLink"
+          data-discover="true"
+          href="/main"
         >
-          Sign In
-        </button>
-      </a>
-      <a
-        data-discover="true"
-        href="/register"
+          <svg
+            data-testid="mock-svg"
+          />
+        </a>
+      </div>
+      <div
+        class="centerSection"
       >
-        <button
-          class="button ghost headerButton"
+        <a
+          data-discover="true"
+          href="/main"
         >
-          Sign Up
-        </button>
-      </a>
-    </div>
-  </nav>
+          <button
+            class="button ghost navButton"
+          >
+            Main
+          </button>
+        </a>
+        <a
+          data-discover="true"
+          href="/catalog"
+        >
+          <button
+            class="button ghost navButton"
+          >
+            Catalog
+          </button>
+        </a>
+        <a
+          data-discover="true"
+          href="/"
+        >
+          <button
+            class="button ghost navButton"
+          >
+            About
+          </button>
+        </a>
+        <a
+          data-discover="true"
+          href="/login"
+        >
+          <button
+            class="button ghost authButton"
+          >
+            Sign In
+          </button>
+        </a>
+        <a
+          data-discover="true"
+          href="/register"
+        >
+          <button
+            class="button ghost authButton"
+          >
+            Sign Up
+          </button>
+        </a>
+      </div>
+      <div
+        class="rightSection"
+      >
+        <a
+          class="cartLink"
+          data-discover="true"
+          href="/"
+        >
+          <svg
+            data-testid="mock-svg"
+          />
+        </a>
+      </div>
+    </nav>
+  </header>
   <main
     class="main"
   >
