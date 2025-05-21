@@ -6,11 +6,11 @@ interface Props {
     children: React.ReactNode;
 }
 
-export const RedirectIfAuth = ({ children }: Props) => {
+export const RequireAuth = ({ children }: Props) => {
     const { loginStatus } = useContext(LoginContext);
 
-    if (loginStatus) {
-        return <Navigate to="/main" replace />;
+    if (!loginStatus) {
+        return <Navigate to="/login" replace />;
     }
 
     return <>{children}</>;
