@@ -5,6 +5,7 @@ import styles from './Header.module.scss';
 import { logoutUser } from '../../../api/auth/authService';
 import { LoginContext } from '../../../App';
 import HomeIcon from '../../../assets/icons/main.svg';
+import CartIcon from '../../../assets/icons/cart.svg';
 
 export const Header = () => {
     const { loginStatus, setLoginStatus } = useContext(LoginContext);
@@ -20,42 +21,76 @@ export const Header = () => {
     };
 
     return (
-        <nav data-testid="test-id-header" className={styles.header}>
-            <div>
-                <Link to="/main" className={styles.iconLink}>
-                    <HomeIcon className={styles.icon} />
-                </Link>
-            </div>
-            <div className={styles.menu}>
-                {loginStatus ? (
-                    <Button
-                        variant="ghost"
-                        className={styles.headerButton}
-                        onClick={onLogout}
-                    >
-                        Logout
-                    </Button>
-                ) : (
-                    <>
-                        <Link to="/login">
+        <header className={styles.headerWrapper} data-testid="test-id-header">
+            <nav className={styles.header}>
+                <div className={styles.leftSection}>
+                    <Link to="/main" className={styles.logoLink}>
+                        <HomeIcon className={styles.logoIcon} />
+                    </Link>
+                </div>
+
+                <div className={styles.centerSection}>
+                    <Link to="/main">
+                        <Button variant="ghost" className={styles.navButton}>
+                            Main
+                        </Button>
+                    </Link>
+                    <Link to="/catalog">
+                        <Button variant="ghost" className={styles.navButton}>
+                            Catalog
+                        </Button>
+                    </Link>
+                    <Link to="#">
+                        <Button variant="ghost" className={styles.navButton}>
+                            About
+                        </Button>
+                    </Link>
+                    {loginStatus ? (
+                        <>
+                            <Link to="/profile">
+                                <Button
+                                    variant="ghost"
+                                    className={styles.authButton}
+                                >
+                                    Profile
+                                </Button>
+                            </Link>
                             <Button
                                 variant="ghost"
-                                className={styles.headerButton}
+                                className={styles.authButton}
+                                onClick={onLogout}
                             >
-                                Sign In
+                                Logout
                             </Button>
-                        </Link>
-                        <Link to="/register">
-                            <Button
-                                variant="ghost"
-                                className={styles.headerButton}
-                            >
-                                Sign Up
-                            </Button>
-                        </Link>
-                    </>
-                )}
-            </div>
-        </nav>
+                        </>
+                    ) : (
+                        <>
+                            <Link to="/login">
+                                <Button
+                                    variant="ghost"
+                                    className={styles.authButton}
+                                >
+                                    Sign In
+                                </Button>
+                            </Link>
+                            <Link to="/register">
+                                <Button
+                                    variant="ghost"
+                                    className={styles.authButton}
+                                >
+                                    Sign Up
+                                </Button>
+                            </Link>
+                        </>
+                    )}
+                </div>
+
+                <div className={styles.rightSection}>
+                    <Link to="#" className={styles.cartLink}>
+                        <CartIcon className={styles.cartIcon} />
+                    </Link>
+                </div>
+            </nav>
+        </header>
     );
 };
