@@ -1,0 +1,46 @@
+@use '../../../../../assets//styles/constants.module' as c;
+
+.personalInfo {
+    padding: 1.5rem;
+    border: 1px solid c.$color-text-primary;
+    border-radius: 0.5rem;
+    background-color: c.$color-primary-dark;
+}
+
+.sectionTitle {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 1.5rem;
+}
+
+.actions {
+    display: flex;
+    gap: 0.5rem;
+}
+
+.field {
+    margin-bottom: 1rem;
+
+    p {
+        margin-top: 0.25rem;
+
+        // padding: 0.5rem;
+        border-radius: 0.25rem;
+        color: c.$color-primary-light;
+    }
+}
+
+.viewMode,
+.editMode {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+}
+
+@media (width <= 768px) {
+    .viewMode,
+    .editMode {
+        grid-template-columns: 1fr;
+    }
+}
