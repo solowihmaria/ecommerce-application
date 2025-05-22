@@ -1,0 +1,136 @@
+@use '../../../assets/styles/constants.module' as c;
+
+.profileContainer {
+    width: 90%;
+    margin: 0 auto;
+    padding: 4rem 2rem;
+    border: 1px solid c.$color-primary-light;
+    border-radius: 20px;
+    background-color: c.$color-primary-dark;
+}
+
+.pageTitle {
+    margin-bottom: 3rem;
+    font-size: 2rem;
+    text-align: center;
+}
+
+// АДРЕСА
+.addressList {
+    margin-top: 2rem;
+    padding: 1.5rem;
+    border: 1px solid c.$color-text-primary;
+    border-radius: 0.5rem;
+    background-color: c.$color-primary-dark;
+}
+
+.addressesGrid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 1rem;
+    margin-top: 1rem;
+}
+
+.addressCard {
+    padding: 1rem;
+    border: 1px solid c.$color-primary-light;
+    border-radius: 0.5rem;
+    background-color: c.$color-primary-dark;
+}
+
+.addressHeader {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    margin-bottom: 0.5rem;
+}
+
+.addressFlags {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+}
+
+.defaultFlag {
+    display: inline-block;
+    padding: 0.25rem 0.5rem;
+    border-radius: 0.25rem;
+    font-size: 0.75rem;
+    color: c.$color-primary;
+    background-color: c.$color-primary-light;
+}
+
+.addressActions {
+    display: flex;
+    gap: 0.5rem;
+}
+
+.addressDetails {
+    p {
+        margin: 0.25rem 0;
+        color: c.$color-primary-light;
+    }
+}
+
+.addressForm {
+    margin-top: 1rem;
+}
+
+.formGrid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+
+    @media (width <= 768px) {
+        grid-template-columns: 1fr;
+    }
+}
+
+.formField {
+    margin-bottom: 1rem;
+}
+
+.checkboxGroup {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    margin: 1rem 0;
+
+    label {
+        display: flex;
+        gap: 0.5rem;
+        align-items: center;
+    }
+}
+
+.formActions {
+    display: flex;
+    gap: 0.5rem;
+    justify-content: flex-end;
+    margin-top: 1rem;
+}
+
+.confirmModal {
+    position: fixed;
+    z-index: 1000;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgb(0 0 0 / 50%);
+}
+
+.modalContent {
+    width: 100%;
+    max-width: 500px;
+    padding: 2rem;
+    border-radius: 0.5rem;
+    background-color: c.$color-primary-dark;
+}
+
+.modalActions {
+    display: flex;
+    gap: 0.5rem;
+    justify-content: flex-end;
+    margin-top: 1.5rem;
+}
