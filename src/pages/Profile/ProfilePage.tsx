@@ -1,11 +1,14 @@
 import { Header } from '../../components/blocks/Header/Header';
+import { Profile } from '../../components/blocks/Profile/Profile';
 import styles from './ProfilePage.module.scss';
 
-export const ProfilePage = () => (
-    <div className={styles.profilePageContainer}>
-        <Header />
-        <main className={styles.main}>
-            <h1 className={styles.title}>Profile</h1>
-        </main>
-    </div>
-);
+export const ProfilePage = () => {
+    return (
+        <div className={styles.profilePage}>
+            <Header />
+            <main className={styles.profileContent}>
+                <Profile />
+            </main>
+        </div>
+    );
+};
