@@ -59,7 +59,7 @@ export const PersonalInfo = () => {
                         <Button variant="danger" onClick={handleCancel}>
                             Cancel
                         </Button>
-                        <Button variant="primary" onClick={handleSave}>
+                        <Button variant="success" onClick={handleSave}>
                             Save Changes
                         </Button>
                     </div>

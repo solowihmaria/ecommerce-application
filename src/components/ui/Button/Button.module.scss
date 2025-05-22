@@ -52,6 +52,16 @@
         }
     }
 
+    &.success {
+        border-color: c.$color-accent-light;
+        color: c.$color-accent-light;
+        background-color: transparent;
+
+        &:hover:not(:disabled) {
+            background-color: rgba(c.$color-accent-light, 0.2);
+        }
+    }
+
     &.outline {
         border-color: c.$color-text-primary;
         color: c.$color-text-primary;
