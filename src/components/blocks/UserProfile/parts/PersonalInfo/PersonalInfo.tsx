@@ -8,6 +8,7 @@ import { Label } from '../../../../../components/ui/Label';
 import styles from './PersonalInfo.module.scss';
 import { personalInfoSchema } from './personalInfo.validation';
 import type { PersonalData } from '../../UserProfile.types';
+import { FiEdit2 } from 'react-icons/fi';
 
 // Временные данные (заменить на загрузку из API после логина)
 const initialData: PersonalData = {
@@ -67,7 +68,12 @@ export const PersonalInfo = () => {
                 <Heading level="h2">Personal Information</Heading>
 
                 {!isEditing ? (
-                    <Button variant="outline" onClick={handleEdit}>
+                    <Button
+                        variant="outline"
+                        onClick={handleEdit}
+                        className={styles.editButton}
+                    >
+                        <FiEdit2 className={styles.editIcon} />
                         Edit
                     </Button>
                 ) : (
