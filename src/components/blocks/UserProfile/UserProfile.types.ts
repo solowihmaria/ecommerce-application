@@ -4,3 +4,9 @@ export interface PersonalData {
     email: string;
     dateOfBirth: string;
 }
+
+export interface PasswordFormData {
+    currentPassword: string;
+    newPassword: string;
+    confirmPassword: string;
+}

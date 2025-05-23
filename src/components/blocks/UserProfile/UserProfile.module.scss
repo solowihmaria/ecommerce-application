@@ -9,8 +9,21 @@
     background-color: c.$color-primary-dark;
 }
 
-.pageTitle {
+.headerWrapper {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+    justify-content: center;
     margin-bottom: 3rem;
+}
+
+.profileIcon {
+    flex-shrink: 0;
+    font-size: 2.2rem;
+    color: c.$color-text-primary;
+}
+
+.pageTitle {
+    margin: 0;
     font-size: 2rem;
-    text-align: center;
 }
