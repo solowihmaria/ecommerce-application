@@ -1,48 +1,64 @@
 import { useState } from 'react';
+import { useForm } from 'react-hook-form';
+import { yupResolver } from '@hookform/resolvers/yup';
 import { Heading } from '../../../../../components/ui/Heading';
 import { Button } from '../../../../../components/ui/Button';
 import { Input } from '../../../../../components/ui/Input';
 import { Label } from '../../../../../components/ui/Label';
 import styles from './PersonalInfo.module.scss';
+import { personalInfoSchema } from './personalInfo.validation';
+import type { PersonalData } from '../../UserProfile.types';
 
-interface PersonalData {
-    firstName: string;
-    lastName: string;
-    email: string;
-    dateOfBirth: string;
-}
+// Временные данные (заменить на загрузку из API после логина)
+const initialData: PersonalData = {
+    firstName: 'John',
+    lastName: 'Doe',
+    email: 'john.doe@example.com',
+    dateOfBirth: '1990-01-01',
+};
 
 export const PersonalInfo = () => {
-    // Моковые данные (позже заменим на данные из API)
-    const initialData: PersonalData = {
-        firstName: 'John',
-        lastName: 'Doe',
-        email: 'john.doe@example.com',
-        dateOfBirth: '1990-01-01',
-    };
-
     const [isEditing, setIsEditing] = useState(false);
     const [userData, setUserData] = useState<PersonalData>(initialData);
-    const [tempData, setTempData] = useState<PersonalData>(initialData);
+    const [isLoading, setIsLoading] = useState(false); // Для индикатора загрузки API
+
+    const {
+        register,
+        handleSubmit,
+        reset,
+        formState: { errors, isDirty },
+    } = useForm<PersonalData>({
+        defaultValues: initialData,
+        resolver: yupResolver(personalInfoSchema),
+        mode: 'onChange',
+    });
 
     const handleEdit = () => {
-        setTempData(userData);
+        reset(userData); // Заполняем форму текущими данными
         setIsEditing(true);
-    };
-
-    const handleSave = () => {
-        setUserData(tempData);
-        setIsEditing(false);
-        // Здесь будет вызов API для сохранения
     };
 
     const handleCancel = () => {
         setIsEditing(false);
     };
 
-    const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-        const { name, value } = e.target;
-        setTempData((prev) => ({ ...prev, [name]: value }));
+    // Сохранение данных (здесь будет вызов API)
+    const onSubmit = (data: PersonalData) => {
+        setIsLoading(true);
+        // TODO: Заменить на реальный API-запрос
+
+        // Временная заглушка
+        setTimeout(() => {
+            setUserData(data);
+            setIsEditing(false);
+            setIsLoading(false);
+            console.log('Data saved:', data);
+        }, 500);
+    };
+
+    const handleFormSubmit = (event: React.FormEvent) => {
+        event.preventDefault();
+        void handleSubmit(onSubmit)();
     };
 
     return (
@@ -56,10 +72,21 @@ export const PersonalInfo = () => {
                     </Button>
                 ) : (
                     <div className={styles.actions}>
-                        <Button variant="danger" onClick={handleCancel}>
+                        <Button
+                            variant="danger"
+                            onClick={handleCancel}
+                            className={styles.cancelButton}
+                        >
                             Cancel
                         </Button>
-                        <Button variant="success" onClick={handleSave}>
+                        <Button
+                            variant="success"
+                            type="submit"
+                            form="personalInfoForm"
+                            disabled={!isDirty || isLoading}
+                            loading={isLoading}
+                            className={styles.saveButton}
+                        >
                             Save Changes
                         </Button>
                     </div>
@@ -86,46 +113,59 @@ export const PersonalInfo = () => {
                     </div>
                 </div>
             ) : (
-                <div className={styles.editMode}>
+                <form
+                    id="personalInfoForm"
+                    onSubmit={handleFormSubmit}
+                    className={styles.editMode}
+                >
                     <div className={styles.field}>
-                        <Label htmlFor="firstName">First Name</Label>
+                        <Label htmlFor="firstName" required>
+                            First Name
+                        </Label>
                         <Input
                             id="firstName"
-                            name="firstName"
-                            value={tempData.firstName}
-                            onChange={handleChange}
+                            {...register('firstName')}
+                            error={Boolean(errors.firstName)}
+                            errorMessage={errors.firstName?.message}
                         />
                     </div>
                     <div className={styles.field}>
-                        <Label htmlFor="lastName">Last Name</Label>
+                        <Label htmlFor="lastName" required>
+                            Last Name
+                        </Label>
                         <Input
                             id="lastName"
-                            name="lastName"
-                            value={tempData.lastName}
-                            onChange={handleChange}
+                            {...register('lastName')}
+                            error={Boolean(errors.lastName)}
+                            errorMessage={errors.lastName?.message}
                         />
                     </div>
                     <div className={styles.field}>
-                        <Label htmlFor="email">Email</Label>
+                        <Label htmlFor="email" required>
+                            Email
+                        </Label>
                         <Input
                             id="email"
-                            name="email"
                             type="email"
-                            value={tempData.email}
-                            onChange={handleChange}
+                            {...register('email')}
+                            error={Boolean(errors.email)}
+                            errorMessage={errors.email?.message}
+                            readOnly // Email обычно не редактируется
                         />
                     </div>
                     <div className={styles.field}>
-                        <Label htmlFor="dateOfBirth">Date of Birth</Label>
+                        <Label htmlFor="dateOfBirth" required>
+                            Date of Birth
+                        </Label>
                         <Input
                             id="dateOfBirth"
-                            name="dateOfBirth"
                             type="date"
-                            value={tempData.dateOfBirth}
-                            onChange={handleChange}
+                            {...register('dateOfBirth')}
+                            error={Boolean(errors.dateOfBirth)}
+                            errorMessage={errors.dateOfBirth?.message}
                         />
                     </div>
-                </div>
+                </form>
             )}
         </div>
     );
