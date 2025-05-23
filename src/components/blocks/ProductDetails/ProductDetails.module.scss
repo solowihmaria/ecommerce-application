@@ -1,0 +1,30 @@
+.productDetailsContainer {
+    display: flex;
+    gap: 30px;
+    justify-content: center;
+    width: 100%;
+    padding: 20px;
+}
+
+.imageContainer {
+    width: 40%;
+}
+
+.productInfoContainer {
+    width: 60%;
+}
+
+@media (width <= 700px) {
+    .productDetailsContainer {
+        flex-direction: column;
+        padding: 0;
+    }
+
+    .imageContainer {
+        width: 100%;
+    }
+
+    .productInfoContainer {
+        width: 100%;
+    }
+}
