@@ -1,5 +1,5 @@
 import { PersonalInfo } from './parts/PersonalInfo';
-//import { AddressList } from './parts/AddressList';
+import { AddressList } from './parts/AddressList';
 import { ChangePassword } from './parts/ChangePassword';
 import { Heading } from '../../../components/ui/Heading';
 import styles from './UserProfile.module.scss';
@@ -16,9 +16,7 @@ export const UserProfile = () => {
             </div>
             <div className={styles.profileSections}>
                 <PersonalInfo />
-
-                {/*<AddressList />*/}
-
+                <AddressList />
                 <ChangePassword />
             </div>
         </div>
