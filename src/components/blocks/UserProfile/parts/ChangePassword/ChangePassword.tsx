@@ -1,66 +1,24 @@
 import { useState } from 'react';
-import { useForm } from 'react-hook-form';
-import { yupResolver } from '@hookform/resolvers/yup';
 import { FiEdit2 } from 'react-icons/fi';
 import { Heading } from '../../../../../components/ui/Heading';
 import { Button } from '../../../../../components/ui/Button';
 import { PasswordInput } from '../../../../../components/ui/Input';
 import { Label } from '../../../../../components/ui/Label';
 import styles from './ChangePassword.module.scss';
-import { changePasswordSchema } from './changePassword.validation';
-import type { PasswordFormData } from '../../UserProfile.types';
+import { useChangePassword } from '../../lib/useChangePassword';
+import { FiFrown } from 'react-icons/fi';
 
 export const ChangePassword = () => {
     const [isAccordionOpen, setIsAccordionOpen] = useState(false);
-    const [isPasswordVisible, setIsPasswordVisible] = useState({
-        current: false,
-        new: false,
-        confirm: false,
-    });
-
     const {
+        isPasswordVisible,
+        errors,
+        isDirty,
         register,
-        handleSubmit,
-        reset,
-        formState: { errors, isDirty },
-    } = useForm<PasswordFormData>({
-        resolver: yupResolver(changePasswordSchema),
-        mode: 'onChange',
-    });
-
-    const togglePasswordVisibility = (
-        field: keyof typeof isPasswordVisible
-    ) => {
-        setIsPasswordVisible((prev) => ({
-            ...prev,
-            [field]: !prev[field],
-        }));
-    };
-
-    // TODO: потом добавить обработку ошибки неправильно введенного пароля текущего
-    // и если старый и новый пароли одинаковые
-
-    const onSubmit = async (data: PasswordFormData) => {
-        try {
-            // Временная заглушка для имитации API-запроса
-            await new Promise((resolve) => setTimeout(resolve, 500));
-
-            console.log('Password changed:', {
-                oldPassword: data.currentPassword,
-                newPassword: data.newPassword,
-            });
-
-            reset();
-            setIsAccordionOpen(false); // Закрыть форму после смены
-        } catch (error) {
-            console.error('Password change failed:', error);
-        }
-    };
-
-    const onFormSubmit = (e: React.FormEvent) => {
-        e.preventDefault();
-        void handleSubmit(onSubmit)();
-    };
+        togglePasswordVisibility,
+        onFormSubmit,
+        apiError,
+    } = useChangePassword();
 
     return (
         <div className={styles.changePassword}>
@@ -79,6 +37,13 @@ export const ChangePassword = () => {
 
             {isAccordionOpen && (
                 <form onSubmit={onFormSubmit} className={styles.passwordForm}>
+                    {apiError && (
+                        <div className={styles.apiError}>
+                            <FiFrown className={styles.errorIcon} />
+                            {apiError}
+                        </div>
+                    )}
+
                     <div className={styles.field}>
                         <Label htmlFor="currentPassword" required>
                             Current Password

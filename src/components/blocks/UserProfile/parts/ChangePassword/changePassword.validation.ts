@@ -15,7 +15,10 @@ const passwordRule = yup
 
 export const changePasswordSchema = yup.object().shape({
     currentPassword: passwordRule,
-    newPassword: passwordRule,
+    newPassword: passwordRule.notOneOf(
+        [yup.ref('currentPassword')],
+        'New password must be different from current password'
+    ),
     confirmPassword: yup
         .string()
         .required('Please confirm your password')
