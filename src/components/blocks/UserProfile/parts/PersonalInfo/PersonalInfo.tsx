@@ -1,66 +1,27 @@
-import { useState } from 'react';
-import { useForm } from 'react-hook-form';
-import { yupResolver } from '@hookform/resolvers/yup';
 import { Heading } from '../../../../../components/ui/Heading';
 import { Button } from '../../../../../components/ui/Button';
 import { Input } from '../../../../../components/ui/Input';
 import { Label } from '../../../../../components/ui/Label';
 import styles from './PersonalInfo.module.scss';
-import { personalInfoSchema } from './personalInfo.validation';
-import type { PersonalData } from '../../UserProfile.types';
 import { FiEdit2 } from 'react-icons/fi';
-
-// Временные данные (заменить на загрузку из API после логина)
-const initialData: PersonalData = {
-    firstName: 'John',
-    lastName: 'Doe',
-    email: 'john.doe@example.com',
-    dateOfBirth: '1990-01-01',
-};
+import { usePersonalInfo } from '../../lib/usePersonalInfo';
 
 export const PersonalInfo = () => {
-    const [isEditing, setIsEditing] = useState(false);
-    const [userData, setUserData] = useState<PersonalData>(initialData);
-    const [isLoading, setIsLoading] = useState(false); // Для индикатора загрузки API
-
     const {
+        customer,
+        isEditing,
+        isLoading,
+        errors,
+        isDirty,
         register,
-        handleSubmit,
-        reset,
-        formState: { errors, isDirty },
-    } = useForm<PersonalData>({
-        defaultValues: initialData,
-        resolver: yupResolver(personalInfoSchema),
-        mode: 'onChange',
-    });
+        handleEdit,
+        handleCancel,
+        handleFormSubmit,
+    } = usePersonalInfo();
 
-    const handleEdit = () => {
-        reset(userData); // Заполняем форму текущими данными
-        setIsEditing(true);
-    };
-
-    const handleCancel = () => {
-        setIsEditing(false);
-    };
-
-    // Сохранение данных (здесь будет вызов API)
-    const onSubmit = (data: PersonalData) => {
-        setIsLoading(true);
-        // TODO: Заменить на реальный API-запрос
-
-        // Временная заглушка
-        setTimeout(() => {
-            setUserData(data);
-            setIsEditing(false);
-            setIsLoading(false);
-            console.log('Data saved:', data);
-        }, 500);
-    };
-
-    const handleFormSubmit = (event: React.FormEvent) => {
-        event.preventDefault();
-        void handleSubmit(onSubmit)();
-    };
+    if (!customer) {
+        return <div>Loading user data...</div>;
+    }
 
     return (
         <div className={styles.personalInfo}>
@@ -103,20 +64,26 @@ export const PersonalInfo = () => {
                 <div className={styles.viewMode}>
                     <div className={styles.field}>
                         <Label>First Name</Label>
-                        <p>{userData.firstName}</p>
+                        <p>{customer.firstName}</p>
                     </div>
                     <div className={styles.field}>
                         <Label>Last Name</Label>
-                        <p>{userData.lastName}</p>
+                        <p>{customer.lastName}</p>
                     </div>
                     <div className={styles.field}>
                         <Label>Email</Label>
-                        <p>{userData.email}</p>
+                        <p>{customer.email}</p>
                     </div>
-                    <div className={styles.field}>
-                        <Label>Date of Birth</Label>
-                        <p>{userData.dateOfBirth}</p>
-                    </div>
+                    {customer.dateOfBirth && (
+                        <div className={styles.field}>
+                            <Label>Date of Birth</Label>
+                            <p>
+                                {new Date(
+                                    customer.dateOfBirth
+                                ).toLocaleDateString()}
+                            </p>
+                        </div>
+                    )}
                 </div>
             ) : (
                 <form
@@ -156,13 +123,10 @@ export const PersonalInfo = () => {
                             {...register('email')}
                             error={Boolean(errors.email)}
                             errorMessage={errors.email?.message}
-                            readOnly // Email обычно не редактируется
                         />
                     </div>
                     <div className={styles.field}>
-                        <Label htmlFor="dateOfBirth" required>
-                            Date of Birth
-                        </Label>
+                        <Label htmlFor="dateOfBirth">Date of Birth</Label>
                         <Input
                             id="dateOfBirth"
                             type="date"
