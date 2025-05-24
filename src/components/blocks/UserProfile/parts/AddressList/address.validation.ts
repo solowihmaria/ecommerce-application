@@ -12,8 +12,8 @@ const ruleForCity = yup
     .required('City is required')
     .min(1, 'City must be at least 1 character')
     .matches(
-        /^[A-Za-z]+$/,
-        'City must not contain special characters or numbers'
+        /^[A-Za-zÀ-ÿ\s'-]+$/,
+        'City must only contain letters, spaces, apostrophes, or hyphens'
     );
 
 const ruleForCountry = yup.mixed<CountryCode>().required('Country is required');
