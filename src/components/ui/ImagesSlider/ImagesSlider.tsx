@@ -12,8 +12,11 @@ export const Slider = ({ images }: ImagesSliderProps) => {
         <Swiper className={styles.slider} navigation modules={[Navigation]}>
             {images.map((image) => {
                 return (
-                    <SwiperSlide key={image.id}>
-                        <img src={image.image} alt="product"></img>
+                    <SwiperSlide key={`${image.url}${image.label}`}>
+                        <div
+                            className={styles.imageContainer}
+                            style={{ backgroundImage: `url(${image.url})` }}
+                        ></div>
                     </SwiperSlide>
                 );
             })}

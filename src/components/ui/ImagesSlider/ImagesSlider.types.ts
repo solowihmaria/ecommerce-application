@@ -1,9 +1,6 @@
-export interface ImagesSliderProps {
-    images: SlideImage[];
-    imageClass?: string;
-}
+import type { Image } from './../../../api/product/product.types';
 
-interface SlideImage {
-    id: number;
-    image: string;
+export interface ImagesSliderProps {
+    images: Image[];
+    imageClass?: string;
 }
