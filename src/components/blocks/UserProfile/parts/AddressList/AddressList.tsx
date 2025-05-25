@@ -58,6 +58,13 @@ export const AddressList = () => {
                                     <Select
                                         id={`type-${address.id}`}
                                         {...register('type')}
+                                        defaultValue={
+                                            customer.billingAddressIds?.includes(
+                                                address.id
+                                            )
+                                                ? 'billing'
+                                                : 'shipping'
+                                        }
                                     >
                                         <option value="shipping">
                                             Shipping
@@ -143,6 +150,12 @@ export const AddressList = () => {
                                         type="checkbox"
                                         id={`default-${address.id}`}
                                         {...register('isDefault')}
+                                        defaultChecked={
+                                            customer.defaultShippingAddressId ===
+                                                address.id ||
+                                            customer.defaultBillingAddressId ===
+                                                address.id
+                                        }
                                     />
                                     <Label htmlFor={`default-${address.id}`}>
                                         Set as default address

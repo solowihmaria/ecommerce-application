@@ -42,7 +42,7 @@ export const useAddressList = () => {
             postalCode: address.postalCode,
             city: address.city,
             country: address.country,
-            isDefault: isDefault,
+            isDefault,
             type: currentType,
         });
         setEditingAddressId(address.id);
@@ -71,12 +71,34 @@ export const useAddressList = () => {
                 customer
             );
 
-            updateCustomer(updatedCustomer);
+            // Явное обновление default адресов в UI (мб потом переделать как-то )
+            const updatedCustomerWithDefaults = {
+                ...updatedCustomer,
+                defaultShippingAddressId:
+                    data.isDefault && data.type === 'shipping'
+                        ? editingAddressId
+                        : updatedCustomer.defaultShippingAddressId ===
+                            editingAddressId
+                          ? null
+                          : updatedCustomer.defaultShippingAddressId,
+                defaultBillingAddressId:
+                    data.isDefault && data.type === 'billing'
+                        ? editingAddressId
+                        : updatedCustomer.defaultBillingAddressId ===
+                            editingAddressId
+                          ? null
+                          : updatedCustomer.defaultBillingAddressId,
+            };
+
+            updateCustomer(updatedCustomerWithDefaults);
             setEditingAddressId(null);
             showToast({ message: 'Address updated!', variant: 'success' });
         } catch (error) {
             console.error('Failed to update address:', error);
-            showToast({ message: 'Update failed', variant: 'error' });
+            showToast({
+                message: 'Update failed: ',
+                variant: 'error',
+            });
         } finally {
             setIsLoading(false);
         }

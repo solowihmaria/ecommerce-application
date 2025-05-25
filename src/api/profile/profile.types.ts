@@ -9,8 +9,8 @@ export interface Customer {
     addresses: Address[];
     billingAddressIds?: string[];
     shippingAddressIds?: string[];
-    defaultShippingAddressId?: string;
-    defaultBillingAddressId?: string;
+    defaultShippingAddressId?: string | null;
+    defaultBillingAddressId?: string | null;
     version: number;
 }
 
