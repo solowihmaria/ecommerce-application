@@ -5,6 +5,7 @@ import { addressSchema } from '../parts/AddressList/address.validation';
 import type { AddressFormData } from '../UserProfile.types';
 import type { Address } from '../../../../api/profile/profile.types';
 import { updateAddress } from '../../../../api/profile/changeAddress';
+import { deleteAddress } from '../../../../api/profile/deleteAddress';
 import { useAuth } from '../../../../store/auth/useAuth';
 import { ToastContext } from '../../../ui/Toast/ToastContext';
 import { useContext } from 'react';
@@ -16,6 +17,9 @@ export const useAddressList = () => {
         null
     );
     const [isLoading, setIsLoading] = useState(false);
+    const [deletingAddressId, setDeletingAddressId] = useState<string | null>(
+        null
+    );
 
     const {
         register,
@@ -52,6 +56,39 @@ export const useAddressList = () => {
         setEditingAddressId(null);
     };
 
+    const handleDelete = async (addressId: string) => {
+        if (
+            !customer ||
+            !window.confirm('Are you sure you want to delete this address?')
+        ) {
+            return;
+        }
+
+        setDeletingAddressId(addressId);
+        try {
+            const updatedCustomer = await deleteAddress(
+                customer.id,
+                customer.version,
+                addressId,
+                customer
+            );
+
+            updateCustomer(updatedCustomer);
+            showToast({
+                message: 'Address deleted successfully!',
+                variant: 'success',
+            });
+        } catch (error) {
+            console.error('Failed to delete address:', error);
+            showToast({
+                message: 'Failed to delete address: ',
+                variant: 'error',
+            });
+        } finally {
+            setDeletingAddressId(null);
+        }
+    };
+
     const onSubmit = async (data: AddressFormData) => {
         if (!customer || !editingAddressId) {
             return;
@@ -71,7 +108,6 @@ export const useAddressList = () => {
                 customer
             );
 
-            // Явное обновление default адресов в UI (мб потом переделать как-то )
             const updatedCustomerWithDefaults = {
                 ...updatedCustomer,
                 defaultShippingAddressId:
@@ -113,11 +149,13 @@ export const useAddressList = () => {
         customer,
         editingAddressId,
         isLoading,
+        deletingAddressId,
         errors,
         isDirty,
         register,
         handleEdit,
         handleCancel,
+        handleDelete,
         handleFormSubmit,
     };
 };

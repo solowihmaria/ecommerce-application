@@ -4,7 +4,7 @@ import { Input } from '../../../../../components/ui/Input';
 import { Label } from '../../../../../components/ui/Label';
 import { Select } from '../../../../../components/ui/Select';
 import styles from './AddressList.module.scss';
-import { FiEdit2 } from 'react-icons/fi';
+import { FiEdit2, FiTrash2 } from 'react-icons/fi';
 import { CountryCode } from '../../../../../api/createCustomer/createCustomer.types';
 import { useAddressList } from '../../lib/useAddressList';
 import type { Address } from '../../../../../api/profile/profile.types';
@@ -13,12 +13,14 @@ export const AddressList = () => {
     const {
         customer,
         editingAddressId,
+        deletingAddressId,
         isLoading,
         errors,
         isDirty,
         register,
         handleEdit,
         handleCancel,
+        handleDelete,
         handleFormSubmit,
     } = useAddressList();
 
@@ -216,6 +218,19 @@ export const AddressList = () => {
                                             className={styles.editButton}
                                         >
                                             <FiEdit2 />
+                                        </Button>
+                                        <Button
+                                            variant="ghost"
+                                            onClick={() => {
+                                                void handleDelete(address.id);
+                                            }}
+                                            className={styles.deleteButton}
+                                            disabled={isLoading}
+                                            loading={
+                                                deletingAddressId === address.id
+                                            }
+                                        >
+                                            <FiTrash2 />
                                         </Button>
                                     </div>
                                 </div>
