@@ -1,1 +1,14 @@
 @use '../../assets/styles/constants.module' as c;
+
+.productPageContainer {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+.main {
+    display: flex;
+    flex-grow: 1;
+    padding: 40px 20px;
+    background-color: c.$color-primary;
+}

@@ -18,6 +18,19 @@ export const ProductPage = () => {
         null
     );
 
+    const changeVariant = (size: string) => {
+        if (currentProduct?.masterVariant.size === size) {
+            setCurrentProductVariant(currentProduct?.masterVariant);
+        } else {
+            currentProduct?.variants.forEach((variant) => {
+                if (variant.size === size) {
+                    setCurrentProductVariant(variant);
+                    return;
+                }
+            });
+        }
+    };
+
     useEffect(() => {
         const id = location.id;
         if (!id) {
@@ -32,15 +45,19 @@ export const ProductPage = () => {
             })
             .catch((err) => console.log(err));
     }, [location.id]);
+
     return (
         <div className={styles.productPageContainer}>
             <Header />
             <main className={styles.main}>
-                <h1 className={styles.title}>Product id = {location.id}</h1>
                 {currentProduct && currentProductVariant ? (
                     <ProductDetails
                         product={currentProduct}
                         productVariant={currentProductVariant}
+                        onSizeChange={(size) => {
+                            console.log('hello');
+                            changeVariant(size);
+                        }}
                     />
                 ) : (
                     <p>Some error</p>

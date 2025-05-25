@@ -1,4 +1,4 @@
-enum Attributes {
+export enum Attributes {
     family = 'family',
     size = 'size',
     careLevel = 'care-level',
@@ -7,19 +7,19 @@ enum Attributes {
     height = 'height',
 }
 
-enum Sizes {
+/*export enum Sizes {
     small = 'S',
     medium = 'M',
     large = 'L',
-}
+}*/
 
-enum Care {
+export enum Care {
     easy = 'easy',
     medium = 'medium',
     hard = 'hard',
 }
 
-enum Light {
+export enum Light {
     low = 'low',
     medium = 'medium',
     high = 'high',
@@ -87,8 +87,8 @@ interface FamilyAttribute {
 interface SizeAttribute {
     name: Attributes.size;
     value: {
-        key: Sizes;
-        label: Sizes;
+        key: string;
+        label: string;
     };
 }
 
@@ -135,7 +135,7 @@ export interface CustomVariant {
     };
     images: Image[];
     family: string;
-    size: Sizes;
+    size: string;
     care: Care;
     toxic: boolean;
     height: number;
