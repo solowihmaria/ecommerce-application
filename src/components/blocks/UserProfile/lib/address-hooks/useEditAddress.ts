@@ -1,27 +1,21 @@
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
-import { addressSchema } from '../parts/AddressList/address.validation';
-import type { AddressFormData } from '../UserProfile.types';
-import type { Address } from '../../../../api/profile/profile.types';
-import { updateAddress } from '../../../../api/profile/changeAddress';
-import { deleteAddress } from '../../../../api/profile/deleteAddress';
-import { useAuth } from '../../../../store/auth/useAuth';
-import { ToastContext } from '../../../ui/Toast/ToastContext';
+import { addressSchema } from '../../parts/AddressList/address.validation';
+import { updateAddress } from '../../../../../api/profile/changeAddress';
+import { useAuth } from '../../../../../store/auth/useAuth';
 import { useContext } from 'react';
+import { ToastContext } from '../../../../ui/Toast/ToastContext';
+import type { AddressFormData } from '../../UserProfile.types';
+import type { Address } from '../../../../../api/profile/profile.types';
 
-export const useAddressList = () => {
+export const useEditAddress = () => {
     const { customer, updateCustomer } = useAuth();
     const { showToast } = useContext(ToastContext);
     const [editingAddressId, setEditingAddressId] = useState<string | null>(
         null
     );
     const [isLoading, setIsLoading] = useState(false);
-    const [deletingAddressId, setDeletingAddressId] = useState<string | null>(
-        null
-    );
-    const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
-    const [addressToDelete, setAddressToDelete] = useState<string | null>(null);
 
     const {
         register,
@@ -51,53 +45,12 @@ export const useAddressList = () => {
             isDefault,
             type: currentType,
         });
+
         setEditingAddressId(address.id);
     };
 
     const handleCancel = () => {
         setEditingAddressId(null);
-    };
-
-    const handleDeleteClick = (addressId: string) => {
-        setAddressToDelete(addressId);
-        setIsDeleteModalOpen(true);
-    };
-
-    const handleConfirmDelete = async () => {
-        if (!customer || !addressToDelete) {
-            return;
-        }
-
-        setDeletingAddressId(addressToDelete);
-        try {
-            const updatedCustomer = await deleteAddress(
-                customer.id,
-                customer.version,
-                addressToDelete,
-                customer
-            );
-
-            updateCustomer(updatedCustomer);
-            showToast({
-                message: 'Address deleted successfully!',
-                variant: 'success',
-            });
-        } catch (error) {
-            console.error('Failed to delete address:', error);
-            showToast({
-                message: 'Failed to delete address: ',
-                variant: 'error',
-            });
-        } finally {
-            setDeletingAddressId(null);
-            setIsDeleteModalOpen(false);
-            setAddressToDelete(null);
-        }
-    };
-
-    const handleCancelDelete = (): void => {
-        setIsDeleteModalOpen(false);
-        setAddressToDelete(null);
     };
 
     const onSubmit = async (data: AddressFormData) => {
@@ -142,34 +95,25 @@ export const useAddressList = () => {
             showToast({ message: 'Address updated!', variant: 'success' });
         } catch (error) {
             console.error('Failed to update address:', error);
-            showToast({
-                message: 'Update failed: ',
-                variant: 'error',
-            });
+            showToast({ message: 'Update failed', variant: 'error' });
         } finally {
             setIsLoading(false);
         }
     };
 
-    const handleFormSubmit = (event: React.FormEvent) => {
-        event.preventDefault();
+    const handleFormSubmit = (e: React.FormEvent) => {
+        e.preventDefault();
         void handleSubmit(onSubmit)();
     };
 
     return {
-        customer,
-        editingAddressId,
-        isLoading,
-        deletingAddressId,
-        isDeleteModalOpen,
+        register,
         errors,
         isDirty,
-        register,
+        isLoading,
+        editingAddressId,
         handleEdit,
         handleCancel,
-        handleDeleteClick,
-        handleConfirmDelete,
-        handleCancelDelete,
         handleFormSubmit,
     };
 };
