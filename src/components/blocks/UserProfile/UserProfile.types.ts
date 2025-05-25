@@ -13,23 +13,11 @@ export interface PasswordFormData {
     confirmPassword: string;
 }
 
-export type AddressType = 'shipping' | 'billing';
-
-export interface Address {
-    id: string;
-    type: AddressType;
-    streetName: string;
-    city: string;
-    country: CountryCode;
-    postalCode: string;
-    isDefault: boolean;
-}
-
 export interface AddressFormData {
     streetName: string;
+    postalCode: string;
     city: string;
     country: CountryCode;
-    postalCode: string;
     isDefault: boolean;
-    type: AddressType;
+    type: 'shipping' | 'billing';
 }
