@@ -1,3 +1,5 @@
+import type { CountryCode } from '../createCustomer/createCustomer.types';
+
 export interface Customer {
     id: string;
     email: string;
@@ -10,10 +12,14 @@ export interface Customer {
     version: number;
 }
 
+export type AddressType = 'shipping' | 'billing';
+
 export interface Address {
     id: string;
     streetName: string;
     postalCode: string;
     city: string;
-    country: string;
+    country: CountryCode;
+    isDefault?: boolean;
+    type?: AddressType;
 }
