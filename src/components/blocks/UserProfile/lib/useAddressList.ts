@@ -20,6 +20,8 @@ export const useAddressList = () => {
     const [deletingAddressId, setDeletingAddressId] = useState<string | null>(
         null
     );
+    const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
+    const [addressToDelete, setAddressToDelete] = useState<string | null>(null);
 
     const {
         register,
@@ -56,20 +58,22 @@ export const useAddressList = () => {
         setEditingAddressId(null);
     };
 
-    const handleDelete = async (addressId: string) => {
-        if (
-            !customer ||
-            !window.confirm('Are you sure you want to delete this address?')
-        ) {
+    const handleDeleteClick = (addressId: string) => {
+        setAddressToDelete(addressId);
+        setIsDeleteModalOpen(true);
+    };
+
+    const handleConfirmDelete = async () => {
+        if (!customer || !addressToDelete) {
             return;
         }
 
-        setDeletingAddressId(addressId);
+        setDeletingAddressId(addressToDelete);
         try {
             const updatedCustomer = await deleteAddress(
                 customer.id,
                 customer.version,
-                addressId,
+                addressToDelete,
                 customer
             );
 
@@ -86,7 +90,14 @@ export const useAddressList = () => {
             });
         } finally {
             setDeletingAddressId(null);
+            setIsDeleteModalOpen(false);
+            setAddressToDelete(null);
         }
+    };
+
+    const handleCancelDelete = (): void => {
+        setIsDeleteModalOpen(false);
+        setAddressToDelete(null);
     };
 
     const onSubmit = async (data: AddressFormData) => {
@@ -150,12 +161,15 @@ export const useAddressList = () => {
         editingAddressId,
         isLoading,
         deletingAddressId,
+        isDeleteModalOpen,
         errors,
         isDirty,
         register,
         handleEdit,
         handleCancel,
-        handleDelete,
+        handleDeleteClick,
+        handleConfirmDelete,
+        handleCancelDelete,
         handleFormSubmit,
     };
 };

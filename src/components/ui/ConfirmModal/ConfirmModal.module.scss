@@ -1,38 +1,58 @@
 @use '../../../assets/styles/constants.module' as c;
 
-.overlay {
+.modalOverlay {
     position: fixed;
-    z-index: 999;
+    z-index: 1000;
+    inset: 0;
     display: flex;
     align-items: center;
     justify-content: center;
-    background-color: rgb(0 0 0 / 40%);
-    inset: 0;
+    padding: 1rem;
+    background-color: c.$opacity-40;
 }
 
 .modal {
-    width: 90%;
-    max-width: 400px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    box-sizing: border-box;
+    width: 100%;
+    max-width: 30rem;
     padding: 2rem;
-    border-radius: 1rem;
-    text-align: center;
-    background: c.$color-white;
-    box-shadow: 0 2px 12px rgb(0 0 0 / 20%);
+    border-radius: 8px;
+    background-color: c.$color-primary-dark;
+    box-shadow: 0 4px 6px c.$opacity-5;
 }
 
-.title {
+.modalTitle {
+    margin-top: 0;
     margin-bottom: 1rem;
     font-size: 1.25rem;
     font-weight: 600;
+    text-align: center;
 }
 
-.message {
+.modalMessage {
     margin-bottom: 2rem;
-    font-size: 1rem;
+    color: c.$color-text-primary;
+    text-align: center;
 }
 
-.actions {
+.modalActions {
     display: flex;
+    flex-wrap: wrap;
     gap: 1rem;
     justify-content: center;
+}
+
+@media (width <= 480px) {
+    .modal {
+        padding: 1.5rem;
+    }
+
+    .modalActions {
+        flex-direction: column;
+        width: 100%;
+    }
 }

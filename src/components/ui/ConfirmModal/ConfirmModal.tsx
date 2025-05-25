@@ -1,35 +1,31 @@
+import { Button } from '../../../components/ui/Button';
 import styles from './ConfirmModal.module.scss';
-import { Button } from '../Button';
 import type { ConfirmModalProps } from './ConfirmModal.types';
 
 export const ConfirmModal = ({
-    title = 'Confirm action',
+    isOpen,
+    title,
     message,
-    confirmText = 'Delete',
-    cancelText = 'Cancel',
     onConfirm,
     onCancel,
-    isLoading = false,
+    confirmText = 'Confirm',
+    cancelText = 'Cancel',
 }: ConfirmModalProps) => {
+    if (!isOpen) {
+        return null;
+    }
+
     return (
-        <div className={styles.overlay}>
+        <div className={styles.modalOverlay}>
             <div className={styles.modal}>
-                <h2 className={styles.title}>{title}</h2>
-                <p className={styles.message}>{message}</p>
-                <div className={styles.actions}>
-                    <Button
-                        variant="danger"
-                        onClick={onConfirm}
-                        loading={isLoading}
-                    >
-                        {confirmText}
-                    </Button>
-                    <Button
-                        variant="ghost"
-                        onClick={onCancel}
-                        disabled={isLoading}
-                    >
+                <h3 className={styles.modalTitle}>{title}</h3>
+                <p className={styles.modalMessage}>{message}</p>
+                <div className={styles.modalActions}>
+                    <Button variant="outline" onClick={onCancel}>
                         {cancelText}
+                    </Button>
+                    <Button variant="danger" onClick={onConfirm}>
+                        {confirmText}
                     </Button>
                 </div>
             </div>

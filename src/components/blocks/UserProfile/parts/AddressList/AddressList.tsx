@@ -3,6 +3,7 @@ import { Button } from '../../../../../components/ui/Button';
 import { Input } from '../../../../../components/ui/Input';
 import { Label } from '../../../../../components/ui/Label';
 import { Select } from '../../../../../components/ui/Select';
+import { ConfirmModal } from '../../../../../components/ui/ConfirmModal';
 import styles from './AddressList.module.scss';
 import { FiEdit2, FiTrash2 } from 'react-icons/fi';
 import { CountryCode } from '../../../../../api/createCustomer/createCustomer.types';
@@ -15,12 +16,15 @@ export const AddressList = () => {
         editingAddressId,
         deletingAddressId,
         isLoading,
+        isDeleteModalOpen,
         errors,
         isDirty,
         register,
         handleEdit,
         handleCancel,
-        handleDelete,
+        handleDeleteClick,
+        handleConfirmDelete,
+        handleCancelDelete,
         handleFormSubmit,
     } = useAddressList();
 
@@ -44,6 +48,16 @@ export const AddressList = () => {
     return (
         <div className={styles.addresses}>
             <Heading level="h2">Addresses</Heading>
+
+            <ConfirmModal
+                isOpen={isDeleteModalOpen}
+                title="Delete Address"
+                message="Are you sure you want to delete this address?"
+                onConfirm={() => void handleConfirmDelete()}
+                onCancel={handleCancelDelete}
+                confirmText="Delete"
+                cancelText="Cancel"
+            />
 
             <div className={styles.addressList}>
                 {customer.addresses.map((address) => (
@@ -221,9 +235,9 @@ export const AddressList = () => {
                                         </Button>
                                         <Button
                                             variant="ghost"
-                                            onClick={() => {
-                                                void handleDelete(address.id);
-                                            }}
+                                            onClick={() =>
+                                                handleDeleteClick(address.id)
+                                            }
                                             className={styles.deleteButton}
                                             disabled={isLoading}
                                             loading={
