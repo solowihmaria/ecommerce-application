@@ -52,6 +52,21 @@ export const AddressList = () => {
                                 className={styles.editForm}
                             >
                                 <div className={styles.field}>
+                                    <Label htmlFor={`type-${address.id}`}>
+                                        Address Type
+                                    </Label>
+                                    <Select
+                                        id={`type-${address.id}`}
+                                        {...register('type')}
+                                    >
+                                        <option value="shipping">
+                                            Shipping
+                                        </option>
+                                        <option value="billing">Billing</option>
+                                    </Select>
+                                </div>
+
+                                <div className={styles.field}>
                                     <Label
                                         htmlFor={`country-${address.id}`}
                                         required
@@ -123,6 +138,17 @@ export const AddressList = () => {
                                     />
                                 </div>
 
+                                <div className={styles.checkboxField}>
+                                    <Input
+                                        type="checkbox"
+                                        id={`default-${address.id}`}
+                                        {...register('isDefault')}
+                                    />
+                                    <Label htmlFor={`default-${address.id}`}>
+                                        Set as default address
+                                    </Label>
+                                </div>
+
                                 <div className={styles.formActions}>
                                     <Button
                                         variant="danger"
@@ -157,6 +183,16 @@ export const AddressList = () => {
                                         ) && (
                                             <span className={styles.typeBadge}>
                                                 Billing
+                                            </span>
+                                        )}
+                                        {(customer.defaultShippingAddressId ===
+                                            address.id ||
+                                            customer.defaultBillingAddressId ===
+                                                address.id) && (
+                                            <span
+                                                className={styles.defaultBadge}
+                                            >
+                                                Default
                                             </span>
                                         )}
                                     </div>

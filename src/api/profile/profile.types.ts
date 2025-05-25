@@ -9,6 +9,8 @@ export interface Customer {
     addresses: Address[];
     billingAddressIds?: string[];
     shippingAddressIds?: string[];
+    defaultShippingAddressId?: string;
+    defaultBillingAddressId?: string;
     version: number;
 }
 
@@ -20,6 +22,6 @@ export interface Address {
     postalCode: string;
     city: string;
     country: CountryCode;
-    isDefault?: boolean;
     type?: AddressType;
+    isDefault?: boolean;
 }
