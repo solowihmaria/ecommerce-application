@@ -18,9 +18,9 @@
 
 .addButton {
     display: flex;
-    gap: 0.5rem;
+    gap: 0.7rem;
     align-items: center;
-    padding: 0.5rem 1rem;
+    padding: 0.75rem 2rem;
     border: 1px solid c.$color-accent-dark;
     color: c.$color-text-primary;
     background-color: c.$color-accent-primary;
@@ -33,6 +33,11 @@
 .icon {
     width: 1rem;
     height: 1rem;
+}
+
+.addIcon {
+    font-size: 1.2rem;
+    color: inherit;
 }
 
 .addressList {
@@ -112,6 +117,7 @@
 .field {
     display: grid;
     gap: 0.25rem;
+    margin-bottom: 1rem;
 }
 
 .checkboxField {
@@ -136,4 +142,45 @@
 .saveButton {
     color: c.$color-text-primary;
     background-color: c.$color-success;
+}
+
+.modalOverlay {
+    position: fixed;
+    z-index: 1000;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: c.$opacity-40;
+}
+
+.modal {
+    max-width: 27rem;
+    padding: 2rem;
+    border-radius: 20px;
+    background: c.$color-primary-dark;
+}
+
+.addAdressForm {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.modalTitle {
+    text-align: center;
+}
+
+.modalActions {
+    display: flex;
+    gap: 1rem;
+    justify-content: flex-end;
+    margin-top: 2rem;
+}
+
+.headerRow {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 2rem;
 }

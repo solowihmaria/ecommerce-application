@@ -6,7 +6,7 @@ import { Select } from '../../../../../components/ui/Select';
 import { ConfirmModal } from '../../../../../components/ui/ConfirmModal';
 import { CountryCode } from '../../../../../api/createCustomer/createCustomer.types';
 import type { Address } from '../../../../../api/profile/profile.types';
-import { FiEdit2, FiTrash2 } from 'react-icons/fi';
+import { FiEdit2, FiTrash2, FiPlus } from 'react-icons/fi';
 import styles from './AddressList.module.scss';
 import { useAddressList } from '../../lib/address-hooks/useAddressList';
 
@@ -26,6 +26,14 @@ export const AddressList = () => {
         handleConfirmDelete,
         handleCancelDelete,
         handleFormSubmit,
+        isAdding,
+        isAddModalOpen,
+        openAddModal,
+        closeAddModal,
+        handleAddSubmit,
+        addErrors,
+        addIsDirty,
+        addRegister,
     } = useAddressList();
 
     if (!customer) {
@@ -47,8 +55,19 @@ export const AddressList = () => {
 
     return (
         <div className={styles.addresses}>
-            <Heading level="h2">Addresses</Heading>
-
+            <div className={styles.headerRow}>
+                <Heading level="h2">Addresses</Heading>
+                <Button
+                    variant="outline"
+                    onClick={openAddModal}
+                    type="button"
+                    className={styles.addButton}
+                >
+                    <FiPlus className={styles.addIcon} />
+                    Add Address
+                </Button>
+            </div>
+            {/* Модальное окно удаления */}
             <ConfirmModal
                 isOpen={isDeleteModalOpen}
                 title="Delete Address"
@@ -58,6 +77,116 @@ export const AddressList = () => {
                 confirmText="Delete"
                 cancelText="Cancel"
             />
+            {/* Модальное окно добавления */}
+            {isAddModalOpen && (
+                <div className={styles.modalOverlay}>
+                    <div className={styles.modal}>
+                        <form
+                            className={styles.addAdressForm}
+                            onSubmit={(e) => {
+                                void handleAddSubmit(e);
+                            }}
+                        >
+                            <Heading level="h3" className={styles.modalTitle}>
+                                Add New Address
+                            </Heading>
+
+                            <div className={styles.field}>
+                                <Label htmlFor="add-type">Address Type</Label>
+                                <Select id="add-type" {...addRegister('type')}>
+                                    <option value="shipping">Shipping</option>
+                                    <option value="billing">Billing</option>
+                                </Select>
+                            </div>
+
+                            <div className={styles.field}>
+                                <Label htmlFor="add-country" required>
+                                    Country
+                                </Label>
+                                <Select
+                                    id="add-country"
+                                    {...addRegister('country')}
+                                >
+                                    <option value={CountryCode.DE}>
+                                        Germany
+                                    </option>
+                                    <option value={CountryCode.FR}>
+                                        France
+                                    </option>
+                                    <option value={CountryCode.IT}>
+                                        Italy
+                                    </option>
+                                </Select>
+                            </div>
+
+                            <div className={styles.field}>
+                                <Label htmlFor="add-city" required>
+                                    City
+                                </Label>
+                                <Input
+                                    id="add-city"
+                                    {...addRegister('city')}
+                                    error={Boolean(addErrors.city)}
+                                    errorMessage={addErrors.city?.message}
+                                />
+                            </div>
+
+                            <div className={styles.field}>
+                                <Label htmlFor="add-street" required>
+                                    Street
+                                </Label>
+                                <Input
+                                    id="add-street"
+                                    {...addRegister('streetName')}
+                                    error={Boolean(addErrors.streetName)}
+                                    errorMessage={addErrors.streetName?.message}
+                                />
+                            </div>
+
+                            <div className={styles.field}>
+                                <Label htmlFor="add-postalCode" required>
+                                    Postal Code
+                                </Label>
+                                <Input
+                                    id="add-postalCode"
+                                    {...addRegister('postalCode')}
+                                    error={Boolean(addErrors.postalCode)}
+                                    errorMessage={addErrors.postalCode?.message}
+                                />
+                            </div>
+
+                            <div className={styles.checkboxField}>
+                                <Input
+                                    type="checkbox"
+                                    id="add-default"
+                                    {...addRegister('isDefault')}
+                                />
+                                <Label htmlFor="add-default">
+                                    Set as default address
+                                </Label>
+                            </div>
+
+                            <div className={styles.modalActions}>
+                                <Button
+                                    variant="danger"
+                                    onClick={closeAddModal}
+                                    type="button"
+                                >
+                                    Cancel
+                                </Button>
+                                <Button
+                                    variant="success"
+                                    type="submit"
+                                    disabled={!addIsDirty || isAdding}
+                                    loading={isAdding}
+                                >
+                                    {isAdding ? 'Adding...' : 'Add Address'}
+                                </Button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            )}
 
             <div className={styles.addressList}>
                 {customer.addresses.map((address) => (
