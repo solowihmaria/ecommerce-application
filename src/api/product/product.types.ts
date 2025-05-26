@@ -7,11 +7,11 @@ export enum Attributes {
     height = 'height',
 }
 
-/*export enum Sizes {
+export enum Sizes {
     small = 'S',
     medium = 'M',
     large = 'L',
-}*/
+}
 
 export enum Care {
     easy = 'easy',
@@ -44,7 +44,7 @@ export interface ProductResponse {
     };
 }
 
-interface Variant {
+export interface Variant {
     id: number;
     sku: string;
     prices: Price[];
@@ -87,8 +87,8 @@ interface FamilyAttribute {
 interface SizeAttribute {
     name: Attributes.size;
     value: {
-        key: string;
-        label: string;
+        key: Sizes;
+        label: Sizes;
     };
 }
 
@@ -129,13 +129,10 @@ export interface CustomProduct {
 export interface CustomVariant {
     id: number;
     sku: string;
-    price: {
-        value: number;
-        currency: string;
-    };
+    price: number;
     images: Image[];
     family: string;
-    size: string;
+    size: Sizes;
     care: Care;
     toxic: boolean;
     height: number;

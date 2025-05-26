@@ -1,6 +1,7 @@
 import type {
     CustomProduct,
     CustomVariant,
+    Sizes,
 } from '../../../api/product/product.types';
 import { Slider } from '../../ui/ImagesSlider/ImagesSlider';
 import styles from './ProductDetails.module.scss';
@@ -18,7 +19,7 @@ export const ProductDetails = ({
 }: {
     product: CustomProduct;
     productVariant: CustomVariant;
-    onSizeChange: (size: string) => void;
+    onSizeChange: (size: Sizes) => void;
 }) => {
     return (
         <div className={styles.productDetailsContainer}>
@@ -46,7 +47,7 @@ export const ProductDetails = ({
                     </div>
 
                     <p className={styles.price}>
-                        Cost: {productVariant.price.value}€
+                        Cost: {productVariant.price}€
                     </p>
                 </div>
             </div>

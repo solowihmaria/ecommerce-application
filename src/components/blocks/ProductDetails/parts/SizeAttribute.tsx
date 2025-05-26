@@ -1,9 +1,38 @@
 import clsx from 'clsx';
+import { Sizes } from '../../../../api/product/product.types';
 import type {
     CustomProduct,
     CustomVariant,
 } from '../../../../api/product/product.types';
 import styles from '../ProductDetails.module.scss';
+
+const getAvailableSizes = (product: CustomProduct) => {
+    const sizes: Sizes[] = [];
+    sizes.push(product.masterVariant.size);
+    product.variants.forEach((variant) => {
+        sizes.push(variant.size);
+    });
+    return sizes;
+};
+const getCurrentSize = (currentProductVariant: CustomVariant) => {
+    return currentProductVariant.size;
+};
+
+const getSizeName = (size: Sizes) => {
+    let sizeFullName = '';
+    switch (size) {
+        case Sizes.small:
+            sizeFullName = 'Small';
+            break;
+        case Sizes.medium:
+            sizeFullName = 'Medium';
+            break;
+        case Sizes.large:
+            sizeFullName = 'Large';
+            break;
+    }
+    return sizeFullName;
+};
 
 export const SizeAttribute = ({
     product,
@@ -12,36 +41,8 @@ export const SizeAttribute = ({
 }: {
     product: CustomProduct;
     currentProductVariant: CustomVariant;
-    onSizeChange: (size: string) => void;
+    onSizeChange: (size: Sizes) => void;
 }) => {
-    const getAvailableSizes = (product: CustomProduct) => {
-        const sizes: string[] = [];
-        sizes.push(product.masterVariant.size);
-        product.variants.forEach((variant) => {
-            sizes.push(variant.size);
-        });
-        return sizes;
-    };
-    const getCurrentSize = (currentProductVariant: CustomVariant) => {
-        return currentProductVariant.size;
-    };
-
-    const getSizeName = (size: string) => {
-        let sizeFullName = '';
-        switch (size) {
-            case 'S':
-                sizeFullName = 'Small';
-                break;
-            case 'M':
-                sizeFullName = 'Medium';
-                break;
-            case 'L':
-                sizeFullName = 'Large';
-                break;
-        }
-        return sizeFullName;
-    };
-
     return (
         <ul className={styles.sizeContainer}>
             {getAvailableSizes(product).map((size) =>

@@ -1,50 +1,27 @@
 import { Header } from '../../components/blocks/Header/Header';
 import { ProductDetails } from '../../components/blocks/ProductDetails/ProductDetails';
 import styles from './ProductPage.module.scss';
-import { useParams } from 'react-router-dom';
-import { getProductData } from '../../api/product/productService';
-import { useEffect, useState } from 'react';
-import { transformProductData } from '../../api/product/productService';
-import type {
-    CustomProduct,
-    CustomVariant,
-} from '../../api/product/product.types';
+import { useState } from 'react';
+import type { CustomVariant, Sizes } from '../../api/product/product.types';
+import { useGetProductData } from './useGetProductData';
 
 export const ProductPage = () => {
-    const location = useParams();
     const [currentProductVariant, setCurrentProductVariant] =
         useState<CustomVariant | null>(null);
-    const [currentProduct, setCurrentProduct] = useState<CustomProduct | null>(
-        null
-    );
+    const [currentProduct] = useGetProductData(setCurrentProductVariant);
 
-    const changeVariant = (size: string) => {
+    const changeVariant = (size: Sizes) => {
         if (currentProduct?.masterVariant.size === size) {
             setCurrentProductVariant(currentProduct?.masterVariant);
         } else {
-            currentProduct?.variants.forEach((variant) => {
-                if (variant.size === size) {
-                    setCurrentProductVariant(variant);
-                    return;
-                }
-            });
+            const variant = currentProduct?.variants.find(
+                (variant) => variant.size === size
+            );
+            if (variant) {
+                setCurrentProductVariant(variant);
+            }
         }
     };
-
-    useEffect(() => {
-        const id = location.id;
-        if (!id) {
-            return;
-        }
-        getProductData(id)
-            .then((data) => {
-                const product = transformProductData(data);
-                console.log(product);
-                setCurrentProduct(product);
-                setCurrentProductVariant(product.masterVariant);
-            })
-            .catch((err) => console.log(err));
-    }, [location.id]);
 
     return (
         <div className={styles.productPageContainer}>
@@ -54,10 +31,7 @@ export const ProductPage = () => {
                     <ProductDetails
                         product={currentProduct}
                         productVariant={currentProductVariant}
-                        onSizeChange={(size) => {
-                            console.log('hello');
-                            changeVariant(size);
-                        }}
+                        onSizeChange={changeVariant}
                     />
                 ) : (
                     <p>Some error</p>

@@ -29,10 +29,10 @@ const getToken = async () => {
 export const getProductByID = async (id: string): Promise<ProductResponse> => {
     const tokenResponse = await getToken();
     const token = tokenResponse.access_token;
-    const authUrl = process.env.CTP_API_URL;
+    const apiUrl = process.env.CTP_API_URL;
     const projectKey = process.env.CTP_PROJECT_KEY;
 
-    const productUrl = `${authUrl}/${projectKey}/products/${id}`;
+    const productUrl = `${apiUrl}/${projectKey}/products/${id}`;
     const product = await axios.get<ProductResponse>(productUrl, {
         headers: {
             Authorization: `Bearer ${token}`,

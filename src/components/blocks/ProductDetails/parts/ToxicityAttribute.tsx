@@ -8,7 +8,6 @@ export const ToxicityAttribute = ({ toxicity }: { toxicity: boolean }) => {
                 <ToxicityIcon className={styles.icon} />
             </span>
             <div>
-                {' '}
                 <p className={styles.attributeText}>Toxicity: </p>
                 {toxicity ? (
                     <p className={styles.attributeText}>Toxic</p>
