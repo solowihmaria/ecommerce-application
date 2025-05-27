@@ -1,24 +1,16 @@
 import { useEffect, useState } from 'react';
-import { /*useNavigate, */ useParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import {
     getProductData,
     transformProductData,
-} from '../../api/product/productService';
-import type {
-    CustomProduct,
-    CustomVariant,
-} from '../../api/product/product.types';
+} from '../../../api/product/productService';
+import type { CustomProduct } from '../../../api/product/product.types';
 
-export const useGetProductData = (
-    setCurrentProductVariant: React.Dispatch<
-        React.SetStateAction<CustomVariant | null>
-    >
-) => {
+export const useGetProductData = (): [CustomProduct | null] => {
     const [currentProduct, setCurrentProduct] = useState<CustomProduct | null>(
         null
     );
     const location = useParams();
-    /*const [searchParams] = useNavigate();*/
 
     useEffect(() => {
         const id = location.id;
@@ -30,9 +22,9 @@ export const useGetProductData = (
                 const product = transformProductData(data);
                 console.log(product);
                 setCurrentProduct(product);
-                setCurrentProductVariant(product.masterVariant);
+                console.log(id);
             })
             .catch((err) => console.log(err));
-    }, [location.id, setCurrentProductVariant]);
+    }, [location.id]);
     return [currentProduct];
 };

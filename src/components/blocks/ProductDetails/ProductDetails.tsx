@@ -6,51 +6,88 @@ import type {
 import { Slider } from '../../ui/ImagesSlider/ImagesSlider';
 import styles from './ProductDetails.module.scss';
 
-import { CareAttribute } from './parts/CareAttribute';
-import { LightAttribute } from './parts/LightAttribute';
-import { HeightAttribute } from './parts/HeightAttribute';
-import { ToxicityAttribute } from './parts/ToxicityAttribute';
 import { SizeAttribute } from './parts/SizeAttribute';
+import { useGetProductData } from './useGetProductData';
+import { useSetVariant } from './useSetVariant';
+import { Attribute } from './parts/Attribute';
+import CareIcon from '../../../assets/icons/care.svg';
+import Height from '../../../assets/images/height.png';
+import LightIcon from '../../../assets/icons/light.svg';
+import ToxicityIcon from '../../../assets/icons/toxicity.svg';
 
-export const ProductDetails = ({
-    product,
-    productVariant,
-    onSizeChange,
-}: {
-    product: CustomProduct;
-    productVariant: CustomVariant;
-    onSizeChange: (size: Sizes) => void;
-}) => {
+export const ProductDetails = () => {
+    const [currentProduct]: [CustomProduct | null] = useGetProductData();
+    const [currentProductVariant, changeVariant]: [
+        CustomVariant | null,
+        (size: Sizes) => void,
+    ] = useSetVariant(currentProduct);
+
     return (
         <div className={styles.productDetailsContainer}>
-            <div className={styles.imageContainer}>
-                <Slider images={productVariant.images} />
-            </div>
-            <div className={styles.productInfoContainer}>
-                <div className={styles.topInfo}>
-                    <h1>{product.name}</h1>
-                    <p>Family: {productVariant.family}</p>
-                    <p>Description: {product.description}</p>
-                    <SizeAttribute
-                        product={product}
-                        currentProductVariant={productVariant}
-                        onSizeChange={onSizeChange}
-                    />
-                </div>
-
-                <div className={styles.productAttributes}>
-                    <div className={styles.iconAttributes}>
-                        <CareAttribute care={productVariant.care} />
-                        <HeightAttribute height={productVariant.height} />
-                        <LightAttribute light={productVariant.light} />
-                        <ToxicityAttribute toxicity={productVariant.toxic} />
+            {currentProduct && currentProductVariant ? (
+                <>
+                    <div className={styles.imageContainer}>
+                        <Slider images={currentProductVariant.images} />
                     </div>
+                    <div className={styles.productInfoContainer}>
+                        <div className={styles.topInfo}>
+                            <h1>{currentProduct.name}</h1>
+                            <p>Family: {currentProductVariant.family}</p>
+                            <p>Description: {currentProduct.description}</p>
+                            <SizeAttribute
+                                product={currentProduct}
+                                currentProductVariant={currentProductVariant}
+                                onSizeChange={changeVariant}
+                            />
+                        </div>
 
-                    <p className={styles.price}>
-                        Cost: {productVariant.price}€
-                    </p>
-                </div>
-            </div>
+                        <div className={styles.productAttributes}>
+                            <div className={styles.iconAttributes}>
+                                <Attribute
+                                    component={
+                                        <CareIcon className={styles.icon} />
+                                    }
+                                    name="Care"
+                                    value={currentProductVariant.care}
+                                />
+                                <Attribute
+                                    component={
+                                        <img src={Height} alt="height"></img>
+                                    }
+                                    name="Height"
+                                    value={currentProductVariant.height}
+                                />
+
+                                <Attribute
+                                    component={
+                                        <LightIcon className={styles.icon} />
+                                    }
+                                    name="Light"
+                                    value={currentProductVariant.light}
+                                />
+
+                                <Attribute
+                                    component={
+                                        <ToxicityIcon className={styles.icon} />
+                                    }
+                                    name="Toxicity"
+                                    value={
+                                        currentProductVariant.toxic
+                                            ? 'Toxic'
+                                            : 'No toxic'
+                                    }
+                                />
+                            </div>
+
+                            <p className={styles.price}>
+                                Cost: {currentProductVariant?.price}€
+                            </p>
+                        </div>
+                    </div>
+                </>
+            ) : (
+                <p>error</p>
+            )}
         </div>
     );
 };
