@@ -1,1 +1,17 @@
 @use '../../assets/styles/constants.module' as c;
+
+.profilePage {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    background: c.$color-accent-dark;
+}
+
+.profileContent {
+    display: flex;
+    flex-grow: 1;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    padding: 2em 0;
+}

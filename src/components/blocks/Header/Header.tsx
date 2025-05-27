@@ -1,14 +1,13 @@
-import { useContext } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { Button } from '../../ui/Button';
 import styles from './Header.module.scss';
 import { logoutUser } from '../../../api/auth/authService';
-import { LoginContext } from '../../../App';
+import { useAuth } from '../../../store/auth/useAuth';
 import HomeIcon from '../../../assets/icons/main.svg';
 import CartIcon from '../../../assets/icons/cart.svg';
 
 export const Header = () => {
-    const { loginStatus, setLoginStatus } = useContext(LoginContext);
+    const { loginStatus, setLoginStatus } = useAuth();
     const navigate = useNavigate();
 
     const onLogout = () => {
