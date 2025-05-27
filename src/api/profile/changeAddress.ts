@@ -27,33 +27,28 @@ export const updateAddress = async (
     });
 
     // 2. Определение текущего типа адреса
-    const currentType =
-        addressData.type ||
-        (currentCustomer.billingAddressIds?.includes(addressId)
-            ? 'billing'
-            : 'shipping');
+    const wasBilling = currentCustomer.billingAddressIds?.includes(addressId);
+    const wasShipping = currentCustomer.shippingAddressIds?.includes(addressId);
+    const oldType = wasBilling ? 'billing' : 'shipping';
+
+    const newType = addressData.type || oldType;
 
     // 3. Управление типом адреса
     if (addressData.type) {
-        const isCurrentlyBilling =
-            currentCustomer.billingAddressIds?.includes(addressId);
-        const isCurrentlyShipping =
-            currentCustomer.shippingAddressIds?.includes(addressId);
-
         // Удаление из противоположного типа
-        if (addressData.type === 'shipping' && isCurrentlyBilling) {
+        if (newType === 'shipping' && wasBilling) {
             actions.push({ action: 'removeBillingAddressId', addressId });
-        } else if (addressData.type === 'billing' && isCurrentlyShipping) {
+        } else if (newType === 'billing' && wasShipping) {
             actions.push({ action: 'removeShippingAddressId', addressId });
         }
 
-        // Добавление в новый тип (если нужно)
+        // Добавление в нужный тип, если его там нет
         if (
-            (addressData.type === 'shipping' && !isCurrentlyShipping) ||
-            (addressData.type === 'billing' && !isCurrentlyBilling)
+            (newType === 'shipping' && !wasShipping) ||
+            (newType === 'billing' && !wasBilling)
         ) {
             const actionType =
-                addressData.type === 'shipping'
+                newType === 'shipping'
                     ? 'addShippingAddressId'
                     : 'addBillingAddressId';
             actions.push({ action: actionType, addressId });
@@ -67,7 +62,6 @@ export const updateAddress = async (
         currentCustomer.defaultBillingAddressId === addressId;
 
     if (!addressData.isDefault) {
-        // Снятие дефолтного статуса
         if (wasDefaultShipping) {
             actions.push({
                 action: 'setDefaultShippingAddress',
@@ -80,33 +74,12 @@ export const updateAddress = async (
                 addressId: null,
             });
         }
-    } else if (addressData.isDefault && currentType) {
-        // Установка нового дефолтного адреса
+    } else if (addressData.isDefault && newType) {
         const setAction =
-            currentType === 'shipping'
+            newType === 'shipping'
                 ? 'setDefaultShippingAddress'
                 : 'setDefaultBillingAddress';
 
-        // Сначала сбрасываем старый дефолтный адрес этого типа
-        if (
-            currentType === 'shipping' &&
-            currentCustomer.defaultShippingAddressId
-        ) {
-            actions.push({
-                action: 'setDefaultShippingAddress',
-                addressId: null,
-            });
-        } else if (
-            currentType === 'billing' &&
-            currentCustomer.defaultBillingAddressId
-        ) {
-            actions.push({
-                action: 'setDefaultBillingAddress',
-                addressId: null,
-            });
-        }
-
-        // Затем устанавливаем новый
         actions.push({ action: setAction, addressId });
     }
 

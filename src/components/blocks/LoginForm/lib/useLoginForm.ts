@@ -37,7 +37,7 @@ export const useLoginForm = () => {
                     message: 'Login successful!',
                     variant: 'success',
                 });
-                void navigate('/profile');
+                void navigate('/main');
             });
         } catch (error) {
             handleError(error);
