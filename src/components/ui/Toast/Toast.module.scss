@@ -1,0 +1,59 @@
+@use '../../../assets/styles/constants.module' as c;
+
+.toast {
+    position: fixed;
+    z-index: 1000;
+    right: 20px;
+    bottom: 20px;
+    width: auto;
+    min-width: 280px;
+    max-width: 90vw;
+    padding: 16px 24px;
+    border-radius: 8px;
+    color: c.$color-black;
+    box-shadow: 0 4px 12px rgb(0 0 0 / 15%);
+    animation: fade-in 0.3s ease;
+
+    &.success {
+        color: c.$color-white;
+        background: c.$color-success;
+    }
+
+    &.error {
+        color: c.$color-white;
+        background: c.$color-error;
+    }
+
+    &.warning {
+        color: c.$color-black;
+        background: c.$color-warning;
+    }
+
+    &.info {
+        color: c.$color-black;
+        background: c.$color-info;
+    }
+}
+
+.toastContent {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    font-size: 14px;
+    line-height: 1.5;
+    text-align: center;
+}
+
+@keyframes fade-in {
+    from {
+        transform: translateY(20px);
+        opacity: 0;
+    }
+
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}

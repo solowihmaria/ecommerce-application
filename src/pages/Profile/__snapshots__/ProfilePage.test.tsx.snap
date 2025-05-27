@@ -1,0 +1,87 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<ProfilePage/> component renders ProfilePage component 1`] = `
+<main
+  class="profileContent"
+>
+  <div
+    class="profileContainer"
+  >
+    <div
+      class="headerWrapper"
+    >
+      <svg
+        class="profileIcon"
+        fill="none"
+        height="1em"
+        stroke="currentColor"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        stroke-width="2"
+        viewBox="0 0 24 24"
+        width="1em"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"
+        />
+        <circle
+          cx="12"
+          cy="7"
+          r="4"
+        />
+      </svg>
+      <h1
+        class="heading heading--h1 pageTitle"
+      >
+        My Profile
+      </h1>
+    </div>
+    <div
+      class="profileSections"
+    >
+      <div>
+        Loading user data...
+      </div>
+      <div>
+        Loading addresses...
+      </div>
+      <div
+        class="changePassword"
+      >
+        <div
+          class="headerRow"
+        >
+          <h2
+            class="heading heading--h2"
+          >
+            Password
+          </h2>
+          <button
+            class="button outline editButton"
+            type="button"
+          >
+            <svg
+              class="editIcon"
+              fill="none"
+              height="1em"
+              stroke="currentColor"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              viewBox="0 0 24 24"
+              width="1em"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M17 3a2.828 2.828 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5L17 3z"
+              />
+            </svg>
+            Edit
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>
+`;

@@ -1,0 +1,31 @@
+// Базовые нейтральные цвета
+$color-black: #000;
+$color-white: #fff;
+$color-gray-100: #f5f5f5;
+$color-gray-200: #e8e8e8;
+$color-gray-300: #e0e0e0;
+$color-gray-400: #ddd;
+$color-gray-500: #a0a0a0;
+$color-gray-600: #666;
+$color-gray-800: #333;
+$color-primary: #506350;
+$color-primary-dark: #1b3124;
+$color-primary-light: #d9ecc8;
+$color-accent-primary: #4a931d;
+$color-accent-light: #63b326;
+$color-accent-dark: #324829;
+
+// Текст
+$color-text-primary: #eef7e6;
+$color-text-dark: #333;
+
+// Семантические цвета
+$color-error: #ff6347;
+$color-success: #346536;
+$color-warning: #ff9800;
+$color-info: #8e9e83;
+
+// Прозрачности
+$opacity-5: rgba(0 0 0 / 5%);
+$opacity-30: rgba(255 255 255 / 30%);
+$opacity-40: rgb(70 82 69 / 40%);

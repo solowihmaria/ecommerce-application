@@ -1,0 +1,23 @@
+@use './constants.module';
+@use './normalize.module';
+@use './fonts.module' as fonts;
+
+body {
+    font-family: fonts.$font-body;
+    font-size: 16px;
+    line-height: 1.6;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-family: fonts.$font-heading;
+    font-weight: 700;
+}
+
+span {
+    font-family: 'Inknut Antiqua', serif;
+}

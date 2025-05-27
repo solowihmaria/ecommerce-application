@@ -1,0 +1,39 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<NotFoundPage/> component Render NotFoundPage component 1`] = `
+<div
+  class="notFound"
+  data-testid="test-id-not-found-page"
+>
+  <div
+    class="content"
+  >
+    <div
+      class="errorCode"
+    >
+      404
+    </div>
+    <h1
+      class="heading heading--h1 title"
+    >
+      Page Not Found
+    </h1>
+    <p
+      class="message"
+    >
+      Oops! The page you're looking for doesn't exist or has been moved.
+    </p>
+    <a
+      class="homeLink"
+      data-discover="true"
+      href="/"
+    >
+      <button
+        class="button primary button"
+      >
+        Go to Homepage
+      </button>
+    </a>
+  </div>
+</div>
+`;

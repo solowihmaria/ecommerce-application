@@ -1,0 +1,29 @@
+@use '../../../assets/styles/constants.module' as c;
+
+.profileContainer {
+    width: 90%;
+    margin: 0 auto;
+    padding: 4rem 2rem;
+    border: 1px solid c.$color-primary-light;
+    border-radius: 20px;
+    background-color: c.$color-primary-dark;
+}
+
+.headerWrapper {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 3rem;
+}
+
+.profileIcon {
+    flex-shrink: 0;
+    font-size: 2.2rem;
+    color: c.$color-text-primary;
+}
+
+.pageTitle {
+    margin: 0;
+    font-size: 2rem;
+}

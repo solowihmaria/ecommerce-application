@@ -1,0 +1,16 @@
+@use '../../assets//styles/constants.module' as c;
+
+.registrationPage {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    background: c.$color-accent-dark;
+}
+
+.registrationContent {
+    display: flex;
+    flex: 1;
+    align-items: center;
+    justify-content: center;
+    padding: 4rem 2rem;
+}
