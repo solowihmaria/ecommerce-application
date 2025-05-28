@@ -1,0 +1,139 @@
+@use '../../../../../assets/styles/constants.module' as c;
+
+.testimonials {
+    position: relative;
+    padding: 4rem 0;
+    background: url('../../../../../assets/images/customers-bg.jpg') no-repeat
+        center center;
+    background-color: c.$color-primary-light;
+    background-size: cover;
+
+    &::before {
+        content: '';
+        position: absolute;
+        inset: 0;
+        background-color: rgba(c.$color-black, 0.1);
+    }
+}
+
+.container {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1rem;
+}
+
+.header {
+    margin-bottom: 3rem;
+    text-align: center;
+}
+
+.title {
+    margin-bottom: 1rem;
+    font-size: 2rem;
+    font-weight: 600;
+    color: c.$color-text-primary;
+}
+
+.subtitle {
+    max-width: 600px;
+    margin: 0 auto;
+    font-size: 1.125rem;
+    color: rgba(c.$color-text-primary, 0.7);
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    gap: 1.5rem;
+
+    @media (width >= 768px) {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+.card {
+    overflow: hidden;
+    border: 1px solid c.$color-gray-200;
+    border-radius: 0.5rem;
+    background-color: rgba(c.$color-text-primary, 0.95);
+    transition: transform 0.3s ease;
+
+    &:hover {
+        transform: translateY(-0.25rem);
+    }
+}
+
+.cardContent {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    padding: 1.5rem;
+}
+
+.authorHeader {
+    display: flex;
+    gap: 1rem;
+    align-items: flex-start;
+    justify-content: space-between;
+}
+
+.authorInfo {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+    min-width: 0;
+}
+
+.avatar {
+    width: 4rem;
+    min-width: 3rem;
+    height: 4rem;
+    border-radius: 50%;
+    background-color: c.$color-gray-100;
+    object-fit: cover;
+}
+
+.authorText {
+    min-width: 0;
+}
+
+.name {
+    overflow: hidden;
+    font-weight: 600;
+    color: c.$color-primary-dark;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.location {
+    overflow: hidden;
+    font-size: 0.875rem;
+    color: c.$color-primary;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.rating {
+    display: flex;
+    flex-shrink: 0;
+    gap: 0.25rem;
+}
+
+.starFilled {
+    width: 1rem;
+    height: 1rem;
+    color: c.$color-primary-dark;
+}
+
+.starEmpty {
+    width: 1rem;
+    height: 1rem;
+    color: c.$color-gray-300;
+}
+
+.text {
+    margin-top: 0.5rem;
+    font-style: italic;
+    color: c.$color-primary-dark;
+}
