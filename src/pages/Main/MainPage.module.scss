@@ -1,7 +1,6 @@
 @use '../../assets/styles/constants.module' as c;
 
 .mainPageContainer {
-    overflow: hidden; // РАЗОБРАТЬСЯ, ОТКУДА СПРАВА БЕЛАЯ ПОЛОСА
     display: flex;
     flex-direction: column;
     min-height: 100vh;
