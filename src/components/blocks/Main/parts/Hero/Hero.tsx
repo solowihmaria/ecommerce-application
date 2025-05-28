@@ -22,7 +22,7 @@ export function Hero() {
 
                     <Link to="/catalog">
                         <Button variant="primary" className={styles.button}>
-                            Shop Plants
+                            Find Your Plant
                             <FaArrowRight className={styles.buttonIcon} />
                         </Button>
                     </Link>

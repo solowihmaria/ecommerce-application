@@ -86,14 +86,17 @@
 
 .firstOrderBg {
     background-image: url('../../../../../assets/images/promo-first.jpg');
+    filter: brightness(0.7);
 }
 
 .birthdayBg {
     background-image: url('../../../../../assets/images/promo-birthday.jpg');
+    filter: brightness(0.7);
 }
 
 .bundleBg {
     background-image: url('../../../../../assets/images/promo-combo.jpg');
+    filter: brightness(0.7);
 }
 
 .cardContent {
@@ -157,7 +160,7 @@
     justify-content: space-between;
     padding: 0.75rem 1rem;
     border-radius: 0.5rem;
-    background-color: c.$color-white;
+    background-color: c.$color-text-primary;
 }
 
 .codeText {

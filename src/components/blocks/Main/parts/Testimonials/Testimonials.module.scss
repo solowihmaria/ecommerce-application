@@ -1,19 +1,11 @@
 @use '../../../../../assets/styles/constants.module' as c;
 
 .testimonials {
-    position: relative;
     padding: 4rem 0;
     background: url('../../../../../assets/images/customers-bg.jpg') no-repeat
         center center;
     background-color: c.$color-primary-light;
     background-size: cover;
-
-    &::before {
-        content: '';
-        position: absolute;
-        inset: 0;
-        background-color: rgba(c.$color-black, 0.1);
-    }
 }
 
 .container {
@@ -57,10 +49,6 @@
     border-radius: 0.5rem;
     background-color: rgba(c.$color-text-primary, 0.95);
     transition: transform 0.3s ease;
-
-    &:hover {
-        transform: translateY(-0.25rem);
-    }
 }
 
 .cardContent {
