@@ -1,22 +1,26 @@
 import { login as loginRequest } from './login';
 import { getToken, removeToken, setToken } from '../token';
-import type { LoginResponse } from './auth.types';
 import { logout } from './login';
+import { fetchMyProfile } from '../profile/profile';
+import type { Customer } from '../profile/profile.types';
 
 export const authenticateUser = async (
     email: string,
     password: string,
-    onSuccess?: () => void
-): Promise<LoginResponse> => {
+    onSuccess?: (customer: Customer) => void
+): Promise<{ token: string; customer: Customer }> => {
     const response = await loginRequest(email, password);
 
-    if (response?.access_token) {
-        setToken(response.access_token);
-        onSuccess?.();
-        return response;
+    if (!response?.access_token) {
+        throw new Error('Invalid response structure');
     }
+    setToken(response.access_token);
 
-    throw new Error('Invalid response structure');
+    // Получаем данные профиля
+    const customer = await fetchMyProfile(response.access_token);
+    onSuccess?.(customer);
+
+    return { token: response.access_token, customer };
 };
 
 export const logoutUser = async (): Promise<void> => {

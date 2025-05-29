@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { useNavigate } from 'react-router-dom';
@@ -6,14 +6,14 @@ import { loginSchema } from '../lib/login.validation';
 import type { LoginFormData } from '../Login.types';
 import { useAuthErrors } from '../lib/useAuthErrors';
 import { authenticateUser } from '../../../../api/auth/authService';
-import { LoginContext } from '../../../../App';
+import { useAuth } from '../../../../store/auth/useAuth';
 import { ToastContext } from '../../../ui/Toast/ToastContext';
 
 export const useLoginForm = () => {
     const [isPasswordVisible, setIsPasswordVisible] = React.useState(false);
     const navigate = useNavigate();
-    const { setLoginStatus } = useContext(LoginContext);
-    const { showToast } = useContext(ToastContext);
+    const { setLoginStatus, setCustomer } = useAuth();
+    const { showToast } = React.useContext(ToastContext);
 
     const methods = useForm<LoginFormData>({
         resolver: yupResolver(loginSchema),
@@ -30,8 +30,9 @@ export const useLoginForm = () => {
 
     const onSubmit = async (data: LoginFormData) => {
         try {
-            await authenticateUser(data.email, data.password, () => {
+            await authenticateUser(data.email, data.password, (profile) => {
                 setLoginStatus(true);
+                setCustomer(profile);
                 showToast({
                     message: 'Login successful!',
                     variant: 'success',

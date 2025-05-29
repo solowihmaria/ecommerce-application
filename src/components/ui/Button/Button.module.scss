@@ -42,25 +42,33 @@
         }
     }
 
-    // не застилизовала
     &.danger {
         border-color: c.$color-error;
         color: c.$color-error;
-        background-color: c.$color-white;
-
-        &:hover:not(:disabled) {
-            background-color: c.$color-gray-200;
-        }
-    }
-
-    // не застилизовала
-    &.outline {
-        border-color: c.$color-black;
-        color: c.$color-black;
         background-color: transparent;
 
         &:hover:not(:disabled) {
-            background-color: c.$opacity-5;
+            background-color: rgba(c.$color-error, 0.2);
+        }
+    }
+
+    &.success {
+        border-color: c.$color-accent-light;
+        color: c.$color-accent-light;
+        background-color: transparent;
+
+        &:hover:not(:disabled) {
+            background-color: rgba(c.$color-accent-light, 0.2);
+        }
+    }
+
+    &.outline {
+        border-color: c.$color-text-primary;
+        color: c.$color-text-primary;
+        background-color: transparent;
+
+        &:hover:not(:disabled) {
+            background-color: rgba(c.$color-accent-light, 0.2);
         }
     }
 
