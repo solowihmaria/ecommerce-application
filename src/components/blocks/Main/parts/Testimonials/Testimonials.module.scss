@@ -37,8 +37,9 @@
     display: grid;
     grid-template-columns: repeat(1, 1fr);
     gap: 1.5rem;
+    justify-items: center;
 
-    @media (width >= 768px) {
+    @media (width >= 1200px) {
         grid-template-columns: repeat(3, 1fr);
     }
 }
@@ -49,6 +50,10 @@
     border-radius: 0.5rem;
     background-color: rgba(c.$color-text-primary, 0.95);
     transition: transform 0.3s ease;
+
+    @media (width <= 1200px) {
+        width: 90%;
+    }
 }
 
 .cardContent {

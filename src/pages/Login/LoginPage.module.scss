@@ -4,6 +4,8 @@
     display: flex;
     flex-direction: column;
     background: c.$color-accent-dark;
+    background: url('../../assets/images/form-bg.jpg') no-repeat center center;
+    background-size: cover;
 }
 
 .loginContent {
@@ -13,5 +15,4 @@
     justify-content: center;
     width: 100%;
     height: 90vh;
-    padding: 2em 0;
 }

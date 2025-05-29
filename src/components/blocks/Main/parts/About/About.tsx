@@ -75,15 +75,15 @@ export function AboutSection() {
                     <div className={styles.statsContainer}>
                         <div className={styles.statsGrid}>
                             <div className={styles.statItem}>
-                                <div className={styles.statNumber}>50K+</div>
+                                <div className={styles.statNumber}>10K+</div>
                                 <div className={styles.statLabel}>
                                     Happy Customers
                                 </div>
                             </div>
                             <div className={styles.statItem}>
-                                <div className={styles.statNumber}>500+</div>
+                                <div className={styles.statNumber}>15K+</div>
                                 <div className={styles.statLabel}>
-                                    Plant Varieties
+                                    Plants delivered safely
                                 </div>
                             </div>
                             <div className={styles.statItem}>

@@ -49,7 +49,7 @@ export function PromoCodes() {
                                         20%
                                     </span>
                                     <p className={styles.discountDescription}>
-                                        OFF your first purchase
+                                        OFF your first purchase with us
                                     </p>
                                 </div>
                                 <div className={styles.codeBox}>
