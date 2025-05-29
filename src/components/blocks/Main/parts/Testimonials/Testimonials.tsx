@@ -36,7 +36,7 @@ export function Testimonials() {
         <section className={styles.testimonials}>
             <div className={styles.container}>
                 <div className={styles.header}>
-                    <h2 className={styles.title}>What Our Customers Say</h2>
+                    <h2 className={styles.title}>Trusted By Our Customers</h2>
                     <p className={styles.subtitle}>
                         Join thousands of happy plant parents who trust us with
                         their green spaces.
