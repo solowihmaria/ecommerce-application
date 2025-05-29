@@ -1,5 +1,6 @@
 import { Header } from '../../components/blocks/Header/Header';
 import { UserProfile } from '../../components/blocks/UserProfile';
+import { Footer } from '../../components/blocks/Footer';
 import styles from './ProfilePage.module.scss';
 
 export const ProfilePage = () => {
@@ -9,6 +10,7 @@ export const ProfilePage = () => {
             <main className={styles.profileContent}>
                 <UserProfile />
             </main>
+            <Footer />
         </div>
     );
 };
