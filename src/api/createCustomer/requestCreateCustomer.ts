@@ -6,21 +6,18 @@ import type {
 } from './createCustomer.types';
 import type { RegistrationFormData } from '../../components/blocks/RegistrationForm/Registration.types';
 
-const getAdminToken = async () => {
+export const getAdminToken = async () => {
     const authUrl = process.env.CTP_AUTH_URL;
     const clientId = process.env.CTP_CLIENT_ID;
     const clientSecret = process.env.CTP_CLIENT_SECRET;
-    const projectKey = process.env.CTP_PROJECT_KEY;
 
     const tokenUrl = `${authUrl}/oauth/token`;
-    const customerScope = `manage_customers:${projectKey}`;
     const credentials = btoa(`${clientId}:${clientSecret}`);
 
     const response = await axios.post<AuthResponse>(
         tokenUrl,
         new URLSearchParams({
             grant_type: 'client_credentials',
-            scope: customerScope,
         }),
         {
             headers: {
