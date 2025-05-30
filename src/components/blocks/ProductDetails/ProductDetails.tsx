@@ -14,6 +14,8 @@ import CareIcon from '../../../assets/icons/care.svg';
 import Height from '../../../assets/images/height.png';
 import LightIcon from '../../../assets/icons/light.svg';
 import ToxicityIcon from '../../../assets/icons/toxicity.svg';
+import { useState } from 'react';
+import { BigSlider } from '../BigSlider/BigSlider';
 
 export const ProductDetails = () => {
     const [currentProduct]: [CustomProduct | null] = useGetProductData();
@@ -21,13 +23,32 @@ export const ProductDetails = () => {
         CustomVariant | null,
         (size: Sizes) => void,
     ] = useSetVariant(currentProduct);
+    const [isModalOpened, setIsModalOpened] = useState<boolean>(false);
+    const [clickedSlide, setClickedSlide] = useState<number | null>(null);
+
+    const showModal = (index: number) => {
+        console.log('click');
+        setClickedSlide(index);
+        setIsModalOpened(true);
+    };
+
+    const closeModal = () => {
+        console.log('click');
+        setIsModalOpened(false);
+    };
 
     return (
         <div className={styles.productDetailsContainer}>
             {currentProduct && currentProductVariant ? (
                 <>
-                    <div className={styles.imageContainer}>
-                        <Slider images={currentProductVariant.images} />
+                    <div className={styles.sliderContainer}>
+                        <Slider
+                            images={currentProductVariant.images}
+                            initialSlide={0}
+                            showModal={showModal}
+                            imageClass={styles.image}
+                            containerClass={styles.container}
+                        />
                     </div>
                     <div className={styles.productInfoContainer}>
                         <div className={styles.topInfo}>
@@ -84,6 +105,15 @@ export const ProductDetails = () => {
                             </p>
                         </div>
                     </div>
+                    {isModalOpened && clickedSlide != null && (
+                        <>
+                            <BigSlider
+                                currentSlide={clickedSlide}
+                                images={currentProductVariant?.images}
+                                closeModal={closeModal}
+                            />
+                        </>
+                    )}
                 </>
             ) : (
                 <p>error</p>

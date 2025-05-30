@@ -1,25 +1,55 @@
 import { Swiper, SwiperSlide } from 'swiper/react';
-import { Navigation } from 'swiper/modules';
+import { Navigation, Pagination } from 'swiper/modules';
 import type { ImagesSliderProps } from './ImagesSlider.types';
 
 import 'swiper/scss';
 import 'swiper/scss/navigation';
+import 'swiper/scss/pagination';
+import 'swiper/css/thumbs';
 import './ImagesSlider.module.scss';
+
 import styles from './ImagesSlider.module.scss';
 
-export const Slider = ({ images }: ImagesSliderProps) => {
+export const Slider = ({
+    images,
+    initialSlide,
+    showModal,
+    imageClass,
+    containerClass,
+}: ImagesSliderProps) => {
     return (
-        <Swiper className={styles.slider} navigation modules={[Navigation]}>
-            {images.map((image) => {
-                return (
-                    <SwiperSlide key={`${image.url}${image.label}`}>
-                        <div
-                            className={styles.imageContainer}
-                            style={{ backgroundImage: `url(${image.url})` }}
-                        ></div>
-                    </SwiperSlide>
-                );
-            })}
-        </Swiper>
+        <div className={styles.test}>
+            <Swiper
+                pagination={true}
+                className={styles.slider}
+                navigation
+                modules={[Navigation, Pagination]}
+                loop={true}
+                initialSlide={initialSlide}
+            >
+                {images.map((image, index) => {
+                    return (
+                        <SwiperSlide
+                            className={styles.slideContainer}
+                            key={`${image.url}${image.label}`}
+                        >
+                            <div className={containerClass}>
+                                <img
+                                    src={image.url}
+                                    alt={image.label}
+                                    onClick={() => {
+                                        if (showModal) {
+                                            showModal(index);
+                                        }
+                                    }}
+                                    aria-hidden="true"
+                                    className={imageClass}
+                                ></img>
+                            </div>
+                        </SwiperSlide>
+                    );
+                })}
+            </Swiper>
+        </div>
     );
 };

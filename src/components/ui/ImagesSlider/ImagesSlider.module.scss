@@ -1,12 +1,15 @@
 .slider {
     --swiper-navigation-color: #124a428a;
+    --swiper-pagination-color: #124a428a;
+
+    /* height: 100%; */
 }
 
-.imageContainer {
-    aspect-ratio: 3/4;
-    height: 600px;
-    background-color: rgb(190 206 188);
-    background-repeat: no-repeat;
-    background-position: center;
-    background-size: cover;
+/* .slideContainer {
+    display: flex;
+    justify-content: center;
+} */
+
+.test {
+    display: flex;
 }
