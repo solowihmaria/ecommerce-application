@@ -92,7 +92,12 @@ export const AddressList = () => {
                             </Heading>
 
                             <div className={styles.field}>
-                                <Label htmlFor="add-type">Address Type</Label>
+                                <Label
+                                    className={styles.modalLabel}
+                                    htmlFor="add-type"
+                                >
+                                    Address Type
+                                </Label>
                                 <Select id="add-type" {...addRegister('type')}>
                                     <option value="shipping">Shipping</option>
                                     <option value="billing">Billing</option>
@@ -100,7 +105,11 @@ export const AddressList = () => {
                             </div>
 
                             <div className={styles.field}>
-                                <Label htmlFor="add-country" required>
+                                <Label
+                                    className={styles.modalLabel}
+                                    htmlFor="add-country"
+                                    required
+                                >
                                     Country
                                 </Label>
                                 <Select
@@ -120,7 +129,11 @@ export const AddressList = () => {
                             </div>
 
                             <div className={styles.field}>
-                                <Label htmlFor="add-city" required>
+                                <Label
+                                    className={styles.modalLabel}
+                                    htmlFor="add-city"
+                                    required
+                                >
                                     City
                                 </Label>
                                 <Input
@@ -132,7 +145,11 @@ export const AddressList = () => {
                             </div>
 
                             <div className={styles.field}>
-                                <Label htmlFor="add-street" required>
+                                <Label
+                                    className={styles.modalLabel}
+                                    htmlFor="add-street"
+                                    required
+                                >
                                     Street
                                 </Label>
                                 <Input
@@ -144,7 +161,11 @@ export const AddressList = () => {
                             </div>
 
                             <div className={styles.field}>
-                                <Label htmlFor="add-postalCode" required>
+                                <Label
+                                    className={styles.modalLabel}
+                                    htmlFor="add-postalCode"
+                                    required
+                                >
                                     Postal Code
                                 </Label>
                                 <Input
@@ -161,7 +182,10 @@ export const AddressList = () => {
                                     id="add-default"
                                     {...addRegister('isDefault')}
                                 />
-                                <Label htmlFor="add-default">
+                                <Label
+                                    className={styles.modalLabel}
+                                    htmlFor="add-default"
+                                >
                                     Set as default address
                                 </Label>
                             </div>

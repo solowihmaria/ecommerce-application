@@ -14,10 +14,18 @@ export const UserProfile = () => {
                     My Profile
                 </Heading>
             </div>
-            <div className={styles.profileSections}>
-                <PersonalInfo />
+
+            <div className={styles.profileMain}>
+                <div className={styles.infoSection}>
+                    <PersonalInfo />
+                </div>
+                <div className={styles.passwordSection}>
+                    <ChangePassword />
+                </div>
+            </div>
+
+            <div className={styles.addressesSection}>
                 <AddressList />
-                <ChangePassword />
             </div>
         </div>
     );

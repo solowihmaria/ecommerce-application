@@ -4,7 +4,8 @@
     padding: 1.5rem;
     border: 1px solid c.$color-text-primary;
     border-radius: 0.5rem;
-    background-color: rgba(c.$color-primary-dark, 0.9);
+    background-color: rgba(c.$color-black, 0.25);
+    backdrop-filter: blur(35px);
 }
 
 .sectionTitle {
@@ -46,6 +47,14 @@
 .editIcon {
     font-size: 1.2rem;
     color: inherit;
+}
+
+.title {
+    font-size: 1.2rem;
+}
+
+.info {
+    font-size: 1.2rem;
 }
 
 @media (width <= 768px) {
