@@ -1,6 +1,7 @@
 import styles from './RegistrationPage.module.scss';
 import { RegistrationForm } from '../../components/blocks/RegistrationForm/RegistrationForm';
 import { Header } from '../../components/blocks/Header/Header';
+import { Footer } from '../../components/blocks/Footer';
 
 export const RegistrationPage = () => {
     return (
@@ -12,6 +13,7 @@ export const RegistrationPage = () => {
             <main className={styles.registrationContent}>
                 <RegistrationForm />
             </main>
+            <Footer />
         </div>
     );
 };
