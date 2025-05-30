@@ -1,0 +1,111 @@
+@use '../../../../../assets/styles/constants.module' as c;
+
+.card {
+    transition: all 0.3s;
+}
+
+.card:hover {
+    transform: scale(102%);
+    cursor: pointer;
+}
+
+.frame {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: end;
+
+    // height: 500px;
+    aspect-ratio: 0.55 / 1;
+    width: 100%;
+    border: 1px solid c.$color-primary-light;
+    border-radius: 20px;
+    background: linear-gradient(hsl(0deg 0% 100% / 15%), hsl(0deg 0% 0% / 25%));
+
+    // background-color: rgba(50, 72, 41, 0.25);
+    background-color: hsl(0deg 0% 100% / 15%);
+    background-color: c.$opacity-40;
+
+    // background: linear-gradient(c.$opacity-40, hsla(0, 0%, 0%, 0.25));
+    backdrop-filter: blur(10px);
+
+    // overflow: hidden;
+}
+
+.preview {
+    position: absolute;
+    z-index: 1;
+    top: -10px;
+    left: -25px;
+    width: 120%;
+}
+
+.info {
+    position: relative;
+
+    // overflow-y: hidden;
+
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    align-items: center;
+    justify-content: end;
+    padding: 1rem;
+    border-radius: 0 0 20px 20px;
+
+    // text-align: center;
+    color: c.$color-text-secondary;
+    background-color: c.$color-gray-bkg;
+}
+
+.name {
+    font-weight: 700;
+    text-transform: uppercase;
+}
+
+.description {
+    overflow: hidden;
+    display: -webkit-box;
+    font-size: 0.8rem;
+    font-weight: 400;
+    text-align: left;
+    -webkit-line-clamp: 2;
+    line-clamp: 2;
+
+    /* сколько строк оставить */
+    -webkit-box-orient: vertical;
+}
+
+.price {
+    width: 100%;
+    font-size: 0.7rem;
+    text-align: right;
+}
+
+.priceDiscounted {
+    position: relative;
+    font-size: 1rem;
+    line-height: 0.5rem;
+
+    // text-decoration: line-through;
+}
+
+.priceDiscounted::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 0;
+    width: 100%;
+    height: 1px;
+    background-color: c.$color-text-secondary;
+}
+
+.priceValue {
+    font-size: 1.4rem;
+}
+
+.buttonBuy {
+    font-size: 0.8rem;
+}

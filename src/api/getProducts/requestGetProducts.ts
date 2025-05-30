@@ -1,6 +1,6 @@
 import axios from 'axios';
 import { getAdminToken } from '../createCustomer/requestCreateCustomer';
-import type { ProductPagedQueryResponse } from './getProducts.types';
+import type { ProductProjectionPagedQueryResponse } from './getProducts.types';
 
 export const requestGetProducts = async () => {
     const apiUrl = process.env.CTP_API_URL;
@@ -8,19 +8,18 @@ export const requestGetProducts = async () => {
     const productsUrl = `${apiUrl}/${projectKey}/product-projections`;
     const adminToken = await getAdminToken();
 
-    // const parameters = new URLSearchParams({
-    //     withTotal: 'true',
-    // });
+    const response = await axios.get<ProductProjectionPagedQueryResponse>(
+        productsUrl,
+        {
+            headers: {
+                Authorization: `Bearer ${adminToken.access_token}`,
+            },
+            params: {
+                withTotal: 'true',
+            },
+        }
+    );
 
-    const response = await axios.get<ProductPagedQueryResponse>(productsUrl, {
-        headers: {
-            Authorization: `Bearer ${adminToken.access_token}`,
-        },
-        params: {
-            withTotal: 'true',
-        },
-    });
-
-    console.log(response);
-    return response.data;
+    console.log(response.data.results);
+    return response.data.results;
 };

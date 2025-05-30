@@ -1,1 +1,18 @@
 @use '../../assets/styles/constants.module' as c;
+
+.catalogPage {
+    color: white;
+    background: url('../../assets/images/bkg.jpg');
+}
+
+// .profilePage {
+//     display: flex;
+//     flex-direction: column;
+//     min-height: 100vh;
+//     background: c.$color-accent-dark;
+// }
+
+.catalogContent {
+    // width: 100%;
+    padding: 2em;
+}

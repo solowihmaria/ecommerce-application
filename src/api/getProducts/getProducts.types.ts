@@ -95,10 +95,10 @@ interface Attribute {
 
 interface ProductVariant {
     id: number;
-    prices?: Price[];
+    prices: Price[];
     price?: Price;
-    attributes?: Attribute[];
-    images?: Image[];
+    attributes: Attribute[];
+    images: Image[];
 }
 
 interface SearchKeyword {
@@ -111,7 +111,8 @@ interface SearchKeywords {
 }
 
 interface ProductData {
-    name: string;
+    name: { 'en-US': string };
+    description: { 'en-US': string };
     categories: CategoryReference[];
     slug: string;
     masterVariant: ProductVariant;
@@ -126,8 +127,8 @@ interface ProductCatalogData {
     hasStagedChanges: boolean;
 }
 
-export interface Product {
-    id?: string;
+export interface CTProduct {
+    id: string;
     version: string;
     key?: string;
     productType: ProductTypeReference;
@@ -136,10 +137,76 @@ export interface Product {
     lastModifiedAt: string;
 }
 
+export interface Product {
+    id: string;
+    name: string;
+    description: string;
+    masterVariant: {
+        id: number;
+        sku?: string;
+        price: {
+            value: number;
+            currency: string;
+            discounted?: { value: number };
+        };
+        images: Image[];
+        family: string;
+    };
+    variants?: {
+        id: string;
+        price: { value: number; currency: string };
+    }[];
+}
+
 export interface ProductPagedQueryResponse {
     limit: number;
     offset: number;
     count: number;
     total?: number;
-    results: Product[];
+    results: CTProduct[];
+}
+
+interface ProductSearchMatchingVariantEntry {
+    id: number;
+    sku: string;
+}
+
+interface ProductSearchMatchingVariants {
+    allMatched: boolean;
+    matchedVariants: ProductSearchMatchingVariantEntry[];
+}
+
+export interface ProductProjection {
+    id: string;
+    version: number;
+    key?: string;
+    productType: ProductTypeReference;
+    name: { 'en-US': string };
+    description: { 'en-US': string };
+    // slug: { 'en-US': string };
+    categories: CategoryReference[];
+    masterVariant: ProductVariant;
+    variants: ProductVariant[];
+}
+
+export interface ProductSearchResult {
+    id: string;
+    matchingVariants?: ProductSearchMatchingVariants[];
+    productProjection: ProductProjection;
+}
+
+export interface ProductPagedSearchResponse {
+    total: number;
+    offset: number;
+    limit: number;
+    facets: number;
+    results: ProductSearchResult[];
+}
+
+export interface ProductProjectionPagedQueryResponse {
+    limit: number;
+    count: number;
+    total: number;
+    offset: number;
+    results: ProductProjection[];
 }
