@@ -12,6 +12,7 @@ export const Catalog = () => {
     const [isLoading, setIsLoading] = useState(true);
     const [error, setError] = useState<string | null>(null);
     const [sort, setSort] = useState<string>('');
+    const [searchInput, setSearchInput] = useState<string>('');
     const [query, setQuery] = useState<string>('');
 
     useEffect(() => {
@@ -29,6 +30,15 @@ export const Catalog = () => {
 
         void loadProducts();
     }, [sort, query]);
+
+    // Задержка для оптимизации количества запросов при вводе в поле поиска
+    useEffect(() => {
+        const timeout = setTimeout(() => {
+            setQuery(searchInput);
+        }, 500);
+
+        return () => clearTimeout(timeout);
+    }, [searchInput]);
 
     if (isLoading) {
         return <div>Loading...</div>;
@@ -61,7 +71,7 @@ export const Catalog = () => {
                     handleSubmit={handleSearch}
                     handleChange={(e) => {
                         if (e.target instanceof HTMLInputElement) {
-                            setQuery(e.target.value);
+                            setSearchInput(e.target.value);
                         }
                     }}
                 />
