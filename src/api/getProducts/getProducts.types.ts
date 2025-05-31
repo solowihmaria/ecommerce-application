@@ -151,6 +151,7 @@ export interface Product {
         };
         images: Image[];
         family: string;
+        preview?: string;
     };
     variants?: {
         id: string;

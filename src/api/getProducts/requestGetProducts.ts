@@ -16,6 +16,7 @@ export const requestGetProducts = async () => {
             },
             params: {
                 withTotal: 'true',
+                limit: 50,
             },
         }
     );

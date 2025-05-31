@@ -25,6 +25,7 @@ const transformProductData = (productsData: ProductProjection[]) => {
                 },
                 images: productData.masterVariant.images,
                 family: productData.masterVariant.attributes[0].value,
+                preview: productData.masterVariant.attributes[6]?.value,
             },
         };
     });

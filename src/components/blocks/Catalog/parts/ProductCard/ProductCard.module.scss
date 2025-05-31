@@ -1,6 +1,7 @@
 @use '../../../../../assets/styles/constants.module' as c;
 
 .card {
+    text-decoration: none;
     transition: all 0.3s;
 }
 
@@ -39,6 +40,7 @@
     top: -10px;
     left: -25px;
     width: 120%;
+    max-height: 100%;
 }
 
 .info {
@@ -53,7 +55,7 @@
     align-items: center;
     justify-content: end;
     padding: 1rem;
-    border-radius: 0 0 20px 20px;
+    border-radius: 20px;
 
     // text-align: center;
     color: c.$color-text-secondary;
@@ -61,13 +63,17 @@
 }
 
 .name {
-    font-weight: 700;
+    margin-bottom: 0;
+    color: c.$color-text-secondary;
+
+    // font-weight: 700;
     text-transform: uppercase;
 }
 
 .description {
     overflow: hidden;
     display: -webkit-box;
+    margin: 0;
     font-size: 0.8rem;
     font-weight: 400;
     text-align: left;
@@ -107,5 +113,7 @@
 }
 
 .buttonBuy {
+    width: 100%;
+    padding: 0.75rem 1.5rem;
     font-size: 0.8rem;
 }
