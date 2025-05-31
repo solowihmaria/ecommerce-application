@@ -9,6 +9,13 @@
     gap: 32px;
 }
 
+.controls {
+    display: flex;
+    gap: 16px;
+    align-items: center;
+    justify-content: space-between;
+}
+
 .sortingBlock {
     display: flex;
     gap: 8px;

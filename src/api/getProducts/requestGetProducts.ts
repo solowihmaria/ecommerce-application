@@ -2,7 +2,7 @@ import axios from 'axios';
 import { getAdminToken } from '../createCustomer/requestCreateCustomer';
 import type { ProductProjectionPagedSearchResponse } from './getProducts.types';
 
-export const requestGetProducts = async (sort?: string) => {
+export const requestGetProducts = async (sort?: string, query?: string) => {
     const apiUrl = process.env.CTP_API_URL;
     const projectKey = process.env.CTP_PROJECT_KEY;
     const productsUrl = `${apiUrl}/${projectKey}/product-projections/search`;
@@ -18,6 +18,7 @@ export const requestGetProducts = async (sort?: string) => {
                 // withTotal: 'true',
                 limit: 50,
                 ...(sort ? { sort } : {}),
+                ...(query ? { 'text.en-US': query } : {}),
             },
         }
     );

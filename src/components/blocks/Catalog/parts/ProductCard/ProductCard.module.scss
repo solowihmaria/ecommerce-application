@@ -1,12 +1,14 @@
 @use '../../../../../assets/styles/constants.module' as c;
 
 .card {
+    color: c.$color-text-secondary;
     text-decoration: none;
     transition: all 0.3s;
 }
 
 .card:hover {
     transform: scale(102%);
+    color: c.$color-text-primary;
     cursor: pointer;
 }
 
@@ -48,13 +50,12 @@
     justify-content: end;
     padding: 1rem;
     border-radius: 20px;
-    color: c.$color-text-secondary;
     background-color: c.$color-gray-bkg;
 }
 
 .name {
     margin-bottom: 0;
-    color: c.$color-text-secondary;
+    color: inherit;
     text-transform: uppercase;
 }
 
@@ -80,6 +81,7 @@
     position: relative;
     font-size: 1rem;
     line-height: 0.5rem;
+    opacity: 0.5;
 }
 
 .priceDiscounted::after {
@@ -92,12 +94,16 @@
     background-color: c.$color-text-secondary;
 }
 
+.card:hover .priceDiscounted::after {
+    background-color: c.$color-text-primary;
+}
+
 .priceValue {
     font-size: 1.4rem;
 }
 
 .buttonBuy {
-    width: 100%;
+    // width: 100%;
     padding: 0.75rem 1.5rem;
     font-size: 0.8rem;
 }
