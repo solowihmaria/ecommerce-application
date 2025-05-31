@@ -33,8 +33,8 @@ const transformProductData = (productsData: ProductProjection[]) => {
     return products;
 };
 
-export const getProducts = async () => {
-    const data = await requestGetProducts();
+export const getProducts = async (sort: string) => {
+    const data = await requestGetProducts(sort);
 
     const products: Product[] = transformProductData(data);
 

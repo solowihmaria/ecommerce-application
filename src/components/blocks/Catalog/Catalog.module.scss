@@ -2,3 +2,20 @@
     display: flex;
     gap: 16px;
 }
+
+.listContainer {
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+}
+
+.sortingBlock {
+    display: flex;
+    gap: 8px;
+    align-items: baseline;
+    width: 18em;
+}
+
+.sortingLabel {
+    white-space: nowrap;
+}

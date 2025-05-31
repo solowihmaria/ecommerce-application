@@ -211,3 +211,11 @@ export interface ProductProjectionPagedQueryResponse {
     offset: number;
     results: ProductProjection[];
 }
+
+export interface ProductProjectionPagedSearchResponse {
+    limit: number;
+    count: number;
+    total: number;
+    offset: number;
+    results: ProductProjection[];
+}
