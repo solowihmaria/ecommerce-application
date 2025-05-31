@@ -5,6 +5,7 @@ import type {
     CustomVariant,
 } from '../../../../api/product/product.types';
 import styles from '../ProductDetails.module.scss';
+import { Button } from '../../../ui/Button';
 
 const getAvailableSizes = (product: CustomProduct) => {
     const sizes: Sizes[] = [];
@@ -47,23 +48,28 @@ export const SizeAttribute = ({
         <ul className={styles.sizeContainer}>
             {getAvailableSizes(product).map((size) =>
                 size === getCurrentSize(currentProductVariant) ? (
-                    <li
-                        key={size}
-                        className={clsx(styles.sizeActive, styles.size)}
-                    >
-                        {getSizeName(size)}
+                    <li key={size}>
+                        <Button
+                            className={clsx(
+                                styles.button,
+                                styles.sizeActive,
+                                styles.size
+                            )}
+                        >
+                            {getSizeName(size)}
+                        </Button>
                     </li>
                 ) : (
-                    <li
-                        onClick={() => {
-                            console.log(`hello size ${size}`);
-                            onSizeChange(size);
-                        }}
-                        aria-hidden="true"
-                        key={size}
-                        className={styles.size}
-                    >
-                        {getSizeName(size)}
+                    <li key={size}>
+                        <Button
+                            className={clsx(styles.button, styles.size)}
+                            onClick={() => {
+                                console.log(`hello size ${size}`);
+                                onSizeChange(size);
+                            }}
+                        >
+                            {getSizeName(size)}
+                        </Button>
                     </li>
                 )
             )}

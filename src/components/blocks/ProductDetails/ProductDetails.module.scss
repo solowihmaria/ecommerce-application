@@ -2,15 +2,18 @@
 
 .productDetailsContainer {
     display: flex;
-    gap: 30px;
+    gap: 3rem;
     justify-content: center;
     width: 100%;
     height: min-content;
     padding: 20px;
+    border: 1px solid c.$border;
+    border-radius: 1rem;
+    backdrop-filter: blur(c.$blur);
 }
 
 .sliderContainer {
-    width: 30%;
+    width: 40%;
     min-width: 0;
     text-align: center;
 }
@@ -24,24 +27,15 @@
     width: 100%;
     height: 100%;
     object-fit: cover;
-
-    /* object-position: center; */
-
-    /* aspect-ratio: 3/4; */
-
-    /* height: 600px;
-    width: 600px;
-    background-color: rgb(190 206 188);
-    background-repeat: no-repeat;
-    background-position: center;
-    background-size: cover; */
+    cursor: pointer;
 }
 
 .productInfoContainer {
     display: flex;
     flex-direction: column;
-    gap: 20px;
+    justify-content: space-between;
     width: 50%;
+    color: c.$color-text-primary;
 }
 
 .topInfo {
@@ -50,14 +44,17 @@
     gap: 20px;
 }
 
+.productName {
+    text-transform: uppercase;
+}
+
 .productAttributes {
     display: flex;
     flex-direction: column;
-    gap: 10px;
+    gap: 1rem;
     width: 100%;
-    padding: 20px;
+    padding-top: 2rem;
     border-radius: 10px;
-    background-color: c.$color-primary-dark;
 }
 
 .iconContainer {
@@ -73,15 +70,14 @@
 .attributeContainer {
     display: flex;
     flex-direction: row;
-    gap: 10px;
+    gap: 0.875rem;
     align-items: center;
-    width: 150px;
 }
 
 .iconAttributes {
     display: flex;
     flex-flow: row wrap;
-    gap: 20px;
+    gap: 1.5rem;
     align-items: center;
 }
 
@@ -92,20 +88,19 @@
 
 .sizeContainer {
     display: flex;
-    gap: 10px;
+    flex-wrap: wrap;
+    gap: 15px;
+    justify-content: flex-start;
     list-style-type: none;
 }
 
-.size {
-    padding: 6px 12px;
-    border: 1px solid c.$color-white;
-    border-radius: 8px;
-    cursor: pointer;
+.size.sizeActive {
+    color: c.$color-accent-dark;
+    background-color: c.$color-gray-300;
 }
 
-.sizeActive {
-    color: c.$color-accent-dark;
-    background-color: c.$color-white;
+.size.sizeActive:hover {
+    color: c.$color-text-primary;
 }
 
 .priceContainer {
@@ -147,18 +142,26 @@
     color: c.$color-error;
 }
 
-@media (width <= 700px) {
+.labelName {
+    font-weight: bold;
+    color: c.$color-text-primary;
+    text-transform: uppercase;
+}
+
+@media (width <= 992px) {
     .productDetailsContainer {
         flex-direction: column;
+        gap: 1rem;
         padding: 0;
-    }
-
-    .imageContainer {
-        width: 100%;
+        border: none;
     }
 
     .sliderContainer {
         width: 100%;
+    }
+
+    .productName {
+        font-size: 1.5rem;
     }
 
     .productInfoContainer {
@@ -166,10 +169,65 @@
     }
 
     .iconAttributes {
+        gap: 1rem;
         justify-content: space-between;
     }
 
+    .topInfo {
+        padding: 0 1rem;
+    }
+
     .productAttributes {
+        margin-top: 1rem;
+        padding: 1rem;
         background-color: c.$color-primary-dark;
+    }
+
+    .sizeContainer {
+        gap: 1rem;
+        justify-content: flex-start;
+    }
+
+    .button.size {
+        font-size: 1rem;
+    }
+
+    .description {
+        font-size: 1rem;
+    }
+
+    .productActions {
+        display: flex;
+        justify-content: center;
+    }
+
+    .attributeContainer {
+        min-width: 135px;
+    }
+}
+
+@media (width <= 768px) {
+    .productAttributes {
+        margin-top: 1rem;
+        background-color: c.$color-primary-dark;
+    }
+}
+
+@media (width <= 500px) {
+    .container {
+        height: 400px;
+    }
+
+    .imageContainer {
+        width: 100%;
+    }
+
+    .sizeContainer {
+        justify-content: flex-start;
+    }
+
+    .button.size {
+        padding: 0.5rem 1rem;
+        font-size: 0.875rem;
     }
 }

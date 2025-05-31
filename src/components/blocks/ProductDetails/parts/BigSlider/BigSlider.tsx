@@ -10,6 +10,7 @@ import 'swiper/css/thumbs';
 import styles from './BigSlider.module.scss';
 import { useState } from 'react';
 import { IoMdClose } from 'react-icons/io';
+import { SlideContent } from '../SlideContent/SlideContent';
 
 export const BigSlider = ({
     currentSlide,
@@ -21,6 +22,8 @@ export const BigSlider = ({
     closeModal: () => void;
 }) => {
     const [thumbsSwiper, setThumbsSwiper] = useState<SwiperType | null>(null);
+    const [currentMiniSlide, setCurrentMiniSlide] = useState(currentSlide);
+
     return (
         <div className={styles.modalBackground}>
             <span
@@ -36,34 +39,26 @@ export const BigSlider = ({
                     {images.length > 1 && (
                         <div className={styles.smallSwiperContainer}>
                             <Swiper
+                                simulateTouch={true}
                                 onSwiper={setThumbsSwiper}
-                                pagination={true}
+                                pagination={{ clickable: true }}
                                 slidesPerView={3}
                                 spaceBetween={2}
                                 direction="vertical"
                                 modules={[Navigation, Pagination, Thumbs]}
                                 className={styles.smallSwiper}
                             >
-                                {images.map((image) => {
+                                {images.map((image, index) => {
                                     return (
                                         <SwiperSlide
                                             className={styles.slideSmall}
                                             key={`${image.url}${image.label}`}
                                         >
-                                            <div
-                                                className={
-                                                    styles.imageContainer
-                                                }
-                                            >
-                                                <img
-                                                    src={image.url}
-                                                    alt={image.label}
-                                                    aria-hidden="true"
-                                                    className={
-                                                        styles.smallImage
-                                                    }
-                                                ></img>
-                                            </div>
+                                            <SlideContent
+                                                imageIndex={index}
+                                                image={image}
+                                                currentSlide={currentMiniSlide}
+                                            />
                                         </SwiperSlide>
                                     );
                                 })}
@@ -74,13 +69,16 @@ export const BigSlider = ({
                     <div className={styles.bigSliderContainer}>
                         {' '}
                         <Swiper
-                            pagination={true}
+                            pagination={{ clickable: true }}
                             className={styles.slider}
                             navigation
                             modules={[Navigation, Pagination, Thumbs]}
                             loop={true}
                             initialSlide={currentSlide}
                             thumbs={{ swiper: thumbsSwiper }}
+                            onSlideChange={(swiper) => {
+                                setCurrentMiniSlide(swiper.realIndex);
+                            }}
                         >
                             {images.map((image) => {
                                 return (

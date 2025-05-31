@@ -20,12 +20,12 @@ export const Slider = ({
     return (
         <div className={styles.test}>
             <Swiper
-                pagination={true}
                 className={styles.slider}
                 navigation
                 modules={[Navigation, Pagination]}
                 loop={true}
                 initialSlide={initialSlide}
+                pagination={{ clickable: true }}
             >
                 {images.map((image, index) => {
                     return (

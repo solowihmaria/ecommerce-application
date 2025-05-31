@@ -9,6 +9,27 @@
 .main {
     display: flex;
     flex-grow: 1;
-    padding: 40px 20px;
+    padding: 4rem 6rem;
     background-color: c.$color-primary;
+    background-image: url('../../assets/images/hero-bg.jpg');
+    background-position: center;
+    background-size: cover;
+}
+
+@media (width <= 992px) {
+    .main {
+        padding: 2rem 3rem;
+    }
+}
+
+@media (width <= 700px) {
+    .main {
+        padding: 0;
+    }
+}
+
+@media (width <= 500px) {
+    .main {
+        padding: 0;
+    }
 }
