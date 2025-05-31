@@ -1,3 +1,5 @@
+@use '../../../assets/styles/constants.module' as c;
+
 .catalogContainer {
     display: flex;
     gap: 16px;
@@ -25,4 +27,21 @@
 
 .sortingLabel {
     white-space: nowrap;
+}
+
+.error {
+    display: flex;
+    gap: 0.5rem;
+    align-items: center;
+    min-height: 1.25rem;
+    margin-top: 0.25rem;
+    color: c.$color-error;
+    overflow-wrap: break-word;
+    white-space: normal;
+    animation: fade-in 0.2s ease-out;
+
+    .errorIcon {
+        flex-shrink: 0;
+        font-size: 1.3rem;
+    }
 }

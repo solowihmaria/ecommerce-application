@@ -15,7 +15,6 @@ export const requestGetProducts = async (sort?: string, query?: string) => {
                 Authorization: `Bearer ${adminToken.access_token}`,
             },
             params: {
-                // withTotal: 'true',
                 limit: 50,
                 ...(sort ? { sort } : {}),
                 ...(query ? { 'text.en-US': query } : {}),

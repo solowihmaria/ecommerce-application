@@ -6,6 +6,7 @@ import { getProducts } from '../../../api/getProducts/getProducts';
 import { Select } from '../../ui/Select';
 import { Label } from '../../ui/Label';
 import { SearchInput } from './parts/SearchInput/SearchInput';
+import { FiFrown } from 'react-icons/fi';
 
 export const Catalog = () => {
     const [products, setProducts] = useState<Product[]>([]);
@@ -43,8 +44,14 @@ export const Catalog = () => {
     if (isLoading) {
         return <div>Loading...</div>;
     }
+
     if (error) {
-        return <div>{error}</div>;
+        return (
+            <div className={styles.error}>
+                <FiFrown className={styles.errorIcon} />
+                <span>{error}</span>
+            </div>
+        );
     }
 
     return (
