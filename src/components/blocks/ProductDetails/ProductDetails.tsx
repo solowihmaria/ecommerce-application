@@ -42,7 +42,11 @@ export const ProductDetails = () => {
                 <>
                     <div className={styles.sliderContainer}>
                         <Slider
-                            images={currentProductVariant.images}
+                            images={
+                                currentProductVariant.images.length > 0
+                                    ? currentProductVariant.images
+                                    : currentProduct.masterVariant.images
+                            }
                             initialSlide={0}
                             showModal={showModal}
                             imageClass={styles.image}
@@ -158,7 +162,11 @@ export const ProductDetails = () => {
                         <>
                             <BigSlider
                                 currentSlide={clickedSlide}
-                                images={currentProductVariant?.images}
+                                images={
+                                    currentProductVariant.images.length > 0
+                                        ? currentProductVariant.images
+                                        : currentProduct.masterVariant.images
+                                }
                                 closeModal={closeModal}
                             />
                         </>

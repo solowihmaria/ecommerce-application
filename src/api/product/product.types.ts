@@ -160,8 +160,8 @@ export interface CustomVariant {
 export interface CustomAttributes {
     family: string;
     size: Sizes;
-    care: Care;
+    'care-level': Care;
     toxic: boolean;
     height: number;
-    light: Light;
+    'light-requirements': Light;
 }

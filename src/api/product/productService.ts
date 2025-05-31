@@ -19,6 +19,7 @@ export const getProductData = async (id: string) => {
 
 const prepareVariant = (initialVariant: Variant): CustomVariant => {
     const { id, sku, images, prices } = initialVariant;
+    //filter out not used attributes
     const attributes = initialVariant.attributes.filter((attribute) =>
         [
             'family',
@@ -29,7 +30,7 @@ const prepareVariant = (initialVariant: Variant): CustomVariant => {
             'height',
         ].includes(attribute.name)
     );
-
+    //get pairs of key value ["attribute name", value]
     const transformedAttributes: AttributesList = attributes.map(
         (attribute) => {
             let value: string | number | boolean | Sizes | Care | Light;
@@ -47,6 +48,7 @@ const prepareVariant = (initialVariant: Variant): CustomVariant => {
     const attributesObject: CustomAttributes = Object.fromEntries(
         transformedAttributes
     );
+
     const discount = prices[0].discounted
         ? prices[0].discounted.value.centAmount / 100
         : null;
@@ -58,9 +60,9 @@ const prepareVariant = (initialVariant: Variant): CustomVariant => {
         images: images,
         family: attributesObject.family,
         size: attributesObject.size,
-        care: attributesObject.care,
+        care: attributesObject['care-level'],
         toxic: attributesObject.toxic,
-        light: attributesObject.light,
+        light: attributesObject['light-requirements'],
         height: attributesObject.height,
     };
 };

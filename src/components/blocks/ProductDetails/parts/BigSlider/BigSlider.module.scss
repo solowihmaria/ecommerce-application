@@ -89,3 +89,13 @@
     width: 40px;
     height: 40px;
 }
+
+@media (width <= 1024px) {
+    .smallSwiperContainer {
+        display: none;
+    }
+
+    .bigSliderContainer {
+        width: 90%;
+    }
+}
