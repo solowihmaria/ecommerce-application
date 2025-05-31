@@ -1,0 +1,60 @@
+@use '../../../../../assets/styles/constants.module' as c;
+
+.hero {
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 90vh;
+    background: url('../../../../../assets/images/hero-bg.jpg') no-repeat center
+        center;
+    background-size: cover;
+
+    &::before {
+        content: '';
+        position: absolute;
+        inset: 0;
+        background-color: rgba(c.$color-black, 0.1);
+    }
+}
+
+.container {
+    position: relative;
+    z-index: 10;
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1rem;
+}
+
+.content {
+    max-width: 600px;
+}
+
+.title {
+    margin-bottom: 1.5rem;
+    font-size: clamp(2.5rem, 5vw, 4.5rem);
+    font-weight: 700;
+    line-height: 1.1;
+    color: c.$color-white;
+}
+
+.titleHighlight {
+    display: block;
+    color: c.$color-accent-secondary;
+}
+
+.description {
+    max-width: 90%;
+    margin-bottom: 2.5rem;
+    font-size: 1.25rem;
+    line-height: 1.6;
+    color: rgba(c.$color-white, 0.9);
+}
+
+.buttonIcon {
+    width: 1rem;
+    height: 1rem;
+    margin-left: 0.5rem;
+}

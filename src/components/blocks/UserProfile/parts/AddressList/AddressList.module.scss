@@ -1,12 +1,23 @@
 @use '../../../../../assets/styles/constants.module' as c;
 
 .addresses {
+    position: relative;
+    z-index: 1;
     margin-top: 2rem;
     padding: 1.5rem;
     border: 1px solid c.$color-text-primary;
     border-radius: 0.5rem;
     color: c.$color-text-primary;
-    background-color: c.$color-primary-dark;
+
+    &::before {
+        position: absolute;
+        z-index: -1;
+        inset: 0;
+        border-radius: 0.5rem;
+        background: rgba(c.$color-black, 0.45);
+        content: '';
+        backdrop-filter: blur(35px);
+    }
 }
 
 .sectionHeader {
@@ -42,14 +53,22 @@
 
 .addressList {
     display: grid;
-    gap: 1rem;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1.5rem;
+
+    @media (width <= 768px) {
+        grid-template-columns: 1fr;
+    }
 }
 
 .addressCard {
     padding: 1rem;
-    border: 1px solid c.$color-gray-600;
     border-radius: 0.5rem;
     background-color: c.$color-primary;
+    background-color: rgba(c.$color-primary, 0.55);
+    box-shadow:
+        0 2px 4px rgb(0 0 0 / 5%),
+        0 1px 2px rgb(0 0 0 / 10%);
 }
 
 .viewMode {
@@ -183,4 +202,43 @@
     align-items: center;
     justify-content: space-between;
     margin-bottom: 2rem;
+
+    @media (width <= 768px) {
+        flex-direction: column;
+    }
+}
+
+@media (width <= 980px) {
+    .modal {
+        max-width: 95%;
+    }
+
+    .modalActions button {
+        width: 100%;
+        padding: 0.5rem;
+        font-size: 0.8rem;
+    }
+
+    .field {
+        margin-bottom: 0.4rem;
+    }
+
+    .field input {
+        padding: 0.5rem 0.75rem;
+        font-size: 0.9rem;
+    }
+
+    .field select {
+        padding: 0.1rem;
+        font-size: 0.7rem;
+    }
+
+    .modalActions {
+        margin-top: 0.1rem;
+    }
+
+    .modalLabel {
+        margin-bottom: 0.1rem;
+        font-size: 0.7rem;
+    }
 }

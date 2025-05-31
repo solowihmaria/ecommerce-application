@@ -63,21 +63,23 @@ export const PersonalInfo = () => {
             {!isEditing ? (
                 <div className={styles.viewMode}>
                     <div className={styles.field}>
-                        <Label>First Name</Label>
-                        <p>{customer.firstName}</p>
+                        <Label className={styles.title}>First Name</Label>
+                        <p className={styles.info}>{customer.firstName}</p>
                     </div>
                     <div className={styles.field}>
-                        <Label>Last Name</Label>
-                        <p>{customer.lastName}</p>
+                        <Label className={styles.title}>Last Name</Label>
+                        <p className={styles.info}>{customer.lastName}</p>
                     </div>
                     <div className={styles.field}>
-                        <Label>Email</Label>
-                        <p>{customer.email}</p>
+                        <Label className={styles.title}>Email</Label>
+                        <p className={styles.info}>{customer.email}</p>
                     </div>
                     {customer.dateOfBirth && (
                         <div className={styles.field}>
-                            <Label>Date of Birth</Label>
-                            <p>
+                            <Label className={styles.title}>
+                                Date of Birth
+                            </Label>
+                            <p className={styles.info}>
                                 {new Date(
                                     customer.dateOfBirth
                                 ).toLocaleDateString()}

@@ -12,3 +12,13 @@ declare module '*.svg' {
     >;
     export default ReactComponent;
 }
+
+declare module '*.jpg' {
+    const value: string;
+    export default value;
+}
+
+declare module '*.png' {
+    const value: string;
+    export default value;
+}

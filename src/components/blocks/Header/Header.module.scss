@@ -58,3 +58,10 @@
         color: c.$color-accent-primary;
     }
 }
+
+// пока что чтобы не мешал
+@media (width <= 850px) {
+    .centerSection {
+        display: none;
+    }
+}
