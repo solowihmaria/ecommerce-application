@@ -3,8 +3,8 @@ import { useParams } from 'react-router-dom';
 import {
     getProductData,
     transformProductData,
-} from '../../../api/product/productService';
-import type { CustomProduct } from '../../../api/product/product.types';
+} from '../../../../api/product/productService';
+import type { CustomProduct } from '../../../../api/product/product.types';
 
 export const useGetProductData = (): [CustomProduct | null] => {
     const [currentProduct, setCurrentProduct] = useState<CustomProduct | null>(

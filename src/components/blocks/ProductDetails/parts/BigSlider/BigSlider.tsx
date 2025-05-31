@@ -1,4 +1,4 @@
-import type { Image } from '../../../api/product/product.types';
+import type { Image } from '../../../../../api/product/product.types';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Navigation, Pagination, Thumbs } from 'swiper/modules';
 

@@ -5,7 +5,7 @@ import type {
     CustomProduct,
     CustomVariant,
     Sizes,
-} from '../../../api/product/product.types';
+} from '../../../../api/product/product.types';
 
 const identifyVariantBySize = (
     size: string | null | Sizes,

@@ -49,15 +49,24 @@ export interface Variant {
     sku: string;
     prices: Price[];
     images: Image[];
-    attributes: [
-        FamilyAttribute,
-        SizeAttribute,
-        CareAttribute,
-        ToxicAttribute,
-        LightAttribute,
-        HeightAttribute,
-    ];
+    attributes: (
+        | FamilyAttribute
+        | SizeAttribute
+        | CareAttribute
+        | ToxicAttribute
+        | LightAttribute
+        | HeightAttribute
+    )[];
 }
+
+export type AttributesList = (
+    | [string, string]
+    | [string, Sizes]
+    | [string, Care]
+    | [string, boolean]
+    | [string, Light]
+    | [string, number]
+)[];
 
 interface Price {
     id: string;
@@ -66,6 +75,14 @@ interface Price {
         currencyCode: string;
         centAmount: number;
         fractionDigits: number;
+    };
+    discounted?: {
+        value: {
+            type: string;
+            currencyCode: string;
+            centAmount: number;
+            fractionDigits: number;
+        };
     };
     key: string;
 }
@@ -131,6 +148,16 @@ export interface CustomVariant {
     sku: string;
     price: number;
     images: Image[];
+    family: string;
+    size: Sizes;
+    care: Care;
+    toxic: boolean;
+    height: number;
+    light: Light;
+    discount: number | null;
+}
+
+export interface CustomAttributes {
     family: string;
     size: Sizes;
     care: Care;

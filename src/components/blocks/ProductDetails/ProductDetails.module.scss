@@ -108,9 +108,43 @@
     background-color: c.$color-white;
 }
 
+.priceContainer {
+    display: flex;
+    gap: 10px;
+    justify-content: flex-start;
+}
+
 .price {
     font-size: 1.7rem;
     color: c.$color-text-primary;
+}
+
+.priceInitial {
+    position: relative;
+}
+
+.priceInitialNumber {
+    font-size: 1.7rem;
+    color: c.$color-gray-600;
+}
+
+.priceLabel {
+    font-size: 1.7rem;
+    color: c.$color-text-primary;
+}
+
+.cross {
+    position: absolute;
+    top: 60%;
+    rotate: 15deg;
+    display: block;
+    width: 100%;
+    border-top: 2px solid c.$color-gray-600;
+}
+
+.discount {
+    font-size: 1.7rem;
+    color: c.$color-error;
 }
 
 @media (width <= 700px) {
