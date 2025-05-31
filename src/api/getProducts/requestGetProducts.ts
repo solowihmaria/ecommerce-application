@@ -17,7 +17,7 @@ export const requestGetProducts = async (sort?: string, query?: string) => {
             params: {
                 limit: 50,
                 ...(sort ? { sort } : {}),
-                ...(query ? { 'text.en-US': query } : {}),
+                ...(query ? { 'text.en-US': query, fuzzy: true } : {}),
             },
         }
     );
