@@ -33,22 +33,22 @@ export const ProductCard = ({ product }: CardProps) => {
 
                     <div className={styles.price}>
                         From €
+                        {!product.masterVariant.price.discounted && (
+                            <span className={styles.priceValue}>
+                                {product.masterVariant.price.value.toFixed(2)}
+                            </span>
+                        )}
                         {product.masterVariant.price.discounted && (
                             <>
-                                <span className={styles.priceDiscounted}>
-                                    {` ${product.masterVariant.price.value.toFixed(2)} `}
-                                </span>
                                 <span className={styles.priceValue}>
                                     {product.masterVariant.price.discounted.value.toFixed(
                                         2
                                     )}
                                 </span>
+                                <span className={styles.priceDiscounted}>
+                                    {` ${product.masterVariant.price.value.toFixed(2)} `}
+                                </span>
                             </>
-                        )}
-                        {!product.masterVariant.price.discounted && (
-                            <span className={styles.priceValue}>
-                                {product.masterVariant.price.value.toFixed(2)}
-                            </span>
                         )}
                     </div>
 
