@@ -3,6 +3,7 @@ import type { Product } from '../../../../../api/getProducts/getProducts.types';
 import { Button } from '../../../../ui/Button';
 import { Heading } from '../../../../ui/Heading';
 import styles from './ProductCard.module.scss';
+import clsx from 'clsx';
 
 interface CardProps {
     product: Product;
@@ -12,7 +13,12 @@ export const ProductCard = ({ product }: CardProps) => {
     // console.log('PREVIEW', product.masterVariant.preview);
 
     return (
-        <Link to={`/product/${product.id}`} className={styles.card}>
+        <Link
+            to={`/product/${product.id}`}
+            className={clsx(styles.card, {
+                [styles.discounted]: product.masterVariant.price.discounted,
+            })}
+        >
             <div className={styles.frame}>
                 <img
                     className={styles.preview}
