@@ -40,6 +40,8 @@ export const useSetVariant = (
         if (currentProduct) {
             const targetVariant = identifyVariantBySize(size, currentProduct);
             setCurrentProductVariant(targetVariant);
+        } else {
+            setCurrentProductVariant(null);
         }
     }, [searchParams, currentProduct]);
 

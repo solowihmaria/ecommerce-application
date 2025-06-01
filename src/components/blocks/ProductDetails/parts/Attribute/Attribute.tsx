@@ -1,16 +1,9 @@
-import styles from '../ProductDetails.module.scss';
+import styles from './Attribute.module.scss';
+import type { AttributeProps } from './Attribute.types';
 
-export const Attribute = ({
-    component,
-    name,
-    value,
-}: {
-    component: React.ReactNode;
-    name: string;
-    value: string | number;
-}) => {
+export const Attribute = ({ component, name, value }: AttributeProps) => {
     return (
-        <div className={styles.attributeContainer}>
+        <div data-testid="attribute" className={styles.attributeContainer}>
             <span className={styles.iconContainer}>{component}</span>
             <div>
                 <p className={styles.attributeText}>{name}</p>

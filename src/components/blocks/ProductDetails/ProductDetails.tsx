@@ -5,10 +5,10 @@ import type {
 } from '../../../api/product/product.types';
 import { Slider } from '../../ui/ImagesSlider/ImagesSlider';
 
-import { SizeAttribute } from './parts/SizeAttribute';
+import { SizeAttribute } from './parts/SizeAttribute/SizeAttribute';
 import { useGetProductData } from './lib/useGetProductData';
 import { useSetVariant } from './lib/useSetVariant';
-import { Attribute } from './parts/Attribute';
+import { Attribute } from './parts/Attribute/Attribute';
 import CareIcon from '../../../assets/icons/care.svg';
 import Height from '../../../assets/images/height.png';
 import LightIcon from '../../../assets/icons/light.svg';
@@ -20,7 +20,8 @@ import { Button } from '../../ui/Button';
 import styles from './ProductDetails.module.scss';
 
 export const ProductDetails = () => {
-    const [currentProduct]: [CustomProduct | null] = useGetProductData();
+    const [currentProduct, error]: [CustomProduct | null, string | null] =
+        useGetProductData();
     const [currentProductVariant, changeVariant]: [
         CustomVariant | null,
         (size: Sizes) => void,
@@ -42,7 +43,7 @@ export const ProductDetails = () => {
     return (
         <>
             <div className={styles.productDetailsContainer}>
-                {currentProduct && currentProductVariant ? (
+                {currentProduct && currentProductVariant && !error ? (
                     <>
                         <div className={styles.sliderContainer}>
                             <Slider
@@ -205,7 +206,11 @@ export const ProductDetails = () => {
                         </div>
                     </>
                 ) : (
-                    <p>Something went wrong</p>
+                    <p className={styles.productError}>
+                        {error
+                            ? error
+                            : 'Something went wrong. Please try again later'}
+                    </p>
                 )}
             </div>
 

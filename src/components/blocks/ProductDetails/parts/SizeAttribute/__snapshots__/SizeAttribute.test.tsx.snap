@@ -1,0 +1,30 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<SizeAttribute/> component Render Input component - without any properties 1`] = `
+<ul
+  class="sizeContainer"
+  data-testid="size-attribute"
+>
+  <li>
+    <button
+      class="button primary button sizeActive size"
+    >
+      Small
+    </button>
+  </li>
+  <li>
+    <button
+      class="button primary button size"
+    >
+      Medium
+    </button>
+  </li>
+  <li>
+    <button
+      class="button primary button size"
+    >
+      Large
+    </button>
+  </li>
+</ul>
+`;

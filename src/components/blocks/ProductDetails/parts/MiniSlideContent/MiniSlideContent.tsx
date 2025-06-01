@@ -1,14 +1,12 @@
-import styles from './../BigSlider/BigSlider.module.scss';
+import styles from './MiniSlideContent.module.scss';
 import clsx from 'clsx';
-export const SlideContent = ({
+import type { MiniSliderContentProps } from './MiniSliderContent.types';
+
+export const MiniSlideContent = ({
     image,
     imageIndex,
     currentSlide,
-}: {
-    image: { url: string; label: string };
-    imageIndex: number;
-    currentSlide: number;
-}) => {
+}: MiniSliderContentProps) => {
     return currentSlide === imageIndex ? (
         <div
             className={clsx(

@@ -1,4 +1,4 @@
-import { getProductByID } from './getProduct';
+import { getProductByID, getUserToken } from './getProduct';
 import type {
     AttributesList,
     Care,
@@ -11,8 +11,9 @@ import type {
     Variant,
 } from './product.types';
 
-export const getProductData = async (id: string) => {
-    const productData = await getProductByID(id);
+export const getProductData = async (id: string, loginStatus: boolean) => {
+    const token = await getUserToken(loginStatus);
+    const productData = await getProductByID(id, token);
 
     return productData;
 };

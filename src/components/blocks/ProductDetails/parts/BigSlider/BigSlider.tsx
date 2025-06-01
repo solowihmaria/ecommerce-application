@@ -1,7 +1,5 @@
-import type { Image } from '../../../../../api/product/product.types';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Navigation, Pagination, Thumbs } from 'swiper/modules';
-
 import type SwiperType from 'swiper';
 import 'swiper/scss';
 import 'swiper/scss/navigation';
@@ -10,17 +8,14 @@ import 'swiper/css/thumbs';
 import styles from './BigSlider.module.scss';
 import { useState } from 'react';
 import { IoMdClose } from 'react-icons/io';
-import { SlideContent } from '../SlideContent/SlideContent';
+import { MiniSlideContent } from '../MiniSlideContent/MiniSlideContent';
+import type { BigSliderProps } from './BigSlider.types';
 
 export const BigSlider = ({
     currentSlide,
     images,
     closeModal,
-}: {
-    currentSlide: number;
-    images: Image[];
-    closeModal: () => void;
-}) => {
+}: BigSliderProps) => {
     const [thumbsSwiper, setThumbsSwiper] = useState<SwiperType | null>(null);
     const [currentMiniSlide, setCurrentMiniSlide] = useState(currentSlide);
 
@@ -54,7 +49,7 @@ export const BigSlider = ({
                                             className={styles.slideSmall}
                                             key={`${image.url}${image.label}`}
                                         >
-                                            <SlideContent
+                                            <MiniSlideContent
                                                 imageIndex={index}
                                                 image={image}
                                                 currentSlide={currentMiniSlide}

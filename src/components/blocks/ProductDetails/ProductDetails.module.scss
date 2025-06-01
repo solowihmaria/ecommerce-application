@@ -57,50 +57,11 @@
     border-radius: 10px;
 }
 
-.iconContainer {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 40px;
-    height: 40px;
-    border: 1px solid white;
-    border-radius: 50%;
-}
-
-.attributeContainer {
-    display: flex;
-    flex-direction: row;
-    gap: 0.875rem;
-    align-items: center;
-}
-
 .iconAttributes {
     display: flex;
     flex-flow: row wrap;
     gap: 1.5rem;
     align-items: center;
-}
-
-.attributeText {
-    margin: 0;
-    color: c.$color-text-primary;
-}
-
-.sizeContainer {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 15px;
-    justify-content: flex-start;
-    list-style-type: none;
-}
-
-.size.sizeActive {
-    color: c.$color-accent-dark;
-    background-color: c.$color-gray-300;
-}
-
-.size.sizeActive:hover {
-    color: c.$color-text-primary;
 }
 
 .priceContainer {
@@ -133,19 +94,26 @@
     top: 60%;
     rotate: 15deg;
     display: block;
-    width: 100%;
+    width: 95%;
     border-top: 2px solid c.$color-gray-600;
 }
 
 .discount {
     font-size: 1.7rem;
-    color: c.$color-error;
+    font-weight: 600;
+    color: c.$color-discount-price;
 }
 
 .labelName {
     font-weight: bold;
     color: c.$color-text-primary;
     text-transform: uppercase;
+}
+
+.productError {
+    padding: 3rem;
+    font-size: 1.7rem;
+    color: c.$color-text-primary;
 }
 
 @media (width <= 992px) {
@@ -183,15 +151,6 @@
         background-color: c.$color-primary-dark;
     }
 
-    .sizeContainer {
-        gap: 1rem;
-        justify-content: flex-start;
-    }
-
-    .button.size {
-        font-size: 1rem;
-    }
-
     .description {
         font-size: 1rem;
     }
@@ -199,10 +158,6 @@
     .productActions {
         display: flex;
         justify-content: center;
-    }
-
-    .attributeContainer {
-        min-width: 135px;
     }
 }
 

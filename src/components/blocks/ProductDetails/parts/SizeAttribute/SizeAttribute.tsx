@@ -1,11 +1,12 @@
 import clsx from 'clsx';
-import { Sizes } from '../../../../api/product/product.types';
+import { Sizes } from '../../../../../api/product/product.types';
 import type {
     CustomProduct,
     CustomVariant,
-} from '../../../../api/product/product.types';
-import styles from '../ProductDetails.module.scss';
-import { Button } from '../../../ui/Button';
+} from '../../../../../api/product/product.types';
+import styles from './SizeAttribute.module.scss';
+import { Button } from '../../../../ui/Button';
+import type { SizeAttributeProps } from './SizeAttribute.types';
 
 const getAvailableSizes = (product: CustomProduct) => {
     const sizes: Sizes[] = [];
@@ -39,13 +40,9 @@ export const SizeAttribute = ({
     product,
     currentProductVariant,
     onSizeChange,
-}: {
-    product: CustomProduct;
-    currentProductVariant: CustomVariant;
-    onSizeChange: (size: Sizes) => void;
-}) => {
+}: SizeAttributeProps) => {
     return (
-        <ul className={styles.sizeContainer}>
+        <ul className={styles.sizeContainer} data-testid="size-attribute">
             {getAvailableSizes(product).map((size) =>
                 size === getCurrentSize(currentProductVariant) ? (
                     <li key={size}>

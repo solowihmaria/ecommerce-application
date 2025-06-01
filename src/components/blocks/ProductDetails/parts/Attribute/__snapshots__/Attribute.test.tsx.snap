@@ -1,0 +1,29 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<SizeAttribute/> component Render Input component - without any properties 1`] = `
+<div
+  class="attributeContainer"
+  data-testid="attribute"
+>
+  <span
+    class="iconContainer"
+  >
+    <img
+      alt="height"
+      src="https://placehold.co/600x400/EEE/31343C"
+    />
+  </span>
+  <div>
+    <p
+      class="attributeText"
+    >
+      Height
+    </p>
+    <p
+      class="attributeText"
+    >
+      30
+    </p>
+  </div>
+</div>
+`;

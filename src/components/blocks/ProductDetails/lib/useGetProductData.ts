@@ -5,11 +5,17 @@ import {
     transformProductData,
 } from '../../../../api/product/productService';
 import type { CustomProduct } from '../../../../api/product/product.types';
+import { useAuth } from '../../../../store/auth/useAuth';
 
-export const useGetProductData = (): [CustomProduct | null] => {
+import { useHandleError } from './useHandleError';
+
+export const useGetProductData = (): [CustomProduct | null, string | null] => {
+    const { loginStatus } = useAuth();
     const [currentProduct, setCurrentProduct] = useState<CustomProduct | null>(
         null
     );
+    const [error, handleApiError] = useHandleError();
+
     const location = useParams();
 
     useEffect(() => {
@@ -17,14 +23,17 @@ export const useGetProductData = (): [CustomProduct | null] => {
         if (!id) {
             return;
         }
-        getProductData(id)
+        getProductData(id, loginStatus)
             .then((data) => {
                 const product = transformProductData(data);
                 console.log(product);
                 setCurrentProduct(product);
-                console.log(id);
             })
-            .catch((err) => console.log(err));
-    }, [location.id]);
-    return [currentProduct];
+            .catch((error) => {
+                setCurrentProduct(null);
+
+                handleApiError(error);
+            });
+    }, [location.id, loginStatus, handleApiError]);
+    return [currentProduct, error];
 };
