@@ -1,9 +1,9 @@
 import { FaSearch } from 'react-icons/fa';
 import { Input } from '../../../../ui/Input';
 import styles from './SearchInput.module.scss';
-import type { FormEvent } from 'react';
+import type { FormEvent, InputHTMLAttributes } from 'react';
 
-interface SearchInputProps {
+interface SearchInputProps extends InputHTMLAttributes<HTMLInputElement> {
     handleSubmit: (event: FormEvent) => void;
     handleChange: (event: FormEvent) => void;
 }

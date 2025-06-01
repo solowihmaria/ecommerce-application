@@ -11,6 +11,8 @@ import { Label } from '../../ui/Label';
 import { SearchInput } from './parts/SearchInput/SearchInput';
 import { FiFrown } from 'react-icons/fi';
 import { Input } from '../../ui/Input';
+import { Button } from '../../ui/Button';
+// import clsx from 'clsx';
 
 export const Catalog = () => {
     const [products, setProducts] = useState<Product[]>([]);
@@ -21,7 +23,6 @@ export const Catalog = () => {
     const [query, setQuery] = useState<string>('');
     const [filters, setFilters] = useState<Filter>({
         categoryId: '',
-        // size: '',
         careLevel: '',
         light: '',
         toxicity: '',
@@ -99,6 +100,7 @@ export const Catalog = () => {
                             <option value="hard">Hard</option>
                         </Select>
                     </div>
+
                     <div className={styles.filterGroup}>
                         <Label htmlFor="light" className={styles.sortingLabel}>
                             Light requirements
@@ -145,95 +147,119 @@ export const Catalog = () => {
                         </Select>
                     </div>
 
-                    <div className={styles.filterGroup}>
-                        <Label
-                            htmlFor="price-from"
-                            className={styles.sortingLabel}
-                        >
-                            Price from
-                        </Label>
-                        <Input
-                            className={styles.select}
-                            name="price-from"
-                            type="number"
-                            value={filters.priceRange[0]}
-                            onChange={(event) =>
-                                setFilters((prev) => ({
-                                    ...prev,
-                                    priceRange: [
-                                        Number(event.target.value),
-                                        prev.priceRange[1],
-                                    ],
-                                }))
-                            }
-                        />
-                        <Label
-                            htmlFor="price-to"
-                            className={styles.sortingLabel}
-                        >
-                            to
-                        </Label>
-                        <Input
-                            className={styles.select}
-                            name="price-to"
-                            type="number"
-                            value={filters.priceRange[1]}
-                            onChange={(event) =>
-                                setFilters((prev) => ({
-                                    ...prev,
-                                    priceRange: [
-                                        prev.priceRange[0],
-                                        Number(event.target.value),
-                                    ],
-                                }))
-                            }
-                        />
+                    <div className={styles.priceGroup}>
+                        <div className={styles.filterGroup}>
+                            <Label
+                                htmlFor="price-from"
+                                className={styles.sortingLabel}
+                            >
+                                Price from
+                            </Label>
+                            <Input
+                                className={styles.select}
+                                name="price-from"
+                                type="number"
+                                value={filters.priceRange[0]}
+                                onChange={(event) =>
+                                    setFilters((prev) => ({
+                                        ...prev,
+                                        priceRange: [
+                                            Number(event.target.value),
+                                            prev.priceRange[1],
+                                        ],
+                                    }))
+                                }
+                            />
+                        </div>
+                        <div className={styles.filterGroup}>
+                            <Label
+                                htmlFor="price-to"
+                                className={styles.sortingLabel}
+                            >
+                                to
+                            </Label>
+                            <Input
+                                className={styles.select}
+                                name="price-to"
+                                type="number"
+                                value={filters.priceRange[1]}
+                                onChange={(event) =>
+                                    setFilters((prev) => ({
+                                        ...prev,
+                                        priceRange: [
+                                            prev.priceRange[0],
+                                            Number(event.target.value),
+                                        ],
+                                    }))
+                                }
+                            />
+                        </div>
                     </div>
 
-                    <div className={styles.filterGroup}>
-                        <Label
-                            htmlFor="height-from"
-                            className={styles.sortingLabel}
-                        >
-                            Height (cm) from
-                        </Label>
-                        <Input
-                            className={styles.select}
-                            name="height-from"
-                            type="number"
-                            value={filters.height[0]}
-                            onChange={(event) =>
-                                setFilters((prev) => ({
-                                    ...prev,
-                                    height: [
-                                        Number(event.target.value),
-                                        prev.height[1],
-                                    ],
-                                }))
-                            }
-                        />
-                        <Label
-                            htmlFor="height-to"
-                            className={styles.sortingLabel}
-                        >
-                            to
-                        </Label>
-                        <Input
-                            className={styles.select}
-                            name="height-to"
-                            type="number"
-                            value={filters.height[1]}
-                            onChange={(event) =>
-                                setFilters((prev) => ({
-                                    ...prev,
-                                    height: [
-                                        prev.height[0],
-                                        Number(event.target.value),
-                                    ],
-                                }))
-                            }
-                        />
+                    <div className={styles.heightGroup}>
+                        <div className={styles.filterGroup}>
+                            <Label
+                                htmlFor="height-from"
+                                className={styles.sortingLabel}
+                            >
+                                Height (cm) from
+                            </Label>
+                            <Input
+                                className={styles.select}
+                                name="height-from"
+                                type="number"
+                                value={filters.height[0]}
+                                onChange={(event) =>
+                                    setFilters((prev) => ({
+                                        ...prev,
+                                        height: [
+                                            Number(event.target.value),
+                                            prev.height[1],
+                                        ],
+                                    }))
+                                }
+                            />
+                        </div>
+                        <div className={styles.filterGroup}>
+                            <Label
+                                htmlFor="height-to"
+                                className={styles.sortingLabel}
+                            >
+                                to
+                            </Label>
+                            <Input
+                                className={styles.select}
+                                name="height-to"
+                                type="number"
+                                value={filters.height[1]}
+                                onChange={(event) =>
+                                    setFilters((prev) => ({
+                                        ...prev,
+                                        height: [
+                                            prev.height[0],
+                                            Number(event.target.value),
+                                        ],
+                                    }))
+                                }
+                            />
+                        </div>
                     </div>
+
+                    <Button
+                        variant="ghost"
+                        onClick={() =>
+                            setFilters({
+                                categoryId: '',
+                                careLevel: '',
+                                light: '',
+                                toxicity: '',
+                                priceRange: [0, 100],
+                                height: [0, 200],
+                            })
+                        }
+                    >
+                        Reset filters
+                    </Button>
                 </div>
 
                 <div className={styles.searchSortBlock}>
@@ -255,6 +281,7 @@ export const Catalog = () => {
                     </div>
 
                     <SearchInput
+                        className={styles.searchBlock}
                         handleSubmit={handleSearch}
                         handleChange={(e) => {
                             if (e.target instanceof HTMLInputElement) {

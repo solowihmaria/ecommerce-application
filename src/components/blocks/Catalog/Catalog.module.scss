@@ -42,8 +42,10 @@
     border-bottom: 1px solid c.$color-text-primary;
 }
 
-.sortingBlock {
-    width: 18em;
+.searchSortBlock {
+    @media (width <= 590px) {
+        flex-direction: column;
+    }
 }
 
 .filterGroup {
@@ -53,8 +55,36 @@
     justify-content: space-between;
 }
 
+.sortingBlock {
+    width: 18em;
+
+    @media (width <= 590px) {
+        width: 100%;
+    }
+}
+
 .sortingLabel {
     white-space: nowrap;
+}
+
+.searchBlock {
+    width: 8em;
+
+    @media (width <= 590px) {
+        width: 100%;
+    }
+}
+
+.priceGroup {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+}
+
+.heightGroup {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
 }
 
 .error {

@@ -1,6 +1,7 @@
 @use '../../../../../assets/styles/constants.module' as c;
 
 .card {
+    max-width: 220px;
     color: c.$color-text-secondary;
     text-decoration: none;
     transition: all 0.3s;
@@ -14,6 +15,7 @@
 
 .frame {
     position: relative;
+    z-index: 1;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -33,16 +35,16 @@
 
 .preview {
     position: absolute;
-    z-index: 1;
+    z-index: 100;
     top: -10px;
-    left: -25px;
+    left: -30px;
     width: 120%;
     max-height: 100%;
 }
 
 .info {
     position: relative;
-    z-index: 2;
+    z-index: 200;
     display: flex;
     flex-direction: column;
     gap: 8px;

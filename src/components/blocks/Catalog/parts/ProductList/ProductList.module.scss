@@ -1,5 +1,30 @@
 .listContainer {
     display: grid;
-    grid-template-columns: repeat(5, 1fr);
+    grid-template-columns: repeat(7, 1fr);
     gap: 32px;
+    justify-items: center;
+
+    @media (width <= 1830px) {
+        grid-template-columns: repeat(6, 1fr);
+    }
+
+    @media (width <= 1600px) {
+        grid-template-columns: repeat(5, 1fr);
+    }
+
+    @media (width <= 1340px) {
+        grid-template-columns: repeat(4, 1fr);
+    }
+
+    @media (width <= 1086px) {
+        grid-template-columns: repeat(3, 1fr);
+    }
+
+    @media (width <= 840px) {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    @media (width <= 590px) {
+        grid-template-columns: 1fr;
+    }
 }
