@@ -73,7 +73,7 @@ export const Catalog = () => {
     }
 
     return (
-        <div className={styles.listContainer}>
+        <div className={styles.catalogContainer}>
             <div className={styles.controls}>
                 <div className={styles.filtersBlock}>
                     <div className={styles.filterGroup}>
@@ -148,12 +148,13 @@ export const Catalog = () => {
                     </div>
 
                     <div className={styles.priceGroup}>
+                        <p>Price</p>
                         <div className={styles.filterGroup}>
                             <Label
                                 htmlFor="price-from"
                                 className={styles.sortingLabel}
                             >
-                                Price from
+                                from
                             </Label>
                             <Input
                                 className={styles.select}
@@ -170,8 +171,7 @@ export const Catalog = () => {
                                     }))
                                 }
                             />
-                        </div>
-                        <div className={styles.filterGroup}>
+
                             <Label
                                 htmlFor="price-to"
                                 className={styles.sortingLabel}
@@ -197,12 +197,13 @@ export const Catalog = () => {
                     </div>
 
                     <div className={styles.heightGroup}>
+                        <p>Height (cm)</p>
                         <div className={styles.filterGroup}>
                             <Label
                                 htmlFor="height-from"
                                 className={styles.sortingLabel}
                             >
-                                Height (cm) from
+                                from
                             </Label>
                             <Input
                                 className={styles.select}
@@ -219,8 +220,6 @@ export const Catalog = () => {
                                     }))
                                 }
                             />
-                        </div>
-                        <div className={styles.filterGroup}>
                             <Label
                                 htmlFor="height-to"
                                 className={styles.sortingLabel}
@@ -246,7 +245,8 @@ export const Catalog = () => {
                     </div>
 
                     <Button
-                        variant="ghost"
+                        className={styles.buttonReset}
+                        variant="outline"
                         onClick={() =>
                             setFilters({
                                 categoryId: '',
@@ -261,7 +261,9 @@ export const Catalog = () => {
                         Reset filters
                     </Button>
                 </div>
+            </div>
 
+            <div className={styles.listContainer}>
                 <div className={styles.searchSortBlock}>
                     <div className={styles.sortingBlock}>
                         <Label htmlFor="sort" className={styles.sortingLabel}>
@@ -292,12 +294,13 @@ export const Catalog = () => {
                         }}
                     />
                 </div>
+
+                {products.length === 0 ? (
+                    <div>No products found</div>
+                ) : (
+                    <ProductList products={products} />
+                )}
             </div>
-            {products.length === 0 ? (
-                <div>No products found</div>
-            ) : (
-                <ProductList products={products} />
-            )}
         </div>
     );
 };

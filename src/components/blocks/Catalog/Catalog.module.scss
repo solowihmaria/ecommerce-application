@@ -3,6 +3,7 @@
 .catalogContainer {
     display: flex;
     gap: 16px;
+    align-items: start;
 }
 
 .listContainer {
@@ -14,21 +15,22 @@
 .controls {
     display: flex;
     flex-direction: column;
-
-    // flex-wrap: wrap;
     gap: 32px;
-
-    // align-items: center;
+    width: 25%;
+    padding: 2em 1em;
+    border: 1px solid c.$color-primary-light;
+    border-radius: 20px;
+    background-color: rgba(c.$color-accent-dark, 0.25);
+    backdrop-filter: blur(15px);
 }
 
-.select {
-    width: 8em;
-}
+// .select {
+// width: 8em;
+// }
 
 .sortingBlock,
 .filtersBlock,
 .searchSortBlock {
-    // min-width: max-content;
     display: flex;
     gap: 16px;
     align-items: baseline;
@@ -37,9 +39,8 @@
 }
 
 .filtersBlock {
-    flex-wrap: wrap;
-    padding-bottom: 16px;
-    border-bottom: 1px solid c.$color-text-primary;
+    flex-direction: column;
+    align-items: center;
 }
 
 .searchSortBlock {
@@ -50,9 +51,10 @@
 
 .filterGroup {
     display: flex;
-    gap: 8px;
+    gap: 16px;
     align-items: baseline;
     justify-content: space-between;
+    width: 100%;
 }
 
 .sortingBlock {
@@ -85,6 +87,10 @@
     display: flex;
     flex-wrap: wrap;
     gap: 16px;
+}
+
+.buttonReset {
+    justify-self: center;
 }
 
 .error {
