@@ -30,6 +30,9 @@ export const Header = () => {
     };
 
     useEffect(() => {
+        function handleResize() {
+            setIsHamburgerMenuOpened(false);
+        }
         function handleOutsideClick(e: Event) {
             const clickedElement = e.target;
             if (clickedElement instanceof HTMLElement) {
@@ -59,9 +62,11 @@ export const Header = () => {
                 handleHamburgerLinkClick
             );
         }
+        window.addEventListener('resize', handleResize);
         return () => {
             document.removeEventListener('click', handleOutsideClick);
             document.removeEventListener('click', handleHamburgerLinkClick);
+            window.removeEventListener('resize', handleResize);
         };
     }, []);
 
@@ -130,7 +135,7 @@ export const Header = () => {
                     >
                         {loginStatus ? (
                             <>
-                                <Link to="/profile">
+                                <Link to="/profile" className={styles.link}>
                                     <Button
                                         variant="ghost"
                                         className={styles.authButton}
@@ -148,7 +153,7 @@ export const Header = () => {
                             </>
                         ) : (
                             <>
-                                <Link to="/login">
+                                <Link to="/login" className={styles.link}>
                                     <Button
                                         variant="ghost"
                                         className={styles.authButton}
@@ -156,7 +161,7 @@ export const Header = () => {
                                         Sign In
                                     </Button>
                                 </Link>
-                                <Link to="/register">
+                                <Link to="/register" className={styles.link}>
                                     <Button
                                         variant="ghost"
                                         className={styles.authButton}

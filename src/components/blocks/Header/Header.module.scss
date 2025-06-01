@@ -131,6 +131,10 @@
     }
 }
 
+.link {
+    text-decoration: none;
+}
+
 @media (width <= 764px) {
     .centerSection {
         position: fixed;
