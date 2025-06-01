@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`<SizeAttribute/> component Render Input component - without any properties 1`] = `
+exports[`<Attribute/> component Render Attribute component 1`] = `
 <div
   class="attributeContainer"
   data-testid="attribute"
