@@ -1,6 +1,7 @@
 @use '../../../assets/styles/constants.module' as c;
 
 .headerWrapper {
+    z-index: 10;
     padding: 20px 30px;
     background-color: c.$color-primary-dark;
 }
@@ -21,6 +22,11 @@
     background: rgba(c.$color-text-primary, 0.1);
     box-shadow: 0 2px 10px rgb(0 0 0 / 10%);
     backdrop-filter: blur(5px);
+}
+
+.rightSection {
+    display: flex;
+    gap: 2rem;
 }
 
 .navButton,
@@ -59,9 +65,105 @@
     }
 }
 
-// пока что чтобы не мешал
-@media (width <= 850px) {
+.hamburger {
+    display: none;
+}
+
+.hamburgerClose {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    display: block;
+    width: 35px;
+    height: 35px;
+    color: c.$color-text-primary;
+    transition: color 0.2s ease;
+
+    &:hover {
+        color: c.$color-accent-primary;
+    }
+}
+
+.profileIcon {
+    display: block;
+    width: 50px;
+    height: 50px;
+    color: c.$color-text-primary;
+    transition: color 0.5s ease;
+    cursor: pointer;
+
+    &:hover {
+        color: c.$color-accent-primary;
+    }
+}
+
+.profileMenu a,
+.profileMenu button {
+    display: none;
+}
+
+.profileMenu {
+    position: absolute;
+    z-index: 1;
+    top: 107px;
+    right: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 300px;
+    height: 0;
+    border-radius: 0;
+    transition: height 0.2s;
+    backdrop-filter: blur(50px);
+
+    &.active {
+        height: 200px;
+        border: 1px solid rgb(141 141 141 / 40.4%);
+        border-top: none;
+    }
+
+    &.active a {
+        display: unset;
+    }
+
+    &.active button {
+        display: unset;
+    }
+}
+
+@media (width <= 764px) {
     .centerSection {
-        display: none;
+        position: fixed;
+        z-index: 100;
+        top: 0;
+        right: -80%;
+        flex-direction: column;
+        align-items: center;
+        width: 80%;
+        height: 100%;
+        border-radius: 0;
+        transition: right 0.5s ease-in-out;
+        backdrop-filter: blur(50px);
+
+        &.active {
+            right: 0;
+            display: flex;
+        }
+    }
+
+    .hamburger {
+        display: block;
+    }
+
+    .hamburgerIcon {
+        width: 50px;
+        height: 50px;
+        color: c.$color-text-primary;
+        transition: color 0.5s ease;
+
+        &:hover {
+            color: c.$color-accent-primary;
+        }
     }
 }

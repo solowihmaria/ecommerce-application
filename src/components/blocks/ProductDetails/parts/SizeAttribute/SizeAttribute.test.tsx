@@ -1,10 +1,6 @@
 import { render, screen } from '@testing-library/react';
-import type {
-    Care,
-    CustomProduct,
-    Light,
-    Sizes,
-} from '../../../../../api/product/product.types';
+import { Care, Light, Sizes } from '../../../../../api/product/product.types';
+import type { CustomProduct } from '../../../../../api/product/product.types';
 import { SizeAttribute } from './SizeAttribute';
 import '@testing-library/jest-dom';
 
