@@ -1,4 +1,8 @@
-import type { ProductProjection, Product } from './getProducts.types';
+import type {
+    ProductProjection,
+    Product,
+    requestGetProductsParams,
+} from './getProducts.types';
 import { requestGetProducts } from './requestGetProducts';
 
 const transformProductData = (productsData: ProductProjection[]) => {
@@ -33,8 +37,8 @@ const transformProductData = (productsData: ProductProjection[]) => {
     return products;
 };
 
-export const getProducts = async (sort: string, query: string) => {
-    const data = await requestGetProducts(sort, query);
+export const getProducts = async (params: requestGetProductsParams) => {
+    const data = await requestGetProducts(params);
 
     const products: Product[] = transformProductData(data);
 

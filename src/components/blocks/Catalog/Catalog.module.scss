@@ -13,16 +13,44 @@
 
 .controls {
     display: flex;
+    flex-direction: column;
+
+    // flex-wrap: wrap;
+    gap: 32px;
+
+    // align-items: center;
+}
+
+.select {
+    width: 8em;
+}
+
+.sortingBlock,
+.filtersBlock,
+.searchSortBlock {
+    // min-width: max-content;
+    display: flex;
     gap: 16px;
-    align-items: center;
+    align-items: baseline;
     justify-content: space-between;
+    width: 100%;
+}
+
+.filtersBlock {
+    flex-wrap: wrap;
+    padding-bottom: 16px;
+    border-bottom: 1px solid c.$color-text-primary;
 }
 
 .sortingBlock {
+    width: 18em;
+}
+
+.filterGroup {
     display: flex;
     gap: 8px;
     align-items: baseline;
-    width: 18em;
+    justify-content: space-between;
 }
 
 .sortingLabel {

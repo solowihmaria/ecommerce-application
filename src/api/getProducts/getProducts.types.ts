@@ -219,3 +219,19 @@ export interface ProductProjectionPagedSearchResponse {
     offset: number;
     results: ProductProjection[];
 }
+
+export interface Filter {
+    // [key: string]: string | number[];
+    categoryId: string;
+    careLevel: string;
+    light: string;
+    toxicity: string;
+    priceRange: number[];
+    height: number[];
+}
+
+export interface requestGetProductsParams {
+    sort?: string;
+    query?: string;
+    filters: Filter;
+}
