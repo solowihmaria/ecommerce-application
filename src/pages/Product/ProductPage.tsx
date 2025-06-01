@@ -1,3 +1,4 @@
+import { Footer } from '../../components/blocks/Footer';
 import { Header } from '../../components/blocks/Header/Header';
 import { ProductDetails } from '../../components/blocks/ProductDetails/ProductDetails';
 import styles from './ProductPage.module.scss';
@@ -9,6 +10,7 @@ export const ProductPage = () => {
             <main className={styles.main}>
                 <ProductDetails />
             </main>
+            <Footer />
         </div>
     );
 };

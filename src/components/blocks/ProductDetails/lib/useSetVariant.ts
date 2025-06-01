@@ -26,10 +26,11 @@ const identifyVariantBySize = (
 
 export const useSetVariant = (
     currentProduct: CustomProduct | null
-): [CustomVariant | null, (size: Sizes) => void] => {
+): [CustomVariant | null, (size: Sizes) => void, string | null] => {
     const [searchParams, setSearchParams] = useSearchParams();
     const [currentProductVariant, setCurrentProductVariant] =
         useState<CustomVariant | null>(null);
+    const [variantError, setVariantError] = useState<string | null>(null);
 
     const changeVariant = (size: Sizes) => {
         setSearchParams(`?size=${size}`);
@@ -37,13 +38,18 @@ export const useSetVariant = (
 
     useEffect(() => {
         const size = searchParams.get('size');
-        if (currentProduct) {
-            const targetVariant = identifyVariantBySize(size, currentProduct);
-            setCurrentProductVariant(targetVariant);
-        } else {
-            setCurrentProductVariant(null);
+
+        if (!currentProduct) {
+            return;
         }
+
+        const targetVariant = identifyVariantBySize(size, currentProduct);
+
+        if (!targetVariant) {
+            setVariantError('Something went wrong. Please try again later');
+        }
+        setCurrentProductVariant(targetVariant);
     }, [searchParams, currentProduct]);
 
-    return [currentProductVariant, changeVariant];
+    return [currentProductVariant, changeVariant, variantError];
 };

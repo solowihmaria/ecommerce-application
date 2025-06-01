@@ -22,9 +22,10 @@ import styles from './ProductDetails.module.scss';
 export const ProductDetails = () => {
     const [currentProduct, error]: [CustomProduct | null, string | null] =
         useGetProductData();
-    const [currentProductVariant, changeVariant]: [
+    const [currentProductVariant, changeVariant, variantError]: [
         CustomVariant | null,
         (size: Sizes) => void,
+        string | null,
     ] = useSetVariant(currentProduct);
     const [isModalOpened, setIsModalOpened] = useState<boolean>(false);
     const [clickedSlide, setClickedSlide] = useState<number | null>(null);
@@ -39,12 +40,14 @@ export const ProductDetails = () => {
         setIsModalOpened(false);
         document.body.style.overflow = 'unset';
     };
-
+    if (error || variantError) {
+        return <p className={styles.productError}>{error || variantError}</p>;
+    }
     return (
         <>
-            <div className={styles.productDetailsContainer}>
-                {currentProduct && currentProductVariant && !error ? (
-                    <>
+            {currentProduct && currentProductVariant ? (
+                <>
+                    <div className={styles.productDetailsContainer}>
                         <div className={styles.sliderContainer}>
                             <Slider
                                 images={
@@ -204,15 +207,9 @@ export const ProductDetails = () => {
                                 </div>
                             </div>
                         </div>
-                    </>
-                ) : (
-                    <p className={styles.productError}>
-                        {error
-                            ? error
-                            : 'Something went wrong. Please try again later'}
-                    </p>
-                )}
-            </div>
+                    </div>
+                </>
+            ) : null}
 
             {currentProduct &&
                 currentProductVariant &&

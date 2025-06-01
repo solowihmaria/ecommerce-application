@@ -26,7 +26,6 @@ export const useGetProductData = (): [CustomProduct | null, string | null] => {
         getProductData(id, loginStatus)
             .then((data) => {
                 const product = transformProductData(data);
-                console.log(product);
                 setCurrentProduct(product);
             })
             .catch((error) => {

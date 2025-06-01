@@ -1,8 +1,24 @@
 .slider {
-    --swiper-navigation-color: #124a428a;
+    --swiper-navigation-color: #f8f8f8;
     --swiper-pagination-color: #124a428a;
 
     height: 100%;
+}
+
+.smallSwiper > div {
+    gap: 10px;
+}
+
+.slider div {
+    max-height: 850px;
+}
+
+.slider div:nth-child(3) {
+    text-shadow: 1px 1px 6px rgb(23 80 52 / 87.7%);
+}
+
+.slider div:nth-child(2) {
+    text-shadow: 1px 1px 6px rgb(23 80 52 / 87.7%);
 }
 
 .modalBackground {
@@ -34,10 +50,6 @@
     height: 100%;
 }
 
-.smallSwiper > div {
-    gap: 10px;
-}
-
 .smallSwiperContainer {
     display: flex;
     width: 15%;
@@ -65,10 +77,6 @@
     width: 100%;
     height: 100%;
     object-fit: cover;
-}
-
-.slider div {
-    max-height: 850px;
 }
 
 .close {

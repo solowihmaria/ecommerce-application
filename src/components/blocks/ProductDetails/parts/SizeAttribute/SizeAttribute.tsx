@@ -61,7 +61,6 @@ export const SizeAttribute = ({
                         <Button
                             className={clsx(styles.button, styles.size)}
                             onClick={() => {
-                                console.log(`hello size ${size}`);
                                 onSizeChange(size);
                             }}
                         >

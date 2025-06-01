@@ -1,7 +1,7 @@
 import axios from 'axios';
 import type { ProductResponse } from './product.types';
-import type { AuthResponse } from '../createCustomer/createCustomer.types';
 import { getToken } from '../token';
+import { getGuestToken } from '../auth/getToken';
 
 export const getUserToken = async (loginStatus: boolean) => {
     let accessToken: string = '';
@@ -17,30 +17,6 @@ export const getUserToken = async (loginStatus: boolean) => {
     }
 
     return accessToken;
-};
-
-const getGuestToken = async () => {
-    const authUrl = process.env.CTP_AUTH_URL;
-    const clientId = process.env.CTP_CLIENT_ID;
-    const clientSecret = process.env.CTP_CLIENT_SECRET;
-
-    const tokenUrl = `${authUrl}/oauth/token`;
-    const credentials = btoa(`${clientId}:${clientSecret}`);
-
-    const response = await axios.post<AuthResponse>(
-        tokenUrl,
-        new URLSearchParams({
-            grant_type: 'client_credentials',
-        }),
-        {
-            headers: {
-                Authorization: `Basic ${credentials}`,
-                'Content-type': 'application/x-www-form-urlencoded',
-            },
-        }
-    );
-
-    return response.data;
 };
 
 export const getProductByID = async (
