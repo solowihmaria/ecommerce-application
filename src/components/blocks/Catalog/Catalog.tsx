@@ -1,4 +1,4 @@
-import { useEffect, useState, type FormEvent } from 'react';
+import { useEffect, useState } from 'react';
 import styles from './Catalog.module.scss';
 import { ProductList } from './parts/ProductList/ProductList';
 import type {
@@ -282,10 +282,12 @@ export const Catalog = () => {
 
                     <SearchInput
                         className={styles.searchBlock}
-                        handleSubmit={handleSearch}
-                        handleChange={(e) => {
-                            if (e.target instanceof HTMLInputElement) {
-                                setSearchInput(e.target.value);
+                        handleSubmit={(event) => {
+                            event.preventDefault();
+                        }}
+                        handleChange={(event) => {
+                            if (event.target instanceof HTMLInputElement) {
+                                setSearchInput(event.target.value);
                             }
                         }}
                     />
@@ -299,7 +301,3 @@ export const Catalog = () => {
         </div>
     );
 };
-
-function handleSearch(event: FormEvent) {
-    event.preventDefault();
-}
