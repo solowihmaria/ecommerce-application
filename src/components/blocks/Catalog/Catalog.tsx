@@ -13,8 +13,7 @@ import { FiFrown } from 'react-icons/fi';
 import { Filters } from './parts/FIlters';
 import type { Category } from '../../../api/getCategories/getCategories.types';
 import { getCategories } from '../../../api/getCategories/getCategories';
-import { Heading } from '../../ui/Heading';
-import { Link } from 'react-router-dom';
+import { Categories } from './parts/Categories';
 
 export const Catalog = () => {
     const [products, setProducts] = useState<Product[]>([]);
@@ -24,6 +23,9 @@ export const Catalog = () => {
     const [sort, setSort] = useState<string>('');
     const [searchInput, setSearchInput] = useState<string>('');
     const [query, setQuery] = useState<string>('');
+    // const [selectedCategory, setSelectedCategory] = useState<Category | null>(
+    //     null
+    // );
     const [filters, setFilters] = useState<Filter>({
         categoryId: '',
         careLevel: '',
@@ -94,71 +96,7 @@ export const Catalog = () => {
     return (
         <div className={styles.catalogContainer}>
             <div className={styles.controls}>
-                <div className={styles.categoryBlock}>
-                    <Heading level="h3">Category</Heading>
-
-                    <ul className={styles.categoriesList}>
-                        {categories
-                            .filter(
-                                (category) => category.ancestors.length === 0
-                            )
-                            .map((category) => {
-                                return (
-                                    <li key={category.id}>
-                                        <Link
-                                            to={`/catalog/${category.slug?.['en-US']}`}
-                                            className={styles.categoryItem}
-                                            onClick={() =>
-                                                setFilters((prev) => ({
-                                                    ...prev,
-                                                    categoryId: category.id,
-                                                }))
-                                            }
-                                        >
-                                            {category.name['en-US']}
-                                        </Link>
-
-                                        <ul
-                                            className={styles.subcategoriesList}
-                                        >
-                                            {categories
-                                                .filter(
-                                                    (cat) =>
-                                                        cat.ancestors?.[0]
-                                                            ?.id === category.id
-                                                )
-                                                .map((child) => (
-                                                    <li key={child.id}>
-                                                        <Link
-                                                            to={`/catalog/${child.slug?.['en-US']}`}
-                                                            onClick={() =>
-                                                                setFilters(
-                                                                    (prev) => ({
-                                                                        ...prev,
-                                                                        categoryId:
-                                                                            child.id,
-                                                                    })
-                                                                )
-                                                            }
-                                                            className={
-                                                                styles.subcategoryItem
-                                                            }
-                                                        >
-                                                            {
-                                                                child.name[
-                                                                    'en-US'
-                                                                ]
-                                                            }
-                                                        </Link>
-                                                    </li>
-                                                ))}
-                                        </ul>
-                                    </li>
-                                );
-                            })}
-                    </ul>
-                </div>
-
+                <Categories categories={categories} setFilters={setFilters} />
                 <Filters filters={filters} setFilters={setFilters} />
             </div>
 
