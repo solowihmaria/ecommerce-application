@@ -53,7 +53,7 @@
 
 .addressList {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    grid-template-columns: repeat(2, 1fr);
     gap: 1.5rem;
 
     @media (width <= 768px) {
@@ -88,8 +88,10 @@
     gap: 0.5rem;
 }
 
-.typeBadge {
+.typeBadge,
+.defaultBadge {
     padding: 0.25rem 0.5rem;
+    border: 1px solid rgba(c.$color-primary-light, 0.3);
     border-radius: 0.25rem;
     font-size: 0.75rem;
     font-weight: 500;
@@ -98,11 +100,7 @@
 }
 
 .defaultBadge {
-    padding: 0.25rem 0.5rem;
-    border-radius: 0.25rem;
-    font-size: 0.75rem;
-    color: c.$color-text-primary;
-    background-color: c.$color-accent-dark;
+    background-color: c.$color-primary;
 }
 
 .addressActions {
@@ -240,5 +238,21 @@
     .modalLabel {
         margin-bottom: 0.1rem;
         font-size: 0.7rem;
+    }
+}
+
+@media (width <= 500px) {
+    .formActions {
+        flex-direction: column;
+    }
+}
+
+@media (width <= 400px) {
+    .addressCard {
+        max-width: 15rem;
+    }
+
+    .addressCard .deleteButton {
+        padding: 0.2rem;
     }
 }
