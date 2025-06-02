@@ -88,8 +88,10 @@
     gap: 0.5rem;
 }
 
-.typeBadge {
+.typeBadge,
+.defaultBadge {
     padding: 0.25rem 0.5rem;
+    border: 1px solid rgba(c.$color-primary-light, 0.3);
     border-radius: 0.25rem;
     font-size: 0.75rem;
     font-weight: 500;
@@ -98,11 +100,7 @@
 }
 
 .defaultBadge {
-    padding: 0.25rem 0.5rem;
-    border-radius: 0.25rem;
-    font-size: 0.75rem;
-    color: c.$color-text-primary;
-    background-color: c.$color-accent-dark;
+    background-color: c.$color-primary;
 }
 
 .addressActions {
