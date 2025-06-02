@@ -3,24 +3,21 @@ import type {
     Filter,
     ProductProjectionPagedSearchResponse,
     requestGetProductsParams,
-} from './getProducts.types';
-import { getGuestToken } from '../auth/getToken';
+} from './catalog.types';
 
-export const requestGetProducts = async ({
-    sort,
-    query,
-    filters,
-}: requestGetProductsParams) => {
+export const requestGetProducts = async (
+    { sort, query, filters }: requestGetProductsParams,
+    token: string
+) => {
     const apiUrl = process.env.CTP_API_URL;
     const projectKey = process.env.CTP_PROJECT_KEY;
     const productsUrl = `${apiUrl}/${projectKey}/product-projections/search`;
-    const adminToken = await getGuestToken();
 
     const response = await axios.get<ProductProjectionPagedSearchResponse>(
         productsUrl,
         {
             headers: {
-                Authorization: `Bearer ${adminToken.access_token}`,
+                Authorization: `Bearer ${token}`,
             },
             params: {
                 limit: 50,

@@ -1,7 +1,7 @@
 import { FaHome } from 'react-icons/fa';
 import styles from '../Catalog.module.scss';
 import { Link, useLocation } from 'react-router-dom';
-import type { Category } from '../../../../api/getCategories/getCategories.types';
+import type { Category } from '../../../../api/catalog/catalog.types';
 
 const formatPathname = (pathname: string) => {
     return `${pathname.slice(0, 1).toUpperCase()}${pathname.slice(1)}`;
@@ -27,7 +27,7 @@ export const Breadcrumbs = ({ categories, resetFilters }: BreadcrumbsProps) => {
                     onClick={resetFilters}
                 >
                     {categories.find((cat) => cat.slug['en-US'] === pathname)
-                        ?.name['en-US'] || formatPathname(pathname)}
+                        ?.name?.['en-US'] || formatPathname(pathname)}
                 </Link>
 
                 {index < pathnames.length - 1 && ' / '}

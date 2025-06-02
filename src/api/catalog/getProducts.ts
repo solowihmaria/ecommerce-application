@@ -1,8 +1,9 @@
+import { getUserToken } from '../product/getProduct';
 import type {
     ProductProjection,
     Product,
     requestGetProductsParams,
-} from './getProducts.types';
+} from './catalog.types';
 import { requestGetProducts } from './requestGetProducts';
 
 const transformProductData = (productsData: ProductProjection[]) => {
@@ -37,8 +38,12 @@ const transformProductData = (productsData: ProductProjection[]) => {
     return products;
 };
 
-export const getProducts = async (params: requestGetProductsParams) => {
-    const data = await requestGetProducts(params);
+export const getProducts = async (
+    params: requestGetProductsParams,
+    loginStatus: boolean
+) => {
+    const token = await getUserToken(loginStatus);
+    const data = await requestGetProducts(params, token);
 
     const products: Product[] = transformProductData(data);
 

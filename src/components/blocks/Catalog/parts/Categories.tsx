@@ -1,8 +1,8 @@
 import styles from '../Catalog.module.scss';
-import type { Category } from '../../../../api/getCategories/getCategories.types';
+import type { Category } from '../../../../api/catalog/catalog.types';
 import { Heading } from '../../../ui/Heading';
 import { Link } from 'react-router-dom';
-import type { Filter } from '../../../../api/getProducts/getProducts.types';
+import type { Filter } from '../../../../api/catalog/catalog.types';
 
 interface CategoriesProps {
     categories: Category[];

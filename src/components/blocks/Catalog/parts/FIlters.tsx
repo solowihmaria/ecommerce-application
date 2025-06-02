@@ -1,4 +1,4 @@
-import type { Filter } from '../../../../api/getProducts/getProducts.types';
+import type { Filter } from '../../../../api/catalog/catalog.types';
 import { Button } from '../../../ui/Button';
 import { Heading } from '../../../ui/Heading';
 import { Input } from '../../../ui/Input';

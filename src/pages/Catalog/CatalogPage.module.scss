@@ -1,7 +1,7 @@
 @use '../../assets/styles/constants.module' as c;
 
 .catalogPage {
-    color: white;
+    color: c.$color-white;
     background: url('../../assets/images/bkg.jpg');
 }
 

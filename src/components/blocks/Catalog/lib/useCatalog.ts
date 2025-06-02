@@ -1,13 +1,12 @@
 import { useEffect, useState } from 'react';
-import type {
-    Filter,
-    Product,
-} from '../../../../api/getProducts/getProducts.types';
-import type { Category } from '../../../../api/getCategories/getCategories.types';
-import { getProducts } from '../../../../api/getProducts/getProducts';
-import { getCategories } from '../../../../api/getCategories/getCategories';
+import type { Filter, Product } from '../../../../api/catalog/catalog.types';
+import type { Category } from '../../../../api/catalog/catalog.types';
+import { getProducts } from '../../../../api/catalog/getProducts';
+import { getCategories } from '../../../../api/catalog/getCategories';
+import { useAuth } from '../../../../store/auth/useAuth';
 
 export const useCatalog = () => {
+    const { loginStatus } = useAuth();
     const [products, setProducts] = useState<Product[]>([]);
     const [categories, setCategories] = useState<Category[]>([]);
     const [isLoading, setIsLoading] = useState(true);
@@ -27,11 +26,14 @@ export const useCatalog = () => {
     useEffect(() => {
         const loadProducts = async () => {
             try {
-                const data: Product[] = await getProducts({
-                    sort,
-                    query,
-                    filters,
-                });
+                const data: Product[] = await getProducts(
+                    {
+                        sort,
+                        query,
+                        filters,
+                    },
+                    loginStatus
+                );
                 setProducts(data);
             } catch (error) {
                 console.log('ERROR', error);
@@ -42,12 +44,12 @@ export const useCatalog = () => {
         };
 
         void loadProducts();
-    }, [sort, query, filters]);
+    }, [sort, query, filters, loginStatus]);
 
     useEffect(() => {
         const loadCategories = async () => {
             try {
-                const data: Category[] = await getCategories();
+                const data: Category[] = await getCategories(loginStatus);
                 setCategories(data);
             } catch (error) {
                 console.log('ERROR', error);
@@ -58,7 +60,7 @@ export const useCatalog = () => {
         };
 
         void loadCategories();
-    }, []);
+    }, [loginStatus]);
 
     // Задержка для оптимизации количества запросов при вводе в поле поиска
     useEffect(() => {

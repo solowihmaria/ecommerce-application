@@ -14,15 +14,14 @@ interface ProductTypeReference {
     obj: ProductType;
 }
 
-interface Category {
+export interface Category {
     id: string;
     version: number;
-    name: string;
-    slug: string; // ^[A-Za-z0-9_-]{2,256}+$
+    name: { 'en-US': string };
+    slug: { 'en-US': string }; // ^[A-Za-z0-9_-]{2,256}+$
+    description: { 'en-US': string };
     ancestors: CategoryReference[];
-    orderHint: string; // Decimal value between 0 and 1
-    createdAt: string;
-    lastModifiedAt: string;
+    parent: CategoryReference;
 }
 
 interface CategoryReference {
@@ -156,4 +155,12 @@ export interface requestGetProductsParams {
     sort?: string;
     query?: string;
     filters: Filter;
+}
+
+export interface CategoryPagedQueryResponse {
+    limit: number;
+    offset: number;
+    count: number;
+    total: number;
+    results: Category[];
 }

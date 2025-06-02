@@ -36,6 +36,7 @@
 .listContainer {
     display: flex;
     flex-direction: column;
+    flex-grow: 1;
     gap: 32px;
     margin: 0 auto;
 }
@@ -65,6 +66,7 @@
     display: grid;
     grid-template-columns: 1fr;
     gap: 16px;
+    max-width: 360px;
     padding: 2em 1em;
     border: 1px solid c.$color-primary-light;
     border-radius: 20px;
@@ -73,6 +75,7 @@
 
     @media (width <= 1070px) {
         grid-template-columns: 1fr 1fr;
+        max-width: 100%;
     }
 
     @media (width <= 720px) {

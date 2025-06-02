@@ -1,4 +1,4 @@
-import type { Product } from '../../../../api/getProducts/getProducts.types';
+import type { Product } from '../../../../api/catalog/catalog.types';
 import { ProductCard } from './ProductCard/ProductCard';
 import styles from '../Catalog.module.scss';
 

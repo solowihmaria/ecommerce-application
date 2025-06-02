@@ -1,16 +1,14 @@
 import axios from 'axios';
-import type { CategoryPagedQueryResponse } from './getCategories.types';
-import { getGuestToken } from '../auth/getToken';
+import type { CategoryPagedQueryResponse } from './catalog.types';
 
-export const requestGetCategories = async () => {
+export const requestGetCategories = async (token: string) => {
     const apiUrl = process.env.CTP_API_URL;
     const projectKey = process.env.CTP_PROJECT_KEY;
     const productsUrl = `${apiUrl}/${projectKey}/categories`;
-    const adminToken = await getGuestToken();
 
     const response = await axios.get<CategoryPagedQueryResponse>(productsUrl, {
         headers: {
-            Authorization: `Bearer ${adminToken.access_token}`,
+            Authorization: `Bearer ${token}`,
         },
         params: {
             limit: 50,
