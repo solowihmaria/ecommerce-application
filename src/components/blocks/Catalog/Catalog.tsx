@@ -24,9 +24,6 @@ export const Catalog = () => {
     const [sort, setSort] = useState<string>('');
     const [searchInput, setSearchInput] = useState<string>('');
     const [query, setQuery] = useState<string>('');
-    // const [selectedCategory, setSelectedCategory] = useState<Category | null>(
-    //     null
-    // );
     const [filters, setFilters] = useState<Filter>({
         categoryId: '',
         careLevel: '',

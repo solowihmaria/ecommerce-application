@@ -10,7 +10,8 @@ interface CardProps {
 }
 
 export const ProductCard = ({ product }: CardProps) => {
-    // console.log('PREVIEW', product.masterVariant.preview);
+    const IMAGE_NOT_AVAILABLE =
+        'https://upload.wikimedia.org/wikipedia/commons/thumb/d/d1/Image_not_available.png/800px-Image_not_available.png';
 
     return (
         <Link
@@ -26,7 +27,7 @@ export const ProductCard = ({ product }: CardProps) => {
                     src={
                         product.masterVariant.preview
                             ? product.masterVariant.preview
-                            : 'https://upload.wikimedia.org/wikipedia/commons/thumb/d/d1/Image_not_available.png/800px-Image_not_available.png'
+                            : IMAGE_NOT_AVAILABLE
                     }
                 />
 

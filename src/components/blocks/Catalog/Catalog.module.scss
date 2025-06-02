@@ -62,14 +62,9 @@
 }
 
 .controls {
-    // display: flex;
-    // flex-direction: column;
     display: grid;
     grid-template-columns: 1fr;
     gap: 16px;
-
-    // width: 25%;
-    // min-width: 350px;
     padding: 2em 1em;
     border: 1px solid c.$color-primary-light;
     border-radius: 20px;
@@ -102,7 +97,6 @@
 
 .categoryItem,
 .subcategoryItem {
-    // width: 100%;
     display: block;
     padding: 4px 8px;
     border-radius: 10px;

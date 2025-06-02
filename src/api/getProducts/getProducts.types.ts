@@ -184,7 +184,6 @@ export interface ProductProjection {
     productType: ProductTypeReference;
     name: { 'en-US': string };
     description: { 'en-US': string };
-    // slug: { 'en-US': string };
     categories: CategoryReference[];
     masterVariant: ProductVariant;
     variants: ProductVariant[];
@@ -221,7 +220,6 @@ export interface ProductProjectionPagedSearchResponse {
 }
 
 export interface Filter {
-    // [key: string]: string | number[];
     categoryId: string;
     careLevel: string;
     light: string;
