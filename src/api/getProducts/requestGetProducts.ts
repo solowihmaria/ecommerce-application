@@ -1,10 +1,10 @@
 import axios from 'axios';
-import { getAdminToken } from '../createCustomer/requestCreateCustomer';
 import type {
     Filter,
     ProductProjectionPagedSearchResponse,
     requestGetProductsParams,
 } from './getProducts.types';
+import { getGuestToken } from '../auth/getToken';
 
 export const requestGetProducts = async ({
     sort,
@@ -14,7 +14,7 @@ export const requestGetProducts = async ({
     const apiUrl = process.env.CTP_API_URL;
     const projectKey = process.env.CTP_PROJECT_KEY;
     const productsUrl = `${apiUrl}/${projectKey}/product-projections/search`;
-    const adminToken = await getAdminToken();
+    const adminToken = await getGuestToken();
 
     const response = await axios.get<ProductProjectionPagedSearchResponse>(
         productsUrl,
