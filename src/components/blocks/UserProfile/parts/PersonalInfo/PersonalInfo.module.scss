@@ -57,6 +57,12 @@
     font-size: 1.2rem;
 }
 
+@media (width <= 1000px) {
+    .sectionTitle {
+        flex-direction: column;
+    }
+}
+
 @media (width <= 768px) {
     .viewMode,
     .editMode {
