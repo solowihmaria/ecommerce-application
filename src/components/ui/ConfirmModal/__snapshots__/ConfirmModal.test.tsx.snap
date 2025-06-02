@@ -1,0 +1,40 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<ConfirmModal/> component renders correctly with all props 1`] = `
+<body>
+  <div>
+    <div
+      class="modalOverlay"
+    >
+      <div
+        class="modal"
+      >
+        <h3
+          class="modalTitle"
+        >
+          Delete Item
+        </h3>
+        <p
+          class="modalMessage"
+        >
+          Are you sure you want to delete this?
+        </p>
+        <div
+          class="modalActions"
+        >
+          <button
+            class="button outline"
+          >
+            No, cancel
+          </button>
+          <button
+            class="button danger"
+          >
+            Yes, delete
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+`;

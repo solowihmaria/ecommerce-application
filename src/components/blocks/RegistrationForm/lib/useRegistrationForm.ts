@@ -7,13 +7,13 @@ import type { RegistrationFormData } from '../Registration.types';
 import { useRegistrationErrors } from './useRegistrationErrors';
 import { createCustomer } from '../../../../api/createCustomer/createCustomer';
 import { authenticateUser } from '../../../../api/auth/authService';
-import { LoginContext } from '../../../../App';
+import { useAuth } from '../../../../store/auth/useAuth';
 import { ToastContext } from '../../../ui/Toast/ToastContext';
 
 export const useRegistrationForm = () => {
     const [isPasswordVisible, setIsPasswordVisible] = React.useState(false);
     const navigate = useNavigate();
-    const { setLoginStatus } = useContext(LoginContext);
+    const { setLoginStatus } = useAuth();
     const { showToast } = useContext(ToastContext);
     const methods = useForm<RegistrationFormData>({
         resolver: yupResolver(registrationSchema),

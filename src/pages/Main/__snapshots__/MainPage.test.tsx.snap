@@ -5,63 +5,1436 @@ exports[`<MainPage/> component Render MainPage component 1`] = `
   class="mainPageContainer"
   data-testid="main-page-test-id"
 >
-  <nav
-    class="header"
+  <header
+    class="headerWrapper"
     data-testid="test-id-header"
   >
-    <div>
-      <a
-        class="iconLink"
-        data-discover="true"
-        href="/main"
+    <nav
+      class="header"
+    >
+      <div
+        class="leftSection"
+      >
+        <a
+          class="logoLink"
+          data-discover="true"
+          href="/main"
+        >
+          <svg
+            data-testid="mock-svg"
+          />
+        </a>
+      </div>
+      <div
+        class="centerSection"
+      >
+        <a
+          data-discover="true"
+          href="/main"
+        >
+          <button
+            class="button ghost navButton"
+          >
+            Main
+          </button>
+        </a>
+        <a
+          data-discover="true"
+          href="/catalog"
+        >
+          <button
+            class="button ghost navButton"
+          >
+            Catalog
+          </button>
+        </a>
+        <a
+          data-discover="true"
+          href="/"
+        >
+          <button
+            class="button ghost navButton"
+          >
+            About
+          </button>
+        </a>
+      </div>
+      <div
+        class="rightSection"
       >
         <svg
-          data-testid="mock-svg"
-        />
-      </a>
-    </div>
-    <div
-      class="menu"
-    >
-      <a
-        data-discover="true"
-        href="/login"
-      >
-        <button
-          class="button ghost headerButton"
+          class="profileIcon"
+          fill="currentColor"
+          height="1em"
+          stroke="currentColor"
+          stroke-width="0"
+          viewBox="0 0 24 24"
+          width="1em"
+          xmlns="http://www.w3.org/2000/svg"
         >
-          Sign In
-        </button>
-      </a>
-      <a
-        data-discover="true"
-        href="/register"
-      >
-        <button
-          class="button ghost headerButton"
+          <path
+            d="M0 0h24v24H0z"
+            fill="none"
+          />
+          <path
+            d="M11 7 9.6 8.4l2.6 2.6H2v2h10.2l-2.6 2.6L11 17l5-5-5-5zm9 12h-8v2h8c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2h-8v2h8v14z"
+          />
+        </svg>
+        <div
+          class="profileMenu"
         >
-          Sign Up
-        </button>
-      </a>
-    </div>
-  </nav>
+          <a
+            class="link"
+            data-discover="true"
+            href="/login"
+          >
+            <button
+              class="button ghost authButton"
+            >
+              Sign In
+            </button>
+          </a>
+          <a
+            class="link"
+            data-discover="true"
+            href="/register"
+          >
+            <button
+              class="button ghost authButton"
+            >
+              Sign Up
+            </button>
+          </a>
+        </div>
+        <a
+          class="cartLink"
+          data-discover="true"
+          href="/"
+        >
+          <svg
+            data-testid="mock-svg"
+          />
+        </a>
+        <div
+          class="hamburger"
+        >
+          <svg
+            class="hamburgerIcon"
+            fill="currentColor"
+            height="1em"
+            stroke="currentColor"
+            stroke-width="0"
+            viewBox="0 0 24 24"
+            width="1em"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M0 0h24v24H0V0z"
+              fill="none"
+            />
+            <path
+              d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"
+            />
+          </svg>
+        </div>
+      </div>
+    </nav>
+  </header>
   <main
     class="main"
   >
-    <div
-      class="titleWrapper"
+    <section
+      class="hero"
     >
-      <h1
-        class="title"
+      <div
+        class="container"
       >
-        Evergreen
-      </h1>
-      <h3
-        class="titleSecondary"
+        <div
+          class="content"
+        >
+          <h1
+            class="title"
+          >
+            Bring Nature
+            <span
+              class="titleHighlight"
+            >
+               Home
+            </span>
+          </h1>
+          <p
+            class="description"
+          >
+            Discover our curated collection of beautiful, healthy plants that will transform your space into a green oasis. From beginner-friendly succulents to exotic tropical plants.
+          </p>
+          <a
+            data-discover="true"
+            href="/catalog"
+          >
+            <button
+              class="button primary button"
+            >
+              Find Your Plant
+              <svg
+                class="buttonIcon"
+                fill="currentColor"
+                height="1em"
+                stroke="currentColor"
+                stroke-width="0"
+                viewBox="0 0 448 512"
+                width="1em"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M190.5 66.9l22.2-22.2c9.4-9.4 24.6-9.4 33.9 0L441 239c9.4 9.4 9.4 24.6 0 33.9L246.6 467.3c-9.4 9.4-24.6 9.4-33.9 0l-22.2-22.2c-9.5-9.5-9.3-25 .4-34.3L311.4 296H24c-13.3 0-24-10.7-24-24v-32c0-13.3 10.7-24 24-24h287.4L190.9 101.2c-9.8-9.3-10-24.8-.4-34.3z"
+                />
+              </svg>
+            </button>
+          </a>
+        </div>
+      </div>
+    </section>
+    <section
+      class="about"
+    >
+      <div
+        class="container"
       >
-        Find your perfect plant
-      </h3>
-    </div>
+        <div
+          class="content"
+        >
+          <div
+            class="header"
+          >
+            <h2
+              class="title"
+            >
+              Why
+               
+              <span
+                class="titleHighlight"
+              >
+                Evergreen?
+              </span>
+            </h2>
+            <p
+              class="subtitle"
+            >
+              We make plant parenting easy and enjoyable. Here's what makes us different.
+            </p>
+          </div>
+          <div
+            class="featuresGrid"
+          >
+            <div
+              class="featureCard"
+            >
+              <div
+                class="featureIcon"
+              >
+                <svg
+                  fill="currentColor"
+                  height="1em"
+                  stroke="currentColor"
+                  stroke-width="0"
+                  viewBox="0 0 576 512"
+                  width="1em"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M546.2 9.7c-5.6-12.5-21.6-13-28.3-1.2C486.9 62.4 431.4 96 368 96h-80C182 96 96 182 96 288c0 7 .8 13.7 1.5 20.5C161.3 262.8 253.4 224 384 224c8.8 0 16 7.2 16 16s-7.2 16-16 16C132.6 256 26 410.1 2.4 468c-6.6 16.3 1.2 34.9 17.5 41.6 16.4 6.8 35-1.1 41.8-17.3 1.5-3.6 20.9-47.9 71.9-90.6 32.4 43.9 94 85.8 174.9 77.2C465.5 467.5 576 326.7 576 154.3c0-50.2-10.8-102.2-29.8-144.6z"
+                  />
+                </svg>
+              </div>
+              <h3
+                class="featureTitle"
+              >
+                Healthy Plants
+              </h3>
+              <p
+                class="featureText"
+              >
+                Every plant is carefully inspected before shipping
+              </p>
+            </div>
+            <div
+              class="featureCard"
+            >
+              <div
+                class="featureIcon"
+              >
+                <svg
+                  fill="currentColor"
+                  height="1em"
+                  stroke="currentColor"
+                  stroke-width="0"
+                  viewBox="0 0 640 512"
+                  width="1em"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M624 352h-16V243.9c0-12.7-5.1-24.9-14.1-33.9L494 110.1c-9-9-21.2-14.1-33.9-14.1H416V48c0-26.5-21.5-48-48-48H48C21.5 0 0 21.5 0 48v320c0 26.5 21.5 48 48 48h16c0 53 43 96 96 96s96-43 96-96h128c0 53 43 96 96 96s96-43 96-96h48c8.8 0 16-7.2 16-16v-32c0-8.8-7.2-16-16-16zM160 464c-26.5 0-48-21.5-48-48s21.5-48 48-48 48 21.5 48 48-21.5 48-48 48zm320 0c-26.5 0-48-21.5-48-48s21.5-48 48-48 48 21.5 48 48-21.5 48-48 48zm80-208H416V144h44.1l99.9 99.9V256z"
+                  />
+                </svg>
+              </div>
+              <h3
+                class="featureTitle"
+              >
+                Fast Delivery
+              </h3>
+              <p
+                class="featureText"
+              >
+                Free shipping on orders over 50 €, delivered in 2-3 days
+              </p>
+            </div>
+            <div
+              class="featureCard"
+            >
+              <div
+                class="featureIcon"
+              >
+                <svg
+                  fill="currentColor"
+                  height="1em"
+                  stroke="currentColor"
+                  stroke-width="0"
+                  viewBox="0 0 512 512"
+                  width="1em"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M462.3 62.6C407.5 15.9 326 24.3 275.7 76.2L256 96.5l-19.7-20.3C186.1 24.3 104.5 15.9 49.7 62.6c-62.8 53.6-66.1 149.8-9.9 207.9l193.5 199.8c12.5 12.9 32.8 12.9 45.3 0l193.5-199.8c56.3-58.1 53-154.3-9.8-207.9z"
+                  />
+                </svg>
+              </div>
+              <h3
+                class="featureTitle"
+              >
+                Plant Care Support
+              </h3>
+              <p
+                class="featureText"
+              >
+                Get expert advice whenever you need help
+              </p>
+            </div>
+            <div
+              class="featureCard"
+            >
+              <div
+                class="featureIcon"
+              >
+                <svg
+                  fill="currentColor"
+                  height="1em"
+                  stroke="currentColor"
+                  stroke-width="0"
+                  viewBox="0 0 576 512"
+                  width="1em"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M259.3 17.8L194 150.2 47.9 171.5c-26.2 3.8-36.7 36.1-17.7 54.6l105.7 103-25 145.5c-4.5 26.3 23.2 46 46.4 33.7L288 439.6l130.7 68.7c23.2 12.2 50.9-7.4 46.4-33.7l-25-145.5 105.7-103c19-18.5 8.5-50.8-17.7-54.6L382 150.2 316.7 17.8c-11.7-23.6-45.6-23.9-57.4 0z"
+                  />
+                </svg>
+              </div>
+              <h3
+                class="featureTitle"
+              >
+                30-Day Guarantee
+              </h3>
+              <p
+                class="featureText"
+              >
+                Not happy? We'll replace your plant or refund you
+              </p>
+            </div>
+          </div>
+          <div
+            class="statsContainer"
+          >
+            <div
+              class="statsGrid"
+            >
+              <div
+                class="statItem"
+              >
+                <div
+                  class="statNumber"
+                >
+                  10K+
+                </div>
+                <div
+                  class="statLabel"
+                >
+                  Happy Customers
+                </div>
+              </div>
+              <div
+                class="statItem"
+              >
+                <div
+                  class="statNumber"
+                >
+                  15K+
+                </div>
+                <div
+                  class="statLabel"
+                >
+                  Plants delivered safely
+                </div>
+              </div>
+              <div
+                class="statItem"
+              >
+                <div
+                  class="statNumber"
+                >
+                  4.9★
+                </div>
+                <div
+                  class="statLabel"
+                >
+                  Customer Rating
+                </div>
+              </div>
+              <div
+                class="statItem"
+              >
+                <div
+                  class="statNumber"
+                >
+                  9 Years
+                </div>
+                <div
+                  class="statLabel"
+                >
+                  Experience
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section
+      class="promoSection"
+    >
+      <div
+        class="container"
+      >
+        <div
+          class="header"
+        >
+          <h2
+            class="title"
+          >
+            Exclusive Offers
+          </h2>
+          <p
+            class="subtitle"
+          >
+            Save more with our special discount codes! Each offer is designed to help you grow your plant collection.
+          </p>
+        </div>
+        <div
+          class="cardsGrid"
+        >
+          <div
+            class="promoCard"
+          >
+            <div
+              class="cardBackground firstOrderBg"
+            />
+            <div
+              class="cardContent"
+            >
+              <div
+                class="cardHeader"
+              >
+                <div
+                  class="emojiBadge"
+                >
+                  <svg
+                    fill="currentColor"
+                    height="1em"
+                    stroke="currentColor"
+                    stroke-width="0"
+                    viewBox="0 0 576 512"
+                    width="1em"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M546.2 9.7c-5.6-12.5-21.6-13-28.3-1.2C486.9 62.4 431.4 96 368 96h-80C182 96 96 182 96 288c0 7 .8 13.7 1.5 20.5C161.3 262.8 253.4 224 384 224c8.8 0 16 7.2 16 16s-7.2 16-16 16C132.6 256 26 410.1 2.4 468c-6.6 16.3 1.2 34.9 17.5 41.6 16.4 6.8 35-1.1 41.8-17.3 1.5-3.6 20.9-47.9 71.9-90.6 32.4 43.9 94 85.8 174.9 77.2C465.5 467.5 576 326.7 576 154.3c0-50.2-10.8-102.2-29.8-144.6z"
+                    />
+                  </svg>
+                </div>
+                <h3
+                  class="cardTitle"
+                >
+                  First Order Special
+                </h3>
+                <p
+                  class="cardSubtitle"
+                >
+                  Welcome to our green family!
+                </p>
+              </div>
+              <div
+                class="discountBox"
+              >
+                <div
+                  class="discountAmount"
+                >
+                  <span
+                    class="discountPercent"
+                  >
+                    20%
+                  </span>
+                  <p
+                    class="discountDescription"
+                  >
+                    OFF your first purchase with us
+                  </p>
+                </div>
+                <div
+                  class="codeBox"
+                >
+                  <span
+                    class="codeText"
+                  >
+                    WELCOME20
+                  </span>
+                  <button
+                    class="iconButton"
+                  >
+                    <svg
+                      fill="currentColor"
+                      height="1em"
+                      stroke="currentColor"
+                      stroke-width="0"
+                      viewBox="0 0 448 512"
+                      width="1em"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        d="M320 448v40c0 13.255-10.745 24-24 24H24c-13.255 0-24-10.745-24-24V120c0-13.255 10.745-24 24-24h72v296c0 30.879 25.121 56 56 56h168zm0-344V0H152c-13.255 0-24 10.745-24 24v368c0 13.255 10.745 24 24 24h272c13.255 0 24-10.745 24-24V128H344c-13.2 0-24-10.8-24-24zm120.971-31.029L375.029 7.029A24 24 0 0 0 358.059 0H352v96h96v-6.059a24 24 0 0 0-7.029-16.97z"
+                      />
+                    </svg>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div
+            class="promoCard"
+          >
+            <div
+              class="cardBackground birthdayBg"
+            />
+            <div
+              class="cardContent"
+            >
+              <div
+                class="cardHeader"
+              >
+                <div
+                  class="emojiBadge"
+                >
+                  <svg
+                    fill="currentColor"
+                    height="1em"
+                    stroke="currentColor"
+                    stroke-width="0"
+                    viewBox="0 0 512 512"
+                    width="1em"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M32 448c0 17.7 14.3 32 32 32h160V320H32v128zm256 32h160c17.7 0 32-14.3 32-32V320H288v160zm192-320h-42.1c6.2-12.1 10.1-25.5 10.1-40 0-48.5-39.5-88-88-88-41.6 0-68.5 21.3-103 68.3-34.5-47-61.4-68.3-103-68.3-48.5 0-88 39.5-88 88 0 14.5 3.8 27.9 10.1 40H32c-17.7 0-32 14.3-32 32v80c0 8.8 7.2 16 16 16h480c8.8 0 16-7.2 16-16v-80c0-17.7-14.3-32-32-32zm-326.1 0c-22.1 0-40-17.9-40-40s17.9-40 40-40c19.9 0 34.6 3.3 86.1 80h-86.1zm206.1 0h-86.1c51.4-76.5 65.7-80 86.1-80 22.1 0 40 17.9 40 40s-17.9 40-40 40z"
+                    />
+                  </svg>
+                </div>
+                <h3
+                  class="cardTitle"
+                >
+                  Birthday Gift
+                </h3>
+                <p
+                  class="cardSubtitle"
+                >
+                  Celebrate with plants!
+                </p>
+              </div>
+              <div
+                class="discountBox"
+              >
+                <div
+                  class="discountAmount"
+                >
+                  <span
+                    class="discountPercent"
+                  >
+                    25%
+                  </span>
+                  <p
+                    class="discountDescription"
+                  >
+                    OFF on your birthday month
+                  </p>
+                </div>
+                <div
+                  class="codeBox"
+                >
+                  <span
+                    class="codeText"
+                  >
+                    BIRTHDAY25
+                  </span>
+                  <button
+                    class="iconButton"
+                  >
+                    <svg
+                      fill="currentColor"
+                      height="1em"
+                      stroke="currentColor"
+                      stroke-width="0"
+                      viewBox="0 0 448 512"
+                      width="1em"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        d="M320 448v40c0 13.255-10.745 24-24 24H24c-13.255 0-24-10.745-24-24V120c0-13.255 10.745-24 24-24h72v296c0 30.879 25.121 56 56 56h168zm0-344V0H152c-13.255 0-24 10.745-24 24v368c0 13.255 10.745 24 24 24h272c13.255 0 24-10.745 24-24V128H344c-13.2 0-24-10.8-24-24zm120.971-31.029L375.029 7.029A24 24 0 0 0 358.059 0H352v96h96v-6.059a24 24 0 0 0-7.029-16.97z"
+                      />
+                    </svg>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div
+            class="promoCard"
+          >
+            <div
+              class="cardBackground bundleBg"
+            />
+            <div
+              class="cardContent"
+            >
+              <div
+                class="cardHeader"
+              >
+                <div
+                  class="emojiBadge"
+                >
+                  <svg
+                    fill="currentColor"
+                    height="1em"
+                    stroke="currentColor"
+                    stroke-width="0"
+                    viewBox="0 0 512 512"
+                    width="1em"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M64 96H0c0 123.7 100.3 224 224 224v144c0 8.8 7.2 16 16 16h32c8.8 0 16-7.2 16-16V320C288 196.3 187.7 96 64 96zm384-64c-84.2 0-157.4 46.5-195.7 115.2 27.7 30.2 48.2 66.9 59 107.6C424 243.1 512 147.9 512 32h-64z"
+                    />
+                  </svg>
+                </div>
+                <h3
+                  class="cardTitle"
+                >
+                  Plant Trio Deal
+                </h3>
+                <p
+                  class="cardSubtitle"
+                >
+                  More plants, more savings!
+                </p>
+              </div>
+              <div
+                class="discountBox"
+              >
+                <div
+                  class="discountAmount"
+                >
+                  <span
+                    class="discountPercent"
+                  >
+                    30%
+                  </span>
+                  <p
+                    class="discountDescription"
+                  >
+                    OFF when you buy 3+ plants
+                  </p>
+                </div>
+                <div
+                  class="codeBox"
+                >
+                  <span
+                    class="codeText"
+                  >
+                    TRIO30
+                  </span>
+                  <button
+                    class="iconButton"
+                  >
+                    <svg
+                      fill="currentColor"
+                      height="1em"
+                      stroke="currentColor"
+                      stroke-width="0"
+                      viewBox="0 0 448 512"
+                      width="1em"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        d="M320 448v40c0 13.255-10.745 24-24 24H24c-13.255 0-24-10.745-24-24V120c0-13.255 10.745-24 24-24h72v296c0 30.879 25.121 56 56 56h168zm0-344V0H152c-13.255 0-24 10.745-24 24v368c0 13.255 10.745 24 24 24h272c13.255 0 24-10.745 24-24V128H344c-13.2 0-24-10.8-24-24zm120.971-31.029L375.029 7.029A24 24 0 0 0 358.059 0H352v96h96v-6.059a24 24 0 0 0-7.029-16.97z"
+                      />
+                    </svg>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section
+      class="testimonials"
+    >
+      <div
+        class="container"
+      >
+        <div
+          class="header"
+        >
+          <h2
+            class="title"
+          >
+            Trusted By Our Customers
+          </h2>
+          <p
+            class="subtitle"
+          >
+            Join thousands of happy plant parents who trust us with their green spaces.
+          </p>
+        </div>
+        <div
+          class="grid"
+        >
+          <div
+            class="card"
+          >
+            <div
+              class="cardContent"
+            >
+              <div
+                class="authorHeader"
+              >
+                <div
+                  class="authorInfo"
+                >
+                  <img
+                    alt="Sophie Martin"
+                    class="avatar"
+                    src="https://placehold.co/600x400/EEE/31343C"
+                  />
+                  <div
+                    class="authorText"
+                  >
+                    <p
+                      class="name"
+                    >
+                      Sophie Martin
+                    </p>
+                    <p
+                      class="location"
+                    >
+                      Paris, France
+                    </p>
+                  </div>
+                </div>
+                <div
+                  class="rating"
+                >
+                  <svg
+                    class="starFilled"
+                    fill="currentColor"
+                    height="1em"
+                    stroke="currentColor"
+                    stroke-width="0"
+                    viewBox="0 0 576 512"
+                    width="1em"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M259.3 17.8L194 150.2 47.9 171.5c-26.2 3.8-36.7 36.1-17.7 54.6l105.7 103-25 145.5c-4.5 26.3 23.2 46 46.4 33.7L288 439.6l130.7 68.7c23.2 12.2 50.9-7.4 46.4-33.7l-25-145.5 105.7-103c19-18.5 8.5-50.8-17.7-54.6L382 150.2 316.7 17.8c-11.7-23.6-45.6-23.9-57.4 0z"
+                    />
+                  </svg>
+                  <svg
+                    class="starFilled"
+                    fill="currentColor"
+                    height="1em"
+                    stroke="currentColor"
+                    stroke-width="0"
+                    viewBox="0 0 576 512"
+                    width="1em"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M259.3 17.8L194 150.2 47.9 171.5c-26.2 3.8-36.7 36.1-17.7 54.6l105.7 103-25 145.5c-4.5 26.3 23.2 46 46.4 33.7L288 439.6l130.7 68.7c23.2 12.2 50.9-7.4 46.4-33.7l-25-145.5 105.7-103c19-18.5 8.5-50.8-17.7-54.6L382 150.2 316.7 17.8c-11.7-23.6-45.6-23.9-57.4 0z"
+                    />
+                  </svg>
+                  <svg
+                    class="starFilled"
+                    fill="currentColor"
+                    height="1em"
+                    stroke="currentColor"
+                    stroke-width="0"
+                    viewBox="0 0 576 512"
+                    width="1em"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M259.3 17.8L194 150.2 47.9 171.5c-26.2 3.8-36.7 36.1-17.7 54.6l105.7 103-25 145.5c-4.5 26.3 23.2 46 46.4 33.7L288 439.6l130.7 68.7c23.2 12.2 50.9-7.4 46.4-33.7l-25-145.5 105.7-103c19-18.5 8.5-50.8-17.7-54.6L382 150.2 316.7 17.8c-11.7-23.6-45.6-23.9-57.4 0z"
+                    />
+                  </svg>
+                  <svg
+                    class="starFilled"
+                    fill="currentColor"
+                    height="1em"
+                    stroke="currentColor"
+                    stroke-width="0"
+                    viewBox="0 0 576 512"
+                    width="1em"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M259.3 17.8L194 150.2 47.9 171.5c-26.2 3.8-36.7 36.1-17.7 54.6l105.7 103-25 145.5c-4.5 26.3 23.2 46 46.4 33.7L288 439.6l130.7 68.7c23.2 12.2 50.9-7.4 46.4-33.7l-25-145.5 105.7-103c19-18.5 8.5-50.8-17.7-54.6L382 150.2 316.7 17.8c-11.7-23.6-45.6-23.9-57.4 0z"
+                    />
+                  </svg>
+                  <svg
+                    class="starFilled"
+                    fill="currentColor"
+                    height="1em"
+                    stroke="currentColor"
+                    stroke-width="0"
+                    viewBox="0 0 576 512"
+                    width="1em"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M259.3 17.8L194 150.2 47.9 171.5c-26.2 3.8-36.7 36.1-17.7 54.6l105.7 103-25 145.5c-4.5 26.3 23.2 46 46.4 33.7L288 439.6l130.7 68.7c23.2 12.2 50.9-7.4 46.4-33.7l-25-145.5 105.7-103c19-18.5 8.5-50.8-17.7-54.6L382 150.2 316.7 17.8c-11.7-23.6-45.6-23.9-57.4 0z"
+                    />
+                  </svg>
+                </div>
+              </div>
+              <p
+                class="text"
+              >
+                "
+                The plants arrived in perfect condition and have transformed my balcony into a green oasis. The delivery was faster than expected!
+                "
+              </p>
+            </div>
+          </div>
+          <div
+            class="card"
+          >
+            <div
+              class="cardContent"
+            >
+              <div
+                class="authorHeader"
+              >
+                <div
+                  class="authorInfo"
+                >
+                  <img
+                    alt="Luca Bianchi"
+                    class="avatar"
+                    src="https://placehold.co/600x400/EEE/31343C"
+                  />
+                  <div
+                    class="authorText"
+                  >
+                    <p
+                      class="name"
+                    >
+                      Luca Bianchi
+                    </p>
+                    <p
+                      class="location"
+                    >
+                      Florence, Italy
+                    </p>
+                  </div>
+                </div>
+                <div
+                  class="rating"
+                >
+                  <svg
+                    class="starFilled"
+                    fill="currentColor"
+                    height="1em"
+                    stroke="currentColor"
+                    stroke-width="0"
+                    viewBox="0 0 576 512"
+                    width="1em"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M259.3 17.8L194 150.2 47.9 171.5c-26.2 3.8-36.7 36.1-17.7 54.6l105.7 103-25 145.5c-4.5 26.3 23.2 46 46.4 33.7L288 439.6l130.7 68.7c23.2 12.2 50.9-7.4 46.4-33.7l-25-145.5 105.7-103c19-18.5 8.5-50.8-17.7-54.6L382 150.2 316.7 17.8c-11.7-23.6-45.6-23.9-57.4 0z"
+                    />
+                  </svg>
+                  <svg
+                    class="starFilled"
+                    fill="currentColor"
+                    height="1em"
+                    stroke="currentColor"
+                    stroke-width="0"
+                    viewBox="0 0 576 512"
+                    width="1em"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M259.3 17.8L194 150.2 47.9 171.5c-26.2 3.8-36.7 36.1-17.7 54.6l105.7 103-25 145.5c-4.5 26.3 23.2 46 46.4 33.7L288 439.6l130.7 68.7c23.2 12.2 50.9-7.4 46.4-33.7l-25-145.5 105.7-103c19-18.5 8.5-50.8-17.7-54.6L382 150.2 316.7 17.8c-11.7-23.6-45.6-23.9-57.4 0z"
+                    />
+                  </svg>
+                  <svg
+                    class="starFilled"
+                    fill="currentColor"
+                    height="1em"
+                    stroke="currentColor"
+                    stroke-width="0"
+                    viewBox="0 0 576 512"
+                    width="1em"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M259.3 17.8L194 150.2 47.9 171.5c-26.2 3.8-36.7 36.1-17.7 54.6l105.7 103-25 145.5c-4.5 26.3 23.2 46 46.4 33.7L288 439.6l130.7 68.7c23.2 12.2 50.9-7.4 46.4-33.7l-25-145.5 105.7-103c19-18.5 8.5-50.8-17.7-54.6L382 150.2 316.7 17.8c-11.7-23.6-45.6-23.9-57.4 0z"
+                    />
+                  </svg>
+                  <svg
+                    class="starFilled"
+                    fill="currentColor"
+                    height="1em"
+                    stroke="currentColor"
+                    stroke-width="0"
+                    viewBox="0 0 576 512"
+                    width="1em"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M259.3 17.8L194 150.2 47.9 171.5c-26.2 3.8-36.7 36.1-17.7 54.6l105.7 103-25 145.5c-4.5 26.3 23.2 46 46.4 33.7L288 439.6l130.7 68.7c23.2 12.2 50.9-7.4 46.4-33.7l-25-145.5 105.7-103c19-18.5 8.5-50.8-17.7-54.6L382 150.2 316.7 17.8c-11.7-23.6-45.6-23.9-57.4 0z"
+                    />
+                  </svg>
+                  <svg
+                    class="starFilled"
+                    fill="currentColor"
+                    height="1em"
+                    stroke="currentColor"
+                    stroke-width="0"
+                    viewBox="0 0 576 512"
+                    width="1em"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M259.3 17.8L194 150.2 47.9 171.5c-26.2 3.8-36.7 36.1-17.7 54.6l105.7 103-25 145.5c-4.5 26.3 23.2 46 46.4 33.7L288 439.6l130.7 68.7c23.2 12.2 50.9-7.4 46.4-33.7l-25-145.5 105.7-103c19-18.5 8.5-50.8-17.7-54.6L382 150.2 316.7 17.8c-11.7-23.6-45.6-23.9-57.4 0z"
+                    />
+                  </svg>
+                </div>
+              </div>
+              <p
+                class="text"
+              >
+                "
+                Excellent customer service helped me choose the right plants for my apartment's lighting conditions. Truly personalized experience.
+                "
+              </p>
+            </div>
+          </div>
+          <div
+            class="card"
+          >
+            <div
+              class="cardContent"
+            >
+              <div
+                class="authorHeader"
+              >
+                <div
+                  class="authorInfo"
+                >
+                  <img
+                    alt="Emma Schmidt"
+                    class="avatar"
+                    src="https://placehold.co/600x400/EEE/31343C"
+                  />
+                  <div
+                    class="authorText"
+                  >
+                    <p
+                      class="name"
+                    >
+                      Emma Schmidt
+                    </p>
+                    <p
+                      class="location"
+                    >
+                      Berlin, Germany
+                    </p>
+                  </div>
+                </div>
+                <div
+                  class="rating"
+                >
+                  <svg
+                    class="starFilled"
+                    fill="currentColor"
+                    height="1em"
+                    stroke="currentColor"
+                    stroke-width="0"
+                    viewBox="0 0 576 512"
+                    width="1em"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M259.3 17.8L194 150.2 47.9 171.5c-26.2 3.8-36.7 36.1-17.7 54.6l105.7 103-25 145.5c-4.5 26.3 23.2 46 46.4 33.7L288 439.6l130.7 68.7c23.2 12.2 50.9-7.4 46.4-33.7l-25-145.5 105.7-103c19-18.5 8.5-50.8-17.7-54.6L382 150.2 316.7 17.8c-11.7-23.6-45.6-23.9-57.4 0z"
+                    />
+                  </svg>
+                  <svg
+                    class="starFilled"
+                    fill="currentColor"
+                    height="1em"
+                    stroke="currentColor"
+                    stroke-width="0"
+                    viewBox="0 0 576 512"
+                    width="1em"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M259.3 17.8L194 150.2 47.9 171.5c-26.2 3.8-36.7 36.1-17.7 54.6l105.7 103-25 145.5c-4.5 26.3 23.2 46 46.4 33.7L288 439.6l130.7 68.7c23.2 12.2 50.9-7.4 46.4-33.7l-25-145.5 105.7-103c19-18.5 8.5-50.8-17.7-54.6L382 150.2 316.7 17.8c-11.7-23.6-45.6-23.9-57.4 0z"
+                    />
+                  </svg>
+                  <svg
+                    class="starFilled"
+                    fill="currentColor"
+                    height="1em"
+                    stroke="currentColor"
+                    stroke-width="0"
+                    viewBox="0 0 576 512"
+                    width="1em"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M259.3 17.8L194 150.2 47.9 171.5c-26.2 3.8-36.7 36.1-17.7 54.6l105.7 103-25 145.5c-4.5 26.3 23.2 46 46.4 33.7L288 439.6l130.7 68.7c23.2 12.2 50.9-7.4 46.4-33.7l-25-145.5 105.7-103c19-18.5 8.5-50.8-17.7-54.6L382 150.2 316.7 17.8c-11.7-23.6-45.6-23.9-57.4 0z"
+                    />
+                  </svg>
+                  <svg
+                    class="starFilled"
+                    fill="currentColor"
+                    height="1em"
+                    stroke="currentColor"
+                    stroke-width="0"
+                    viewBox="0 0 576 512"
+                    width="1em"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M259.3 17.8L194 150.2 47.9 171.5c-26.2 3.8-36.7 36.1-17.7 54.6l105.7 103-25 145.5c-4.5 26.3 23.2 46 46.4 33.7L288 439.6l130.7 68.7c23.2 12.2 50.9-7.4 46.4-33.7l-25-145.5 105.7-103c19-18.5 8.5-50.8-17.7-54.6L382 150.2 316.7 17.8c-11.7-23.6-45.6-23.9-57.4 0z"
+                    />
+                  </svg>
+                  <svg
+                    class="starFilled"
+                    fill="currentColor"
+                    height="1em"
+                    stroke="currentColor"
+                    stroke-width="0"
+                    viewBox="0 0 576 512"
+                    width="1em"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M259.3 17.8L194 150.2 47.9 171.5c-26.2 3.8-36.7 36.1-17.7 54.6l105.7 103-25 145.5c-4.5 26.3 23.2 46 46.4 33.7L288 439.6l130.7 68.7c23.2 12.2 50.9-7.4 46.4-33.7l-25-145.5 105.7-103c19-18.5 8.5-50.8-17.7-54.6L382 150.2 316.7 17.8c-11.7-23.6-45.6-23.9-57.4 0z"
+                    />
+                  </svg>
+                </div>
+              </div>
+              <p
+                class="text"
+              >
+                "
+                I'm amazed by the quality of these plants. Even my difficult-to-grow Calathea is thriving with their care instructions.
+                "
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section
+      class="newsletter"
+    >
+      <div
+        class="container"
+      >
+        <div
+          class="content"
+        >
+          <div
+            class="iconWrapper"
+          >
+            <svg
+              class="icon"
+              fill="currentColor"
+              height="1em"
+              stroke="currentColor"
+              stroke-width="0"
+              viewBox="0 0 512 512"
+              width="1em"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M502.3 190.8c3.9-3.1 9.7-.2 9.7 4.7V400c0 26.5-21.5 48-48 48H48c-26.5 0-48-21.5-48-48V195.6c0-5 5.7-7.8 9.7-4.7 22.4 17.4 52.1 39.5 154.1 113.6 21.1 15.4 56.7 47.8 92.2 47.6 35.7.3 72-32.8 92.3-47.6 102-74.1 131.6-96.3 154-113.7zM256 320c23.2.4 56.6-29.2 73.4-41.4 132.7-96.3 142.8-104.7 173.4-128.7 5.8-4.5 9.2-11.5 9.2-18.9v-19c0-26.5-21.5-48-48-48H48C21.5 64 0 85.5 0 112v19c0 7.4 3.4 14.3 9.2 18.9 30.6 23.9 40.7 32.4 173.4 128.7 16.8 12.2 50.2 41.8 73.4 41.4z"
+              />
+            </svg>
+          </div>
+          <h2
+            class="title"
+          >
+            Stay in the Loop
+          </h2>
+          <p
+            class="subtitle"
+          >
+            Get plant care tips, exclusive offers, and new arrival notifications delivered to your inbox.
+          </p>
+          <form
+            class="form"
+          >
+            <div
+              class="inputGroup"
+            >
+              <div
+                class="inputContainer"
+              >
+                <div
+                  class="inputWrapper"
+                >
+                  <input
+                    class="input input"
+                    data-testid="test-id-input-field"
+                    placeholder="Enter your email"
+                    required=""
+                    type="email"
+                    value=""
+                  />
+                </div>
+              </div>
+              <button
+                class="button primary button"
+                type="submit"
+              >
+                Subscribe
+              </button>
+            </div>
+            <p
+              class="disclaimer"
+            >
+              No spam, unsubscribe at any time. We respect your privacy.
+            </p>
+          </form>
+        </div>
+      </div>
+    </section>
   </main>
+  <footer
+    class="footer"
+  >
+    <div
+      class="container"
+    >
+      <div
+        class="columnsWrapper"
+      >
+        <div
+          class="column"
+        >
+          <h3
+            class="columnTitle"
+          >
+            Quick Links
+          </h3>
+          <ul
+            class="linksList"
+          >
+            <li>
+              <a
+                class="link"
+                data-discover="true"
+                href="/catalog"
+              >
+                Catalog
+              </a>
+            </li>
+            <li>
+              <a
+                class="link"
+                data-discover="true"
+                href="/"
+              >
+                Plant Care
+              </a>
+            </li>
+            <li>
+              <a
+                class="link"
+                data-discover="true"
+                href="/"
+              >
+                Delivery & Payment
+              </a>
+            </li>
+            <li>
+              <a
+                class="link"
+                data-discover="true"
+                href="/"
+              >
+                About Us
+              </a>
+            </li>
+            <li>
+              <a
+                class="link"
+                data-discover="true"
+                href="/"
+              >
+                Blog
+              </a>
+            </li>
+          </ul>
+        </div>
+        <div
+          class="column"
+        >
+          <h3
+            class="columnTitle"
+          >
+            Categories
+          </h3>
+          <ul
+            class="linksList"
+          >
+            <li>
+              <a
+                class="link"
+                data-discover="true"
+                href="/catalog"
+              >
+                Large Plants
+              </a>
+            </li>
+            <li>
+              <a
+                class="link"
+                data-discover="true"
+                href="/catalog"
+              >
+                Succulents
+              </a>
+            </li>
+            <li>
+              <a
+                class="link"
+                data-discover="true"
+                href="/catalog"
+              >
+                Flowering Plants
+              </a>
+            </li>
+            <li>
+              <a
+                class="link"
+                data-discover="true"
+                href="/catalog"
+              >
+                Hanging Plants
+              </a>
+            </li>
+            <li>
+              <a
+                class="link"
+                data-discover="true"
+                href="/catalog"
+              >
+                Palms
+              </a>
+            </li>
+          </ul>
+        </div>
+        <div
+          class="column"
+        >
+          <h3
+            class="columnTitle"
+          >
+            Contact
+          </h3>
+          <div
+            class="contactInfo"
+          >
+            <div
+              class="contactItem"
+            >
+              <svg
+                class="contactIcon"
+                fill="currentColor"
+                height="1em"
+                stroke="currentColor"
+                stroke-width="0"
+                viewBox="0 0 384 512"
+                width="1em"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M172.268 501.67C26.97 291.031 0 269.413 0 192 0 85.961 85.961 0 192 0s192 85.961 192 192c0 77.413-26.97 99.031-172.268 309.67-9.535 13.774-29.93 13.773-39.464 0zM192 272c44.183 0 80-35.817 80-80s-35.817-80-80-80-80 35.817-80 80 35.817 80 80 80z"
+                />
+              </svg>
+              <span>
+                Paris, Rue des Jardins, 15
+              </span>
+            </div>
+            <div
+              class="contactItem"
+            >
+              <svg
+                class="contactIcon"
+                fill="currentColor"
+                height="1em"
+                stroke="currentColor"
+                stroke-width="0"
+                viewBox="0 0 512 512"
+                width="1em"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M493.4 24.6l-104-24c-11.3-2.6-22.9 3.3-27.5 13.9l-48 112c-4.2 9.8-1.4 21.3 6.9 28l60.6 49.6c-36 76.7-98.9 140.5-177.2 177.2l-49.6-60.6c-6.8-8.3-18.2-11.1-28-6.9l-112 48C3.9 366.5-2 378.1.6 389.4l24 104C27.1 504.2 36.7 512 48 512c256.1 0 464-207.5 464-464 0-11.2-7.7-20.9-18.6-23.4z"
+                />
+              </svg>
+              <span>
+                +33 1 23 45 67 89
+              </span>
+            </div>
+            <div
+              class="contactItem"
+            >
+              <svg
+                class="contactIcon"
+                fill="currentColor"
+                height="1em"
+                stroke="currentColor"
+                stroke-width="0"
+                viewBox="0 0 512 512"
+                width="1em"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M502.3 190.8c3.9-3.1 9.7-.2 9.7 4.7V400c0 26.5-21.5 48-48 48H48c-26.5 0-48-21.5-48-48V195.6c0-5 5.7-7.8 9.7-4.7 22.4 17.4 52.1 39.5 154.1 113.6 21.1 15.4 56.7 47.8 92.2 47.6 35.7.3 72-32.8 92.3-47.6 102-74.1 131.6-96.3 154-113.7zM256 320c23.2.4 56.6-29.2 73.4-41.4 132.7-96.3 142.8-104.7 173.4-128.7 5.8-4.5 9.2-11.5 9.2-18.9v-19c0-26.5-21.5-48-48-48H48C21.5 64 0 85.5 0 112v19c0 7.4 3.4 14.3 9.2 18.9 30.6 23.9 40.7 32.4 173.4 128.7 16.8 12.2 50.2 41.8 73.4 41.4z"
+                />
+              </svg>
+              <span>
+                info@evergreen.com
+              </span>
+            </div>
+          </div>
+          <p
+            class="workingHours"
+          >
+            Open daily from 9:00 to 21:00
+          </p>
+          <div
+            class="socialLinks"
+          >
+            <button
+              class="button outline socialButton"
+            >
+              <svg
+                fill="currentColor"
+                height="1em"
+                stroke="currentColor"
+                stroke-width="0"
+                viewBox="0 0 448 512"
+                width="1em"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M224.1 141c-63.6 0-114.9 51.3-114.9 114.9s51.3 114.9 114.9 114.9S339 319.5 339 255.9 287.7 141 224.1 141zm0 189.6c-41.1 0-74.7-33.5-74.7-74.7s33.5-74.7 74.7-74.7 74.7 33.5 74.7 74.7-33.6 74.7-74.7 74.7zm146.4-194.3c0 14.9-12 26.8-26.8 26.8-14.9 0-26.8-12-26.8-26.8s12-26.8 26.8-26.8 26.8 12 26.8 26.8zm76.1 27.2c-1.7-35.9-9.9-67.7-36.2-93.9-26.2-26.2-58-34.4-93.9-36.2-37-2.1-147.9-2.1-184.9 0-35.8 1.7-67.6 9.9-93.9 36.1s-34.4 58-36.2 93.9c-2.1 37-2.1 147.9 0 184.9 1.7 35.9 9.9 67.7 36.2 93.9s58 34.4 93.9 36.2c37 2.1 147.9 2.1 184.9 0 35.9-1.7 67.7-9.9 93.9-36.2 26.2-26.2 34.4-58 36.2-93.9 2.1-37 2.1-147.8 0-184.8zM398.8 388c-7.8 19.6-22.9 34.7-42.6 42.6-29.5 11.7-99.5 9-132.1 9s-102.7 2.6-132.1-9c-19.6-7.8-34.7-22.9-42.6-42.6-11.7-29.5-9-99.5-9-132.1s-2.6-102.7 9-132.1c7.8-19.6 22.9-34.7 42.6-42.6 29.5-11.7 99.5-9 132.1-9s102.7-2.6 132.1 9c19.6 7.8 34.7 22.9 42.6 42.6 11.7 29.5 9 99.5 9 132.1s2.7 102.7-9 132.1z"
+                />
+              </svg>
+            </button>
+            <button
+              class="button outline socialButton"
+            >
+              <svg
+                fill="currentColor"
+                height="1em"
+                stroke="currentColor"
+                stroke-width="0"
+                viewBox="0 0 512 512"
+                width="1em"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M504 256C504 119 393 8 256 8S8 119 8 256c0 123.78 90.69 226.38 209.25 245V327.69h-63V256h63v-54.64c0-62.15 37-96.48 93.67-96.48 27.14 0 55.52 4.84 55.52 4.84v61h-31.28c-30.8 0-40.41 19.12-40.41 38.73V256h68.78l-11 71.69h-57.78V501C413.31 482.38 504 379.78 504 256z"
+                />
+              </svg>
+            </button>
+            <button
+              class="button outline socialButton"
+            >
+              <svg
+                fill="currentColor"
+                height="1em"
+                stroke="currentColor"
+                stroke-width="0"
+                viewBox="0 0 512 512"
+                width="1em"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M459.37 151.716c.325 4.548.325 9.097.325 13.645 0 138.72-105.583 298.558-298.558 298.558-59.452 0-114.68-17.219-161.137-47.106 8.447.974 16.568 1.299 25.34 1.299 49.055 0 94.213-16.568 130.274-44.832-46.132-.975-84.792-31.188-98.112-72.772 6.498.974 12.995 1.624 19.818 1.624 9.421 0 18.843-1.3 27.614-3.573-48.081-9.747-84.143-51.98-84.143-102.985v-1.299c13.969 7.797 30.214 12.67 47.431 13.319-28.264-18.843-46.781-51.005-46.781-87.391 0-19.492 5.197-37.36 14.294-52.954 51.655 63.675 129.3 105.258 216.365 109.807-1.624-7.797-2.599-15.918-2.599-24.04 0-57.828 46.782-104.934 104.934-104.934 30.213 0 57.502 12.67 76.67 33.137 23.715-4.548 46.456-13.32 66.599-25.34-7.798 24.366-24.366 44.833-46.132 57.827 21.117-2.273 41.584-8.122 60.426-16.243-14.292 20.791-32.161 39.308-52.628 54.253z"
+                />
+              </svg>
+            </button>
+          </div>
+        </div>
+      </div>
+      <div
+        class="copyright"
+      >
+        <div
+          class="copyrightContent"
+        >
+          <p
+            class="copyrightText"
+          >
+            © 
+            2025
+             Evergreen.
+          </p>
+          <p
+            class="disclaimerText"
+          >
+            All materials on this site are used for non-commercial and educational purposes only and belong to their respective owners.
+          </p>
+        </div>
+      </div>
+    </div>
+  </footer>
 </div>
 `;

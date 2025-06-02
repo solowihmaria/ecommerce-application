@@ -1,0 +1,189 @@
+@use '../../../assets/styles/constants.module' as c;
+
+.productDetailsContainer {
+    display: flex;
+    gap: 3rem;
+    justify-content: center;
+    width: 100%;
+    max-width: 1440px;
+    height: min-content;
+    padding: 20px;
+    border: 1px solid c.$border;
+    border-radius: 1rem;
+    backdrop-filter: blur(c.$blur);
+}
+
+.sliderContainer {
+    width: 40%;
+    min-width: 0;
+    text-align: center;
+}
+
+.container {
+    height: 600px;
+}
+
+.image {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    cursor: pointer;
+}
+
+.productInfoContainer {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 50%;
+    color: c.$color-text-primary;
+}
+
+.topInfo {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.productName {
+    text-transform: uppercase;
+}
+
+.productAttributes {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    width: 100%;
+    padding-top: 2rem;
+    border-radius: 10px;
+}
+
+.iconAttributes {
+    display: flex;
+    flex-flow: row wrap;
+    gap: 1.5rem;
+    align-items: center;
+}
+
+.priceContainer {
+    display: flex;
+    gap: 10px;
+    justify-content: flex-start;
+}
+
+.price {
+    font-size: 1.7rem;
+    color: c.$color-text-primary;
+}
+
+.priceInitial {
+    position: relative;
+}
+
+.priceInitialNumber {
+    font-size: 1.7rem;
+    color: c.$color-gray-600;
+}
+
+.priceLabel {
+    font-size: 1.7rem;
+    color: c.$color-text-primary;
+}
+
+.cross {
+    position: absolute;
+    top: 60%;
+    rotate: 15deg;
+    display: block;
+    width: 95%;
+    border-top: 2px solid c.$color-gray-600;
+}
+
+.discount {
+    font-size: 1.7rem;
+    font-weight: 600;
+    color: c.$color-discount-price;
+}
+
+.labelName {
+    font-weight: bold;
+    color: c.$color-text-primary;
+    text-transform: uppercase;
+}
+
+.productError {
+    padding: 3rem;
+    font-size: 1.7rem;
+    color: c.$color-text-primary;
+}
+
+@media (width <= 992px) {
+    .productDetailsContainer {
+        flex-direction: column;
+        gap: 1rem;
+        padding: 0;
+        border: none;
+    }
+
+    .sliderContainer {
+        width: 100%;
+    }
+
+    .productName {
+        font-size: 1.5rem;
+    }
+
+    .productInfoContainer {
+        width: 100%;
+    }
+
+    .iconAttributes {
+        gap: 1rem;
+        justify-content: space-between;
+    }
+
+    .topInfo {
+        padding: 0 1rem;
+    }
+
+    .productAttributes {
+        margin-top: 1rem;
+        padding: 1rem;
+        background-color: c.$color-primary-dark;
+    }
+
+    .description {
+        font-size: 1rem;
+    }
+
+    .productActions {
+        display: flex;
+        justify-content: center;
+    }
+}
+
+@media (width <= 768px) {
+    .productAttributes {
+        margin-top: 1rem;
+        background-color: c.$color-primary-dark;
+    }
+}
+
+@media (width <= 500px) {
+    .container {
+        height: 400px;
+    }
+
+    .imageContainer {
+        width: 100%;
+    }
+
+    .sizeContainer {
+        justify-content: flex-start;
+    }
+
+    .button.size {
+        padding: 0.5rem 1rem;
+        font-size: 0.875rem;
+    }
+}

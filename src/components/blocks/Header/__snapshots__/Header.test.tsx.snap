@@ -1,44 +1,139 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Render Header component 1`] = `
-<nav
-  class="header"
+<header
+  class="headerWrapper"
   data-testid="test-id-header"
 >
-  <div>
-    <a
-      class="iconLink"
-      data-discover="true"
-      href="/main"
+  <nav
+    class="header"
+  >
+    <div
+      class="leftSection"
+    >
+      <a
+        class="logoLink"
+        data-discover="true"
+        href="/main"
+      >
+        <svg
+          data-testid="mock-svg"
+        />
+      </a>
+    </div>
+    <div
+      class="centerSection"
+    >
+      <a
+        data-discover="true"
+        href="/main"
+      >
+        <button
+          class="button ghost navButton"
+        >
+          Main
+        </button>
+      </a>
+      <a
+        data-discover="true"
+        href="/catalog"
+      >
+        <button
+          class="button ghost navButton"
+        >
+          Catalog
+        </button>
+      </a>
+      <a
+        data-discover="true"
+        href="/"
+      >
+        <button
+          class="button ghost navButton"
+        >
+          About
+        </button>
+      </a>
+    </div>
+    <div
+      class="rightSection"
     >
       <svg
-        data-testid="mock-svg"
-      />
-    </a>
-  </div>
-  <div
-    class="menu"
-  >
-    <a
-      data-discover="true"
-      href="/login"
-    >
-      <button
-        class="button ghost headerButton"
+        class="profileIcon"
+        fill="currentColor"
+        height="1em"
+        stroke="currentColor"
+        stroke-width="0"
+        viewBox="0 0 24 24"
+        width="1em"
+        xmlns="http://www.w3.org/2000/svg"
       >
-        Sign In
-      </button>
-    </a>
-    <a
-      data-discover="true"
-      href="/register"
-    >
-      <button
-        class="button ghost headerButton"
+        <path
+          d="M0 0h24v24H0z"
+          fill="none"
+        />
+        <path
+          d="M11 7 9.6 8.4l2.6 2.6H2v2h10.2l-2.6 2.6L11 17l5-5-5-5zm9 12h-8v2h8c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2h-8v2h8v14z"
+        />
+      </svg>
+      <div
+        class="profileMenu"
       >
-        Sign Up
-      </button>
-    </a>
-  </div>
-</nav>
+        <a
+          class="link"
+          data-discover="true"
+          href="/login"
+        >
+          <button
+            class="button ghost authButton"
+          >
+            Sign In
+          </button>
+        </a>
+        <a
+          class="link"
+          data-discover="true"
+          href="/register"
+        >
+          <button
+            class="button ghost authButton"
+          >
+            Sign Up
+          </button>
+        </a>
+      </div>
+      <a
+        class="cartLink"
+        data-discover="true"
+        href="/"
+      >
+        <svg
+          data-testid="mock-svg"
+        />
+      </a>
+      <div
+        class="hamburger"
+      >
+        <svg
+          class="hamburgerIcon"
+          fill="currentColor"
+          height="1em"
+          stroke="currentColor"
+          stroke-width="0"
+          viewBox="0 0 24 24"
+          width="1em"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M0 0h24v24H0V0z"
+            fill="none"
+          />
+          <path
+            d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"
+          />
+        </svg>
+      </div>
+    </div>
+  </nav>
+</header>
 `;

@@ -3,8 +3,9 @@
 .loginPage {
     display: flex;
     flex-direction: column;
-    min-height: 100vh;
     background: c.$color-accent-dark;
+    background: url('../../assets/images/form-bg.jpg') no-repeat center center;
+    background-size: cover;
 }
 
 .loginContent {
@@ -13,5 +14,5 @@
     align-items: center;
     justify-content: center;
     width: 100%;
-    padding: 2em 0;
+    height: 90vh;
 }
