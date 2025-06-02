@@ -2,7 +2,7 @@
 
 .catalogContainer {
     display: flex;
-    gap: 16px;
+    gap: 32px;
     align-items: start;
 }
 
@@ -15,8 +15,8 @@
 .controls {
     display: flex;
     flex-direction: column;
-    gap: 32px;
-    width: 25%;
+    gap: 16px;
+    width: 350px;
     padding: 2em 1em;
     border: 1px solid c.$color-primary-light;
     border-radius: 20px;
@@ -24,9 +24,44 @@
     backdrop-filter: blur(15px);
 }
 
-// .select {
-// width: 8em;
-// }
+.categoriesList,
+.subcategoriesList {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    padding: 0;
+    list-style: none;
+}
+
+.subcategoriesList {
+    padding-left: 32px;
+    font-size: 0.8em;
+    font-weight: 300;
+}
+
+.categoryItem,
+.subcategoryItem {
+    // width: 100%;
+    display: block;
+    padding: 4px 8px;
+    border-radius: 10px;
+    color: inherit;
+    text-decoration: none;
+    transition: all 0.3s;
+}
+
+.categoryItem::before {
+    content: '> ';
+}
+
+.categoryItem:hover,
+.subcategoryItem:hover {
+    background-color: c.$color-accent-dark;
+}
+
+.select {
+    min-width: 8em;
+}
 
 .sortingBlock,
 .filtersBlock,
@@ -40,7 +75,6 @@
 
 .filtersBlock {
     flex-direction: column;
-    align-items: center;
 }
 
 .searchSortBlock {
@@ -80,17 +114,15 @@
 .priceGroup {
     display: flex;
     flex-wrap: wrap;
-    gap: 16px;
 }
 
 .heightGroup {
     display: flex;
     flex-wrap: wrap;
-    gap: 16px;
 }
 
 .buttonReset {
-    justify-self: center;
+    align-self: center;
 }
 
 .error {

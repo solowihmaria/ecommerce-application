@@ -10,12 +10,15 @@ import { Select } from '../../ui/Select';
 import { Label } from '../../ui/Label';
 import { SearchInput } from './parts/SearchInput/SearchInput';
 import { FiFrown } from 'react-icons/fi';
-import { Input } from '../../ui/Input';
-import { Button } from '../../ui/Button';
-// import clsx from 'clsx';
+import { Filters } from './parts/FIlters';
+import type { Category } from '../../../api/getCategories/getCategories.types';
+import { getCategories } from '../../../api/getCategories/getCategories';
+import { Heading } from '../../ui/Heading';
+import { Link } from 'react-router-dom';
 
 export const Catalog = () => {
     const [products, setProducts] = useState<Product[]>([]);
+    const [categories, setCategories] = useState<Category[]>([]);
     const [isLoading, setIsLoading] = useState(true);
     const [error, setError] = useState<string | null>(null);
     const [sort, setSort] = useState<string>('');
@@ -50,6 +53,22 @@ export const Catalog = () => {
         void loadProducts();
     }, [sort, query, filters]);
 
+    useEffect(() => {
+        const loadCategories = async () => {
+            try {
+                const data: Category[] = await getCategories();
+                setCategories(data);
+            } catch (error) {
+                console.log('ERROR', error);
+                setError('Failed to load categories');
+            } finally {
+                setIsLoading(false);
+            }
+        };
+
+        void loadCategories();
+    }, []);
+
     // Задержка для оптимизации количества запросов при вводе в поле поиска
     useEffect(() => {
         const timeout = setTimeout(() => {
@@ -75,192 +94,72 @@ export const Catalog = () => {
     return (
         <div className={styles.catalogContainer}>
             <div className={styles.controls}>
-                <div className={styles.filtersBlock}>
-                    <div className={styles.filterGroup}>
-                        <Label
-                            htmlFor="care-level"
-                            className={styles.sortingLabel}
-                        >
-                            Care level
-                        </Label>
-                        <Select
-                            className={styles.select}
-                            name="care-level"
-                            value={filters.careLevel}
-                            onChange={(event) =>
-                                setFilters((prev) => ({
-                                    ...prev,
-                                    careLevel: event.target.value,
-                                }))
-                            }
-                        >
-                            <option value="">Any</option>
-                            <option value="easy">Easy</option>
-                            <option value="medium">Medium</option>
-                            <option value="hard">Hard</option>
-                        </Select>
-                    </div>
+                <div className={styles.categoryBlock}>
+                    <Heading level="h3">Category</Heading>
 
-                    <div className={styles.filterGroup}>
-                        <Label htmlFor="light" className={styles.sortingLabel}>
-                            Light requirements
-                        </Label>
-                        <Select
-                            className={styles.select}
-                            name="light"
-                            value={filters.light}
-                            onChange={(event) =>
-                                setFilters((prev) => ({
-                                    ...prev,
-                                    light: event.target.value,
-                                }))
-                            }
-                        >
-                            <option value="">Any</option>
-                            <option value="low">Low</option>
-                            <option value="medium">Medium</option>
-                            <option value="high">High</option>
-                        </Select>
-                    </div>
+                    <ul className={styles.categoriesList}>
+                        {categories
+                            .filter(
+                                (category) => category.ancestors.length === 0
+                            )
+                            .map((category) => {
+                                return (
+                                    <li key={category.id}>
+                                        <Link
+                                            to={`/catalog/${category.slug?.['en-US']}`}
+                                            className={styles.categoryItem}
+                                            onClick={() =>
+                                                setFilters((prev) => ({
+                                                    ...prev,
+                                                    categoryId: category.id,
+                                                }))
+                                            }
+                                        >
+                                            {category.name['en-US']}
+                                        </Link>
 
-                    <div className={styles.filterGroup}>
-                        <Label
-                            htmlFor="toxicity"
-                            className={styles.sortingLabel}
-                        >
-                            Toxicity
-                        </Label>
-                        <Select
-                            className={styles.select}
-                            name="toxicity"
-                            value={filters.toxicity}
-                            onChange={(event) =>
-                                setFilters((prev) => ({
-                                    ...prev,
-                                    toxicity: event.target.value,
-                                }))
-                            }
-                        >
-                            <option value="">Any</option>
-                            <option value="false">Safe</option>
-                            <option value="true">Toxic</option>
-                        </Select>
-                    </div>
-
-                    <div className={styles.priceGroup}>
-                        <p>Price</p>
-                        <div className={styles.filterGroup}>
-                            <Label
-                                htmlFor="price-from"
-                                className={styles.sortingLabel}
-                            >
-                                from
-                            </Label>
-                            <Input
-                                className={styles.select}
-                                name="price-from"
-                                type="number"
-                                value={filters.priceRange[0]}
-                                onChange={(event) =>
-                                    setFilters((prev) => ({
-                                        ...prev,
-                                        priceRange: [
-                                            Number(event.target.value),
-                                            prev.priceRange[1],
-                                        ],
-                                    }))
-                                }
-                            />
-
-                            <Label
-                                htmlFor="price-to"
-                                className={styles.sortingLabel}
-                            >
-                                to
-                            </Label>
-                            <Input
-                                className={styles.select}
-                                name="price-to"
-                                type="number"
-                                value={filters.priceRange[1]}
-                                onChange={(event) =>
-                                    setFilters((prev) => ({
-                                        ...prev,
-                                        priceRange: [
-                                            prev.priceRange[0],
-                                            Number(event.target.value),
-                                        ],
-                                    }))
-                                }
-                            />
-                        </div>
-                    </div>
-
-                    <div className={styles.heightGroup}>
-                        <p>Height (cm)</p>
-                        <div className={styles.filterGroup}>
-                            <Label
-                                htmlFor="height-from"
-                                className={styles.sortingLabel}
-                            >
-                                from
-                            </Label>
-                            <Input
-                                className={styles.select}
-                                name="height-from"
-                                type="number"
-                                value={filters.height[0]}
-                                onChange={(event) =>
-                                    setFilters((prev) => ({
-                                        ...prev,
-                                        height: [
-                                            Number(event.target.value),
-                                            prev.height[1],
-                                        ],
-                                    }))
-                                }
-                            />
-                            <Label
-                                htmlFor="height-to"
-                                className={styles.sortingLabel}
-                            >
-                                to
-                            </Label>
-                            <Input
-                                className={styles.select}
-                                name="height-to"
-                                type="number"
-                                value={filters.height[1]}
-                                onChange={(event) =>
-                                    setFilters((prev) => ({
-                                        ...prev,
-                                        height: [
-                                            prev.height[0],
-                                            Number(event.target.value),
-                                        ],
-                                    }))
-                                }
-                            />
-                        </div>
-                    </div>
-
-                    <Button
-                        className={styles.buttonReset}
-                        variant="outline"
-                        onClick={() =>
-                            setFilters({
-                                categoryId: '',
-                                careLevel: '',
-                                light: '',
-                                toxicity: '',
-                                priceRange: [0, 100],
-                                height: [0, 200],
-                            })
-                        }
-                    >
-                        Reset filters
-                    </Button>
+                                        <ul
+                                            className={styles.subcategoriesList}
+                                        >
+                                            {categories
+                                                .filter(
+                                                    (cat) =>
+                                                        cat.ancestors?.[0]
+                                                            ?.id === category.id
+                                                )
+                                                .map((child) => (
+                                                    <li key={child.id}>
+                                                        <Link
+                                                            to={`/catalog/${child.slug?.['en-US']}`}
+                                                            onClick={() =>
+                                                                setFilters(
+                                                                    (prev) => ({
+                                                                        ...prev,
+                                                                        categoryId:
+                                                                            child.id,
+                                                                    })
+                                                                )
+                                                            }
+                                                            className={
+                                                                styles.subcategoryItem
+                                                            }
+                                                        >
+                                                            {
+                                                                child.name[
+                                                                    'en-US'
+                                                                ]
+                                                            }
+                                                        </Link>
+                                                    </li>
+                                                ))}
+                                        </ul>
+                                    </li>
+                                );
+                            })}
+                    </ul>
                 </div>
+
+                <Filters filters={filters} setFilters={setFilters} />
             </div>
 
             <div className={styles.listContainer}>

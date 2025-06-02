@@ -65,7 +65,7 @@ function makeFilterParams(filters: Filter) {
         );
     }
 
-    console.log('FILTERS', filterParams);
+    // console.log('FILTERS', filterParams);
 
     return filterParams;
 }
