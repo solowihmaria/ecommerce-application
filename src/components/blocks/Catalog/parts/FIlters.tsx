@@ -9,9 +9,14 @@ import styles from '../Catalog.module.scss';
 interface FiltersProps {
     filters: Filter;
     setFilters: React.Dispatch<React.SetStateAction<Filter>>;
+    resetFilters: () => void;
 }
 
-export const Filters = ({ filters, setFilters }: FiltersProps) => {
+export const Filters = ({
+    filters,
+    setFilters,
+    resetFilters,
+}: FiltersProps) => {
     return (
         <div className={styles.filtersBlock}>
             <Heading level="h3">Filters</Heading>
@@ -168,16 +173,7 @@ export const Filters = ({ filters, setFilters }: FiltersProps) => {
             <Button
                 className={styles.buttonReset}
                 variant="outline"
-                onClick={() =>
-                    setFilters({
-                        categoryId: '',
-                        careLevel: '',
-                        light: '',
-                        toxicity: '',
-                        priceRange: [0, 100],
-                        height: [0, 200],
-                    })
-                }
+                onClick={resetFilters}
             >
                 Reset filters
             </Button>

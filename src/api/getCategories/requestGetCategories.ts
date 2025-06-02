@@ -17,6 +17,5 @@ export const requestGetCategories = async () => {
         },
     });
 
-    console.log('CATEGORIES', response.data.results);
     return response.data.results;
 };

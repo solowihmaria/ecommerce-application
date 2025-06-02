@@ -11,7 +11,7 @@ interface CategoriesProps {
 
 export const Categories = ({ categories, setFilters }: CategoriesProps) => {
     return (
-        <div className={styles.categoryBlock}>
+        <nav className={styles.categoryBlock}>
             <Heading level="h3">Category</Heading>
 
             <ul className={styles.categoriesList}>
@@ -64,6 +64,6 @@ export const Categories = ({ categories, setFilters }: CategoriesProps) => {
                         );
                     })}
             </ul>
-        </div>
+        </nav>
     );
 };

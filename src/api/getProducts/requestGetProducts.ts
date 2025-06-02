@@ -31,7 +31,7 @@ export const requestGetProducts = async ({
         }
     );
 
-    console.log('RESULTS', response.data.results);
+    // console.log('RESULTS', response.data.results);
     return response.data.results;
 };
 

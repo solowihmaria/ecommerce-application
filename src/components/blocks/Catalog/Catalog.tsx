@@ -14,6 +14,7 @@ import { Filters } from './parts/FIlters';
 import type { Category } from '../../../api/getCategories/getCategories.types';
 import { getCategories } from '../../../api/getCategories/getCategories';
 import { Categories } from './parts/Categories';
+import { Breadcrumbs } from './parts/Breadcrumbs';
 
 export const Catalog = () => {
     const [products, setProducts] = useState<Product[]>([]);
@@ -93,50 +94,88 @@ export const Catalog = () => {
         );
     }
 
+    function resetFilters() {
+        setFilters({
+            categoryId: '',
+            careLevel: '',
+            light: '',
+            toxicity: '',
+            priceRange: [0, 100],
+            height: [0, 200],
+        });
+    }
+
     return (
-        <div className={styles.catalogContainer}>
-            <div className={styles.controls}>
-                <Categories categories={categories} setFilters={setFilters} />
-                <Filters filters={filters} setFilters={setFilters} />
-            </div>
+        <div>
+            <Breadcrumbs categories={categories} resetFilters={resetFilters} />
 
-            <div className={styles.listContainer}>
-                <div className={styles.searchSortBlock}>
-                    <div className={styles.sortingBlock}>
-                        <Label htmlFor="sort" className={styles.sortingLabel}>
-                            Sort by
-                        </Label>
-                        <Select
-                            name="sort"
-                            value={sort}
-                            onChange={(event) => setSort(event.target.value)}
-                        >
-                            <option value="">Default</option>
-                            <option value="name.en-US asc">Name A → Z</option>
-                            <option value="name.en-US desc">Name Z → A</option>
-                            <option value="price asc">Price Low → High</option>
-                            <option value="price desc">Price High → Low</option>
-                        </Select>
-                    </div>
-
-                    <SearchInput
-                        className={styles.searchBlock}
-                        handleSubmit={(event) => {
-                            event.preventDefault();
-                        }}
-                        handleChange={(event) => {
-                            if (event.target instanceof HTMLInputElement) {
-                                setSearchInput(event.target.value);
-                            }
-                        }}
+            <div className={styles.catalogContainer}>
+                <div className={styles.controls}>
+                    <Categories
+                        categories={categories}
+                        setFilters={setFilters}
+                    />
+                    <Filters
+                        filters={filters}
+                        setFilters={setFilters}
+                        resetFilters={resetFilters}
                     />
                 </div>
 
-                {products.length === 0 ? (
-                    <div>No products found</div>
-                ) : (
-                    <ProductList products={products} />
-                )}
+                <div className={styles.listContainer}>
+                    <div className={styles.searchSortBlock}>
+                        <div className={styles.sortingBlock}>
+                            <Label
+                                htmlFor="sort"
+                                className={styles.sortingLabel}
+                            >
+                                Sort by
+                            </Label>
+                            <Select
+                                name="sort"
+                                value={sort}
+                                onChange={(event) =>
+                                    setSort(event.target.value)
+                                }
+                            >
+                                <option value="">Default</option>
+                                <option value="name.en-US asc">
+                                    Name A → Z
+                                </option>
+                                <option value="name.en-US desc">
+                                    Name Z → A
+                                </option>
+                                <option value="price asc">
+                                    Price Low → High
+                                </option>
+                                <option value="price desc">
+                                    Price High → Low
+                                </option>
+                            </Select>
+                        </div>
+
+                        <div className={styles.sortingBlock}>
+                            <SearchInput
+                                handleSubmit={(event) => {
+                                    event.preventDefault();
+                                }}
+                                handleChange={(event) => {
+                                    if (
+                                        event.target instanceof HTMLInputElement
+                                    ) {
+                                        setSearchInput(event.target.value);
+                                    }
+                                }}
+                            />
+                        </div>
+                    </div>
+
+                    {products.length === 0 ? (
+                        <div>No products found</div>
+                    ) : (
+                        <ProductList products={products} />
+                    )}
+                </div>
             </div>
         </div>
     );
