@@ -1,34 +1,7 @@
 import axios from 'axios';
-import type {
-    AuthResponse,
-    CreateCustomerResponse,
-    Customer,
-} from './createCustomer.types';
+import type { CreateCustomerResponse, Customer } from './createCustomer.types';
 import type { RegistrationFormData } from '../../components/blocks/RegistrationForm/Registration.types';
-
-export const getAdminToken = async () => {
-    const authUrl = process.env.CTP_AUTH_URL;
-    const clientId = process.env.CTP_CLIENT_ID;
-    const clientSecret = process.env.CTP_CLIENT_SECRET;
-
-    const tokenUrl = `${authUrl}/oauth/token`;
-    const credentials = btoa(`${clientId}:${clientSecret}`);
-
-    const response = await axios.post<AuthResponse>(
-        tokenUrl,
-        new URLSearchParams({
-            grant_type: 'client_credentials',
-        }),
-        {
-            headers: {
-                Authorization: `Basic ${credentials}`,
-                'Content-type': 'application/x-www-form-urlencoded',
-            },
-        }
-    );
-
-    return response.data;
-};
+import { getGuestToken } from '../auth/getToken';
 
 function formatDateToYYYYMMDD(date: Date): string {
     const year = date.getFullYear();
@@ -51,7 +24,7 @@ export const requestCreateCustomer = async ({
     const apiUrl = process.env.CTP_API_URL;
     const projectKey = process.env.CTP_PROJECT_KEY;
     const tokenUrl = `${apiUrl}/${projectKey}/customers`;
-    const adminToken = await getAdminToken();
+    const adminToken = await getGuestToken();
 
     const parameters: Customer = {
         email,

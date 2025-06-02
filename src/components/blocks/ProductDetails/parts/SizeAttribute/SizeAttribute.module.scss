@@ -1,0 +1,44 @@
+@use '../../../../../assets/styles/constants.module' as c;
+
+.sizeContainer {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    justify-content: flex-start;
+    list-style-type: none;
+}
+
+.button.size {
+    background: none;
+}
+
+.size.sizeActive {
+    color: c.$color-accent-dark;
+    background-color: c.$color-gray-300;
+}
+
+.size.sizeActive:hover {
+    color: c.$color-text-primary;
+}
+
+@media (width <= 992px) {
+    .sizeContainer {
+        gap: 1rem;
+        justify-content: flex-start;
+    }
+
+    .button.size {
+        font-size: 1rem;
+    }
+}
+
+@media (width <= 500px) {
+    .sizeContainer {
+        justify-content: flex-start;
+    }
+
+    .button.size {
+        padding: 0.5rem 1rem;
+        font-size: 0.875rem;
+    }
+}

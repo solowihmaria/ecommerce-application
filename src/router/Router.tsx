@@ -43,7 +43,7 @@ const router = createBrowserRouter([
         element: <CatalogPage />,
     },
     {
-        path: '/product/', // вроде должно стать: /product/:id', когда уже реализуем странички товаров
+        path: '/product/:id',
         element: <ProductPage />,
     },
     {
