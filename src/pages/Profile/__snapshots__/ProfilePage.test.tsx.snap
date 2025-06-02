@@ -38,48 +38,178 @@ exports[`<ProfilePage/> component renders ProfilePage component 1`] = `
       </h1>
     </div>
     <div
-      class="profileSections"
+      class="profileMain"
     >
-      <div>
-        Loading user data...
-      </div>
-      <div>
-        Loading addresses...
+      <div
+        class="infoSection"
+      >
+        <div>
+          Loading user data...
+        </div>
       </div>
       <div
-        class="changePassword"
+        class="passwordSection"
       >
         <div
-          class="headerRow"
+          class="changePassword"
         >
           <h2
-            class="heading heading--h2"
+            class="heading heading--h2 title"
           >
-            Password
+            Change Password
           </h2>
-          <button
-            class="button outline editButton"
-            type="button"
+          <form
+            class="passwordForm"
           >
-            <svg
-              class="editIcon"
-              fill="none"
-              height="1em"
-              stroke="currentColor"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-width="2"
-              viewBox="0 0 24 24"
-              width="1em"
-              xmlns="http://www.w3.org/2000/svg"
+            <div
+              class="field"
             >
-              <path
-                d="M17 3a2.828 2.828 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5L17 3z"
-              />
-            </svg>
-            Edit
-          </button>
+              <label
+                class="label"
+                for="currentPassword"
+              >
+                Current Password
+              </label>
+              <div
+                class="inputContainer"
+              >
+                <div
+                  class="inputWrapper"
+                >
+                  <input
+                    class="input password"
+                    id="currentPassword"
+                    name="currentPassword"
+                    type="password"
+                  />
+                  <button
+                    aria-label="Show password"
+                    class="toggleButton"
+                    type="button"
+                  >
+                    <svg
+                      fill="currentColor"
+                      height="1em"
+                      stroke="currentColor"
+                      stroke-width="0"
+                      viewBox="0 0 576 512"
+                      width="1em"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        d="M572.52 241.4C518.29 135.59 410.93 64 288 64S57.68 135.64 3.48 241.41a32.35 32.35 0 0 0 0 29.19C57.71 376.41 165.07 448 288 448s230.32-71.64 284.52-177.41a32.35 32.35 0 0 0 0-29.19zM288 400a144 144 0 1 1 144-144 143.93 143.93 0 0 1-144 144zm0-240a95.31 95.31 0 0 0-25.31 3.79 47.85 47.85 0 0 1-66.9 66.9A95.78 95.78 0 1 0 288 160z"
+                      />
+                    </svg>
+                  </button>
+                </div>
+              </div>
+            </div>
+            <div
+              class="field"
+            >
+              <label
+                class="label"
+                for="newPassword"
+              >
+                New Password
+              </label>
+              <div
+                class="inputContainer"
+              >
+                <div
+                  class="inputWrapper"
+                >
+                  <input
+                    class="input password"
+                    id="newPassword"
+                    name="newPassword"
+                    type="password"
+                  />
+                  <button
+                    aria-label="Show password"
+                    class="toggleButton"
+                    type="button"
+                  >
+                    <svg
+                      fill="currentColor"
+                      height="1em"
+                      stroke="currentColor"
+                      stroke-width="0"
+                      viewBox="0 0 576 512"
+                      width="1em"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        d="M572.52 241.4C518.29 135.59 410.93 64 288 64S57.68 135.64 3.48 241.41a32.35 32.35 0 0 0 0 29.19C57.71 376.41 165.07 448 288 448s230.32-71.64 284.52-177.41a32.35 32.35 0 0 0 0-29.19zM288 400a144 144 0 1 1 144-144 143.93 143.93 0 0 1-144 144zm0-240a95.31 95.31 0 0 0-25.31 3.79 47.85 47.85 0 0 1-66.9 66.9A95.78 95.78 0 1 0 288 160z"
+                      />
+                    </svg>
+                  </button>
+                </div>
+              </div>
+            </div>
+            <div
+              class="field"
+            >
+              <label
+                class="label"
+                for="confirmPassword"
+              >
+                Confirm New Password
+              </label>
+              <div
+                class="inputContainer"
+              >
+                <div
+                  class="inputWrapper"
+                >
+                  <input
+                    class="input password"
+                    id="confirmPassword"
+                    name="confirmPassword"
+                    type="password"
+                  />
+                  <button
+                    aria-label="Show password"
+                    class="toggleButton"
+                    type="button"
+                  >
+                    <svg
+                      fill="currentColor"
+                      height="1em"
+                      stroke="currentColor"
+                      stroke-width="0"
+                      viewBox="0 0 576 512"
+                      width="1em"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        d="M572.52 241.4C518.29 135.59 410.93 64 288 64S57.68 135.64 3.48 241.41a32.35 32.35 0 0 0 0 29.19C57.71 376.41 165.07 448 288 448s230.32-71.64 284.52-177.41a32.35 32.35 0 0 0 0-29.19zM288 400a144 144 0 1 1 144-144 143.93 143.93 0 0 1-144 144zm0-240a95.31 95.31 0 0 0-25.31 3.79 47.85 47.85 0 0 1-66.9 66.9A95.78 95.78 0 1 0 288 160z"
+                      />
+                    </svg>
+                  </button>
+                </div>
+              </div>
+            </div>
+            <div
+              class="formActions"
+            >
+              <button
+                class="button outline submitButton disabled"
+                disabled=""
+                type="submit"
+              >
+                Update Password
+              </button>
+            </div>
+          </form>
         </div>
+      </div>
+    </div>
+    <div
+      class="addressesSection"
+    >
+      <div>
+        Loading addresses...
       </div>
     </div>
   </div>
