@@ -101,42 +101,6 @@ interface ProductVariant {
     images: Image[];
 }
 
-interface SearchKeyword {
-    text: string;
-    suggestTokenizer?: string;
-}
-
-interface SearchKeywords {
-    en: SearchKeyword[];
-}
-
-interface ProductData {
-    name: { 'en-US': string };
-    description: { 'en-US': string };
-    categories: CategoryReference[];
-    slug: string;
-    masterVariant: ProductVariant;
-    variants: ProductVariant[];
-    searchKeywords: SearchKeywords;
-}
-
-interface ProductCatalogData {
-    published: boolean;
-    current: ProductData;
-    staged: ProductData;
-    hasStagedChanges: boolean;
-}
-
-export interface CTProduct {
-    id: string;
-    version: string;
-    key?: string;
-    productType: ProductTypeReference;
-    masterData: ProductCatalogData;
-    createdAt: string;
-    lastModifiedAt: string;
-}
-
 export interface Product {
     id: string;
     name: string;
@@ -159,24 +123,6 @@ export interface Product {
     }[];
 }
 
-export interface ProductPagedQueryResponse {
-    limit: number;
-    offset: number;
-    count: number;
-    total?: number;
-    results: CTProduct[];
-}
-
-interface ProductSearchMatchingVariantEntry {
-    id: number;
-    sku: string;
-}
-
-interface ProductSearchMatchingVariants {
-    allMatched: boolean;
-    matchedVariants: ProductSearchMatchingVariantEntry[];
-}
-
 export interface ProductProjection {
     id: string;
     version: number;
@@ -187,28 +133,6 @@ export interface ProductProjection {
     categories: CategoryReference[];
     masterVariant: ProductVariant;
     variants: ProductVariant[];
-}
-
-export interface ProductSearchResult {
-    id: string;
-    matchingVariants?: ProductSearchMatchingVariants[];
-    productProjection: ProductProjection;
-}
-
-export interface ProductPagedSearchResponse {
-    total: number;
-    offset: number;
-    limit: number;
-    facets: number;
-    results: ProductSearchResult[];
-}
-
-export interface ProductProjectionPagedQueryResponse {
-    limit: number;
-    count: number;
-    total: number;
-    offset: number;
-    results: ProductProjection[];
 }
 
 export interface ProductProjectionPagedSearchResponse {
