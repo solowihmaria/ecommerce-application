@@ -35,7 +35,11 @@ const router = createBrowserRouter([
         ),
     },
     {
-        path: '/catalog',
+        path: '/catalog/:slug?', // используем slug вместо id для навигации по категориям
+        element: <CatalogPage />,
+    },
+    {
+        path: '/catalog/:categorySlug/:subcategorySlug', // используем slug вместо id для навигации по категориям
         element: <CatalogPage />,
     },
     {
