@@ -1,6 +1,6 @@
-import type { Product } from '../../../../../api/getProducts/getProducts.types';
-import { ProductCard } from '../ProductCard/ProductCard';
-import styles from '../../Catalog.module.scss';
+import type { Product } from '../../../../api/getProducts/getProducts.types';
+import { ProductCard } from './ProductCard/ProductCard';
+import styles from '../Catalog.module.scss';
 
 interface ProductListProps {
     products: Product[];

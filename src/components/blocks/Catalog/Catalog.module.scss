@@ -3,7 +3,7 @@
 .catalogContainer {
     display: flex;
     gap: 32px;
-    place-items: start center;
+    align-items: start;
 
     @media (width <= 1070px) {
         flex-direction: column;
@@ -37,7 +37,7 @@
     display: flex;
     flex-direction: column;
     gap: 32px;
-    margin: auto;
+    margin: 0 auto;
 }
 
 .breadcrumbs {

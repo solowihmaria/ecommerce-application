@@ -29,6 +29,7 @@ export const Breadcrumbs = ({ categories, resetFilters }: BreadcrumbsProps) => {
                     {categories.find((cat) => cat.slug['en-US'] === pathname)
                         ?.name['en-US'] || formatPathname(pathname)}
                 </Link>
+
                 {index < pathnames.length - 1 && ' / '}
             </span>
         );

@@ -8,7 +8,6 @@ export const CatalogPage = () => (
         <Header />
 
         <main className={styles.catalogContent}>
-            {/* <h1 className={styles.title}>Catalog</h1> */}
             <Catalog></Catalog>
         </main>
 
