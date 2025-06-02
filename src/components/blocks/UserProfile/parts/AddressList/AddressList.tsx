@@ -1,3 +1,4 @@
+import { useEffect } from 'react';
 import { Heading } from '../../../../../components/ui/Heading';
 import { Button } from '../../../../../components/ui/Button';
 import { Input } from '../../../../../components/ui/Input';
@@ -35,6 +36,19 @@ export const AddressList = () => {
         addIsDirty,
         addRegister,
     } = useAddressList();
+
+    // Блокировка скролла при открытии любой модалки
+    useEffect(() => {
+        if (isAddModalOpen || isDeleteModalOpen) {
+            document.body.style.overflow = 'hidden';
+        } else {
+            document.body.style.overflow = 'unset';
+        }
+
+        return () => {
+            document.body.style.overflow = 'unset';
+        };
+    }, [isAddModalOpen, isDeleteModalOpen]);
 
     if (!customer) {
         return <div>Loading addresses...</div>;
