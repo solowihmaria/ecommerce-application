@@ -240,3 +240,19 @@
         font-size: 0.7rem;
     }
 }
+
+@media (width <= 500px) {
+    .formActions {
+        flex-direction: column;
+    }
+}
+
+@media (width <= 400px) {
+    .addressCard {
+        max-width: 15rem;
+    }
+
+    .addressCard .deleteButton {
+        padding: 0.2rem;
+    }
+}
