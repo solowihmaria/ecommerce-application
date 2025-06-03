@@ -92,8 +92,7 @@
 
 .cross {
     position: absolute;
-    top: 60%;
-    rotate: 15deg;
+    top: 53%;
     display: block;
     width: 95%;
     border-top: 2px solid c.$color-gray-600;
@@ -102,7 +101,7 @@
 .discount {
     font-size: 1.7rem;
     font-weight: 600;
-    color: c.$color-discount-price;
+    color: c.$color-warning;
 }
 
 .labelName {
