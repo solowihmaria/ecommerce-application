@@ -15,7 +15,6 @@
 
 .sliderContainer {
     width: 40%;
-    min-width: 0;
     text-align: center;
 }
 
@@ -157,7 +156,7 @@
 
     .productActions {
         display: flex;
-        justify-content: center;
+        justify-content: flex-start;
     }
 }
 

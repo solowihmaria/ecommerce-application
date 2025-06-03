@@ -26,6 +26,8 @@ export const Slider = ({
                 loop={true}
                 initialSlide={initialSlide}
                 pagination={{ clickable: true }}
+                slidesPerView={1}
+                spaceBetween={10}
             >
                 {images.map((image, index) => {
                     return (
