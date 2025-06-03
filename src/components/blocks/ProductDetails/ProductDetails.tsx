@@ -126,7 +126,7 @@ export const ProductDetails = () => {
                                         value={
                                             currentProductVariant.toxic
                                                 ? 'Toxic'
-                                                : 'No toxic'
+                                                : 'Safe'
                                         }
                                     />
                                 </div>
@@ -142,15 +142,15 @@ export const ProductDetails = () => {
                                                     styles.priceLabel
                                                 )}
                                             >
-                                                Cost:
+                                                Price:&nbsp;
                                             </span>
                                             <span
                                                 className={clsx(styles.price)}
                                             >
+                                                €
                                                 {currentProductVariant.price.toFixed(
                                                     2
                                                 )}
-                                                €
                                             </span>
                                         </div>
                                     </>
@@ -166,7 +166,7 @@ export const ProductDetails = () => {
                                                     styles.priceLabel
                                                 )}
                                             >
-                                                Cost:
+                                                Price:&nbsp;
                                             </span>{' '}
                                             <span
                                                 className={clsx(
@@ -174,10 +174,10 @@ export const ProductDetails = () => {
                                                     styles.discount
                                                 )}
                                             >
+                                                €
                                                 {currentProductVariant.discount.toFixed(
                                                     2
                                                 )}
-                                                €
                                             </span>
                                         </div>
                                         <p
@@ -191,10 +191,10 @@ export const ProductDetails = () => {
                                                     styles.priceInitialNumber
                                                 )}
                                             >
+                                                €
                                                 {currentProductVariant.price.toFixed(
                                                     2
                                                 )}
-                                                €
                                             </span>
                                             <span
                                                 className={clsx(styles.cross)}
