@@ -7,6 +7,7 @@ import { RedirectIfAuth } from './guards/RedirectIfAuth';
 import { CatalogPage } from '../pages/Catalog';
 import { ProductPage } from '../pages/Product';
 import { ProfilePage } from '../pages/Profile';
+import { AboutUsPage } from '../pages/AboutUs';
 import { RequireAuth } from './guards/RequireAuth';
 
 const router = createBrowserRouter([
@@ -33,6 +34,10 @@ const router = createBrowserRouter([
                 <RegistrationPage />
             </RedirectIfAuth>
         ),
+    },
+    {
+        path: '/about',
+        element: <AboutUsPage />,
     },
     {
         path: '/catalog/:slug?', // используем slug вместо id для навигации по категориям
