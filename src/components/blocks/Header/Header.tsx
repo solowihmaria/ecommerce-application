@@ -95,7 +95,7 @@ export const Header = () => {
                             Catalog
                         </Button>
                     </Link>
-                    <Link to="#">
+                    <Link to="/about">
                         <Button variant="ghost" className={styles.navButton}>
                             About
                         </Button>
