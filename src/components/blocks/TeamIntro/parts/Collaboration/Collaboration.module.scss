@@ -1,0 +1,141 @@
+@use '../../../../../assets/styles/constants.module' as c;
+
+.collaboration {
+    position: relative;
+    padding: 4rem 0;
+    color: c.$color-text-primary;
+    text-align: center;
+    background-color: c.$color-primary-dark;
+}
+
+.container {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1rem;
+}
+
+.badge {
+    display: inline-flex;
+    align-items: center;
+    margin-bottom: 1.5rem;
+    padding: 0.75rem 1.5rem;
+    border-radius: 9999px;
+    background-color: rgba(c.$color-primary-light, 0.2);
+    backdrop-filter: blur(c.$blur);
+
+    &Icon {
+        width: 1.25rem;
+        height: 1.25rem;
+        margin-right: 0.5rem;
+        color: c.$color-primary-light;
+    }
+
+    &Text {
+        font-weight: 600;
+        color: c.$color-primary-light;
+    }
+}
+
+.collaborationSection {
+    margin-top: 3rem;
+    padding: 2rem;
+    border: 1px solid rgba(c.$color-primary-light, 0.2);
+    border-radius: 1.5rem;
+
+    @media (width >= 768px) {
+        padding: 3rem;
+    }
+}
+
+.collaborationHeader {
+    margin-bottom: 2rem;
+    text-align: center;
+}
+
+.collaborationBadge {
+    display: inline-flex;
+    align-items: center;
+    margin-bottom: 1rem;
+    padding: 0.5rem 1.25rem;
+    border-radius: 9999px;
+    background-color: c.$color-primary-light;
+
+    .badgeIcon {
+        color: c.$color-primary-dark;
+    }
+
+    .badgeText {
+        font-weight: 600;
+        color: c.$color-primary-dark;
+    }
+}
+
+.collaborationTitle {
+    margin-bottom: 0.5rem;
+    font-size: 1.75rem;
+    font-weight: 700;
+    color: c.$color-text-primary;
+}
+
+.collaborationGrid {
+    display: grid;
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+
+    @media (width >= 768px) {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+.collaborationItem {
+    padding: 1.5rem;
+    border-radius: 1rem;
+    text-align: center;
+    background-color: rgba(c.$color-white, 0.1);
+    box-shadow: 0 4px 6px rgb(0 0 0 / 5%);
+}
+
+.itemIconWrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 4rem;
+    height: 4rem;
+    margin: 0 auto 1rem;
+    border-radius: 50%;
+    background-color: c.$color-white;
+    box-shadow: 0 4px 8px rgb(0 0 0 / 10%);
+}
+
+.itemIcon {
+    width: 1.75rem;
+    height: 1.75rem;
+    color: c.$color-accent-primary;
+}
+
+.itemTitle {
+    margin-bottom: 0.75rem;
+    font-size: 1.125rem;
+    font-weight: 600;
+    color: c.$color-white;
+}
+
+.itemDescription {
+    font-size: 0.9375rem;
+    line-height: 1.5;
+    color: c.$color-primary-light;
+}
+
+.collaborationFooter {
+    max-width: 56rem;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.footerText {
+    font-size: 1.125rem;
+    line-height: 1.7;
+    color: c.$color-text-primary;
+    opacity: 0.9;
+}
