@@ -1,0 +1,1 @@
+export { TeamIntro } from './TeamIntro';

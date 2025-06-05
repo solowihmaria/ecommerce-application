@@ -1,0 +1,8 @@
+@use '../../../assets/styles/constants.module' as c;
+
+.teamIntro {
+    display: flex;
+    flex-direction: column;
+    background: url('../../../assets/images/bg3.jpg') no-repeat center center;
+    background-size: cover;
+}
