@@ -8,6 +8,7 @@ import { CatalogPage } from '../pages/Catalog';
 import { ProductPage } from '../pages/Product';
 import { ProfilePage } from '../pages/Profile';
 import { RequireAuth } from './guards/RequireAuth';
+import { CartPage } from '../pages/CartPage/CartPage';
 
 const router = createBrowserRouter([
     {
@@ -45,6 +46,10 @@ const router = createBrowserRouter([
     {
         path: '/product/:id',
         element: <ProductPage />,
+    },
+    {
+        path: '/cart',
+        element: <CartPage />,
     },
     {
         path: '/profile',
