@@ -1,8 +1,9 @@
-import type { Variant } from '../product/product.types';
+import type { CustomVariant, Variant } from '../product/product.types';
 import type { Price } from '../product/product.types';
 
 export interface CartResponse {
     id: string;
+    version: number;
     customerId: string;
     lineItems: CartItem[];
     totalLineItemQuantity: number;
@@ -80,4 +81,22 @@ interface DiscountedPrice {
             };
         };
     };
+}
+
+export interface CustomCart {
+    id: string;
+    customerId: string;
+    version: number;
+    lineItems: CustomCartItem[];
+    totalLineItemQuantity: number;
+    totalPrice: number;
+}
+
+export interface CustomCartItem {
+    id: string;
+    productId: string;
+    name: string;
+    quantity: number;
+    totalPrice: number;
+    variant: CustomVariant;
 }

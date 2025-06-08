@@ -1,25 +1,43 @@
 import { useEffect, useState } from 'react';
-import { getUserCart } from '../../../api/cart/cart';
-import type { CartResponse } from '../../../api/cart/cart.types';
+import { changeItemQty, getUserCart } from '../../../api/cart/cart';
+import type { CustomCart } from '../../../api/cart/cart.types';
 import { Heading } from '../../ui/Heading';
 import styles from './Cart.module.scss';
 import { Button } from '../../ui/Button';
 import { Input } from '../../ui/Input';
 import clsx from 'clsx';
+import { prepareCartData } from '../../../api/cart/helpers';
 
 export const Cart = () => {
-    const [cartContent, setCartContent] = useState<null | CartResponse>(null);
+    const [cartContent, setCartContent] = useState<null | CustomCart>(null);
+
+    const handleQtyChange = async (
+        qty: string,
+        cartContent: CustomCart,
+        lineId: string
+    ) => {
+        try {
+            const updatedCart = await changeItemQty(
+                Number(qty),
+                cartContent,
+                lineId
+            );
+            setCartContent(prepareCartData(updatedCart));
+        } catch {
+            console.log('some error');
+        }
+    };
 
     useEffect(() => {
         getUserCart()
             .then((cartData) => {
                 console.log(cartData);
-                setCartContent(cartData);
+                setCartContent(prepareCartData(cartData));
             })
             .catch((err) => {
                 console.log(err);
             });
-    });
+    }, []);
 
     return (
         <div className={styles.cartContainer}>
@@ -38,7 +56,7 @@ export const Cart = () => {
                         Quantity
                     </p>
                     <p className={clsx(styles.columnName, styles.column)}>
-                        Total
+                        Total(€)
                     </p>
                 </div>
             </div>
@@ -57,9 +75,15 @@ export const Cart = () => {
                                     src={product.variant.images[0].url}
                                     alt={product.variant.images[0].label}
                                 ></img>
-                                <p className={styles.productName}>
-                                    {product.name['en-US']}
-                                </p>
+                                <div className={styles.productText}>
+                                    {' '}
+                                    <p className={styles.productName}>
+                                        {product.name}
+                                    </p>
+                                    <p className={styles.productName}>
+                                        {product.variant.size}
+                                    </p>
+                                </div>
                             </div>
                             <div
                                 className={clsx(
@@ -73,34 +97,59 @@ export const Cart = () => {
                                         styles.column
                                     )}
                                 >
-                                    {product.variant.prices[0].value
-                                        .centAmount / 100}
+                                    {product.variant.price}
                                 </p>
-                                <p
+                                <div
                                     className={clsx(
                                         styles.columnValue,
                                         styles.column
                                     )}
                                 >
+                                    {' '}
                                     <Input
                                         name="quantity"
                                         type="number"
                                         value={product.quantity}
-                                        onChange={() => console.log('hello')}
+                                        onChange={(event) =>
+                                            void handleQtyChange(
+                                                event.target.value,
+                                                cartContent,
+                                                product.id
+                                            )
+                                        }
                                     />
-                                </p>
+                                </div>
+
                                 <p
                                     className={clsx(
                                         styles.columnValue,
                                         styles.column
                                     )}
                                 >
-                                    {product.totalPrice.centAmount / 100}
+                                    {product.totalPrice}
                                 </p>
                             </div>
                         </div>
                     );
                 })}
+            </div>
+            <div className={styles.cartFooter}>
+                <div className={styles.promoContainer}></div>
+                <div className={styles.totalContainer}>
+                    <div className={styles.totalPriceContainer}>
+                        <p className={clsx(styles.columnValue, styles.column)}>
+                            Total(€):
+                        </p>
+                        <p className={clsx(styles.columnValue, styles.column)}>
+                            {cartContent?.totalPrice}
+                        </p>
+                    </div>
+                    <div className={styles.checkoutContainer}>
+                        <Button className={styles.checkout}>
+                            Proceed to Checkout
+                        </Button>
+                    </div>
+                </div>
             </div>
         </div>
     );
