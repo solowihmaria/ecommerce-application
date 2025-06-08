@@ -1,6 +1,7 @@
 @use '../../../assets/styles/constants.module' as c;
 
 .cartContainer {
+    position: relative;
     display: flex;
     flex-direction: column;
     gap: 3rem;
