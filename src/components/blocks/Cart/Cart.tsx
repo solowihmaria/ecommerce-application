@@ -12,6 +12,7 @@ import { Input } from '../../ui/Input';
 import clsx from 'clsx';
 import { prepareCartData } from '../../../api/cart/helpers';
 import { IoMdClose } from 'react-icons/io';
+import { EmptyCart } from './parts/EmptyCart/EmptyCart';
 
 export const Cart = () => {
     const [cartContent, setCartContent] = useState<null | CustomCart>(null);
@@ -56,10 +57,13 @@ export const Cart = () => {
             });
     }, []);
 
+    if (cartContent?.lineItems.length === 0) {
+        return <EmptyCart />;
+    }
+
     return (
         <div className={styles.cartContainer}>
             <Heading>Shopping Cart</Heading>
-
             <div className={styles.cartHeader}>
                 <div className={clsx(styles.leftHeader, styles.firstColumn)}>
                     <Button>Clear Shopping Cart</Button>
@@ -76,7 +80,7 @@ export const Cart = () => {
                         Total(€)
                     </p>
                 </div>
-            </div>
+            </div>{' '}
             <div className={styles.cartProducts}>
                 {cartContent?.lineItems.map((product) => {
                     return (
