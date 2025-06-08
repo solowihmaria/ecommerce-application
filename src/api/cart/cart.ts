@@ -52,6 +52,23 @@ export const getUserCart = async (): Promise<CartResponse> => {
     return cart.data;
 };
 
+export const deleteCart = async (
+    cartContent: CustomCart
+): Promise<CartResponse> => {
+    const token = getUserToken();
+
+    const apiUrl = process.env.CTP_API_URL;
+    const projectKey = process.env.CTP_PROJECT_KEY;
+
+    const cartUrl = `${apiUrl}/${projectKey}/me/carts/${cartContent.id}?version=${cartContent.version}`;
+    const cart = await axios.delete<CartResponse>(cartUrl, {
+        headers: {
+            Authorization: `Bearer ${token}`,
+        },
+    });
+    return cart.data;
+};
+
 export const updateCart = async (
     payload: QtyUpdatePayload | DeleteItemPayload,
     cartId: string
