@@ -1,5 +1,9 @@
 import { useEffect, useState } from 'react';
-import { changeItemQty, getUserCart } from '../../../api/cart/cart';
+import {
+    changeItemQty,
+    getUserCart,
+    removeCartItem,
+} from '../../../api/cart/cart';
 import type { CustomCart } from '../../../api/cart/cart.types';
 import { Heading } from '../../ui/Heading';
 import styles from './Cart.module.scss';
@@ -7,6 +11,7 @@ import { Button } from '../../ui/Button';
 import { Input } from '../../ui/Input';
 import clsx from 'clsx';
 import { prepareCartData } from '../../../api/cart/helpers';
+import { IoMdClose } from 'react-icons/io';
 
 export const Cart = () => {
     const [cartContent, setCartContent] = useState<null | CustomCart>(null);
@@ -22,6 +27,18 @@ export const Cart = () => {
                 cartContent,
                 lineId
             );
+            setCartContent(prepareCartData(updatedCart));
+        } catch {
+            console.log('some error');
+        }
+    };
+
+    const handleCartItemDelete = async (
+        cartContent: CustomCart,
+        lineId: string
+    ) => {
+        try {
+            const updatedCart = await removeCartItem(cartContent, lineId);
             setCartContent(prepareCartData(updatedCart));
         } catch {
             console.log('some error');
@@ -70,6 +87,18 @@ export const Cart = () => {
                                     styles.firstColumn
                                 )}
                             >
+                                <span
+                                    className={styles.deleteProduct}
+                                    onClick={() =>
+                                        void handleCartItemDelete(
+                                            cartContent,
+                                            product.id
+                                        )
+                                    }
+                                    aria-hidden="true"
+                                >
+                                    <IoMdClose className={styles.deleteIcon} />
+                                </span>
                                 <img
                                     className={styles.productImage}
                                     src={product.variant.images[0].url}

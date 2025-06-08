@@ -44,6 +44,20 @@
 .productInfo {
     display: flex;
     gap: 1rem;
+    align-items: center;
+}
+
+.deleteProduct {
+    display: block;
+    width: 40px;
+    height: 40px;
+    cursor: pointer;
+}
+
+.deleteIcon {
+    fill: white;
+    width: 40px;
+    height: 40px;
 }
 
 .productImage {
