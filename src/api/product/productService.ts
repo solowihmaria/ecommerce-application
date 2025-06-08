@@ -18,7 +18,7 @@ export const getProductData = async (id: string, loginStatus: boolean) => {
     return productData;
 };
 
-const prepareVariant = (initialVariant: Variant): CustomVariant => {
+export const prepareVariant = (initialVariant: Variant): CustomVariant => {
     const { id, sku, images, prices } = initialVariant;
     //filter out not used attributes
     const attributes = initialVariant.attributes.filter((attribute) =>
@@ -53,6 +53,7 @@ const prepareVariant = (initialVariant: Variant): CustomVariant => {
     const discount = prices[0].discounted
         ? prices[0].discounted.value.centAmount / 100
         : null;
+
     return {
         id: id,
         sku: sku,
