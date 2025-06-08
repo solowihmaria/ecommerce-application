@@ -100,3 +100,24 @@ export interface CustomCartItem {
     totalPrice: number;
     variant: CustomVariant;
 }
+
+export interface QtyUpdatePayload {
+    version: number;
+    actions: [
+        {
+            action: string;
+            lineItemId: string;
+            quantity: number;
+        },
+    ];
+}
+
+export interface DeleteItemPayload {
+    version: number;
+    actions: [
+        {
+            action: string;
+            lineItemId: string;
+        },
+    ];
+}
