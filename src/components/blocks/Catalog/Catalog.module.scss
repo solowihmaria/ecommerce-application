@@ -1,5 +1,15 @@
 @use '../../../assets/styles/constants.module' as c;
 
+.catalogContent {
+    overflow: hidden;
+    min-height: 90vh;
+    padding: 2em 3em;
+
+    @media (width <= 480px) {
+        padding: 2em;
+    }
+}
+
 .catalogContainer {
     display: flex;
     gap: 32px;
