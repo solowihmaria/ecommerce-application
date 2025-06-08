@@ -1,0 +1,19 @@
+@use '../../assets/styles/constants.module' as c;
+
+.cartPageContainer {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+.main {
+    display: flex;
+    flex-grow: 1;
+    justify-content: center;
+    min-height: 90vh;
+    padding: 4rem 6rem;
+    background-color: c.$color-primary;
+    background-image: url('../../assets/images/hero-bg.jpg');
+    background-position: center;
+    background-size: cover;
+}
