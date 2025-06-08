@@ -23,12 +23,14 @@
 
 .rightHeader {
     display: flex;
+    justify-content: space-between;
 }
 
 .cartProducts {
     display: flex;
     flex-direction: column;
     gap: 1rem;
+    justify-content: space-between;
 }
 
 .productRow {
@@ -52,6 +54,7 @@
 .productPriceContainer {
     display: flex;
     align-items: center;
+    justify-content: space-between;
 }
 
 .firstColumn {
@@ -78,4 +81,41 @@
 
 .productName {
     color: c.$color-text-primary;
+}
+
+.productText {
+    display: flex;
+    flex-direction: column;
+}
+
+.cartFooter {
+    display: flex;
+    justify-content: space-between;
+    padding: 1rem;
+}
+
+.promoContainer {
+    width: 50%;
+}
+
+.totalContainer {
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+    color: c.$color-text-primary;
+}
+
+.totalPriceContainer {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.checkoutContainer {
+    display: flex;
+    justify-content: flex-end;
+    padding-left: 2rem;
+}
+
+.checkout {
+    width: 20rem;
 }
