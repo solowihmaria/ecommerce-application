@@ -34,7 +34,7 @@ export function Footer() {
                                 </Link>
                             </li>
                             <li>
-                                <Link to="#" className={styles.link}>
+                                <Link to="/about" className={styles.link}>
                                     About Us
                                 </Link>
                             </li>
@@ -46,13 +46,12 @@ export function Footer() {
                         </ul>
                     </div>
 
-                    {/* ЗАМЕНИТЬ НА АКТУАЛЬНЫЕ КАТЕГОРИИ И ССЫЛКИ */}
                     <div className={styles.column}>
                         <h3 className={styles.columnTitle}>Categories</h3>
                         <ul className={styles.linksList}>
                             <li>
                                 <Link to="/catalog" className={styles.link}>
-                                    Large Plants
+                                    Tropical Plants
                                 </Link>
                             </li>
                             <li>
@@ -72,7 +71,7 @@ export function Footer() {
                             </li>
                             <li>
                                 <Link to="/catalog" className={styles.link}>
-                                    Palms
+                                    Ferns
                                 </Link>
                             </li>
                         </ul>
