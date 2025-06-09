@@ -4,13 +4,3 @@
     color: c.$color-white;
     background: url('../../assets/images/bkg.jpg');
 }
-
-.catalogContent {
-    overflow: hidden;
-    min-height: 90vh;
-    padding: 2em 3em;
-
-    @media (width <= 480px) {
-        padding: 2em;
-    }
-}

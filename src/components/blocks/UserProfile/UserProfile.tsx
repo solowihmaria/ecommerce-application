@@ -7,26 +7,28 @@ import { FiUser } from 'react-icons/fi';
 
 export const UserProfile = () => {
     return (
-        <div className={styles.profileContainer}>
-            <div className={styles.headerWrapper}>
-                <FiUser className={styles.profileIcon} />
-                <Heading level="h1" className={styles.pageTitle}>
-                    My Profile
-                </Heading>
-            </div>
-
-            <div className={styles.profileMain}>
-                <div className={styles.infoSection}>
-                    <PersonalInfo />
+        <main className={styles.profileContent}>
+            <div className={styles.profileContainer}>
+                <div className={styles.headerWrapper}>
+                    <FiUser className={styles.profileIcon} />
+                    <Heading level="h1" className={styles.pageTitle}>
+                        My Profile
+                    </Heading>
                 </div>
-                <div className={styles.passwordSection}>
-                    <ChangePassword />
+
+                <div className={styles.profileMain}>
+                    <div className={styles.infoSection}>
+                        <PersonalInfo />
+                    </div>
+                    <div className={styles.passwordSection}>
+                        <ChangePassword />
+                    </div>
+                </div>
+
+                <div className={styles.addressesSection}>
+                    <AddressList />
                 </div>
             </div>
-
-            <div className={styles.addressesSection}>
-                <AddressList />
-            </div>
-        </div>
+        </main>
     );
 };
