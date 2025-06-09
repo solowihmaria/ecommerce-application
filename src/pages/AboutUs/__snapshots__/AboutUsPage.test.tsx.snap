@@ -1,0 +1,14 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<AboutUsPage/> component Render AboutUsPage component 1`] = `
+<div
+  class="aboutUsPageContainer"
+  data-testid="about-us-page"
+>
+  <div
+    data-testid="test-id-team-intro"
+  >
+    TeamIntro Mock
+  </div>
+</div>
+`;
