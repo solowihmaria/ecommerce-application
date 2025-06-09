@@ -1,5 +1,13 @@
 @use '../../../assets/styles/constants.module' as c;
 
+.registrationContent {
+    display: flex;
+    flex: 1;
+    align-items: center;
+    justify-content: center;
+    padding: 4rem 2rem;
+}
+
 .registrationContainer {
     width: 80%;
     min-width: 300px;

@@ -1,5 +1,14 @@
 @use '../../../assets/styles/constants.module' as c;
 
+.profileContent {
+    display: flex;
+    flex-grow: 1;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    padding: 2em 0;
+}
+
 .profileContainer {
     width: 90%;
     max-width: 1200px;

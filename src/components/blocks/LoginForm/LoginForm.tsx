@@ -22,59 +22,61 @@ export const LoginForm = () => {
     } = useLoginForm();
 
     return (
-        <div className={styles.loginContainer}>
-            <FormProvider {...methods}>
-                <Form
-                    data-testid="test-id-login-form"
-                    onSubmit={handleFormSubmission}
-                >
-                    <Heading level="h2" className={styles.formTitle}>
-                        Login
-                    </Heading>
-
-                    <EmailField
-                        error={errors.email || getFieldError('email')}
-                    />
-
-                    <PasswordField
-                        error={errors.password || getFieldError('password')}
-                        isPasswordVisible={isPasswordVisible}
-                        onTogglePassword={() =>
-                            setIsPasswordVisible(!isPasswordVisible)
-                        }
-                    />
-
-                    {authError && (
-                        <div className={styles.authError}>
-                            <FiFrown className={styles.errorIcon} />
-                            <span>{authError}</span>
-                        </div>
-                    )}
-
-                    <Button
-                        type="submit"
-                        variant="primary"
-                        disabled={isSubmitting}
-                        loading={isSubmitting}
-                        className={styles.submitButton}
+        <main className={styles.loginContent}>
+            <div className={styles.loginContainer}>
+                <FormProvider {...methods}>
+                    <Form
+                        data-testid="test-id-login-form"
+                        onSubmit={handleFormSubmission}
                     >
-                        {isSubmitting ? 'Logging in...' : 'Log In'}
-                    </Button>
+                        <Heading level="h2" className={styles.formTitle}>
+                            Login
+                        </Heading>
 
-                    <div className={styles.signUpRedirect}>
-                        <p className={styles.signUpText}>
-                            Don&apos;t have an account?
-                        </p>
-                        <Link
-                            data-testid="sign-up-link"
-                            to="/register"
-                            className={styles.signUpLink}
+                        <EmailField
+                            error={errors.email || getFieldError('email')}
+                        />
+
+                        <PasswordField
+                            error={errors.password || getFieldError('password')}
+                            isPasswordVisible={isPasswordVisible}
+                            onTogglePassword={() =>
+                                setIsPasswordVisible(!isPasswordVisible)
+                            }
+                        />
+
+                        {authError && (
+                            <div className={styles.authError}>
+                                <FiFrown className={styles.errorIcon} />
+                                <span>{authError}</span>
+                            </div>
+                        )}
+
+                        <Button
+                            type="submit"
+                            variant="primary"
+                            disabled={isSubmitting}
+                            loading={isSubmitting}
+                            className={styles.submitButton}
                         >
-                            Sign Up
-                        </Link>
-                    </div>
-                </Form>
-            </FormProvider>
-        </div>
+                            {isSubmitting ? 'Logging in...' : 'Log In'}
+                        </Button>
+
+                        <div className={styles.signUpRedirect}>
+                            <p className={styles.signUpText}>
+                                Don&apos;t have an account?
+                            </p>
+                            <Link
+                                data-testid="sign-up-link"
+                                to="/register"
+                                className={styles.signUpLink}
+                            >
+                                Sign Up
+                            </Link>
+                        </div>
+                    </Form>
+                </FormProvider>
+            </div>
+        </main>
     );
 };

@@ -25,63 +25,67 @@ export const RegistrationForm = () => {
     } = useRegistrationForm();
 
     return (
-        <div
-            data-testid="test-id-register-form"
-            className={styles.registrationContainer}
-        >
-            <FormProvider {...methods}>
-                <Form onSubmit={handleFormSubmission}>
-                    <Heading level="h2" className={styles.formTitle}>
-                        Registration
-                    </Heading>
+        <main className={styles.registrationContent}>
+            <div
+                data-testid="test-id-register-form"
+                className={styles.registrationContainer}
+            >
+                <FormProvider {...methods}>
+                    <Form onSubmit={handleFormSubmission}>
+                        <Heading level="h2" className={styles.formTitle}>
+                            Registration
+                        </Heading>
 
-                    <div className={styles.loginInfo}>
-                        <EmailField
-                            error={errors.email || getFieldError('email')}
-                        />
+                        <div className={styles.loginInfo}>
+                            <EmailField
+                                error={errors.email || getFieldError('email')}
+                            />
 
-                        <PasswordField
-                            error={errors.password || getFieldError('password')}
-                            isPasswordVisible={isPasswordVisible}
-                            onTogglePassword={() =>
-                                setIsPasswordVisible(!isPasswordVisible)
-                            }
-                        />
-                    </div>
-                    <PersonalInfoFieldSet errors={errors} />
-                    <ShippingAddressFieldSet errors={errors} />
-                    <BillingAddressFieldSet errors={errors} />
-
-                    {registrationError && (
-                        <div className={styles.registrationError}>
-                            <FiFrown className={styles.errorIcon} />
-                            <span>{registrationError}</span>
+                            <PasswordField
+                                error={
+                                    errors.password || getFieldError('password')
+                                }
+                                isPasswordVisible={isPasswordVisible}
+                                onTogglePassword={() =>
+                                    setIsPasswordVisible(!isPasswordVisible)
+                                }
+                            />
                         </div>
-                    )}
+                        <PersonalInfoFieldSet errors={errors} />
+                        <ShippingAddressFieldSet errors={errors} />
+                        <BillingAddressFieldSet errors={errors} />
 
-                    <Button
-                        type="submit"
-                        variant="primary"
-                        disabled={isSubmitting}
-                        className={styles.submitButton}
-                    >
-                        {isSubmitting ? 'Signing up...' : 'Sign Up'}
-                    </Button>
+                        {registrationError && (
+                            <div className={styles.registrationError}>
+                                <FiFrown className={styles.errorIcon} />
+                                <span>{registrationError}</span>
+                            </div>
+                        )}
 
-                    <div className={styles.signInRedirect}>
-                        <p className={styles.signInText}>
-                            Already have an account?
-                        </p>
-                        <Link
-                            data-testid="sign-in-link"
-                            to="/login"
-                            className={styles.signInLink}
+                        <Button
+                            type="submit"
+                            variant="primary"
+                            disabled={isSubmitting}
+                            className={styles.submitButton}
                         >
-                            Sign In
-                        </Link>
-                    </div>
-                </Form>
-            </FormProvider>
-        </div>
+                            {isSubmitting ? 'Signing up...' : 'Sign Up'}
+                        </Button>
+
+                        <div className={styles.signInRedirect}>
+                            <p className={styles.signInText}>
+                                Already have an account?
+                            </p>
+                            <Link
+                                data-testid="sign-in-link"
+                                to="/login"
+                                className={styles.signInLink}
+                            >
+                                Sign In
+                            </Link>
+                        </div>
+                    </Form>
+                </FormProvider>
+            </div>
+        </main>
     );
 };
