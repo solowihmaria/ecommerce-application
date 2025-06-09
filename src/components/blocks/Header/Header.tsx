@@ -20,6 +20,9 @@ export const Header = () => {
     const hamburgerMenuRef = useRef<null | HTMLDivElement>(null);
     const navigate = useNavigate();
 
+    // TODO: Заменить тестовое значение на реальное количество товаров из корзины
+    const cartItemsCount = 39;
+
     const onLogout = () => {
         logoutUser()
             .then(() => {
@@ -173,8 +176,17 @@ export const Header = () => {
                         )}
                     </div>
                     <Link to="/basket" className={styles.cartLink}>
-                        <CartIcon className={styles.cartIcon} />
+                        <div className={styles.cartIconWrapper}>
+                            <CartIcon className={styles.cartIcon} />
+                            {/* TODO: Заменить тестовое значение на реальное количество товаров из корзины */}
+                            {cartItemsCount > 0 && (
+                                <span className={styles.cartBadge}>
+                                    {cartItemsCount}
+                                </span>
+                            )}
+                        </div>
                     </Link>
+
                     <div className={styles.hamburger}>
                         <MdOutlineMenu
                             className={styles.hamburgerIcon}
