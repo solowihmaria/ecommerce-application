@@ -50,7 +50,7 @@ export const MembersSection = () => {
             id: 'member-1',
             name: 'Maria Solovykh',
             role: 'Team Lead & Code Architect',
-            bio: "I'm passionate about creating scalable web applications and mentoring developers. When I'm not coding, you'll find me exploring new technologies or enjoying a good cup of coffee. I believe in clean code, effective communication, and building products that users actually love to use.",
+            bio: "I graduated with a degree in Information Systems and Technologies, where I discovered my true interest in frontend development. To deepen my knowledge, I enrolled in a course — and quickly fell in love with building user-friendly, responsive web interfaces. I'm excited to keep growing as a developer and take on new challenges in real-world projects.",
             photo: customer1,
             github: 'https://github.com/solowihmaria',
             contributions: [
@@ -63,8 +63,8 @@ export const MembersSection = () => {
                 { id: 'cont-1-4', text: 'Routing Implementation' },
                 { id: 'cont-1-5', text: 'User Profile Page Implementation' },
                 { id: 'cont-1-6', text: 'Main Page Implementation' },
-                { id: 'cont-1-7', text: 'About Us Page Implementation' },
-                { id: 'cont-1-8', text: '------- 4 sprint' },
+                { id: 'cont-1-7', text: '404 Page Implementation' },
+                { id: 'cont-1-8', text: 'About Us Page Implementation' },
             ],
 
             areas: [
@@ -92,7 +92,10 @@ export const MembersSection = () => {
                     id: 'cont-2-6',
                     text: 'Product Data Management in CommerceTools',
                 },
-                { id: 'cont-2-7', text: '-----4 sprint' },
+                {
+                    id: 'cont-2-7',
+                    text: 'Cart Integration in Catalog',
+                },
             ],
             areas: [
                 'area-frontend',
@@ -125,7 +128,7 @@ export const MembersSection = () => {
                     text: 'Product Data Management in CommerceTools',
                 },
                 { id: 'cont-3-6', text: 'Unit and Integration Testing' },
-                { id: 'cont-3-7', text: '----------- 4 sprint' },
+                { id: 'cont-3-7', text: 'Basket Page Implementation' },
             ],
 
             areas: [

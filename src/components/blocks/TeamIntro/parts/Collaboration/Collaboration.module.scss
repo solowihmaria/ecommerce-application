@@ -2,7 +2,6 @@
 
 .collaboration {
     position: relative;
-    padding: 4rem 0;
     color: c.$color-text-primary;
     text-align: center;
     background-color: c.$color-primary-dark;
@@ -10,7 +9,7 @@
 
 .container {
     width: 100%;
-    max-width: 1200px;
+    max-width: 1300px;
     margin: 0 auto;
     padding: 0 1rem;
 }
@@ -40,8 +39,6 @@
 .collaborationSection {
     margin-top: 3rem;
     padding: 2rem;
-    border: 1px solid rgba(c.$color-primary-light, 0.2);
-    border-radius: 1.5rem;
 
     @media (width >= 768px) {
         padding: 3rem;
@@ -92,8 +89,6 @@
     padding: 1.5rem;
     border-radius: 1rem;
     text-align: center;
-    background-color: rgba(c.$color-white, 0.1);
-    box-shadow: 0 4px 6px rgb(0 0 0 / 5%);
 }
 
 .itemIconWrapper {
@@ -104,7 +99,7 @@
     height: 4rem;
     margin: 0 auto 1rem;
     border-radius: 50%;
-    background-color: c.$color-white;
+    background-color: c.$color-primary-light;
     box-shadow: 0 4px 8px rgb(0 0 0 / 10%);
 }
 
@@ -128,12 +123,14 @@
 }
 
 .collaborationFooter {
-    max-width: 56rem;
     margin: 0 auto;
     text-align: center;
 }
 
 .footerText {
+    padding: 2rem;
+    border: 2px solid rgba(c.$color-primary-light, 0.2);
+    border-radius: 1.5rem;
     font-size: 1.125rem;
     line-height: 1.7;
     color: c.$color-text-primary;

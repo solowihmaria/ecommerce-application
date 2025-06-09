@@ -17,10 +17,13 @@ export const Collaboration = () => {
                             <div className={styles.itemIconWrapper}>
                                 <FiCoffee className={styles.itemIcon} />
                             </div>
-                            <h4 className={styles.itemTitle}>Daily Sync</h4>
+                            <h4 className={styles.itemTitle}>
+                                Team Communication
+                            </h4>
                             <p className={styles.itemDescription}>
-                                Quick morning check-ins kept our small team
-                                perfectly aligned on priorities and progress.
+                                We stayed in constant touch to quickly address
+                                issues, make decisions, and keep everything
+                                running smoothly.
                             </p>
                         </div>
 
@@ -49,14 +52,13 @@ export const Collaboration = () => {
 
                     <div className={styles.collaborationFooter}>
                         <p className={styles.footerText}>
-                            Our effective collaboration was the key to
-                            EverGreen&apos;s success. Through regular
-                            communication, shared responsibility, and mutual
-                            support, we transformed individual skills into
-                            collective achievement. Each team member brought
-                            unique expertise while maintaining a unified vision,
-                            resulting in a seamless development process and a
-                            product we&apos;re truly proud of.
+                            Throughout the project, we worked closely as a
+                            team—communicating regularly, sharing
+                            responsibilities, and supporting each other. Tasks
+                            were delegated clearly, everyone stayed accountable,
+                            and collaboration felt natural and effective. Each
+                            member brought their own strengths, contributing to
+                            a well-organized and productive workflow.
                         </p>
                     </div>
                 </div>

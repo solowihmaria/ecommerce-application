@@ -2,7 +2,7 @@
 
 .hero {
     position: relative;
-    padding: 6rem 0;
+    padding: 6rem 0 2rem;
     color: c.$color-text-primary;
     text-align: center;
 }
@@ -27,7 +27,7 @@
 }
 
 .titleHighlight {
-    color: c.$color-accent-light;
+    color: c.$color-accent-secondary;
 }
 
 .description {
