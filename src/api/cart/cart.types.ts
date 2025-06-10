@@ -13,7 +13,13 @@ export interface CartResponse {
         centAmount: number;
         fractionDigits: number;
     };
-    discountCodes: [];
+    discountCodes: {
+        discountCode: {
+            id: string;
+            typeId: string;
+        };
+        state: string;
+    }[];
     discountOnTotalPrice: {
         discountedAmount: {
             type: string;
@@ -90,6 +96,13 @@ export interface CustomCart {
     lineItems: CustomCartItem[];
     totalLineItemQuantity: number;
     totalPrice: number;
+    discountCodes?: {
+        discountCode: {
+            id: string;
+            typeId: string;
+        };
+        state: string;
+    }[];
 }
 
 export interface CustomCartItem {
@@ -118,6 +131,29 @@ export interface DeleteItemPayload {
         {
             action: string;
             lineItemId: string;
+        },
+    ];
+}
+
+export interface AddDiscountCodePayload {
+    version: number;
+    actions: [
+        {
+            action: string;
+            code: string;
+        },
+    ];
+}
+
+export interface RemoveDiscountCodePayload {
+    version: number;
+    actions: [
+        {
+            action: string;
+            discountCode: {
+                typeId: string;
+                id: string;
+            };
         },
     ];
 }

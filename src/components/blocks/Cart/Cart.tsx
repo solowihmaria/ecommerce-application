@@ -1,9 +1,11 @@
 import { useEffect, useState } from 'react';
 import {
+    addDiscountCode,
     changeItemQty,
     deleteCart,
     getUserCart,
     removeCartItem,
+    removeDiscountCode,
 } from '../../../api/cart/cart';
 import type { CustomCart } from '../../../api/cart/cart.types';
 import { Heading } from '../../ui/Heading';
@@ -15,6 +17,7 @@ import { prepareCartData } from '../../../api/cart/helpers';
 import { IoMdClose } from 'react-icons/io';
 import { EmptyCart } from './parts/EmptyCart/EmptyCart';
 import { ConfirmModal } from '../../ui/ConfirmModal';
+import { Discount } from './parts/Discount/Discount';
 
 export const Cart = () => {
     const [cartContent, setCartContent] = useState<null | CustomCart>(null);
@@ -53,6 +56,29 @@ export const Cart = () => {
         try {
             await deleteCart(cartContent);
             setCartContent(null);
+        } catch {
+            console.log('some error');
+        }
+    };
+    const handlePromocodeApply = async (
+        code: string,
+        cartContent: CustomCart
+    ) => {
+        try {
+            const updatedCart = await addDiscountCode(code, cartContent);
+            setCartContent(prepareCartData(updatedCart));
+        } catch {
+            console.log('some error');
+        }
+    };
+
+    const handlePromocodeRemove = async (
+        id: string,
+        cartContent: CustomCart
+    ) => {
+        try {
+            const updatedCart = await removeDiscountCode(id, cartContent);
+            setCartContent(prepareCartData(updatedCart));
         } catch {
             console.log('some error');
         }
@@ -236,7 +262,11 @@ export const Cart = () => {
                             })}
                         </div>
                         <div className={styles.cartFooter}>
-                            <div className={styles.promoContainer}></div>
+                            <Discount
+                                cartContent={cartContent}
+                                applyToCartHandler={handlePromocodeApply}
+                                removeFromCartHandler={handlePromocodeRemove}
+                            />
                             <div className={styles.totalContainer}>
                                 <div className={styles.totalPriceContainer}>
                                     <p

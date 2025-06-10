@@ -29,6 +29,7 @@ export const prepareCartData = (cartData: CartResponse): CustomCart => {
         lineItems,
         totalLineItemQuantity,
         totalPrice,
+        discountCodes,
     } = cartData;
 
     const cart: CustomCart = {
@@ -38,6 +39,7 @@ export const prepareCartData = (cartData: CartResponse): CustomCart => {
         lineItems: lineItems.map((lineItem) => prepareLineItem(lineItem)),
         totalLineItemQuantity: totalLineItemQuantity,
         totalPrice: totalPrice.centAmount / 100,
+        discountCodes: discountCodes,
     };
 
     return cart;
