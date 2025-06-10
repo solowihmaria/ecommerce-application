@@ -7,7 +7,28 @@ import type {
 } from './cart.types';
 
 export const prepareLineItem = (lineItem: CartItem) => {
-    const { id, productId, name, quantity, totalPrice, variant } = lineItem;
+    const {
+        id,
+        productId,
+        name,
+        quantity,
+        totalPrice,
+        variant,
+        discountedPricePerQuantity,
+    } = lineItem;
+
+    const promocodeDiscountData =
+        discountedPricePerQuantity.length > 0
+            ? {
+                  discount:
+                      discountedPricePerQuantity[0].discountedPrice
+                          .includedDiscounts[0].discountedAmount.centAmount /
+                      100,
+                  currentPrice:
+                      discountedPricePerQuantity[0].discountedPrice.value
+                          .centAmount / 100,
+              }
+            : null;
 
     const product: CustomCartItem = {
         id: id,
@@ -16,6 +37,7 @@ export const prepareLineItem = (lineItem: CartItem) => {
         quantity: quantity,
         totalPrice: totalPrice.centAmount / 100,
         variant: prepareVariant(variant),
+        discountedPricePerQuantity: promocodeDiscountData,
     };
 
     return product;
@@ -30,7 +52,12 @@ export const prepareCartData = (cartData: CartResponse): CustomCart => {
         totalLineItemQuantity,
         totalPrice,
         discountCodes,
+        discountOnTotalPrice,
     } = cartData;
+
+    const discountTotal = discountOnTotalPrice
+        ? discountOnTotalPrice.discountedAmount.centAmount / 100
+        : null;
 
     const cart: CustomCart = {
         id: id,
@@ -40,6 +67,7 @@ export const prepareCartData = (cartData: CartResponse): CustomCart => {
         totalLineItemQuantity: totalLineItemQuantity,
         totalPrice: totalPrice.centAmount / 100,
         discountCodes: discountCodes,
+        discountOnTotalPrice: discountTotal,
     };
 
     return cart;
