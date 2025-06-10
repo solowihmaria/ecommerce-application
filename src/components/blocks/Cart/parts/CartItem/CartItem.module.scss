@@ -1,0 +1,92 @@
+@use '../../../../../assets/styles/constants.module' as c;
+
+.productRow {
+    display: flex;
+    justify-content: space-between;
+    padding: 1rem;
+    border: 1px solid c.$border;
+    border-radius: 1rem;
+}
+
+.productInfo {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+}
+
+.deleteProduct {
+    display: block;
+    width: 40px;
+    height: 40px;
+    cursor: pointer;
+}
+
+.deleteIcon {
+    fill: white;
+    width: 40px;
+    height: 40px;
+}
+
+.firstColumn {
+    width: 50%;
+}
+
+.productImage {
+    width: 100px;
+    border-radius: 1rem;
+}
+
+.productText {
+    display: flex;
+    flex-direction: column;
+}
+
+.productName {
+    color: c.$color-text-primary;
+}
+
+.secondColumn {
+    width: 50%;
+}
+
+.productPriceContainer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.columnValue {
+    color: c.$color-text-primary;
+    text-align: center;
+}
+
+.column {
+    width: 30%;
+}
+
+.price {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+}
+
+.priceOrigin {
+    color: c.$color-gray-600;
+}
+
+.cross {
+    position: absolute;
+    top: 53%;
+    display: block;
+    width: 95%;
+    border-top: 2px solid c.$color-gray-600;
+}
+
+.priceOriginContainer {
+    position: relative;
+    display: inline-block;
+}
+
+.qtyInput {
+    width: 60%;
+}
