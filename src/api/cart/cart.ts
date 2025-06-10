@@ -1,9 +1,11 @@
 import axios from 'axios';
 import type {
+    AddDiscountCodePayload,
     CartResponse,
     CustomCart,
     DeleteItemPayload,
     QtyUpdatePayload,
+    RemoveDiscountCodePayload,
 } from './cart.types';
 import { getToken } from '../token';
 
@@ -70,7 +72,11 @@ export const deleteCart = async (
 };
 
 export const updateCart = async (
-    payload: QtyUpdatePayload | DeleteItemPayload,
+    payload:
+        | QtyUpdatePayload
+        | DeleteItemPayload
+        | AddDiscountCodePayload
+        | RemoveDiscountCodePayload,
     cartId: string
 ): Promise<CartResponse> => {
     const token = getUserToken();
@@ -118,6 +124,45 @@ export const removeCartItem = async (
             {
                 action: 'removeLineItem',
                 lineItemId: lineId,
+            },
+        ],
+    };
+
+    const cart = await updateCart(payload, cartContent.id);
+    return cart;
+};
+
+export const addDiscountCode = async (
+    code: string,
+    cartContent: CustomCart
+): Promise<CartResponse> => {
+    const payload: AddDiscountCodePayload = {
+        version: cartContent.version,
+        actions: [
+            {
+                action: 'addDiscountCode',
+                code: code,
+            },
+        ],
+    };
+
+    const cart = await updateCart(payload, cartContent.id);
+    return cart;
+};
+
+export const removeDiscountCode = async (
+    id: string,
+    cartContent: CustomCart
+): Promise<CartResponse> => {
+    const payload: RemoveDiscountCodePayload = {
+        version: cartContent.version,
+        actions: [
+            {
+                action: 'removeDiscountCode',
+                discountCode: {
+                    typeId: 'discount-code',
+                    id: id,
+                },
             },
         ],
     };

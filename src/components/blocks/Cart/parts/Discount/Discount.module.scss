@@ -1,0 +1,50 @@
+@use '../../../../../assets/styles/constants.module' as c;
+
+.promoContainer {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 45%;
+}
+
+.promoControlsContainer {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+    justify-content: flex-start;
+    width: 80%;
+}
+
+.promoControlsContainerApplied {
+    display: flex;
+    gap: 0.5rem;
+    align-items: center;
+    justify-content: flex-start;
+    width: 80%;
+}
+
+.promocodeLabel {
+    color: c.$color-text-primary;
+}
+
+.promocodeInput {
+    width: 15rem;
+}
+
+.promocode {
+    height: 100%;
+    color: c.$color-text-primary;
+}
+
+.deletePromo {
+    display: block;
+    width: 25px;
+    height: 25px;
+    cursor: pointer;
+}
+
+.deletePromoIcon {
+    fill: white;
+    width: 25px;
+    height: 25px;
+}
