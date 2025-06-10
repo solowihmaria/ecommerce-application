@@ -11,13 +11,12 @@ import type { CustomCart } from '../../../api/cart/cart.types';
 import { Heading } from '../../ui/Heading';
 import styles from './Cart.module.scss';
 import { Button } from '../../ui/Button';
-import { Input } from '../../ui/Input';
 import clsx from 'clsx';
 import { prepareCartData } from '../../../api/cart/helpers';
-import { IoMdClose } from 'react-icons/io';
 import { EmptyCart } from './parts/EmptyCart/EmptyCart';
 import { ConfirmModal } from '../../ui/ConfirmModal';
 import { Discount } from './parts/Discount/Discount';
+import { CartItem } from './parts/CartItem/CartItem';
 
 export const Cart = () => {
     const [cartContent, setCartContent] = useState<null | CustomCart>(null);
@@ -84,6 +83,27 @@ export const Cart = () => {
         }
     };
 
+    function getCartTotalOrigin(cartContent: CustomCart): string {
+        if (cartContent.discountOnTotalPrice) {
+            return (
+                cartContent.totalPrice + cartContent.discountOnTotalPrice
+            ).toFixed(2);
+        }
+        if (cartContent.lineItems[0].discountedPricePerQuantity) {
+            const initialPrices = cartContent.lineItems.map((lineItem) => {
+                if (lineItem.variant.discount) {
+                    return lineItem.variant.discount * lineItem.quantity;
+                } else {
+                    return lineItem.variant.price * lineItem.quantity;
+                }
+            });
+            const initialTotal = initialPrices.reduce(
+                (accumulator, currentValue) => accumulator + currentValue
+            );
+            return initialTotal.toFixed(2);
+        }
+        return cartContent.totalPrice.toFixed(2);
+    }
     useEffect(() => {
         setIsLoading(true);
         getUserCart()
@@ -158,106 +178,15 @@ export const Cart = () => {
                         <div className={styles.cartProducts}>
                             {cartContent?.lineItems.map((product) => {
                                 return (
-                                    <div
-                                        className={styles.productRow}
+                                    <CartItem
                                         key={product.id}
-                                    >
-                                        <div
-                                            className={clsx(
-                                                styles.productInfo,
-                                                styles.firstColumn
-                                            )}
-                                        >
-                                            <span
-                                                className={styles.deleteProduct}
-                                                onClick={() =>
-                                                    void handleCartItemDelete(
-                                                        cartContent,
-                                                        product.id
-                                                    )
-                                                }
-                                                aria-hidden="true"
-                                            >
-                                                <IoMdClose
-                                                    className={
-                                                        styles.deleteIcon
-                                                    }
-                                                />
-                                            </span>
-                                            <img
-                                                className={styles.productImage}
-                                                src={
-                                                    product.variant.images[0]
-                                                        .url
-                                                }
-                                                alt={
-                                                    product.variant.images[0]
-                                                        .label
-                                                }
-                                            ></img>
-                                            <div className={styles.productText}>
-                                                {' '}
-                                                <p
-                                                    className={
-                                                        styles.productName
-                                                    }
-                                                >
-                                                    {product.name}
-                                                </p>
-                                                <p
-                                                    className={
-                                                        styles.productName
-                                                    }
-                                                >
-                                                    {product.variant.size}
-                                                </p>
-                                            </div>
-                                        </div>
-                                        <div
-                                            className={clsx(
-                                                styles.productPriceContainer,
-                                                styles.firstColumn
-                                            )}
-                                        >
-                                            <p
-                                                className={clsx(
-                                                    styles.columnValue,
-                                                    styles.column
-                                                )}
-                                            >
-                                                {product.variant.price}
-                                            </p>
-                                            <div
-                                                className={clsx(
-                                                    styles.columnValue,
-                                                    styles.column
-                                                )}
-                                            >
-                                                {' '}
-                                                <Input
-                                                    name="quantity"
-                                                    type="number"
-                                                    value={product.quantity}
-                                                    onChange={(event) =>
-                                                        void handleQtyChange(
-                                                            event.target.value,
-                                                            cartContent,
-                                                            product.id
-                                                        )
-                                                    }
-                                                />
-                                            </div>
-
-                                            <p
-                                                className={clsx(
-                                                    styles.columnValue,
-                                                    styles.column
-                                                )}
-                                            >
-                                                {product.totalPrice}
-                                            </p>
-                                        </div>
-                                    </div>
+                                        cartContent={cartContent}
+                                        product={product}
+                                        deleteProductHandler={
+                                            handleCartItemDelete
+                                        }
+                                        handleQtyChange={handleQtyChange}
+                                    />
                                 );
                             })}
                         </div>
@@ -277,14 +206,56 @@ export const Cart = () => {
                                     >
                                         Total(€):
                                     </p>
-                                    <p
-                                        className={clsx(
-                                            styles.columnValue,
-                                            styles.column
-                                        )}
-                                    >
-                                        {cartContent?.totalPrice}
-                                    </p>
+                                    {cartContent.discountOnTotalPrice ||
+                                    cartContent.lineItems[0]
+                                        .discountedPricePerQuantity ? (
+                                        <>
+                                            <p
+                                                className={clsx(
+                                                    styles.columnValue,
+                                                    styles.column,
+                                                    styles.cartTotalOriginContainer
+                                                )}
+                                            >
+                                                <span
+                                                    className={
+                                                        styles.cartTotalOrigin
+                                                    }
+                                                >
+                                                    {getCartTotalOrigin(
+                                                        cartContent
+                                                    )}
+                                                </span>
+                                                <span
+                                                    className={clsx(
+                                                        styles.cross
+                                                    )}
+                                                ></span>
+                                            </p>
+
+                                            <p
+                                                className={clsx(
+                                                    styles.columnValue,
+                                                    styles.column,
+                                                    styles.cartTotalNew
+                                                )}
+                                            >
+                                                {cartContent.totalPrice.toFixed(
+                                                    2
+                                                )}
+                                            </p>
+                                        </>
+                                    ) : (
+                                        <p
+                                            className={clsx(
+                                                styles.columnValue,
+                                                styles.column,
+                                                styles.cartTotalPrice
+                                            )}
+                                        >
+                                            {cartContent.totalPrice.toFixed(2)}
+                                        </p>
+                                    )}
                                 </div>
                                 <div className={styles.checkoutContainer}>
                                     <Button className={styles.checkout}>

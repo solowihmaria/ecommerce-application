@@ -67,7 +67,7 @@ export interface CartItem {
 
 interface DiscountedPrice {
     quantity: number;
-    discounterPrice: {
+    discountedPrice: {
         value: {
             type: string;
             currencyCode: string;
@@ -85,7 +85,7 @@ interface DiscountedPrice {
                 centAmount: number;
                 fractionDigits: number;
             };
-        };
+        }[];
     };
 }
 
@@ -96,13 +96,14 @@ export interface CustomCart {
     lineItems: CustomCartItem[];
     totalLineItemQuantity: number;
     totalPrice: number;
-    discountCodes?: {
+    discountCodes: {
         discountCode: {
             id: string;
             typeId: string;
         };
         state: string;
     }[];
+    discountOnTotalPrice: number | null;
 }
 
 export interface CustomCartItem {
@@ -112,6 +113,10 @@ export interface CustomCartItem {
     quantity: number;
     totalPrice: number;
     variant: CustomVariant;
+    discountedPricePerQuantity: {
+        discount: number;
+        currentPrice: number;
+    } | null;
 }
 
 export interface QtyUpdatePayload {
