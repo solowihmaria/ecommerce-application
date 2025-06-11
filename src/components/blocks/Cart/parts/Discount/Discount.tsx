@@ -16,6 +16,7 @@ export const Discount = ({
     cartContent,
     applyToCartHandler,
     removeFromCartHandler,
+    discountError,
 }: {
     cartContent: CustomCart;
     applyToCartHandler: (
@@ -26,6 +27,7 @@ export const Discount = ({
         id: string,
         cartContent: CustomCart
     ) => Promise<void>;
+    discountError: string | null;
 }) => {
     const promoRef = useRef<HTMLInputElement | null>(null);
     const { customer } = useAuth();
@@ -120,6 +122,9 @@ export const Discount = ({
                         <IoMdClose className={styles.deletePromoIcon} />
                     </span>
                 </div>
+            )}
+            {discountError && (
+                <span className={styles.discountError}>{discountError}</span>
             )}
         </div>
     );
