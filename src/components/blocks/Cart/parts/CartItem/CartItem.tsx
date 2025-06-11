@@ -6,6 +6,7 @@ import type {
 import styles from './CartItem.module.scss';
 import { IoMdClose } from 'react-icons/io';
 import { Input } from '../../../../ui/Input';
+import { useRef } from 'react';
 
 export const CartItem = ({
     product,
@@ -25,6 +26,8 @@ export const CartItem = ({
         id: string
     ) => Promise<void>;
 }) => {
+    const inputRef = useRef<HTMLInputElement | null>(null);
+
     return (
         <div className={styles.productRow}>
             <div className={clsx(styles.productInfo, styles.firstColumn)}>
@@ -90,14 +93,25 @@ export const CartItem = ({
                         className={styles.qtyInput}
                         name="quantity"
                         type="number"
+                        min="1"
                         value={product.quantity}
-                        onChange={(event) =>
-                            void handleQtyChange(
-                                event.target.value,
-                                cartContent,
-                                product.id
-                            )
-                        }
+                        ref={inputRef}
+                        onChange={(event) => {
+                            if (
+                                Number(event.target.value) >= 1 &&
+                                Number.isInteger(Number(event.target.value))
+                            ) {
+                                void handleQtyChange(
+                                    event.target.value,
+                                    cartContent,
+                                    product.id
+                                );
+                            } else {
+                                if (inputRef.current) {
+                                    inputRef.current.value = '0';
+                                }
+                            }
+                        }}
                     />
                 </div>
 

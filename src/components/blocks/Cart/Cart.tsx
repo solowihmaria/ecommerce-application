@@ -1,122 +1,28 @@
-import { useEffect, useState } from 'react';
-import {
-    addDiscountCode,
-    changeItemQty,
-    deleteCart,
-    getUserCart,
-    removeCartItem,
-    removeDiscountCode,
-} from '../../../api/cart/cart';
-import type { CustomCart } from '../../../api/cart/cart.types';
+import { useState } from 'react';
 import { Heading } from '../../ui/Heading';
 import styles from './Cart.module.scss';
 import { Button } from '../../ui/Button';
 import clsx from 'clsx';
-import { prepareCartData } from '../../../api/cart/helpers';
 import { EmptyCart } from './parts/EmptyCart/EmptyCart';
 import { ConfirmModal } from '../../ui/ConfirmModal';
 import { Discount } from './parts/Discount/Discount';
 import { CartItem } from './parts/CartItem/CartItem';
+import { useCart } from './lib/useCart';
+import type { CartHook } from './Cart.types';
 
 export const Cart = () => {
-    const [cartContent, setCartContent] = useState<null | CustomCart>(null);
-    const [isLoading, setIsLoading] = useState<boolean>(true);
     const [isModalOpened, setIsModalOpened] = useState<boolean>(false);
-
-    const handleQtyChange = async (
-        qty: string,
-        cartContent: CustomCart,
-        lineId: string
-    ) => {
-        try {
-            const updatedCart = await changeItemQty(
-                Number(qty),
-                cartContent,
-                lineId
-            );
-            setCartContent(prepareCartData(updatedCart));
-        } catch {
-            console.log('some error');
-        }
-    };
-    const handleCartItemDelete = async (
-        cartContent: CustomCart,
-        lineId: string
-    ) => {
-        try {
-            const updatedCart = await removeCartItem(cartContent, lineId);
-            setCartContent(prepareCartData(updatedCart));
-        } catch {
-            console.log('some error');
-        }
-    };
-
-    const handleCartDelete = async (cartContent: CustomCart) => {
-        try {
-            await deleteCart(cartContent);
-            setCartContent(null);
-        } catch {
-            console.log('some error');
-        }
-    };
-    const handlePromocodeApply = async (
-        code: string,
-        cartContent: CustomCart
-    ) => {
-        try {
-            const updatedCart = await addDiscountCode(code, cartContent);
-            setCartContent(prepareCartData(updatedCart));
-        } catch {
-            console.log('some error');
-        }
-    };
-
-    const handlePromocodeRemove = async (
-        id: string,
-        cartContent: CustomCart
-    ) => {
-        try {
-            const updatedCart = await removeDiscountCode(id, cartContent);
-            setCartContent(prepareCartData(updatedCart));
-        } catch {
-            console.log('some error');
-        }
-    };
-
-    function getCartTotalOrigin(cartContent: CustomCart): string {
-        if (cartContent.discountOnTotalPrice) {
-            return (
-                cartContent.totalPrice + cartContent.discountOnTotalPrice
-            ).toFixed(2);
-        }
-        if (cartContent.lineItems[0].discountedPricePerQuantity) {
-            const initialPrices = cartContent.lineItems.map((lineItem) => {
-                if (lineItem.variant.discount) {
-                    return lineItem.variant.discount * lineItem.quantity;
-                } else {
-                    return lineItem.variant.price * lineItem.quantity;
-                }
-            });
-            const initialTotal = initialPrices.reduce(
-                (accumulator, currentValue) => accumulator + currentValue
-            );
-            return initialTotal.toFixed(2);
-        }
-        return cartContent.totalPrice.toFixed(2);
-    }
-    useEffect(() => {
-        setIsLoading(true);
-        getUserCart()
-            .then((cartData) => {
-                console.log(cartData);
-                setCartContent(prepareCartData(cartData));
-                setIsLoading(false);
-            })
-            .catch((err) => {
-                console.log(err);
-                setIsLoading(false);
-            });
-    }, []);
+    const [
+        cartContent,
+        isLoading,
+        getCartTotalOrigin,
+        handleQtyChange,
+        handleCartItemDelete,
+        handleCartDelete,
+        handleDiscountApply,
+        handleDiscountRemove,
+        discountCodeError,
+    ]: CartHook = useCart();
 
     if (
         !isLoading &&
@@ -193,8 +99,9 @@ export const Cart = () => {
                         <div className={styles.cartFooter}>
                             <Discount
                                 cartContent={cartContent}
-                                applyToCartHandler={handlePromocodeApply}
-                                removeFromCartHandler={handlePromocodeRemove}
+                                applyToCartHandler={handleDiscountApply}
+                                removeFromCartHandler={handleDiscountRemove}
+                                discountError={discountCodeError}
                             />
                             <div className={styles.totalContainer}>
                                 <div className={styles.totalPriceContainer}>
