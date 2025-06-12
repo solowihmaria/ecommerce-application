@@ -9,20 +9,22 @@ import { Discount } from './parts/Discount/Discount';
 import { CartItem } from './parts/CartItem/CartItem';
 import { useCart } from './lib/useCart';
 import type { CartHook } from './Cart.types';
+import { useDiscountError } from './lib/useDiscountError';
+import { TotalPrice } from './parts/TotalPrice/TotalPrice';
 
 export const Cart = () => {
     const [isModalOpened, setIsModalOpened] = useState<boolean>(false);
+    const [discountError, handleDiscountApiError, clearDiscountError] =
+        useDiscountError();
     const [
         cartContent,
         isLoading,
-        getCartTotalOrigin,
         handleQtyChange,
         handleCartItemDelete,
         handleCartDelete,
         handleDiscountApply,
         handleDiscountRemove,
-        discountCodeError,
-    ]: CartHook = useCart();
+    ]: CartHook = useCart(handleDiscountApiError, clearDiscountError);
 
     if (
         !isLoading &&
@@ -101,69 +103,11 @@ export const Cart = () => {
                                 cartContent={cartContent}
                                 applyToCartHandler={handleDiscountApply}
                                 removeFromCartHandler={handleDiscountRemove}
-                                discountError={discountCodeError}
+                                discountError={discountError}
+                                onInput={clearDiscountError}
                             />
                             <div className={styles.totalContainer}>
-                                <div className={styles.totalPriceContainer}>
-                                    <p
-                                        className={clsx(
-                                            styles.columnValue,
-                                            styles.column
-                                        )}
-                                    >
-                                        Total(€):
-                                    </p>
-                                    {cartContent.discountOnTotalPrice ||
-                                    cartContent.lineItems[0]
-                                        .discountedPricePerQuantity ? (
-                                        <>
-                                            <p
-                                                className={clsx(
-                                                    styles.columnValue,
-                                                    styles.column,
-                                                    styles.cartTotalOriginContainer
-                                                )}
-                                            >
-                                                <span
-                                                    className={
-                                                        styles.cartTotalOrigin
-                                                    }
-                                                >
-                                                    {getCartTotalOrigin(
-                                                        cartContent
-                                                    )}
-                                                </span>
-                                                <span
-                                                    className={clsx(
-                                                        styles.cross
-                                                    )}
-                                                ></span>
-                                            </p>
-
-                                            <p
-                                                className={clsx(
-                                                    styles.columnValue,
-                                                    styles.column,
-                                                    styles.cartTotalNew
-                                                )}
-                                            >
-                                                {cartContent.totalPrice.toFixed(
-                                                    2
-                                                )}
-                                            </p>
-                                        </>
-                                    ) : (
-                                        <p
-                                            className={clsx(
-                                                styles.columnValue,
-                                                styles.column,
-                                                styles.cartTotalPrice
-                                            )}
-                                        >
-                                            {cartContent.totalPrice.toFixed(2)}
-                                        </p>
-                                    )}
-                                </div>
+                                <TotalPrice cartContent={cartContent} />
                                 <div className={styles.checkoutContainer}>
                                     <Button className={styles.checkout}>
                                         Proceed to Checkout
