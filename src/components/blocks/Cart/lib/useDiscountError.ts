@@ -1,13 +1,16 @@
 import { AxiosError } from 'axios';
 import { useState } from 'react';
 
-export const useHandleDiscountErrors = (): [
+export const useDiscountError = (): [
     string | null,
     (error: unknown) => void,
+    () => void,
 ] => {
     const [discountCodeError, setDiscountCodeError] = useState<string | null>(
         null
     );
+
+    const clearDiscountError = () => setDiscountCodeError(null);
 
     const handleDiscountApiError = (error: unknown) => {
         if (error instanceof AxiosError) {
@@ -20,5 +23,5 @@ export const useHandleDiscountErrors = (): [
         }
     };
 
-    return [discountCodeError, handleDiscountApiError];
+    return [discountCodeError, handleDiscountApiError, clearDiscountError];
 };

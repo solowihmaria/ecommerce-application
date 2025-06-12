@@ -18,3 +18,15 @@
     background-position: center;
     background-size: cover;
 }
+
+@media (width <= 1240px) {
+    .main {
+        padding: 1rem 0.2rem;
+    }
+}
+
+@media (width <= 500px) {
+    .main {
+        padding: 1rem 0.2rem;
+    }
+}

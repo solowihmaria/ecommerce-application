@@ -10,14 +10,14 @@ import {
 } from '../../../../api/cart/cart';
 import { prepareCartData } from '../../../../api/cart/helpers';
 import type { CartHook } from '../Cart.types';
-import { useHandleDiscountErrors } from './useHandleDiscountErrors';
 import { ToastContext } from '../../../ui/Toast/ToastContext';
 
-export const useCart = (): CartHook => {
+export const useCart = (
+    handleDiscountApiError: (error: unknown) => void,
+    clearDiscountError: () => void
+): CartHook => {
     const [cartContent, setCartContent] = useState<null | CustomCart>(null);
     const [isLoading, setIsLoading] = useState<boolean>(true);
-    const [discountCodeError, handleDiscountApiError] =
-        useHandleDiscountErrors();
     const { showToast } = useContext(ToastContext);
 
     const handleQtyChange = async (
@@ -26,20 +26,14 @@ export const useCart = (): CartHook => {
         lineId: string
     ) => {
         try {
-            if (Number(qty) >= 1) {
-                const updatedCart = await changeItemQty(
-                    Number(qty),
-                    cartContent,
-                    lineId
-                );
-                setCartContent(prepareCartData(updatedCart));
-            }
+            const updatedCart = await changeItemQty(
+                Number(qty),
+                cartContent,
+                lineId
+            );
+            setCartContent(prepareCartData(updatedCart));
         } catch (err) {
-            showToast({
-                message: 'Failed to change item quantity',
-                variant: 'error',
-            });
-            console.log(err);
+            console.error(err);
         }
     };
     const handleCartItemDelete = async (
@@ -98,33 +92,13 @@ export const useCart = (): CartHook => {
         try {
             const updatedCart = await removeDiscountCode(id, cartContent);
             setCartContent(prepareCartData(updatedCart));
+            clearDiscountError();
         } catch (err) {
             console.error(err);
             handleDiscountApiError(err);
         }
     };
 
-    function getCartTotalOrigin(cartContent: CustomCart): string {
-        if (cartContent.discountOnTotalPrice) {
-            return (
-                cartContent.totalPrice + cartContent.discountOnTotalPrice
-            ).toFixed(2);
-        }
-        if (cartContent.lineItems[0].discountedPricePerQuantity) {
-            const initialPrices = cartContent.lineItems.map((lineItem) => {
-                if (lineItem.variant.discount) {
-                    return lineItem.variant.discount * lineItem.quantity;
-                } else {
-                    return lineItem.variant.price * lineItem.quantity;
-                }
-            });
-            const initialTotal = initialPrices.reduce(
-                (accumulator, currentValue) => accumulator + currentValue
-            );
-            return initialTotal.toFixed(2);
-        }
-        return cartContent.totalPrice.toFixed(2);
-    }
     useEffect(() => {
         setIsLoading(true);
         getUserCart()
@@ -142,12 +116,10 @@ export const useCart = (): CartHook => {
     return [
         cartContent,
         isLoading,
-        getCartTotalOrigin,
         handleQtyChange,
         handleCartItemDelete,
         handleCartDelete,
         handleDiscountApply,
         handleDiscountRemove,
-        discountCodeError,
     ];
 };
