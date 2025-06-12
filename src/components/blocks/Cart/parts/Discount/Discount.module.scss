@@ -52,3 +52,30 @@
 .discountError {
     color: c.$color-error;
 }
+
+@media (width <= 500px) {
+    .productRow {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        padding: 1rem;
+        border: 1px solid c.$border;
+        border-radius: 1rem;
+    }
+
+    .productPriceContainer {
+        width: 100%;
+    }
+
+    .productInfo {
+        width: 100%;
+    }
+
+    .promoContainer {
+        width: 100%;
+    }
+
+    .promocodeInput {
+        width: 10rem;
+    }
+}

@@ -17,6 +17,7 @@ export const Discount = ({
     applyToCartHandler,
     removeFromCartHandler,
     discountError,
+    onInput,
 }: {
     cartContent: CustomCart;
     applyToCartHandler: (
@@ -28,6 +29,7 @@ export const Discount = ({
         cartContent: CustomCart
     ) => Promise<void>;
     discountError: string | null;
+    onInput: () => void;
 }) => {
     const promoRef = useRef<HTMLInputElement | null>(null);
     const { customer } = useAuth();
@@ -102,7 +104,11 @@ export const Discount = ({
             <p className={styles.promocodeLabel}>Have a promocode?</p>
             {!currentPromocode ? (
                 <div className={styles.promoControlsContainer}>
-                    <Input ref={promoRef} className={styles.promocodeInput} />
+                    <Input
+                        ref={promoRef}
+                        className={styles.promocodeInput}
+                        onChange={onInput}
+                    />
                     <Button onClick={applyPromoCode}>Apply</Button>
                 </div>
             ) : (

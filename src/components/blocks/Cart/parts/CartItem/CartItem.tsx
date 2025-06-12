@@ -6,7 +6,7 @@ import type {
 import styles from './CartItem.module.scss';
 import { IoMdClose } from 'react-icons/io';
 import { Input } from '../../../../ui/Input';
-import { useRef } from 'react';
+import { useState } from 'react';
 
 export const CartItem = ({
     product,
@@ -26,7 +26,9 @@ export const CartItem = ({
         id: string
     ) => Promise<void>;
 }) => {
-    const inputRef = useRef<HTMLInputElement | null>(null);
+    const [cartItemQty, setCartItemQty] = useState<string | number>(
+        product.quantity
+    );
 
     return (
         <div className={styles.productRow}>
@@ -93,23 +95,27 @@ export const CartItem = ({
                         className={styles.qtyInput}
                         name="quantity"
                         type="number"
+                        value={cartItemQty}
                         min="1"
-                        value={product.quantity}
-                        ref={inputRef}
                         onChange={(event) => {
                             if (
                                 Number(event.target.value) >= 1 &&
                                 Number.isInteger(Number(event.target.value))
                             ) {
+                                setCartItemQty(Number(event.target.value));
+                            } else {
+                                setCartItemQty('');
+                            }
+                        }}
+                        onBlur={(event) => {
+                            if (typeof cartItemQty !== 'number') {
+                                setCartItemQty(product.quantity);
+                            } else {
                                 void handleQtyChange(
                                     event.target.value,
                                     cartContent,
                                     product.id
                                 );
-                            } else {
-                                if (inputRef.current) {
-                                    inputRef.current.value = '0';
-                                }
                             }
                         }}
                     />

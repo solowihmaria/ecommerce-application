@@ -1,0 +1,47 @@
+@use '../../../../../assets/styles/constants.module' as c;
+
+.totalPriceContainer {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.cartTotalOriginContainer {
+    position: relative;
+    display: inline-flex;
+    width: fit-content;
+    margin-right: -2rem;
+}
+
+.cartTotalOrigin {
+    display: inline-block;
+    width: fit-content;
+    color: c.$color-gray-600;
+}
+
+.cross {
+    position: absolute;
+    top: 53%;
+    display: block;
+    width: 95%;
+    border-top: 2px solid c.$color-gray-600;
+}
+
+.totalPrice {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+}
+
+.column {
+    width: 30%;
+}
+
+.columnName {
+    color: c.$color-text-primary;
+    text-align: center;
+}
+
+.columnValue {
+    color: c.$color-text-primary;
+    text-align: center;
+}
