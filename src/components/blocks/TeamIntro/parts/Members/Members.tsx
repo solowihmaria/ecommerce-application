@@ -79,7 +79,7 @@ export const MembersSection = () => {
             id: 'member-2',
             name: 'Alexandra Sharovatova',
             role: 'Design Wizard & UI Goddess',
-            bio: "I'm a creative developer who loves turning ideas into beautiful, intuitive interfaces. My background in graphic design helps me bridge the gap between aesthetics and functionality. I'm obsessed with pixel-perfect designs and smooth user experiences that make people smile.",
+            bio: 'I discovered programming while trying to customize my blog template and immediately got hooked. After completing an intensive coding bootcamp, I realized frontend development combines everything I love - problem solving, continuous learning and seeing immediate results of my work. Now I specialize in building responsive, accessible interfaces with React and TypeScript.',
             photo: customer2,
             github: 'https://github.com/asharovatova',
             contributions: [
@@ -109,7 +109,7 @@ export const MembersSection = () => {
             id: 'member-3',
             name: 'Viyaleta Batsura',
             role: 'QA Master & Bug Hunter',
-            bio: "I'm a backend enthusiast who enjoys solving complex problems and ensuring everything runs smoothly behind the scenes. I have a keen eye for detail and love writing tests that catch bugs before users do. Database optimization and API design are my favorite challenges.",
+            bio: "My coding journey started when I decided to completely change my career path. The moment I wrote my first 'Hello World' in JavaScript, I knew I found my calling. What excites me most about frontend development is the perfect blend of logic and creativity - every day brings new challenges and opportunities to create something meaningful.",
             photo: customer3,
             github: 'https://github.com/violettab21',
             contributions: [
