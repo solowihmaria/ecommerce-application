@@ -43,9 +43,11 @@ export const getProducts = async (
     loginStatus: boolean
 ) => {
     const token = await getUserToken(loginStatus);
-    const data = await requestGetProducts(params, token);
 
-    const products: Product[] = transformProductData(data);
+    const data: { products: ProductProjection[]; total: number } =
+        await requestGetProducts(params, token);
 
-    return products;
+    const products: Product[] = transformProductData(data.products);
+
+    return { products, total: data.total };
 };

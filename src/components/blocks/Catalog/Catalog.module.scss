@@ -205,3 +205,20 @@
         font-size: 1.3rem;
     }
 }
+
+.paginationWrapper {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+    justify-content: center;
+}
+
+.paginationButton {
+    width: 3em;
+    height: 3em;
+    padding: 0.75em;
+
+    &.selected {
+        background-color: c.$color-primary;
+    }
+}

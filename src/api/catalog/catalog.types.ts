@@ -155,6 +155,8 @@ export interface requestGetProductsParams {
     sort?: string;
     query?: string;
     filters: Filter;
+    limit?: number;
+    offset?: number;
 }
 
 export interface CategoryPagedQueryResponse {
