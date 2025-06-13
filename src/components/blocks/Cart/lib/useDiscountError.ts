@@ -1,11 +1,8 @@
 import { AxiosError } from 'axios';
 import { useState } from 'react';
+import type { DiscountHook } from '../Cart.types';
 
-export const useDiscountError = (): [
-    string | null,
-    (error: unknown) => void,
-    () => void,
-] => {
+export const useDiscountError = (): DiscountHook => {
     const [discountCodeError, setDiscountCodeError] = useState<string | null>(
         null
     );
@@ -23,5 +20,10 @@ export const useDiscountError = (): [
         }
     };
 
-    return [discountCodeError, handleDiscountApiError, clearDiscountError];
+    return [
+        discountCodeError,
+        setDiscountCodeError,
+        handleDiscountApiError,
+        clearDiscountError,
+    ];
 };

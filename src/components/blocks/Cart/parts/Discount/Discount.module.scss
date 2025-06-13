@@ -1,13 +1,14 @@
 @use '../../../../../assets/styles/constants.module' as c;
 
-.promoContainer {
+.discountContainer {
     display: flex;
     flex-direction: column;
+    gap: 1rem;
     justify-content: space-between;
     width: 45%;
 }
 
-.promoControlsContainer {
+.discountControlsContainer {
     display: flex;
     gap: 1rem;
     align-items: center;
@@ -15,7 +16,7 @@
     width: 80%;
 }
 
-.promoControlsContainerApplied {
+.discountControlsContainerApplied {
     display: flex;
     gap: 0.5rem;
     align-items: center;
@@ -23,27 +24,27 @@
     width: 80%;
 }
 
-.promocodeLabel {
+.discountLabel {
     color: c.$color-text-primary;
 }
 
-.promocodeInput {
+.discountCodeInput {
     width: 15rem;
 }
 
-.promocode {
+.discount {
     height: 100%;
     color: c.$color-text-primary;
 }
 
-.deletePromo {
+.deleteDiscount {
     display: block;
     width: 25px;
     height: 25px;
     cursor: pointer;
 }
 
-.deletePromoIcon {
+.deleteDiscountIcon {
     fill: white;
     width: 25px;
     height: 25px;
@@ -53,29 +54,22 @@
     color: c.$color-error;
 }
 
+@media (width <= 768px) {
+    .discountContainer {
+        width: 70%;
+    }
+}
+
 @media (width <= 500px) {
-    .productRow {
-        display: flex;
-        flex-direction: column;
-        justify-content: space-between;
-        padding: 1rem;
-        border: 1px solid c.$border;
-        border-radius: 1rem;
+    .discountCodeInput {
+        width: 10rem;
     }
 
-    .productPriceContainer {
+    .discountContainer {
         width: 100%;
     }
 
-    .productInfo {
-        width: 100%;
-    }
-
-    .promoContainer {
-        width: 100%;
-    }
-
-    .promocodeInput {
+    .applyButton {
         width: 10rem;
     }
 }
