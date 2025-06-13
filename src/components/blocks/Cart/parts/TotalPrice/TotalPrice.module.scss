@@ -2,7 +2,23 @@
 
 .totalPriceContainer {
     display: flex;
+    gap: 1rem;
+    align-items: center;
     justify-content: flex-end;
+}
+
+.column {
+    width: 30%;
+}
+
+.columnName {
+    color: c.$color-text-primary;
+    text-align: center;
+}
+
+.columnValue {
+    color: c.$color-text-primary;
+    text-align: center;
 }
 
 .cartTotalOriginContainer {
@@ -14,7 +30,7 @@
 
 .cartTotalOrigin {
     display: inline-block;
-    width: fit-content;
+    font-size: 24px;
     color: c.$color-gray-600;
 }
 
@@ -32,16 +48,16 @@
     justify-content: center;
 }
 
-.column {
-    width: 30%;
+.cartTotalNew {
+    font-size: 24px;
 }
 
-.columnName {
-    color: c.$color-text-primary;
-    text-align: center;
+.cartTotalPrice {
+    font-size: 24px;
 }
 
-.columnValue {
-    color: c.$color-text-primary;
-    text-align: center;
+@media (width <= 500px) {
+    .cartTotalOriginContainer {
+        margin-right: -1rem;
+    }
 }

@@ -1,31 +1,16 @@
 import clsx from 'clsx';
-import type {
-    CustomCart,
-    CustomCartItem,
-} from '../../../../../api/cart/cart.types';
 import styles from './CartItem.module.scss';
 import { IoMdClose } from 'react-icons/io';
 import { Input } from '../../../../ui/Input';
 import { useState } from 'react';
+import type { CartItemProps } from './CartItem.types';
 
 export const CartItem = ({
     product,
     cartContent,
     deleteProductHandler,
     handleQtyChange,
-}: {
-    product: CustomCartItem;
-    cartContent: CustomCart;
-    deleteProductHandler: (
-        cartContent: CustomCart,
-        id: string
-    ) => Promise<void>;
-    handleQtyChange: (
-        value: string,
-        cartContent: CustomCart,
-        id: string
-    ) => Promise<void>;
-}) => {
+}: CartItemProps) => {
     const [cartItemQty, setCartItemQty] = useState<string | number>(
         product.quantity
     );
@@ -50,7 +35,9 @@ export const CartItem = ({
                 <div className={styles.productText}>
                     {' '}
                     <p className={styles.productName}>{product.name}</p>
-                    <p className={styles.productName}>{product.variant.size}</p>
+                    <p className={styles.productSize}>
+                        Size:&nbsp;{product.variant.size}
+                    </p>
                 </div>
             </div>
             <div
@@ -121,8 +108,15 @@ export const CartItem = ({
                     />
                 </div>
 
-                <p className={clsx(styles.columnValue, styles.column)}>
-                    {product.totalPrice.toFixed(2)}
+                <p
+                    className={clsx(
+                        styles.columnValue,
+                        styles.column,
+                        styles.totalContainer
+                    )}
+                >
+                    <span className={styles.totalLabel}>Total</span>
+                    <span>{product.totalPrice.toFixed(2)}</span>
                 </p>
             </div>
         </div>
