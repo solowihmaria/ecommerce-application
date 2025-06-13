@@ -11,11 +11,16 @@ import { useCart } from './lib/useCart';
 import type { CartHook } from './Cart.types';
 import { useDiscountError } from './lib/useDiscountError';
 import { TotalPrice } from './parts/TotalPrice/TotalPrice';
+import { ErrorCart } from './parts/ErrorCart/ErrorCart';
 
 export const Cart = () => {
     const [isModalOpened, setIsModalOpened] = useState<boolean>(false);
-    const [discountError, handleDiscountApiError, clearDiscountError] =
-        useDiscountError();
+    const [
+        discountError,
+        setDiscountError,
+        handleDiscountApiError,
+        clearDiscountError,
+    ] = useDiscountError();
     const [
         cartContent,
         isLoading,
@@ -24,21 +29,30 @@ export const Cart = () => {
         handleCartDelete,
         handleDiscountApply,
         handleDiscountRemove,
+        cartError,
     ]: CartHook = useCart(handleDiscountApiError, clearDiscountError);
 
     if (
         !isLoading &&
-        (cartContent?.lineItems.length === 0 || cartContent === null)
+        (cartContent?.lineItems.length === 0 || cartContent === null) &&
+        !cartError
     ) {
         return <EmptyCart />;
     }
 
+    if (cartError && !isLoading) {
+        {
+            return <ErrorCart message={cartError} />;
+        }
+    }
     return (
         <>
             {!isLoading && cartContent && (
                 <>
                     <div className={styles.cartContainer}>
-                        <Heading>Shopping Cart</Heading>
+                        <Heading className={styles.cartTitle}>
+                            Shopping Cart
+                        </Heading>
                         <div className={styles.cartHeader}>
                             <div
                                 className={clsx(
@@ -46,7 +60,13 @@ export const Cart = () => {
                                     styles.firstColumn
                                 )}
                             >
-                                <Button onClick={() => setIsModalOpened(true)}>
+                                <Button
+                                    className={clsx(
+                                        styles.clear,
+                                        styles.button
+                                    )}
+                                    onClick={() => setIsModalOpened(true)}
+                                >
                                     Clear Shopping Cart
                                 </Button>
                             </div>
@@ -104,12 +124,18 @@ export const Cart = () => {
                                 applyToCartHandler={handleDiscountApply}
                                 removeFromCartHandler={handleDiscountRemove}
                                 discountError={discountError}
+                                setDiscountError={setDiscountError}
                                 onInput={clearDiscountError}
                             />
                             <div className={styles.totalContainer}>
                                 <TotalPrice cartContent={cartContent} />
                                 <div className={styles.checkoutContainer}>
-                                    <Button className={styles.checkout}>
+                                    <Button
+                                        className={clsx(
+                                            styles.checkout,
+                                            styles.button
+                                        )}
+                                    >
                                         Proceed to Checkout
                                     </Button>
                                 </div>

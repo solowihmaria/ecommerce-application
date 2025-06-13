@@ -11,6 +11,7 @@ import {
 import { prepareCartData } from '../../../../api/cart/helpers';
 import type { CartHook } from '../Cart.types';
 import { ToastContext } from '../../../ui/Toast/ToastContext';
+import { AxiosError } from 'axios';
 
 export const useCart = (
     handleDiscountApiError: (error: unknown) => void,
@@ -19,6 +20,7 @@ export const useCart = (
     const [cartContent, setCartContent] = useState<null | CustomCart>(null);
     const [isLoading, setIsLoading] = useState<boolean>(true);
     const { showToast } = useContext(ToastContext);
+    const [cartError, setCartError] = useState<null | string>(null);
 
     const handleQtyChange = async (
         qty: string,
@@ -109,7 +111,15 @@ export const useCart = (
             })
             .catch((err) => {
                 console.error(err);
+
                 setIsLoading(false);
+                if (err instanceof AxiosError) {
+                    if (err.status !== 404) {
+                        setCartError(
+                            'Something went wrong. Please try again later'
+                        );
+                    }
+                }
             });
     }, []);
 
@@ -121,5 +131,6 @@ export const useCart = (
         handleCartDelete,
         handleDiscountApply,
         handleDiscountRemove,
+        cartError,
     ];
 };
