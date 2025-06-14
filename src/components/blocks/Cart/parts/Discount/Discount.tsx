@@ -11,6 +11,7 @@ import {
 import { DiscountKeys } from '../../../../../api/cart/discountCodes/discountCodes.types';
 import { IoMdClose } from 'react-icons/io';
 import type { DiscountProps } from './DiscountCode.types';
+import { CartErrorMessages } from '../../lib/constants';
 
 export const Discount = ({
     cartContent,
@@ -64,7 +65,7 @@ export const Discount = ({
             .then((isBirthday) => {
                 if (isBirthday && !isBirthdayDiscountEligible(customer)) {
                     setDiscountError(
-                        'Birthday discount is applicable during your birthday month'
+                        CartErrorMessages.FAILED_TO_APPLY_BIRTHDAY_DISCOUNT
                     );
                 } else if (promoRef.current) {
                     void applyToCartHandler(
@@ -73,7 +74,11 @@ export const Discount = ({
                     );
                 }
             })
-            .catch(() => setDiscountError('Unable to apply discount code'));
+            .catch(() =>
+                setDiscountError(
+                    CartErrorMessages.FAILED_TO_APPLY_DISCOUNT_GENERIC
+                )
+            );
     }
 
     useEffect(() => {

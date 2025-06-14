@@ -8,11 +8,9 @@ export function getCartTotalOrigin(cartContent: CustomCart): string {
     }
     if (cartContent.lineItems[0].discountedPricePerQuantity) {
         const initialPrices = cartContent.lineItems.map((lineItem) => {
-            if (lineItem.variant.discount) {
-                return lineItem.variant.discount * lineItem.quantity;
-            } else {
-                return lineItem.variant.price * lineItem.quantity;
-            }
+            const price = lineItem.variant.discount ?? lineItem.variant.price;
+
+            return price * lineItem.quantity;
         });
         const initialTotal = initialPrices.reduce(
             (accumulator, currentValue) => accumulator + currentValue
