@@ -1,0 +1,144 @@
+@use '../../../assets/styles/constants.module' as c;
+
+.cartContainer {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 3rem;
+    justify-content: center;
+    width: 80%;
+    max-width: 1265px;
+    height: min-content;
+    padding: 3rem 1.5rem;
+    border: 1px solid c.$border;
+    border-radius: 1rem;
+    backdrop-filter: blur(15px);
+}
+
+.cartTitle {
+    text-align: center;
+}
+
+.cartHeader {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1rem;
+}
+
+.rightHeader {
+    display: flex;
+    justify-content: space-between;
+}
+
+.cartProducts {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    justify-content: space-between;
+}
+
+.firstColumn {
+    width: 50%;
+}
+
+.secondColumn {
+    width: 50%;
+}
+
+.column {
+    width: 30%;
+}
+
+.columnName {
+    color: c.$color-text-primary;
+    text-align: center;
+}
+
+.columnValue {
+    color: c.$color-text-primary;
+    text-align: center;
+}
+
+.cartFooter {
+    display: flex;
+    justify-content: space-between;
+    padding: 1rem;
+}
+
+.totalContainer {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 50%;
+    color: c.$color-text-primary;
+}
+
+.checkoutContainer {
+    display: flex;
+    justify-content: flex-end;
+    padding-left: 2rem;
+}
+
+.button.checkout {
+    width: 90%;
+    max-width: 20rem;
+    background-color: c.$color-accent-primary;
+}
+
+.button.clear {
+    background-color: transparent;
+}
+
+@media (width <= 1240px) {
+    .cartContainer {
+        gap: 1rem;
+        width: 100%;
+    }
+}
+
+@media (width <= 768px) {
+    .cartContainer {
+        gap: 1rem;
+        width: 100%;
+    }
+
+    .cartHeader {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 1rem;
+    }
+
+    .rightHeader {
+        display: none;
+    }
+
+    .leftHeader {
+        display: flex;
+        justify-content: center;
+        width: 100%;
+        max-width: 20rem;
+    }
+
+    .cartProducts {
+        gap: 0.5rem;
+    }
+
+    .cartFooter {
+        flex-direction: column;
+        gap: 2rem;
+        padding: 0;
+    }
+
+    .checkoutContainer {
+        display: flex;
+        justify-content: center;
+        padding-left: 0;
+    }
+
+    .totalContainer {
+        gap: 1rem;
+        width: 100%;
+    }
+}

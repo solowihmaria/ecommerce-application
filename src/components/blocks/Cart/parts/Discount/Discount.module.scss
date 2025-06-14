@@ -1,0 +1,75 @@
+@use '../../../../../assets/styles/constants.module' as c;
+
+.discountContainer {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    justify-content: space-between;
+    width: 45%;
+}
+
+.discountControlsContainer {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+    justify-content: flex-start;
+    width: 80%;
+}
+
+.discountControlsContainerApplied {
+    display: flex;
+    gap: 0.5rem;
+    align-items: center;
+    justify-content: flex-start;
+    width: 80%;
+}
+
+.discountLabel {
+    color: c.$color-text-primary;
+}
+
+.discountCodeInput {
+    width: 15rem;
+}
+
+.discount {
+    height: 100%;
+    color: c.$color-text-primary;
+}
+
+.deleteDiscount {
+    display: block;
+    width: 25px;
+    height: 25px;
+    cursor: pointer;
+}
+
+.deleteDiscountIcon {
+    fill: white;
+    width: 25px;
+    height: 25px;
+}
+
+.discountError {
+    color: c.$color-error;
+}
+
+@media (width <= 768px) {
+    .discountContainer {
+        width: 70%;
+    }
+}
+
+@media (width <= 500px) {
+    .discountCodeInput {
+        width: 10rem;
+    }
+
+    .discountContainer {
+        width: 100%;
+    }
+
+    .applyButton {
+        width: 10rem;
+    }
+}
