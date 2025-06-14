@@ -9,7 +9,7 @@ import { ProductPage } from '../pages/Product';
 import { ProfilePage } from '../pages/Profile';
 import { RequireAuth } from './guards/RequireAuth';
 import { Layout } from '../components/blocks/Layout/Layout';
-import { CartPage } from '../pages/CartPage/CartPage';
+import { CartPage } from '../pages/Cart/CartPage';
 
 const router = createBrowserRouter([
     {

@@ -12,6 +12,7 @@ import { prepareCartData } from '../../../../api/cart/helpers';
 import type { CartHook } from '../Cart.types';
 import { ToastContext } from '../../../ui/Toast/ToastContext';
 import { AxiosError } from 'axios';
+import { CartErrorMessages } from './constants';
 
 export const useCart = (
     handleDiscountApiError: (error: unknown) => void,
@@ -21,6 +22,24 @@ export const useCart = (
     const [isLoading, setIsLoading] = useState<boolean>(true);
     const { showToast } = useContext(ToastContext);
     const [cartError, setCartError] = useState<null | string>(null);
+
+    const handleCartError = (error: unknown) => {
+        if (error instanceof AxiosError) {
+            if (error.response) {
+                if (error.status === 404) {
+                    setCartContent(null);
+                } else {
+                    setCartError(CartErrorMessages.GENERIC_ERROR_MESSAGE);
+                }
+            } else if (error.request) {
+                setCartError(CartErrorMessages.NETWORK_ERROR_MESSAGE);
+            } else {
+                setCartError(CartErrorMessages.GENERIC_ERROR_MESSAGE);
+            }
+        } else {
+            setCartError(CartErrorMessages.GENERIC_ERROR_MESSAGE);
+        }
+    };
 
     const handleQtyChange = async (
         qty: string,
@@ -48,7 +67,7 @@ export const useCart = (
         } catch (err) {
             console.error(err);
             showToast({
-                message: 'Failed to delete item',
+                message: CartErrorMessages.FAILED_TO_DELETE_MESSAGE,
                 variant: 'error',
             });
         }
@@ -65,7 +84,7 @@ export const useCart = (
         } catch (err) {
             console.error(err);
             showToast({
-                message: 'Failed to clear all cart items',
+                message: CartErrorMessages.FAILED_CLEAR_MESSAGE,
                 variant: 'error',
             });
         }
@@ -111,15 +130,8 @@ export const useCart = (
             })
             .catch((err) => {
                 console.error(err);
-
                 setIsLoading(false);
-                if (err instanceof AxiosError) {
-                    if (err.status !== 404) {
-                        setCartError(
-                            'Something went wrong. Please try again later'
-                        );
-                    }
-                }
+                handleCartError(err);
             });
     }, []);
 
