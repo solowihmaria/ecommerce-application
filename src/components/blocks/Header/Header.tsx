@@ -172,7 +172,9 @@ export const Header = () => {
                             </>
                         )}
                     </div>
+
                     <Link to="/cart" className={styles.cartLink}>
+
                         <CartIcon className={styles.cartIcon} />
                     </Link>
                     <div className={styles.hamburger}>
