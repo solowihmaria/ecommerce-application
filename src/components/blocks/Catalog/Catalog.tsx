@@ -9,6 +9,7 @@ import { Categories } from './parts/Categories';
 import { Breadcrumbs } from './parts/Breadcrumbs';
 import { useCatalog } from './lib/useCatalog';
 import { Pagination } from './parts/Pagination';
+import { VariantsModal } from './parts/VariantsModal/VariantsModal';
 
 export const Catalog = () => {
     const {
@@ -25,6 +26,8 @@ export const Catalog = () => {
         resetFilters,
         page,
         setPage,
+        selectedProduct,
+        setSelectedProduct,
     } = useCatalog();
 
     if (error) {
@@ -113,7 +116,10 @@ export const Catalog = () => {
                             <div>No products found</div>
                         ) : (
                             <>
-                                <ProductList products={products} />
+                                <ProductList
+                                    products={products}
+                                    setSelectedProduct={setSelectedProduct}
+                                />
                                 {totalPages > 1 && (
                                     <Pagination
                                         totalPages={totalPages}
@@ -126,6 +132,13 @@ export const Catalog = () => {
                     </div>
                 </div>
             </div>
+
+            {selectedProduct && (
+                <VariantsModal
+                    product={selectedProduct}
+                    onCancel={() => setSelectedProduct(null)}
+                />
+            )}
         </main>
     );
 };

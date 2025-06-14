@@ -10,10 +10,14 @@ export const useCatalog = () => {
     const { loginStatus } = useAuth();
     const [products, setProducts] = useState<Product[]>([]);
     const [categories, setCategories] = useState<Category[]>([]);
+
     const [isLoading, setIsLoading] = useState(true);
     const [error, setError] = useState<string | null>(null);
+
     const [totalPages, setTotalPages] = useState(0);
     const [page, setPage] = useState(1);
+    const limit = 10;
+
     const [sort, setSort] = useState<string>('');
     const [searchInput, setSearchInput] = useState<string>('');
     const [query, setQuery] = useState<string>('');
@@ -25,8 +29,10 @@ export const useCatalog = () => {
         priceRange: [0, 100],
         height: [0, 200],
     });
-    // const pagesArray = getPagesArray(totalPages);
-    const limit = 10;
+
+    const [selectedProduct, setSelectedProduct] = useState<Product | null>(
+        null
+    );
 
     useEffect(() => {
         const loadProducts = async () => {
@@ -110,5 +116,7 @@ export const useCatalog = () => {
         totalPages,
         page,
         setPage,
+        selectedProduct,
+        setSelectedProduct,
     };
 };
