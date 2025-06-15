@@ -9,7 +9,15 @@ export const TotalPrice = ({ cartContent }: { cartContent: CustomCart }) => {
     };
     return (
         <div className={styles.totalPriceContainer}>
-            <p className={clsx(styles.columnValue, styles.column)}>Total(€):</p>
+            <p
+                className={clsx(
+                    styles.columnValue,
+                    styles.column,
+                    styles.totalLabel
+                )}
+            >
+                Total(€):
+            </p>
             {isAnyProductOnSale(cartContent) ||
             cartContent.discountOnTotalPrice ||
             cartContent.lineItems[0].discountedPricePerQuantity ? (

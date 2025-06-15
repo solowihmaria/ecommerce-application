@@ -5,6 +5,7 @@ import { Input } from '../../../../ui/Input';
 import { useState } from 'react';
 import type { CartItemProps } from './CartItem.types';
 import { Link } from 'react-router-dom';
+import { ItemPriceDiscounted } from '../ItemPriceDiscounted/ItemPriceDiscounted';
 
 export const CartItem = ({
     product,
@@ -69,31 +70,17 @@ export const CartItem = ({
                     )}
                 >
                     {product.discountedPricePerQuantity ? (
-                        <>
-                            <p className={styles.priceOriginContainer}>
-                                <span className={styles.priceOrigin}>
-                                    {product.variant.price.toFixed(2)}
-                                </span>
-                                <span className={clsx(styles.cross)}></span>
-                            </p>
-                            <span className={styles.priceActual}>
-                                {product.discountedPricePerQuantity.currentPrice.toFixed(
-                                    2
-                                )}
-                            </span>
-                        </>
+                        <ItemPriceDiscounted
+                            oldPrice={product.variant.price}
+                            newPrice={
+                                product.discountedPricePerQuantity.currentPrice
+                            }
+                        />
                     ) : product.variant.discount ? (
-                        <>
-                            <p className={styles.priceOriginContainer}>
-                                <span className={styles.priceOrigin}>
-                                    {product.variant.price.toFixed(2)}
-                                </span>
-                                <span className={clsx(styles.cross)}></span>
-                            </p>
-                            <span className={styles.priceActual}>
-                                {product.variant.discount.toFixed(2)}
-                            </span>
-                        </>
+                        <ItemPriceDiscounted
+                            oldPrice={product.variant.price}
+                            newPrice={product.variant.discount}
+                        />
                     ) : (
                         <span className={styles.priceActual}>
                             {product.variant.price.toFixed(2)}

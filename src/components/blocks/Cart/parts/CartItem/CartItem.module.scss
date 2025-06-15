@@ -60,6 +60,7 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
+    font-size: 1.125rem;
 }
 
 .columnValue {
@@ -75,23 +76,6 @@
     display: flex;
     gap: 1rem;
     justify-content: center;
-}
-
-.priceOrigin {
-    color: c.$color-gray-600;
-}
-
-.cross {
-    position: absolute;
-    top: 53%;
-    display: block;
-    width: 95%;
-    border-top: 2px solid c.$color-gray-600;
-}
-
-.priceOriginContainer {
-    position: relative;
-    display: inline-block;
 }
 
 .qtyInput {
