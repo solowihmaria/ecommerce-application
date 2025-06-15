@@ -47,6 +47,7 @@ export const useCart = (
         lineId: string
     ) => {
         try {
+            clearDiscountError();
             const updatedCart = await changeItemQty(
                 Number(qty),
                 cartContent,
@@ -63,6 +64,7 @@ export const useCart = (
         lineId: string
     ) => {
         try {
+            clearDiscountError();
             const updatedCart = await removeCartItem(
                 cartContent,
                 lineId,
@@ -109,6 +111,7 @@ export const useCart = (
                 loginStatus
             );
             setCartContent(prepareCartData(updatedCart));
+            clearDiscountError();
             showToast({
                 message: 'Discount applied',
                 variant: 'success',

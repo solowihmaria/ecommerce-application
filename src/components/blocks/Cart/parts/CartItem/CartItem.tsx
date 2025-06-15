@@ -57,9 +57,7 @@ export const CartItem = ({
                         <>
                             <p className={styles.priceOriginContainer}>
                                 <span className={styles.priceOrigin}>
-                                    {product.variant.discount
-                                        ? product.variant.discount.toFixed(2)
-                                        : product.variant.price.toFixed(2)}
+                                    {product.variant.price.toFixed(2)}
                                 </span>
                                 <span className={clsx(styles.cross)}></span>
                             </p>
@@ -69,11 +67,21 @@ export const CartItem = ({
                                 )}
                             </span>
                         </>
+                    ) : product.variant.discount ? (
+                        <>
+                            <p className={styles.priceOriginContainer}>
+                                <span className={styles.priceOrigin}>
+                                    {product.variant.price.toFixed(2)}
+                                </span>
+                                <span className={clsx(styles.cross)}></span>
+                            </p>
+                            <span className={styles.priceActual}>
+                                {product.variant.discount.toFixed(2)}
+                            </span>
+                        </>
                     ) : (
                         <span className={styles.priceActual}>
-                            {product.variant.discount
-                                ? product.variant.discount.toFixed(2)
-                                : product.variant.price.toFixed(2)}
+                            {product.variant.price.toFixed(2)}
                         </span>
                     )}
                 </p>

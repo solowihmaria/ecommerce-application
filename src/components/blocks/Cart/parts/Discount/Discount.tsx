@@ -87,13 +87,18 @@ export const Discount = ({
             setCurrentDiscountCode(null);
         } else if (currentDiscounts && currentDiscounts.length > 0) {
             const currentDiscountCodeId = currentDiscounts[0].discountCode.id;
+            if (currentDiscounts[0].state === 'DoesNotMatchCart') {
+                setDiscountError(
+                    'Add more 3 or more items to get the discount'
+                );
+            }
             getDiscountCodeById(currentDiscountCodeId)
                 .then((discount) => {
                     setCurrentDiscountCode(discount);
                 })
                 .catch((err) => console.log(err));
         }
-    }, [cartContent.discountCodes]);
+    }, [cartContent.discountCodes, setDiscountError, cartContent]);
 
     return (
         <div className={styles.discountContainer}>
