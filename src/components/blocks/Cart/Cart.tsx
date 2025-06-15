@@ -23,7 +23,7 @@ export const Cart = () => {
     ] = useDiscountError();
     const [
         cartContent,
-        // isLoading,
+        isCartLoading,
         handleQtyChange,
         handleCartItemDelete,
         handleCartDelete,
@@ -32,7 +32,10 @@ export const Cart = () => {
         // cartError,
     ]: CartHook = useCart(handleDiscountApiError, clearDiscountError);
 
-    if (cartContent?.lineItems.length === 0 || cartContent === null) {
+    if (
+        !isCartLoading &&
+        (cartContent?.lineItems.length === 0 || cartContent === null)
+    ) {
         return <EmptyCart />;
     }
 
@@ -43,7 +46,7 @@ export const Cart = () => {
     // }
     return (
         <>
-            {cartContent && (
+            {!isCartLoading && cartContent && (
                 <>
                     <div className={styles.cartContainer}>
                         <Heading className={styles.cartTitle}>

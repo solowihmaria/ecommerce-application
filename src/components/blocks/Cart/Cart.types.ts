@@ -2,7 +2,7 @@ import type { CustomCart } from '../../../api/cart/cart.types';
 
 export type CartHook = [
     CustomCart | null,
-    // boolean,
+    boolean,
     (qty: string, cartContent: CustomCart, lineId: string) => Promise<void>,
     (cartContent: CustomCart, lineId: string) => Promise<void>,
     (cartContent: CustomCart) => Promise<void>,

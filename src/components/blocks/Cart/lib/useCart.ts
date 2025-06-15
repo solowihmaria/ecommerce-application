@@ -3,15 +3,14 @@ import type { CustomCart } from '../../../../api/cart/cart.types';
 import {
     addDiscountCode,
     changeItemQty,
+    createCart,
     deleteCart,
-    // getUserCart,
     removeCartItem,
     removeDiscountCode,
 } from '../../../../api/cart/cart';
 import { prepareCartData } from '../../../../api/cart/helpers';
 import type { CartHook } from '../Cart.types';
 import { ToastContext } from '../../../ui/Toast/ToastContext';
-// import { AxiosError } from 'axios';
 import { CartErrorMessages } from './constants';
 import { useAuth } from '../../../../store/auth/useAuth';
 
@@ -19,11 +18,10 @@ export const useCart = (
     handleDiscountApiError: (error: unknown) => void,
     clearDiscountError: () => void
 ): CartHook => {
-    const { loginStatus, cartContent, setCartContent } = useAuth();
-    // const [cartContent, setCartContent] = useState<null | CustomCart>(null);
-    // const [isLoading, setIsLoading] = useState<boolean>(true);
+    const { loginStatus, cartContent, setCartContent, isCartLoading } =
+        useAuth();
+
     const { showToast } = useContext(ToastContext);
-    // const [cartError, setCartError] = useState<null | string>(null);
 
     // const handleCartError = (error: unknown) => {
     //     if (error instanceof AxiosError) {
@@ -82,8 +80,12 @@ export const useCart = (
 
     const handleCartDelete = async (cartContent: CustomCart) => {
         try {
-            await deleteCart(cartContent);
+            await deleteCart(cartContent, loginStatus);
             setCartContent(null);
+            const newCart = await createCart(loginStatus);
+            if (newCart) {
+                setCartContent(prepareCartData(newCart));
+            }
             showToast({
                 message: 'All cart items are removed',
                 variant: 'success',
@@ -152,7 +154,7 @@ export const useCart = (
 
     return [
         cartContent,
-        // isLoading,
+        isCartLoading,
         handleQtyChange,
         handleCartItemDelete,
         handleCartDelete,
