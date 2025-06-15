@@ -28,6 +28,7 @@ export const Catalog = () => {
         setPage,
         selectedProduct,
         setSelectedProduct,
+        cartContent,
     } = useCatalog();
 
     if (error) {
@@ -133,7 +134,7 @@ export const Catalog = () => {
                 </div>
             </div>
 
-            {selectedProduct && (
+            {selectedProduct && cartContent && (
                 <VariantsModal
                     product={selectedProduct}
                     onCancel={() => setSelectedProduct(null)}

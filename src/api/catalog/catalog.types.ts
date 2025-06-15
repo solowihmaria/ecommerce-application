@@ -103,6 +103,7 @@ export interface ProductVariant {
     price?: Price;
     attributes: Attribute[];
     images: Image[];
+    sku: string;
 }
 export interface Product {
     id: string;
