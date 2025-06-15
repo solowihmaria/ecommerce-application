@@ -109,7 +109,7 @@ export const MembersSection = () => {
             id: 'member-3',
             name: 'Viyaleta Batsura',
             role: 'QA Master & Bug Hunter',
-            bio: "My coding journey started when I decided to completely change my career path. The moment I wrote my first 'Hello World' in JavaScript, I knew I found my calling. What excites me most about frontend development is the perfect blend of logic and creativity - every day brings new challenges and opportunities to create something meaningful.",
+            bio: "I finished Belarusian State University of Informatics and Radioelectronics 6 years ago. After that I started my career in IT sphere as QA Engineer. Recently I've realized that I'd like to change direction in my career. I was always curious about applications, websites, how they work, and I understood that I'd like to learn how to create them. I joined FE development course in RS school. As result, for 7 months I’m developing my skills in JavaScript, TypeScript, and React, and I am excited to create intuitive, user-focused solutions.",
             photo: customer3,
             github: 'https://github.com/violettab21',
             contributions: [
@@ -128,7 +128,7 @@ export const MembersSection = () => {
                     text: 'Product Data Management in CommerceTools',
                 },
                 { id: 'cont-3-6', text: 'Unit and Integration Testing' },
-                { id: 'cont-3-7', text: 'Basket Page Implementation' },
+                { id: 'cont-3-7', text: 'Cart Page Implementation' },
             ],
 
             areas: [
