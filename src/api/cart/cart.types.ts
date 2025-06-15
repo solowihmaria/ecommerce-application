@@ -162,3 +162,17 @@ export interface RemoveDiscountCodePayload {
         },
     ];
 }
+
+export interface CartDraft {
+    currency: 'EUR';
+}
+
+export interface AddItemPayload {
+    version: number;
+    actions: [
+        {
+            action: string;
+            sku: string;
+        },
+    ];
+}

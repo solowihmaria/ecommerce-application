@@ -8,6 +8,8 @@ import { Filters } from './parts/FIlters';
 import { Categories } from './parts/Categories';
 import { Breadcrumbs } from './parts/Breadcrumbs';
 import { useCatalog } from './lib/useCatalog';
+import { Pagination } from './parts/Pagination';
+import { VariantsModal } from './parts/VariantsModal/VariantsModal';
 
 export const Catalog = () => {
     const {
@@ -15,17 +17,19 @@ export const Catalog = () => {
         categories,
         isLoading,
         error,
+        totalPages,
         sort,
         setSort,
         setSearchInput,
         filters,
         setFilters,
         resetFilters,
+        page,
+        setPage,
+        selectedProduct,
+        setSelectedProduct,
+        cartContent,
     } = useCatalog();
-
-    if (isLoading) {
-        return <div>Loading...</div>;
-    }
 
     if (error) {
         return (
@@ -49,6 +53,7 @@ export const Catalog = () => {
                         <Categories
                             categories={categories}
                             setFilters={setFilters}
+                            setPage={setPage}
                         />
                         <Filters
                             filters={filters}
@@ -106,14 +111,35 @@ export const Catalog = () => {
                             </div>
                         </div>
 
-                        {products.length === 0 ? (
+                        {isLoading ? (
+                            <div>Loading products...</div>
+                        ) : products.length === 0 ? (
                             <div>No products found</div>
                         ) : (
-                            <ProductList products={products} />
+                            <>
+                                <ProductList
+                                    products={products}
+                                    setSelectedProduct={setSelectedProduct}
+                                />
+                                {totalPages > 1 && (
+                                    <Pagination
+                                        totalPages={totalPages}
+                                        page={page}
+                                        setPage={setPage}
+                                    />
+                                )}
+                            </>
                         )}
                     </div>
                 </div>
             </div>
+
+            {selectedProduct && cartContent && (
+                <VariantsModal
+                    product={selectedProduct}
+                    onCancel={() => setSelectedProduct(null)}
+                />
+            )}
         </main>
     );
 };

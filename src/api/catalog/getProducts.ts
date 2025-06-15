@@ -8,11 +8,20 @@ import { requestGetProducts } from './requestGetProducts';
 
 const transformProductData = (productsData: ProductProjection[]) => {
     const products: Product[] = productsData.map((productData) => {
+        const previewAttr = productData.masterVariant.attributes.find(
+            (attr) => attr.name === 'preview'
+        );
+        const preview =
+            typeof previewAttr?.value === 'string'
+                ? previewAttr.value
+                : previewAttr?.value.label;
+
         return {
             id: productData.id,
             name: productData.name?.['en-US'],
             description: productData.description?.['en-US'],
-            masterVariant: {
+            masterVariant: productData.masterVariant,
+            forCatalog: {
                 id: productData.masterVariant.id,
                 price: {
                     value:
@@ -29,9 +38,11 @@ const transformProductData = (productsData: ProductProjection[]) => {
                         : undefined,
                 },
                 images: productData.masterVariant.images,
-                family: productData.masterVariant.attributes[0].value,
-                preview: productData.masterVariant.attributes[6]?.value,
+                // family: productData.masterVariant.attributes[0].value,
+                preview: preview,
+                attributes: productData.masterVariant.attributes,
             },
+            variants: productData.variants,
         };
     });
 
@@ -43,9 +54,11 @@ export const getProducts = async (
     loginStatus: boolean
 ) => {
     const token = await getUserToken(loginStatus);
-    const data = await requestGetProducts(params, token);
 
-    const products: Product[] = transformProductData(data);
+    const data: { products: ProductProjection[]; total: number } =
+        await requestGetProducts(params, token);
 
-    return products;
+    const products: Product[] = transformProductData(data.products);
+
+    return { products, total: data.total };
 };
