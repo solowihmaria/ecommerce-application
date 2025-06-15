@@ -1,6 +1,6 @@
-// import { useState } from 'react';
+import { useState } from 'react';
+import { useContext } from 'react';
 import { addCartItem } from '../../../../../api/cart/cart';
-// import type { CustomCart } from '../../../../../api/cart/cart.types';
 import { prepareCartData } from '../../../../../api/cart/helpers';
 import type {
     Product,
@@ -9,33 +9,53 @@ import type {
 import { useAuth } from '../../../../../store/auth/useAuth';
 import { Button } from '../../../../ui/Button';
 import styles from './VariantsModal.module.scss';
+import { ToastContext } from '../../../../ui/Toast/ToastContext';
+import { CartErrorMessages } from '../../../Cart/lib/constants';
 
 interface VariantsModalProps {
     product: Product;
     onCancel: () => void;
-    // cartContent: CustomCart;
 }
 
 export const VariantsModal = ({ product, onCancel }: VariantsModalProps) => {
-    // const [selectedVariant, setSelectedVariant] =
-    // useState<ProductVariant | null>(null);
+    const { showToast } = useContext(ToastContext);
     const { loginStatus, cartContent, setCartContent } = useAuth();
+    const [isAddingToCart, setIsAddingToCart] = useState(false);
+    const [selectedVariantId, setSelectedVariantId] = useState<number | null>(
+        null
+    );
 
-    const handleAddToCart = async (variant: ProductVariant) => {
-        console.log('SELECTED VARIANT', variant.sku);
+    async function handleAddToCart(variant: ProductVariant) {
+        setIsAddingToCart(true);
+        setSelectedVariantId(variant.id);
 
         if (cartContent) {
-            const newCart = await addCartItem(
-                cartContent,
-                variant.sku,
-                loginStatus
-            );
-            // console.log('Added to cart:', { ...product, variant: selectedVariant });
-            setCartContent(prepareCartData(newCart));
+            try {
+                const newCart = await addCartItem(
+                    cartContent,
+                    variant.sku,
+                    loginStatus
+                );
+                setCartContent(prepareCartData(newCart));
 
-            onCancel();
+                showToast({
+                    message: `${product.name} added to your cart!`,
+                    variant: 'success',
+                });
+
+                onCancel();
+            } catch (err) {
+                console.error('Failed adding item', err);
+                showToast({
+                    message: CartErrorMessages.FAILED_TO_DELETE_MESSAGE,
+                    variant: 'error',
+                });
+            } finally {
+                setIsAddingToCart(false);
+                setSelectedVariantId(null);
+            }
         }
-    };
+    }
 
     function getVariantLabel(variant: ProductVariant) {
         const sizeAttr = variant.attributes.find(
@@ -71,6 +91,11 @@ export const VariantsModal = ({ product, onCancel }: VariantsModalProps) => {
                         <Button
                             variant="outline"
                             key={variant.id}
+                            disabled={isAddingToCart}
+                            loading={
+                                isAddingToCart &&
+                                selectedVariantId === variant.id
+                            }
                             onClick={() => void handleAddToCart(variant)}
                         >
                             {getVariantLabel(variant)}

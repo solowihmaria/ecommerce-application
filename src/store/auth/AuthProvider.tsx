@@ -30,11 +30,13 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
 
     useEffect(() => {
         const initSession = async () => {
+            console.log('INIT SESSION');
             const token = getToken();
 
             if (token && !customer) {
                 try {
                     const profile = await fetchMyProfile(token);
+                    console.log('GOT PROFILE');
                     setCustomer(profile);
                 } catch (error) {
                     console.error('Failed to load profile', error);
@@ -42,6 +44,8 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
             } else {
                 await initAnonymousSession();
             }
+
+            void loadCart();
         };
 
         const loadCart = async () => {
@@ -57,9 +61,9 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
                 if (error instanceof AxiosError && error.status === 404) {
                     try {
                         cartData = await createCart(loginStatus);
-                        console.log('CARTDATA', cartData);
+                        setCartContent(prepareCartData(cartData));
                     } catch (error) {
-                        console.log('CREATE CART ERR', error);
+                        console.error('Cart creation failed:', error);
                     }
                 }
             } finally {
@@ -68,7 +72,6 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
         };
 
         void initSession();
-        void loadCart();
     }, [loginStatus, customer]);
 
     const initAnonymousSession = async () => {
