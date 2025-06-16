@@ -72,12 +72,11 @@ const router = createBrowserRouter([
                 path: '/cart',
                 element: <CartPage />,
             },
+            {
+                path: '*',
+                element: <NotFoundPage />,
+            },
         ],
-    },
-
-    {
-        path: '*',
-        element: <NotFoundPage />,
     },
 ]);
 
