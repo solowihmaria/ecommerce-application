@@ -1,3 +1,4 @@
+import { AboutUsPage } from '../pages/AboutUs';
 import { createBrowserRouter, RouterProvider, Outlet } from 'react-router-dom';
 import { MainPage } from '../pages/Main';
 import { LoginPage } from '../pages/Login';
@@ -26,6 +27,10 @@ const router = createBrowserRouter([
             {
                 path: '/',
                 element: <MainPage />,
+            },
+            {
+                path: '/about',
+                element: <AboutUsPage />,
             },
             {
                 path: '/login',
@@ -67,12 +72,11 @@ const router = createBrowserRouter([
                 path: '/cart',
                 element: <CartPage />,
             },
+            {
+                path: '*',
+                element: <NotFoundPage />,
+            },
         ],
-    },
-
-    {
-        path: '*',
-        element: <NotFoundPage />,
     },
 ]);
 

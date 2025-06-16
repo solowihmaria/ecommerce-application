@@ -6,27 +6,29 @@ import userEvent from '@testing-library/user-event';
 import { MainPage } from '../Main/MainPage';
 
 describe('<NotFoundPage/> component', () => {
-    test('Render NotFoundPage component', () => {
+    test('renders NotFoundPage component', () => {
         render(
             <MemoryRouter>
                 <NotFoundPage />
             </MemoryRouter>
         );
-        const notFoundPage = screen.getByTestId('test-id-not-found-page');
-        expect(notFoundPage).toBeInTheDocument();
-        expect(notFoundPage).toMatchSnapshot();
+
+        const notFoundContainer = screen.getByTestId('not-found-container');
+        expect(notFoundContainer).toBeInTheDocument();
+        expect(notFoundContainer).toMatchSnapshot();
     });
 
-    test('Render NotFoundPage component - click Go Home Button', async () => {
+    test('navigates to main page when "Back to Main" button is clicked', async () => {
         render(
-            <MemoryRouter initialEntries={['/test']}>
+            <MemoryRouter initialEntries={['/some-nonexistent-page']}>
                 <Routes>
                     <Route path="/" element={<MainPage />} />
-                    <Route path="/test" element={<NotFoundPage />} />
+                    <Route path="*" element={<NotFoundPage />} />
                 </Routes>
             </MemoryRouter>
         );
-        const button = screen.getByRole('button', { name: /go to homepage/i });
+
+        const button = screen.getByRole('button', { name: /back to main/i });
         await userEvent.click(button);
 
         const mainPage = screen.getByTestId('main-page-test-id');

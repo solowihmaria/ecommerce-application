@@ -27,6 +27,7 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
     const [customer, setCustomer] = useState<Customer | null>(null);
     const [cartContent, setCartContent] = useState<null | CustomCart>(null);
     const [isCartLoading, setIsCartLoading] = useState(false);
+    const [cartItemsCount, setCartItemsCount] = useState(0);
 
     useEffect(() => {
         const initSession = async () => {
@@ -91,6 +92,14 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
         }
     };
 
+    useEffect(() => {
+        if (cartContent) {
+            setCartItemsCount(cartContent.totalLineItemQuantity || 0);
+        } else {
+            setCartItemsCount(0);
+        }
+    }, [cartContent]);
+
     return (
         <AuthContext.Provider
             value={{
@@ -103,6 +112,7 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
                 cartContent,
                 setCartContent,
                 isCartLoading,
+                cartItemsCount,
             }}
         >
             {children}
