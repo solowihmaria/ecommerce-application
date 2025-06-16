@@ -22,10 +22,10 @@ export const useDiscountError = (): DiscountHook => {
         }
     };
 
-    return [
+    return {
         discountCodeError,
         setDiscountCodeError,
         handleDiscountApiError,
         clearDiscountError,
-    ];
+    };
 };

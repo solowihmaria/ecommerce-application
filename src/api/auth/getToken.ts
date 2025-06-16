@@ -66,7 +66,7 @@ export const getCustomerToken = async (loginStatus: boolean) => {
         token = getUserToken();
     } else {
         const anonymousId: string | null = getAnonymousId();
-        console.log(`anon id${anonymousId}`);
+        // console.log(`anon id${anonymousId}`);
 
         if (anonymousId) {
             const anonToken = getAnonToken();

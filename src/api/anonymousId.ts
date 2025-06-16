@@ -2,8 +2,6 @@ export const generateAnonymousId = (): string => {
     return crypto.randomUUID();
 };
 
-// const anonymousId = generateAnonymousId();
-
 const ANON_ID = 'anonymousId';
 
 export const setAnonymousId = (value: string) => {

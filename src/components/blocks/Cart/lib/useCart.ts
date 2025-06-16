@@ -46,6 +46,7 @@ export const useCart = (
             console.error(err);
         }
     };
+
     const handleCartItemDelete = async (
         cartContent: CustomCart,
         lineId: string
@@ -127,7 +128,7 @@ export const useCart = (
         }
     };
 
-    return [
+    return {
         cartContent,
         isCartLoading,
         handleQtyChange,
@@ -136,5 +137,5 @@ export const useCart = (
         handleDiscountApply,
         handleDiscountRemove,
         cartError,
-    ];
+    };
 };

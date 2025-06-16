@@ -15,13 +15,13 @@ import { ErrorCart } from './parts/ErrorCart/ErrorCart';
 
 export const Cart = () => {
     const [isModalOpened, setIsModalOpened] = useState<boolean>(false);
-    const [
-        discountError,
-        setDiscountError,
+    const {
+        discountCodeError,
+        setDiscountCodeError,
         handleDiscountApiError,
         clearDiscountError,
-    ] = useDiscountError();
-    const [
+    } = useDiscountError();
+    const {
         cartContent,
         isCartLoading,
         handleQtyChange,
@@ -30,7 +30,7 @@ export const Cart = () => {
         handleDiscountApply,
         handleDiscountRemove,
         cartError,
-    ]: CartHook = useCart(handleDiscountApiError, clearDiscountError);
+    }: CartHook = useCart(handleDiscountApiError, clearDiscountError);
 
     if (
         !isCartLoading &&
@@ -123,8 +123,8 @@ export const Cart = () => {
                                 cartContent={cartContent}
                                 applyToCartHandler={handleDiscountApply}
                                 removeFromCartHandler={handleDiscountRemove}
-                                discountError={discountError}
-                                setDiscountError={setDiscountError}
+                                discountError={discountCodeError}
+                                setDiscountError={setDiscountCodeError}
                                 onInput={clearDiscountError}
                             />
                             <div className={styles.totalContainer}>

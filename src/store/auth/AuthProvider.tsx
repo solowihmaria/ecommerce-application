@@ -42,7 +42,7 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
                 } catch (error) {
                     console.error('Failed to load profile', error);
                 }
-            } else {
+            } else if (!token) {
                 initAnonymousSession();
             }
         };
@@ -62,7 +62,7 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
                         if (cartData) {
                             setCartContent(prepareCartData(cartData));
                         }
-                        console.log('CARTDATA', cartData);
+                        // console.log('CARTDATA', cartData);
                     } catch (error) {
                         console.error(error);
                         handleCartError(error);
@@ -74,6 +74,7 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
         };
 
         void initSession();
+
         loadCart()
             .then(() => setIsCartLoading(false))
             .catch((err) => {

@@ -1,8 +1,9 @@
 import { login as loginRequest, mergeCartsOnLogin } from './login';
-import { getToken, removeToken, setToken } from '../token';
+import { getToken, removeAnonToken, removeToken, setToken } from '../token';
 import { logout } from './login';
 import { fetchMyProfile } from '../profile/profile';
 import type { Customer } from '../profile/profile.types';
+import { removeAnonymousId } from '../anonymousId';
 
 export const authenticateUser = async (
     email: string,
@@ -21,6 +22,8 @@ export const authenticateUser = async (
         throw new Error('Invalid response structure');
     }
     setToken(response.access_token);
+    removeAnonToken();
+    removeAnonymousId();
 
     // Получаем данные профиля
     const customer = await fetchMyProfile(response.access_token);

@@ -1,38 +1,29 @@
-// import { useState } from 'react';
-import { addCartItem } from '../../../../../api/cart/cart';
-// import type { CustomCart } from '../../../../../api/cart/cart.types';
-import { prepareCartData } from '../../../../../api/cart/helpers';
+import { useState } from 'react';
 import type {
     Product,
     ProductVariant,
 } from '../../../../../api/catalog/catalog.types';
-import { useAuth } from '../../../../../store/auth/useAuth';
 import { Button } from '../../../../ui/Button';
 import styles from './VariantsModal.module.scss';
+import { useAddToCart } from '../../../Cart/lib/useAddToCart';
 
 interface VariantsModalProps {
     product: Product;
     onCancel: () => void;
-    // cartContent: CustomCart;
 }
 
 export const VariantsModal = ({ product, onCancel }: VariantsModalProps) => {
-    // const [selectedVariant, setSelectedVariant] =
-    // useState<ProductVariant | null>(null);
-    const { loginStatus, cartContent, setCartContent } = useAuth();
+    const { handleAddToCart, isAdding } = useAddToCart();
+    const [selectedVariantId, setSelectedVariantId] = useState<number | null>(
+        null
+    );
 
-    const handleAddToCart = async (variant: ProductVariant) => {
-        console.log('SELECTED VARIANT', variant.sku);
+    const onAddToCart = async (variant: ProductVariant) => {
+        setSelectedVariantId(variant.id);
 
-        if (cartContent) {
-            const newCart = await addCartItem(
-                cartContent,
-                variant.sku,
-                loginStatus
-            );
-            // console.log('Added to cart:', { ...product, variant: selectedVariant });
-            setCartContent(prepareCartData(newCart));
+        const success = await handleAddToCart(product.name, variant.sku);
 
+        if (success) {
             onCancel();
         }
     };
@@ -71,7 +62,11 @@ export const VariantsModal = ({ product, onCancel }: VariantsModalProps) => {
                         <Button
                             variant="outline"
                             key={variant.id}
-                            onClick={() => void handleAddToCart(variant)}
+                            disabled={isAdding}
+                            loading={
+                                isAdding && selectedVariantId === variant.id
+                            }
+                            onClick={() => void onAddToCart(variant)}
                         >
                             {getVariantLabel(variant)}
                             <span className={styles.priceDiscounted}>
