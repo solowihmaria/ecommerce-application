@@ -4,6 +4,8 @@ import { Button } from '../../../../ui/Button';
 import { Heading } from '../../../../ui/Heading';
 import styles from './ProductCard.module.scss';
 import clsx from 'clsx';
+import { useAuth } from '../../../../../store/auth/useAuth';
+import { IoMdCheckmarkCircleOutline } from 'react-icons/io';
 
 interface CardProps {
     product: Product;
@@ -11,8 +13,17 @@ interface CardProps {
 }
 
 export const ProductCard = ({ product, setSelectedProduct }: CardProps) => {
+    const { cartContent } = useAuth();
+    console.log('CART CONTENT', cartContent);
+
     const IMAGE_NOT_AVAILABLE =
         'https://upload.wikimedia.org/wikipedia/commons/thumb/d/d1/Image_not_available.png/800px-Image_not_available.png';
+
+    function isInCart(productId: string) {
+        return Boolean(
+            cartContent?.lineItems.find((item) => item.productId === productId)
+        );
+    }
 
     function handleButtonClick(
         event: React.MouseEvent<HTMLButtonElement>,
@@ -72,9 +83,20 @@ export const ProductCard = ({ product, setSelectedProduct }: CardProps) => {
                     <Button
                         className={styles.buttonBuy}
                         variant="primary"
+                        disabled={isInCart(product.id)}
                         onClick={(event) => handleButtonClick(event, product)}
                     >
-                        ADD TO CART
+                        {isInCart(product.id) ? (
+                            <span className={styles.buttonBuyLabel}>
+                                <IoMdCheckmarkCircleOutline
+                                    size="1.4em"
+                                    className={styles.buttonBuyIcon}
+                                />{' '}
+                                IN YOUR CART
+                            </span>
+                        ) : (
+                            'ADD TO CART'
+                        )}
                     </Button>
                 </div>
             </div>
