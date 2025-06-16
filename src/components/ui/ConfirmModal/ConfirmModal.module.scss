@@ -8,7 +8,7 @@
     align-items: center;
     justify-content: center;
     padding: 1rem;
-    background-color: c.$opacity-40;
+    backdrop-filter: blur(c.$blur5);
 }
 
 .modal {
@@ -20,6 +20,7 @@
     width: 100%;
     max-width: 30rem;
     padding: 2rem;
+    border: 1px solid c.$color-text-primary;
     border-radius: 8px;
     background-color: c.$color-primary-dark;
     box-shadow: 0 4px 6px c.$opacity-5;
@@ -30,6 +31,7 @@
     margin-bottom: 1rem;
     font-size: 1.25rem;
     font-weight: 600;
+    color: c.$color-text-primary;
     text-align: center;
 }
 

@@ -115,6 +115,11 @@
     color: c.$color-text-primary;
 }
 
+.buttonRemove {
+    display: flex;
+    gap: 8px;
+}
+
 @media (width <= 992px) {
     .productDetailsContainer {
         flex-direction: column;

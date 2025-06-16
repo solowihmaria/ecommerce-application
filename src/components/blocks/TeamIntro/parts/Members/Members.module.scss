@@ -1,0 +1,218 @@
+@use '../../../../../assets/styles/constants.module' as c;
+
+.section {
+    padding: 3rem 0;
+}
+
+.container {
+    width: 100%;
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 1rem;
+}
+
+.title {
+    margin-bottom: 3rem;
+    font-size: 1.75rem;
+    font-weight: 700;
+    color: c.$color-text-primary;
+    text-align: center;
+
+    @media (width >= 768px) {
+        font-size: 2.25rem;
+    }
+}
+
+.teamGrid {
+    display: flex;
+    flex-direction: column;
+    gap: 3rem;
+}
+
+.teamMember {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    border-radius: 0.75rem;
+    background-color: rgb(245 250 240 / 90%);
+
+    @media (width >= 1024px) {
+        flex-direction: row;
+        min-height: 20rem;
+
+        &.reverse {
+            flex-direction: row-reverse;
+        }
+    }
+}
+
+.photoCard {
+    width: 100%;
+
+    @media (width >= 1024px) {
+        width: 38%;
+        min-height: 400px;
+    }
+}
+
+.photoWrapper {
+    position: relative;
+    overflow: hidden;
+    height: 550px;
+    border-radius: 0.75rem;
+    box-shadow: 0 12px 20px -5px rgb(0 0 0 / 8%);
+
+    @media (width >= 1024px) {
+        height: 100%;
+    }
+}
+
+.photo {
+    display: block;
+    width: 100%;
+    height: 100%;
+    transition: transform 0.4s ease;
+    object-fit: cover;
+    object-position: center top;
+
+    &:hover {
+        transform: scale(1.03);
+    }
+}
+
+.nameOverlay {
+    position: absolute;
+    inset: auto 0 0;
+    padding: 1rem;
+    background: linear-gradient(to top, rgb(0 0 0 / 70%), transparent);
+}
+
+.memberName {
+    margin-bottom: 0.2rem;
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: c.$color-white;
+}
+
+.memberRole {
+    font-size: 1rem;
+    color: c.$color-gray-300;
+}
+
+.infoCard {
+    width: 100%;
+
+    @media (width >= 1024px) {
+        width: 62%;
+    }
+}
+
+.cardContent {
+    padding: 1.5rem 1.3rem 1.5rem 1.5rem;
+}
+
+.areaLabels {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+    margin-bottom: 1rem;
+}
+
+.areaLabel {
+    display: flex;
+    gap: 0.4rem;
+    align-items: center;
+    padding: 0.4rem 0.75rem;
+    border-radius: 9999px;
+    font-size: 0.75rem;
+    font-weight: 500;
+}
+
+.labelIcon {
+    width: 0.875rem;
+    height: 0.875rem;
+}
+
+.bioSection {
+    margin-bottom: 1rem;
+}
+
+.sectionTitle {
+    margin-bottom: 0.4rem;
+    font-size: 1rem;
+    font-weight: 600;
+    color: c.$color-gray-800;
+}
+
+.bioText {
+    font-size: 0.875rem;
+    line-height: 1.6;
+    color: c.$color-gray-bkg;
+}
+
+.contributionsSection {
+    margin-bottom: 1.5rem;
+}
+
+.contributionsGrid {
+    columns: 2;
+    column-gap: 0.5rem;
+}
+
+.contributionItem {
+    display: flex;
+    align-items: center;
+    margin-bottom: 0.5rem;
+    font-size: 0.8rem;
+    color: c.$color-gray-bkg;
+    break-inside: avoid;
+}
+
+.zapIcon {
+    flex-shrink: 0;
+    width: 0.6rem;
+    height: 0.6rem;
+    margin-right: 0.4rem;
+    border-radius: 9999px;
+    background-color: c.$color-accent-secondary;
+}
+
+.githubButton {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    padding: 0.75rem 1.5rem;
+    border: none;
+    border-radius: 0.7rem;
+    font-weight: 500;
+    color: c.$color-white;
+    background-color: rgba(c.$color-primary-dark, 0.8);
+    transition: background-color 0.5s;
+    cursor: pointer;
+
+    &:hover {
+        background-color: rgba(c.$color-success, 1);
+    }
+
+    &:focus {
+        outline: 2px solid c.$color-primary;
+        outline-offset: 2px;
+    }
+}
+
+.githubIcon {
+    width: 1rem;
+    height: 1rem;
+    margin-right: 0.4rem;
+}
+
+.designBadge,
+.frontendBadge,
+.testingBadge,
+.integrationBadge,
+.crossCheckBadge {
+    border: 0.5px solid c.$color-gray-bkg;
+    color: c.$color-text-primary;
+    background-color: rgba(c.$color-primary-dark, 0.8);
+}

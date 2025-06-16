@@ -5,15 +5,7 @@
     flex-direction: column;
     min-height: 100vh;
     background: c.$color-accent-dark;
-    background: url('../../assets/images/bg3.jpg') no-repeat center center;
+    background: url('../../assets/images/profile-bg.jpg') no-repeat center
+        center;
     background-size: cover;
-}
-
-.profileContent {
-    display: flex;
-    flex-grow: 1;
-    align-items: center;
-    justify-content: center;
-    width: 100%;
-    padding: 2em 0;
 }

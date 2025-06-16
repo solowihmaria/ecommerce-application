@@ -1,4 +1,5 @@
-import { createBrowserRouter, RouterProvider } from 'react-router-dom';
+import { AboutUsPage } from '../pages/AboutUs';
+import { createBrowserRouter, RouterProvider, Outlet } from 'react-router-dom';
 import { MainPage } from '../pages/Main';
 import { LoginPage } from '../pages/Login';
 import { RegistrationPage } from '../pages/Registration';
@@ -8,55 +9,74 @@ import { CatalogPage } from '../pages/Catalog';
 import { ProductPage } from '../pages/Product';
 import { ProfilePage } from '../pages/Profile';
 import { RequireAuth } from './guards/RequireAuth';
+import { Layout } from '../components/blocks/Layout/Layout';
+import { CartPage } from '../pages/Cart/CartPage';
 
 const router = createBrowserRouter([
     {
-        path: '/',
-        element: <MainPage />,
-    },
-    {
-        path: '/main',
-        element: <MainPage />,
-    },
-    {
-        path: '/login',
         element: (
-            <RedirectIfAuth>
-                <LoginPage />
-            </RedirectIfAuth>
+            <Layout>
+                <Outlet />{' '}
+            </Layout>
         ),
-    },
-    {
-        path: '/register',
-        element: (
-            <RedirectIfAuth>
-                <RegistrationPage />
-            </RedirectIfAuth>
-        ),
-    },
-    {
-        path: '/catalog/:slug?', // используем slug вместо id для навигации по категориям
-        element: <CatalogPage />,
-    },
-    {
-        path: '/catalog/:categorySlug/:subcategorySlug', // используем slug вместо id для навигации по категориям
-        element: <CatalogPage />,
-    },
-    {
-        path: '/product/:id',
-        element: <ProductPage />,
-    },
-    {
-        path: '/profile',
-        element: (
-            <RequireAuth>
-                <ProfilePage />
-            </RequireAuth>
-        ),
-    },
-    {
-        path: '*',
-        element: <NotFoundPage />,
+        children: [
+            {
+                path: '/main',
+                element: <MainPage />,
+            },
+            {
+                path: '/',
+                element: <MainPage />,
+            },
+            {
+                path: '/about',
+                element: <AboutUsPage />,
+            },
+            {
+                path: '/login',
+                element: (
+                    <RedirectIfAuth>
+                        <LoginPage />
+                    </RedirectIfAuth>
+                ),
+            },
+            {
+                path: '/register',
+                element: (
+                    <RedirectIfAuth>
+                        <RegistrationPage />
+                    </RedirectIfAuth>
+                ),
+            },
+            {
+                path: '/catalog/:slug?',
+                element: <CatalogPage />,
+            },
+            {
+                path: '/catalog/:categorySlug/:subcategorySlug',
+                element: <CatalogPage />,
+            },
+            {
+                path: '/product/:id',
+                element: <ProductPage />,
+            },
+            {
+                path: '/profile',
+                element: (
+                    <RequireAuth>
+                        <ProfilePage />
+                    </RequireAuth>
+                ),
+            },
+            {
+                path: '/cart',
+                element: <CartPage />,
+            },
+            {
+                path: '*',
+                element: <NotFoundPage />,
+            },
+        ],
     },
 ]);
 

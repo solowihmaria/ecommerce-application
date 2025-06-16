@@ -68,7 +68,7 @@ export type AttributesList = (
     | [string, number]
 )[];
 
-interface Price {
+export interface Price {
     id: string;
     value: {
         type: string;

@@ -12,67 +12,106 @@ import styles from './Footer.module.scss';
 
 export function Footer() {
     return (
-        <footer className={styles.footer}>
+        <footer data-testid="footer" className={styles.footer}>
             <div className={styles.container}>
                 <div className={styles.columnsWrapper}>
                     <div className={styles.column}>
                         <h3 className={styles.columnTitle}>Quick Links</h3>
                         <ul className={styles.linksList}>
                             <li>
-                                <Link to="/catalog" className={styles.link}>
+                                <Link
+                                    to="/catalog"
+                                    className={styles.link}
+                                    data-testid="quick-link"
+                                >
                                     Catalog
                                 </Link>
                             </li>
                             <li>
-                                <Link to="#" className={styles.link}>
+                                <Link
+                                    to="#"
+                                    className={styles.link}
+                                    data-testid="quick-link"
+                                >
                                     Plant Care
                                 </Link>
                             </li>
                             <li>
-                                <Link to="#" className={styles.link}>
+                                <Link
+                                    to="#"
+                                    className={styles.link}
+                                    data-testid="quick-link"
+                                >
                                     Delivery & Payment
                                 </Link>
                             </li>
                             <li>
-                                <Link to="#" className={styles.link}>
+                                <Link
+                                    to="#"
+                                    className={styles.link}
+                                    data-testid="quick-link"
+                                >
                                     About Us
                                 </Link>
                             </li>
                             <li>
-                                <Link to="#" className={styles.link}>
+                                <Link
+                                    to="#"
+                                    className={styles.link}
+                                    data-testid="quick-link"
+                                >
                                     Blog
                                 </Link>
                             </li>
                         </ul>
                     </div>
 
-                    {/* ЗАМЕНИТЬ НА АКТУАЛЬНЫЕ КАТЕГОРИИ И ССЫЛКИ */}
                     <div className={styles.column}>
                         <h3 className={styles.columnTitle}>Categories</h3>
                         <ul className={styles.linksList}>
                             <li>
-                                <Link to="/catalog" className={styles.link}>
-                                    Large Plants
+                                <Link
+                                    to="/catalog"
+                                    className={styles.link}
+                                    data-testid="category-link"
+                                >
+                                    Tropical Plants
                                 </Link>
                             </li>
                             <li>
-                                <Link to="/catalog" className={styles.link}>
+                                <Link
+                                    to="/catalog"
+                                    className={styles.link}
+                                    data-testid="category-link"
+                                >
                                     Succulents
                                 </Link>
                             </li>
                             <li>
-                                <Link to="/catalog" className={styles.link}>
+                                <Link
+                                    to="/catalog"
+                                    className={styles.link}
+                                    data-testid="category-link"
+                                >
                                     Flowering Plants
                                 </Link>
                             </li>
                             <li>
-                                <Link to="/catalog" className={styles.link}>
+                                <Link
+                                    to="/catalog"
+                                    className={styles.link}
+                                    data-testid="category-link"
+                                >
                                     Hanging Plants
                                 </Link>
                             </li>
                             <li>
-                                <Link to="/catalog" className={styles.link}>
-                                    Palms
+                                <Link
+                                    to="/catalog"
+                                    className={styles.link}
+                                    data-testid="category-link"
+                                >
+                                    Ferns
                                 </Link>
                             </li>
                         </ul>

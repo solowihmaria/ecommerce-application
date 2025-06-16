@@ -6,7 +6,7 @@ import type {
 } from './catalog.types';
 
 export const requestGetProducts = async (
-    { sort, query, filters }: requestGetProductsParams,
+    { sort, query, filters, limit = 10, offset = 0 }: requestGetProductsParams,
     token: string
 ) => {
     const apiUrl = process.env.CTP_API_URL;
@@ -20,7 +20,8 @@ export const requestGetProducts = async (
                 Authorization: `Bearer ${token}`,
             },
             params: {
-                limit: 50,
+                limit,
+                offset,
                 filter: makeFilterParams(filters),
                 ...(sort ? { sort } : {}),
                 ...(query ? { 'text.en-US': query, fuzzy: true } : {}),
@@ -28,7 +29,7 @@ export const requestGetProducts = async (
         }
     );
 
-    return response.data.results;
+    return { products: response.data.results, total: response.data.total };
 };
 
 function makeFilterParams(filters: Filter) {

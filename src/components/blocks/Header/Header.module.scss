@@ -170,3 +170,35 @@
         }
     }
 }
+
+.cartLink {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.cartIconWrapper {
+    position: relative;
+    display: inline-block;
+}
+
+.cartBadge {
+    position: absolute;
+    top: 25px;
+    right: -13px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-sizing: border-box;
+    min-width: 20px;
+    height: 23px;
+    padding: 2px 6px;
+    border-radius: 999px;
+    font-size: 0.75rem;
+    font-weight: bold;
+    line-height: 1;
+    color: c.$color-primary-dark;
+    white-space: nowrap;
+    background-color: c.$color-text-primary;
+}

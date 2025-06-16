@@ -7,9 +7,19 @@ import type { Filter } from '../../../../api/catalog/catalog.types';
 interface CategoriesProps {
     categories: Category[];
     setFilters: React.Dispatch<React.SetStateAction<Filter>>;
+    setPage: (value: number) => void;
 }
 
-export const Categories = ({ categories, setFilters }: CategoriesProps) => {
+export const Categories = ({
+    categories,
+    setFilters,
+    setPage,
+}: CategoriesProps) => {
+    function handleCategoryClick(categoryId: string) {
+        setFilters((prev) => ({ ...prev, categoryId: categoryId }));
+        setPage(1);
+    }
+
     return (
         <nav className={styles.categoryBlock}>
             <Heading level="h3">Category</Heading>
@@ -24,10 +34,7 @@ export const Categories = ({ categories, setFilters }: CategoriesProps) => {
                                     to={`/catalog/${category.slug?.['en-US']}`}
                                     className={styles.categoryItem}
                                     onClick={() =>
-                                        setFilters((prev) => ({
-                                            ...prev,
-                                            categoryId: category.id,
-                                        }))
+                                        handleCategoryClick(category.id)
                                     }
                                 >
                                     {category.name['en-US']}
@@ -45,11 +52,9 @@ export const Categories = ({ categories, setFilters }: CategoriesProps) => {
                                                 <Link
                                                     to={`/catalog/${category.slug?.['en-US']}/${subcat.slug?.['en-US']}`}
                                                     onClick={() =>
-                                                        setFilters((prev) => ({
-                                                            ...prev,
-                                                            categoryId:
-                                                                subcat.id,
-                                                        }))
+                                                        handleCategoryClick(
+                                                            subcat.id
+                                                        )
                                                     }
                                                     className={
                                                         styles.subcategoryItem

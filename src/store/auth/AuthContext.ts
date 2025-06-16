@@ -1,5 +1,6 @@
 import { createContext } from 'react';
 import type { Customer } from '../../api/profile/profile.types';
+import type { CustomCart } from '../../api/cart/cart.types';
 
 export interface AuthContextType {
     loginStatus: boolean;
@@ -7,6 +8,12 @@ export interface AuthContextType {
     customer: Customer | null;
     setCustomer: (customer: Customer | null) => void;
     updateCustomer: (newData: Partial<Customer>) => void;
+    isAnonymous: boolean;
+    cartContent: CustomCart | null;
+    setCartContent: React.Dispatch<React.SetStateAction<CustomCart | null>>;
+    isCartLoading: boolean;
+    cartItemsCount: number;
+    cartError: string | null;
 }
 
 export const AuthContext = createContext<AuthContextType>({
@@ -15,4 +22,10 @@ export const AuthContext = createContext<AuthContextType>({
     customer: null,
     setCustomer: () => {},
     updateCustomer: () => {},
+    isAnonymous: false,
+    cartContent: null,
+    setCartContent: () => {},
+    isCartLoading: false,
+    cartItemsCount: 0,
+    cartError: null,
 });

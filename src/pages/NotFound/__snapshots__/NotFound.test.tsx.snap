@@ -1,39 +1,49 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`<NotFoundPage/> component Render NotFoundPage component 1`] = `
+exports[`<NotFoundPage/> component renders NotFoundPage component 1`] = `
 <div
-  class="notFound"
-  data-testid="test-id-not-found-page"
+  class="wrapper"
+  data-testid="not-found-container"
 >
   <div
-    class="content"
+    class="contentContainer"
   >
     <div
-      class="errorCode"
+      class="contentCard"
     >
-      404
-    </div>
-    <h1
-      class="heading heading--h1 title"
-    >
-      Page Not Found
-    </h1>
-    <p
-      class="message"
-    >
-      Oops! The page you're looking for doesn't exist or has been moved.
-    </p>
-    <a
-      class="homeLink"
-      data-discover="true"
-      href="/"
-    >
-      <button
-        class="button primary button"
+      <div
+        class="textContent"
       >
-        Go to Homepage
-      </button>
-    </a>
+        <h1
+          class="errorCode"
+        >
+          404
+        </h1>
+        <p
+          class="message"
+        >
+          Page Not Found
+        </p>
+        <p
+          class="description"
+        >
+          The page you're looking for has either wilted away or hasn't bloomed yet.
+        </p>
+        <a
+          data-discover="true"
+          href="/"
+        >
+          <button
+            class="button primary button"
+          >
+            Back to Main
+          </button>
+        </a>
+      </div>
+      <div
+        class="plantImage"
+      />
+    </div>
   </div>
 </div>
 `;

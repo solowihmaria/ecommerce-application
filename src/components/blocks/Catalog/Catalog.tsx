@@ -8,6 +8,8 @@ import { Filters } from './parts/FIlters';
 import { Categories } from './parts/Categories';
 import { Breadcrumbs } from './parts/Breadcrumbs';
 import { useCatalog } from './lib/useCatalog';
+import { Pagination } from './parts/Pagination';
+import { VariantsModal } from './parts/VariantsModal/VariantsModal';
 
 export const Catalog = () => {
     const {
@@ -15,17 +17,19 @@ export const Catalog = () => {
         categories,
         isLoading,
         error,
+        totalPages,
         sort,
         setSort,
         setSearchInput,
         filters,
         setFilters,
         resetFilters,
+        page,
+        setPage,
+        selectedProduct,
+        setSelectedProduct,
+        cartContent,
     } = useCatalog();
-
-    if (isLoading) {
-        return <div>Loading...</div>;
-    }
 
     if (error) {
         return (
@@ -37,77 +41,105 @@ export const Catalog = () => {
     }
 
     return (
-        <div>
-            <Breadcrumbs categories={categories} resetFilters={resetFilters} />
+        <main className={styles.catalogContent}>
+            <div>
+                <Breadcrumbs
+                    categories={categories}
+                    resetFilters={resetFilters}
+                />
 
-            <div className={styles.catalogContainer}>
-                <div className={styles.controls}>
-                    <Categories
-                        categories={categories}
-                        setFilters={setFilters}
-                    />
-                    <Filters
-                        filters={filters}
-                        setFilters={setFilters}
-                        resetFilters={resetFilters}
-                    />
-                </div>
-
-                <div className={styles.listContainer}>
-                    <div className={styles.searchSortBlock}>
-                        <div className={styles.sortingBlock}>
-                            <Label
-                                htmlFor="sort"
-                                className={styles.sortingLabel}
-                            >
-                                Sort by
-                            </Label>
-                            <Select
-                                name="sort"
-                                value={sort}
-                                onChange={(event) =>
-                                    setSort(event.target.value)
-                                }
-                            >
-                                <option value="">Default</option>
-                                <option value="name.en-US asc">
-                                    Name A → Z
-                                </option>
-                                <option value="name.en-US desc">
-                                    Name Z → A
-                                </option>
-                                <option value="price asc">
-                                    Price Low → High
-                                </option>
-                                <option value="price desc">
-                                    Price High → Low
-                                </option>
-                            </Select>
-                        </div>
-
-                        <div className={styles.sortingBlock}>
-                            <SearchInput
-                                handleSubmit={(event) => {
-                                    event.preventDefault();
-                                }}
-                                handleChange={(event) => {
-                                    if (
-                                        event.target instanceof HTMLInputElement
-                                    ) {
-                                        setSearchInput(event.target.value);
-                                    }
-                                }}
-                            />
-                        </div>
+                <div className={styles.catalogContainer}>
+                    <div className={styles.controls}>
+                        <Categories
+                            categories={categories}
+                            setFilters={setFilters}
+                            setPage={setPage}
+                        />
+                        <Filters
+                            filters={filters}
+                            setFilters={setFilters}
+                            resetFilters={resetFilters}
+                        />
                     </div>
 
-                    {products.length === 0 ? (
-                        <div>No products found</div>
-                    ) : (
-                        <ProductList products={products} />
-                    )}
+                    <div className={styles.listContainer}>
+                        <div className={styles.searchSortBlock}>
+                            <div className={styles.sortingBlock}>
+                                <Label
+                                    htmlFor="sort"
+                                    className={styles.sortingLabel}
+                                >
+                                    Sort by
+                                </Label>
+                                <Select
+                                    name="sort"
+                                    value={sort}
+                                    onChange={(event) =>
+                                        setSort(event.target.value)
+                                    }
+                                >
+                                    <option value="">Default</option>
+                                    <option value="name.en-US asc">
+                                        Name A → Z
+                                    </option>
+                                    <option value="name.en-US desc">
+                                        Name Z → A
+                                    </option>
+                                    <option value="price asc">
+                                        Price Low → High
+                                    </option>
+                                    <option value="price desc">
+                                        Price High → Low
+                                    </option>
+                                </Select>
+                            </div>
+
+                            <div className={styles.sortingBlock}>
+                                <SearchInput
+                                    handleSubmit={(event) => {
+                                        event.preventDefault();
+                                    }}
+                                    handleChange={(event) => {
+                                        if (
+                                            event.target instanceof
+                                            HTMLInputElement
+                                        ) {
+                                            setSearchInput(event.target.value);
+                                        }
+                                    }}
+                                />
+                            </div>
+                        </div>
+
+                        {isLoading ? (
+                            <div>Loading products...</div>
+                        ) : products.length === 0 ? (
+                            <div>No products found</div>
+                        ) : (
+                            <>
+                                <ProductList
+                                    products={products}
+                                    setSelectedProduct={setSelectedProduct}
+                                />
+                                {totalPages > 1 && (
+                                    <Pagination
+                                        totalPages={totalPages}
+                                        page={page}
+                                        setPage={setPage}
+                                    />
+                                )}
+                            </>
+                        )}
+                    </div>
                 </div>
             </div>
-        </div>
+
+            {selectedProduct && cartContent && (
+                <VariantsModal
+                    product={selectedProduct}
+                    onCancel={() => setSelectedProduct(null)}
+                />
+            )}
+        </main>
     );
 };

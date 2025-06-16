@@ -1,5 +1,7 @@
 import axios from 'axios';
 import type { LoginResponse } from './auth.types';
+import { getAnonymousId } from '../anonymousId';
+import { getAnonToken } from '../token';
 
 export const login = async (
     email: string,
@@ -33,6 +35,32 @@ export const login = async (
     });
 
     return response.data;
+};
+
+export const mergeCartsOnLogin = async (email: string, password: string) => {
+    const apiUrl = process.env.CTP_API_URL;
+    const projectKey = process.env.CTP_PROJECT_KEY;
+
+    const url = `${apiUrl}/${projectKey}/me/login`;
+    const anonymousId: string | null = getAnonymousId();
+    let token: string | null;
+    if (anonymousId) {
+        token = getAnonToken();
+    } else {
+        return;
+    }
+
+    const parameters = {
+        email: email,
+        password: password,
+    };
+
+    await axios.post(url, parameters, {
+        headers: {
+            Authorization: `Bearer ${token}`,
+            'Content-Type': 'application/json',
+        },
+    });
 };
 
 export const logout = async (token: string) => {
