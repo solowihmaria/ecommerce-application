@@ -4,9 +4,13 @@ import styles from '../Catalog.module.scss';
 
 interface ProductListProps {
     products: Product[];
+    setSelectedProduct: React.Dispatch<React.SetStateAction<Product | null>>;
 }
 
-export const ProductList = ({ products }: ProductListProps) => {
+export const ProductList = ({
+    products,
+    setSelectedProduct,
+}: ProductListProps) => {
     return (
         <div className={styles.listWrapper}>
             {products.map((product) => {
@@ -14,6 +18,7 @@ export const ProductList = ({ products }: ProductListProps) => {
                     <ProductCard
                         key={product.id}
                         product={product}
+                        setSelectedProduct={setSelectedProduct}
                     ></ProductCard>
                 );
             })}

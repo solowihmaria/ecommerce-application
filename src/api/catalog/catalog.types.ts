@@ -89,38 +89,58 @@ interface Image {
 
 interface Attribute {
     name: string;
-    value: string;
+    value: string | AttributeValueObject;
 }
 
-interface ProductVariant {
+interface AttributeValueObject {
+    key: string;
+    label: string;
+}
+
+export interface ProductVariant {
     id: number;
     prices: Price[];
     price?: Price;
     attributes: Attribute[];
     images: Image[];
+    sku: string;
 }
-
 export interface Product {
     id: string;
     name: string;
     description: string;
-    masterVariant: {
+    masterVariant: ProductVariant;
+    variants: ProductVariant[];
+    forCatalog: {
         id: number;
-        sku?: string;
         price: {
             value: number;
             currency: string;
             discounted?: { value: number };
         };
-        images: Image[];
-        family: string;
         preview?: string;
     };
-    variants?: {
-        id: string;
-        price: { value: number; currency: string };
-    }[];
 }
+
+// export interface Product {
+//     id: string;
+//     name: string;
+//     description: string;
+//     masterVariant: {
+//         id: number;
+//         sku?: string;
+//         price: {
+//             value: number;
+//             currency: string;
+//             discounted?: { value: number };
+//         };
+//         images: Image[];
+//         family?: string;
+//         preview?: string;
+//         attributes: Attribute[];
+//     };
+//     variants?: ProductVariant[];
+// }
 
 export interface ProductProjection {
     id: string;
@@ -155,6 +175,8 @@ export interface requestGetProductsParams {
     sort?: string;
     query?: string;
     filters: Filter;
+    limit?: number;
+    offset?: number;
 }
 
 export interface CategoryPagedQueryResponse {

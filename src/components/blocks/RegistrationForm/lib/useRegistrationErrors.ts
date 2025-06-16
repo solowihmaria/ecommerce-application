@@ -52,7 +52,7 @@ export const useRegistrationErrors = (isSubmitting: boolean) => {
                 setRegistrationError(REGISTRATION_ERROR_MESSAGES.UNKNOWN_ERROR);
             }
         } else {
-            console.error(`Unexpexted error:`, error);
+            console.error(`Unexpected error:`, error);
         }
     };
 

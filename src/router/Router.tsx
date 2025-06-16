@@ -8,9 +8,9 @@ import { RedirectIfAuth } from './guards/RedirectIfAuth';
 import { CatalogPage } from '../pages/Catalog';
 import { ProductPage } from '../pages/Product';
 import { ProfilePage } from '../pages/Profile';
-import { BasketPage } from '../pages/Basket';
 import { RequireAuth } from './guards/RequireAuth';
 import { Layout } from '../components/blocks/Layout/Layout';
+import { CartPage } from '../pages/Cart/CartPage';
 
 const router = createBrowserRouter([
     {
@@ -69,8 +69,8 @@ const router = createBrowserRouter([
                 ),
             },
             {
-                path: '/basket',
-                element: <BasketPage />,
+                path: '/cart',
+                element: <CartPage />,
             },
         ],
     },

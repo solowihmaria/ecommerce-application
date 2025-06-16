@@ -7,17 +7,27 @@ import clsx from 'clsx';
 
 interface CardProps {
     product: Product;
+    setSelectedProduct: React.Dispatch<React.SetStateAction<Product | null>>;
 }
 
-export const ProductCard = ({ product }: CardProps) => {
+export const ProductCard = ({ product, setSelectedProduct }: CardProps) => {
     const IMAGE_NOT_AVAILABLE =
         'https://upload.wikimedia.org/wikipedia/commons/thumb/d/d1/Image_not_available.png/800px-Image_not_available.png';
+
+    function handleButtonClick(
+        event: React.MouseEvent<HTMLButtonElement>,
+        product: Product
+    ) {
+        event.preventDefault();
+        event.stopPropagation();
+        setSelectedProduct(product);
+    }
 
     return (
         <Link
             to={`/product/${product.id}`}
             className={clsx(styles.card, {
-                [styles.discounted]: product.masterVariant.price.discounted,
+                [styles.discounted]: product.forCatalog?.price.discounted,
             })}
         >
             <div className={styles.frame}>
@@ -25,8 +35,8 @@ export const ProductCard = ({ product }: CardProps) => {
                     className={styles.preview}
                     alt={product.name}
                     src={
-                        product.masterVariant.preview
-                            ? product.masterVariant.preview
+                        product.forCatalog.preview
+                            ? product.forCatalog.preview
                             : IMAGE_NOT_AVAILABLE
                     }
                 />
@@ -40,26 +50,30 @@ export const ProductCard = ({ product }: CardProps) => {
 
                     <div className={styles.price}>
                         From €
-                        {!product.masterVariant.price.discounted && (
+                        {!product.forCatalog.price.discounted && (
                             <span className={styles.priceValue}>
-                                {product.masterVariant.price.value.toFixed(2)}
+                                {product.forCatalog.price.value.toFixed(2)}
                             </span>
                         )}
-                        {product.masterVariant.price.discounted && (
+                        {product.forCatalog.price.discounted && (
                             <>
                                 <span className={styles.priceValue}>
-                                    {product.masterVariant.price.discounted.value.toFixed(
+                                    {product.forCatalog.price.discounted.value.toFixed(
                                         2
                                     )}
                                 </span>
                                 <span className={styles.priceDiscounted}>
-                                    {` ${product.masterVariant.price.value.toFixed(2)} `}
+                                    {` ${product.forCatalog.price.value.toFixed(2)} `}
                                 </span>
                             </>
                         )}
                     </div>
 
-                    <Button className={styles.buttonBuy} variant="primary">
+                    <Button
+                        className={styles.buttonBuy}
+                        variant="primary"
+                        onClick={(event) => handleButtonClick(event, product)}
+                    >
                         ADD TO CART
                     </Button>
                 </div>
