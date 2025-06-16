@@ -98,6 +98,14 @@
     }
 }
 
+@media (width <= 999px) {
+    .button.checkout {
+        width: 80%;
+        max-width: 20rem;
+        padding: 0.75rem 0.5rem;
+    }
+}
+
 @media (width <= 768px) {
     .cartContainer {
         gap: 1rem;

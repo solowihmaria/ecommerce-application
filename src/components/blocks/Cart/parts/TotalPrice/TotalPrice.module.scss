@@ -60,6 +60,12 @@
     font-size: 1.125rem;
 }
 
+@media (width <= 999px) {
+    .cartTotalOriginContainer {
+        margin-right: -1rem;
+    }
+}
+
 @media (width <= 500px) {
     .cartTotalOriginContainer {
         margin-right: -1rem;
