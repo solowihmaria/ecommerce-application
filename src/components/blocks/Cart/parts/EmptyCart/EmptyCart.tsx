@@ -6,7 +6,10 @@ import clsx from 'clsx';
 
 export const EmptyCart = () => {
     return (
-        <div className={styles.emptyCartContent}>
+        <div
+            data-testid="empty-cart-test-id"
+            className={styles.emptyCartContent}
+        >
             <Heading className={styles.cartTitle}>Shopping Cart</Heading>
             <p className={styles.emptyCartText}>Shopping cart is empty</p>
             <Link to="/catalog" className={styles.emptyCartButtonContainer}>

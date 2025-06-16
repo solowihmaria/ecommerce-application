@@ -8,7 +8,10 @@ export const TotalPrice = ({ cartContent }: { cartContent: CustomCart }) => {
         return cartContent.lineItems.some((item) => item.variant.discount);
     };
     return (
-        <div className={styles.totalPriceContainer}>
+        <div
+            data-testid="total-attribute"
+            className={styles.totalPriceContainer}
+        >
             <p
                 className={clsx(
                     styles.columnValue,
@@ -23,6 +26,7 @@ export const TotalPrice = ({ cartContent }: { cartContent: CustomCart }) => {
             cartContent.lineItems[0].discountedPricePerQuantity ? (
                 <>
                     <p
+                        data-testid="total-attribute-with-sale-old"
                         className={clsx(
                             styles.columnValue,
                             styles.column,
@@ -36,6 +40,7 @@ export const TotalPrice = ({ cartContent }: { cartContent: CustomCart }) => {
                     </p>
 
                     <p
+                        data-testid="total-attribute-with-sale-new"
                         className={clsx(
                             styles.columnValue,
                             styles.column,
@@ -47,6 +52,7 @@ export const TotalPrice = ({ cartContent }: { cartContent: CustomCart }) => {
                 </>
             ) : (
                 <p
+                    data-testid="total-attribute-without-sale"
                     className={clsx(
                         styles.columnValue,
                         styles.column,

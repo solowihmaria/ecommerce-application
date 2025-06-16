@@ -6,7 +6,10 @@ import clsx from 'clsx';
 
 export const ErrorCart = ({ message }: { message: string }) => {
     return (
-        <div className={styles.errorCartContent}>
+        <div
+            data-testid="error-cart-test-id"
+            className={styles.errorCartContent}
+        >
             <Heading className={styles.cartTitle}>Shopping Cart</Heading>
             <p className={styles.errorCartText}>{message}</p>
             <Link to="/main" className={styles.errorCartButtonContainer}>
