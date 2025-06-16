@@ -49,7 +49,8 @@ export function PromoCodes() {
                                         20%
                                     </span>
                                     <p className={styles.discountDescription}>
-                                        OFF your first purchase with us
+                                        OFF your first purchase with us to total
+                                        price
                                     </p>
                                 </div>
                                 <div className={styles.codeBox}>
@@ -92,7 +93,7 @@ export function PromoCodes() {
                                         25%
                                     </span>
                                     <p className={styles.discountDescription}>
-                                        OFF on your birthday month
+                                        OFF on your birthday month to each item
                                     </p>
                                 </div>
                                 <div className={styles.codeBox}>
@@ -135,7 +136,8 @@ export function PromoCodes() {
                                         30%
                                     </span>
                                     <p className={styles.discountDescription}>
-                                        OFF when you buy 3+ plants
+                                        OFF when you buy 3+ plants to total
+                                        price
                                     </p>
                                 </div>
                                 <div className={styles.codeBox}>

@@ -13,7 +13,7 @@ import { CgProfile } from 'react-icons/cg';
 import { MdLogin } from 'react-icons/md';
 
 export const Header = () => {
-    const { loginStatus, setLoginStatus } = useAuth();
+    const { loginStatus, setLoginStatus, cartItemsCount } = useAuth();
     const [isHamburgerMenuOpened, setIsHamburgerMenuOpened] = useState(false);
     const [isProfileMenuOpened, setIsProfileMenuOpened] = useState(false);
     const profileMenuRef = useRef<null | HTMLDivElement>(null);
@@ -95,7 +95,7 @@ export const Header = () => {
                             Catalog
                         </Button>
                     </Link>
-                    <Link to="#">
+                    <Link to="/about">
                         <Button variant="ghost" className={styles.navButton}>
                             About
                         </Button>
@@ -173,8 +173,16 @@ export const Header = () => {
                         )}
                     </div>
                     <Link to="/cart" className={styles.cartLink}>
-                        <CartIcon className={styles.cartIcon} />
+                        <div className={styles.cartIconWrapper}>
+                            <CartIcon className={styles.cartIcon} />
+                            {cartItemsCount > 0 && (
+                                <span className={styles.cartBadge}>
+                                    {cartItemsCount}
+                                </span>
+                            )}
+                        </div>
                     </Link>
+
                     <div className={styles.hamburger}>
                         <MdOutlineMenu
                             className={styles.hamburgerIcon}

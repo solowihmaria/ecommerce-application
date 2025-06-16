@@ -4,6 +4,8 @@ import { IoMdClose } from 'react-icons/io';
 import { Input } from '../../../../ui/Input';
 import { useState } from 'react';
 import type { CartItemProps } from './CartItem.types';
+import { Link } from 'react-router-dom';
+import { ItemPriceDiscounted } from '../ItemPriceDiscounted/ItemPriceDiscounted';
 
 export const CartItem = ({
     product,
@@ -27,14 +29,28 @@ export const CartItem = ({
                 >
                     <IoMdClose className={styles.deleteIcon} />
                 </span>
-                <img
-                    className={styles.productImage}
-                    src={product.variant.images[0].url}
-                    alt={product.variant.images[0].label}
-                ></img>
+                {product.variant.images.length === 0 ? (
+                    <img
+                        className={styles.productImage}
+                        src={'placeholder'}
+                        alt={'placeholder'}
+                    ></img>
+                ) : (
+                    <img
+                        className={styles.productImage}
+                        src={product.variant.images[0].url}
+                        alt={product.variant.images[0].label}
+                    ></img>
+                )}
+
                 <div className={styles.productText}>
                     {' '}
-                    <p className={styles.productName}>{product.name}</p>
+                    <Link
+                        to={`/product/${product.productId}?size=${product.variant.size}`}
+                        className={styles.productNameLink}
+                    >
+                        <p className={styles.productName}>{product.name}</p>
+                    </Link>
                     <p className={styles.productSize}>
                         Size:&nbsp;{product.variant.size}
                     </p>
@@ -46,7 +62,7 @@ export const CartItem = ({
                     styles.secondColumn
                 )}
             >
-                <p
+                <div
                     className={clsx(
                         styles.columnValue,
                         styles.column,
@@ -54,29 +70,23 @@ export const CartItem = ({
                     )}
                 >
                     {product.discountedPricePerQuantity ? (
-                        <>
-                            <p className={styles.priceOriginContainer}>
-                                <span className={styles.priceOrigin}>
-                                    {product.variant.discount
-                                        ? product.variant.discount.toFixed(2)
-                                        : product.variant.price.toFixed(2)}
-                                </span>
-                                <span className={clsx(styles.cross)}></span>
-                            </p>
-                            <span className={styles.priceActual}>
-                                {product.discountedPricePerQuantity.currentPrice.toFixed(
-                                    2
-                                )}
-                            </span>
-                        </>
+                        <ItemPriceDiscounted
+                            oldPrice={product.variant.price}
+                            newPrice={
+                                product.discountedPricePerQuantity.currentPrice
+                            }
+                        />
+                    ) : product.variant.discount ? (
+                        <ItemPriceDiscounted
+                            oldPrice={product.variant.price}
+                            newPrice={product.variant.discount}
+                        />
                     ) : (
                         <span className={styles.priceActual}>
-                            {product.variant.discount
-                                ? product.variant.discount.toFixed(2)
-                                : product.variant.price.toFixed(2)}
+                            {product.variant.price.toFixed(2)}
                         </span>
                     )}
-                </p>
+                </div>
                 <div className={clsx(styles.columnValue, styles.column)}>
                     <Input
                         className={styles.qtyInput}

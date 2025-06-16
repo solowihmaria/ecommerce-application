@@ -49,11 +49,15 @@
 }
 
 .cartTotalNew {
-    font-size: 24px;
+    font-size: 1.5rem;
 }
 
 .cartTotalPrice {
-    font-size: 24px;
+    font-size: 1.5rem;
+}
+
+.totalLabel {
+    font-size: 1.125rem;
 }
 
 @media (width <= 500px) {

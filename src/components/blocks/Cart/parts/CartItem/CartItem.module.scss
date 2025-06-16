@@ -33,7 +33,9 @@
 
 .productImage {
     width: 100px;
+    height: 100px;
     border-radius: 1rem;
+    object-fit: cover;
 }
 
 .productText {
@@ -59,6 +61,7 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
+    font-size: 1.125rem;
 }
 
 .columnValue {
@@ -76,29 +79,16 @@
     justify-content: center;
 }
 
-.priceOrigin {
-    color: c.$color-gray-600;
-}
-
-.cross {
-    position: absolute;
-    top: 53%;
-    display: block;
-    width: 95%;
-    border-top: 2px solid c.$color-gray-600;
-}
-
-.priceOriginContainer {
-    position: relative;
-    display: inline-block;
-}
-
 .qtyInput {
     width: 60%;
 }
 
 .totalLabel {
     display: none;
+}
+
+.productNameLink {
+    text-decoration: none;
 }
 
 @media (width <= 768px) {
@@ -143,5 +133,11 @@
 
     .priceOriginContainer {
         flex-direction: column;
+        width: fit-content;
+    }
+
+    .price {
+        flex-direction: column;
+        align-items: center;
     }
 }

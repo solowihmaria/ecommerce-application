@@ -46,7 +46,7 @@ exports[`Render Header component 1`] = `
       </a>
       <a
         data-discover="true"
-        href="/"
+        href="/about"
       >
         <button
           class="button ghost navButton"
@@ -105,11 +105,15 @@ exports[`Render Header component 1`] = `
       <a
         class="cartLink"
         data-discover="true"
-        href="/"
+        href="/cart"
       >
-        <svg
-          data-testid="mock-svg"
-        />
+        <div
+          class="cartIconWrapper"
+        >
+          <svg
+            data-testid="mock-svg"
+          />
+        </div>
       </a>
       <div
         class="hamburger"

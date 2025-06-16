@@ -1,4 +1,4 @@
-import { login as loginRequest } from './login';
+import { login as loginRequest, mergeCartsOnLogin } from './login';
 import { getToken, removeAnonToken, removeToken, setToken } from '../token';
 import { logout } from './login';
 import { fetchMyProfile } from '../profile/profile';
@@ -10,6 +10,12 @@ export const authenticateUser = async (
     password: string,
     onSuccess?: (customer: Customer) => void
 ): Promise<{ token: string; customer: Customer }> => {
+    try {
+        await mergeCartsOnLogin(email, password);
+    } catch (error) {
+        console.error(error);
+    }
+
     const response = await loginRequest(email, password);
 
     if (!response?.access_token) {
