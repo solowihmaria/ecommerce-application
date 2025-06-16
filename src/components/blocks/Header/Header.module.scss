@@ -190,15 +190,15 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 23px;
+    box-sizing: border-box;
     min-width: 20px;
     height: 23px;
     padding: 2px 6px;
-    border-radius: 50%;
+    border-radius: 999px;
     font-size: 0.75rem;
     font-weight: bold;
     line-height: 1;
     color: c.$color-primary-dark;
-    text-align: center;
+    white-space: nowrap;
     background-color: c.$color-text-primary;
 }
