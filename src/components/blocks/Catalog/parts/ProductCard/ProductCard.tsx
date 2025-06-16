@@ -14,7 +14,6 @@ interface CardProps {
 
 export const ProductCard = ({ product, setSelectedProduct }: CardProps) => {
     const { cartContent } = useAuth();
-    console.log('CART CONTENT', cartContent);
 
     const IMAGE_NOT_AVAILABLE =
         'https://upload.wikimedia.org/wikipedia/commons/thumb/d/d1/Image_not_available.png/800px-Image_not_available.png';

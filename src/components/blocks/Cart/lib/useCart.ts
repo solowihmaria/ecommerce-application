@@ -18,7 +18,6 @@ export const useCart = (
     handleDiscountApiError: (error: unknown) => void,
     clearDiscountError: () => void
 ): CartHook => {
-
     const {
         loginStatus,
         cartContent,
@@ -129,7 +128,7 @@ export const useCart = (
         }
     };
 
-    return [
+    return {
         cartContent,
         isCartLoading,
         handleQtyChange,
@@ -138,5 +137,5 @@ export const useCart = (
         handleDiscountApply,
         handleDiscountRemove,
         cartError,
-    ];
+    };
 };

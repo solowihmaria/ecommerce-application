@@ -13,16 +13,18 @@ import CareIcon from '../../../assets/icons/care.svg';
 import Height from '../../../assets/images/height.png';
 import LightIcon from '../../../assets/icons/light.svg';
 import ToxicityIcon from '../../../assets/icons/toxicity.svg';
-import { useState } from 'react';
+import { useContext, useState } from 'react';
 import { BigSlider } from './parts/BigSlider/BigSlider';
 import clsx from 'clsx';
 import { Button } from '../../ui/Button';
 import styles from './ProductDetails.module.scss';
 import { useAddToCart } from '../Cart/lib/useAddToCart';
 import { useAuth } from '../../../store/auth/useAuth';
-// import { useCart } from '../Cart/lib/useCart';
-// import { useDiscountError } from '../Cart/lib/useDiscountError';
-// import type { CartHook } from '../Cart/Cart.types';
+import { useCart } from '../Cart/lib/useCart';
+import { useDiscountError } from '../Cart/lib/useDiscountError';
+import type { CartHook } from '../Cart/Cart.types';
+import { ToastContext } from '../../ui/Toast/ToastContext';
+import { RxCross1 } from 'react-icons/rx';
 
 export const ProductDetails = () => {
     const { handleAddToCart, isAdding } = useAddToCart();
@@ -36,11 +38,12 @@ export const ProductDetails = () => {
     const [isModalOpened, setIsModalOpened] = useState<boolean>(false);
     const [clickedSlide, setClickedSlide] = useState<number | null>(null);
     const { cartContent } = useAuth();
-    // const [handleDiscountApiError, clearDiscountError] = useDiscountError();
-    // const { handleCartItemDelete }: CartHook = useCart(
-    //     handleDiscountApiError,
-    //     clearDiscountError
-    // );
+    const { handleDiscountApiError, clearDiscountError } = useDiscountError();
+    const { handleCartItemDelete }: CartHook = useCart(
+        handleDiscountApiError,
+        clearDiscountError
+    );
+    const { showToast } = useContext(ToastContext);
 
     const isInCart = () => {
         return (
@@ -51,13 +54,28 @@ export const ProductDetails = () => {
         );
     };
 
-    // const getLineItemId = (variantSKU: string) => {
-    //     const matchingLineItem = cartContent?.lineItems.find(
-    //         (item) => item.variant.sku === variantSKU
-    //     );
+    const getLineItemId = (variantSKU: string) => {
+        const matchingLineItem = cartContent?.lineItems.find(
+            (item) => item.variant.sku === variantSKU
+        );
 
-    //     return matchingLineItem?.id;
-    // };
+        return matchingLineItem?.id;
+    };
+
+    const handleRemove = async (variantSku: string) => {
+        const sku = getLineItemId(variantSku);
+        if (cartContent && sku) {
+            try {
+                await handleCartItemDelete(cartContent, sku);
+                showToast({
+                    message: `${currentProduct?.name} removed from your cart!`,
+                    variant: 'success',
+                });
+            } catch (err) {
+                console.error(err);
+            }
+        }
+    };
 
     const showModal = (index: number) => {
         setClickedSlide(index);
@@ -250,18 +268,16 @@ export const ProductDetails = () => {
                                     )}
                                     {isInCart() && (
                                         <Button
+                                            className={styles.buttonRemove}
                                             disabled={isAdding}
                                             loading={isAdding}
-                                            onClick={() => {
-                                                // handleCartItemDelete(
-                                                //     cartContent,
-                                                //     getLineItemId(
-                                                //         currentProductVariant.sku
-                                                //     )
-                                                // );
-                                            }}
+                                            onClick={() =>
+                                                void handleRemove(
+                                                    currentProductVariant.sku
+                                                )
+                                            }
                                         >
-                                            Remove from cart
+                                            <RxCross1 /> Remove from cart
                                         </Button>
                                     )}
                                 </div>
