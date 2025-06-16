@@ -11,7 +11,7 @@ import { useCart } from './lib/useCart';
 import type { CartHook } from './Cart.types';
 import { useDiscountError } from './lib/useDiscountError';
 import { TotalPrice } from './parts/TotalPrice/TotalPrice';
-// import { ErrorCart } from './parts/ErrorCart/ErrorCart';
+import { ErrorCart } from './parts/ErrorCart/ErrorCart';
 
 export const Cart = () => {
     const [isModalOpened, setIsModalOpened] = useState<boolean>(false);
@@ -23,27 +23,31 @@ export const Cart = () => {
     ] = useDiscountError();
     const [
         cartContent,
-        // isLoading,
+        isCartLoading,
         handleQtyChange,
         handleCartItemDelete,
         handleCartDelete,
         handleDiscountApply,
         handleDiscountRemove,
-        // cartError,
+        cartError,
     ]: CartHook = useCart(handleDiscountApiError, clearDiscountError);
 
-    if (cartContent?.lineItems.length === 0 || cartContent === null) {
+    if (
+        !isCartLoading &&
+        (cartContent?.lineItems.length === 0 || cartContent === null) &&
+        !cartError
+    ) {
         return <EmptyCart />;
     }
 
-    // if (cartError && !isLoading) {
-    //     {
-    //         return <ErrorCart message={cartError} />;
-    //     }
-    // }
+    if (cartError && !isCartLoading) {
+        {
+            return <ErrorCart message={cartError} />;
+        }
+    }
     return (
         <>
-            {cartContent && (
+            {!isCartLoading && cartContent && (
                 <>
                     <div className={styles.cartContainer}>
                         <Heading className={styles.cartTitle}>

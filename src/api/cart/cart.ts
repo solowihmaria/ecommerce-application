@@ -9,7 +9,6 @@ import type {
     QtyUpdatePayload,
     RemoveDiscountCodePayload,
 } from './cart.types';
-// import { getAnonymousId } from '../anonymousId';
 import { getCustomerToken } from '../auth/getToken';
 import { getToken } from '../token';
 
@@ -43,7 +42,7 @@ export const getUserCartByCustomerId = async (
 };
 
 export const getCart = async (loginStatus: boolean): Promise<CartResponse> => {
-    const token = getCustomerToken(loginStatus);
+    const token = await getCustomerToken(loginStatus);
 
     const apiUrl = process.env.CTP_API_URL;
     const projectKey = process.env.CTP_PROJECT_KEY;
@@ -58,51 +57,11 @@ export const getCart = async (loginStatus: boolean): Promise<CartResponse> => {
     return cart.data;
 };
 
-// export const getUserCart = async (): Promise<CartResponse> => {
-//     const token = getUserToken();
-
-//     const apiUrl = process.env.CTP_API_URL;
-//     const projectKey = process.env.CTP_PROJECT_KEY;
-
-//     const cartUrl = `${apiUrl}/${projectKey}/me/active-cart`;
-//     const cart = await axios.get<CartResponse>(cartUrl, {
-//         headers: {
-//             Authorization: `Bearer ${token}`,
-//             'Content-Type': 'application/json',
-//         },
-//     });
-//     return cart.data;
-// };
-
-// export const getAnonymousCart = async (): Promise<CartResponse> => {
-//     let token;
-
-//     const anonymousId: string | null = getAnonymousId();
-//     if (anonymousId) {
-//         const response = await getAnonymousToken(anonymousId);
-
-//         if (response.access_token) {
-//             token = response.access_token;
-//         }
-//     }
-
-//     const apiUrl = process.env.CTP_API_URL;
-//     const projectKey = process.env.CTP_PROJECT_KEY;
-
-//     const cartUrl = `${apiUrl}/${projectKey}/me/active-cart`;
-//     const cart = await axios.get<CartResponse>(cartUrl, {
-//         headers: {
-//             Authorization: `Bearer ${token}`,
-//             'Content-Type': 'application/json',
-//         },
-//     });
-//     return cart.data;
-// };
-
 export const deleteCart = async (
-    cartContent: CustomCart
+    cartContent: CustomCart,
+    loginStatus: boolean
 ): Promise<CartResponse> => {
-    const token = getUserToken();
+    const token = await getCustomerToken(loginStatus);
 
     const apiUrl = process.env.CTP_API_URL;
     const projectKey = process.env.CTP_PROJECT_KEY;
@@ -126,7 +85,7 @@ export const updateCart = async (
     cartId: string,
     loginStatus: boolean
 ): Promise<CartResponse> => {
-    const token = getCustomerToken(loginStatus);
+    const token = await getCustomerToken(loginStatus);
 
     const apiUrl = process.env.CTP_API_URL;
     const projectKey = process.env.CTP_PROJECT_KEY;
@@ -226,7 +185,7 @@ export const createCart = async (
     loginStatus: boolean,
     payload?: CartDraft
 ): Promise<CartResponse> => {
-    const token = getCustomerToken(loginStatus);
+    const token = await getCustomerToken(loginStatus);
 
     const apiUrl = process.env.CTP_API_URL;
     const projectKey = process.env.CTP_PROJECT_KEY;
@@ -244,39 +203,6 @@ export const createCart = async (
     );
     return cart.data;
 };
-
-// export const createAnonymousCart = async (
-//     payload?: CartDraft
-// ): Promise<CartResponse> => {
-//     let token;
-
-//     const anonymousId: string | null = getAnonymousId();
-//     if (anonymousId) {
-//         const response = await getAnonymousToken(anonymousId);
-
-//         if (response.access_token) {
-//             token = response.access_token;
-//         }
-//     }
-
-//     // const anonymousId = getAnonymousId() || generateAnonymousId();
-
-//     const apiUrl = process.env.CTP_API_URL;
-//     const projectKey = process.env.CTP_PROJECT_KEY;
-
-//     const cartUrl = `${apiUrl}/${projectKey}/carts`;
-//     const cart = await axios.post<CartResponse>(
-//         cartUrl,
-//         payload ? payload : { currency: 'EUR', anonymousId },
-//         {
-//             headers: {
-//                 Authorization: `Bearer ${token}`,
-//                 'Content-Type': 'application/json',
-//             },
-//         }
-//     );
-//     return cart.data;
-// };
 
 export const addCartItem = async (
     cartContent: CustomCart,

@@ -1,13 +1,19 @@
 import axios from 'axios';
 import { getToken } from '../../token';
 import type { DiscountResponse } from './discountCodes.types';
+import { getGuestToken } from '../../auth/getToken';
 
-export const getUserToken = () => {
+export const getUserToken = async () => {
     let accessToken: string = '';
 
     const storedToken = getToken();
     if (storedToken) {
         accessToken = storedToken;
+    } else {
+        const tokenResponse = await getGuestToken();
+        if (tokenResponse) {
+            accessToken = tokenResponse.access_token;
+        }
     }
 
     return accessToken;
@@ -16,7 +22,7 @@ export const getUserToken = () => {
 export const getDiscountCodeById = async (
     id: string
 ): Promise<DiscountResponse> => {
-    const token = getUserToken();
+    const token = await getUserToken();
 
     const apiUrl = process.env.CTP_API_URL;
     const projectKey = process.env.CTP_PROJECT_KEY;
@@ -34,7 +40,7 @@ export const getDiscountCodeById = async (
 export const getDiscountCodeByKey = async (
     key: string
 ): Promise<DiscountResponse> => {
-    const token = getUserToken();
+    const token = await getUserToken();
 
     const apiUrl = process.env.CTP_API_URL;
     const projectKey = process.env.CTP_PROJECT_KEY;

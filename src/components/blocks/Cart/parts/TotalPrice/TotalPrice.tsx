@@ -4,10 +4,22 @@ import styles from './TotalPrice.module.scss';
 import { getCartTotalOrigin } from '../../helpers/totalPriceHelper';
 
 export const TotalPrice = ({ cartContent }: { cartContent: CustomCart }) => {
+    const isAnyProductOnSale = (cartContent: CustomCart) => {
+        return cartContent.lineItems.some((item) => item.variant.discount);
+    };
     return (
         <div className={styles.totalPriceContainer}>
-            <p className={clsx(styles.columnValue, styles.column)}>Total(€):</p>
-            {cartContent.discountOnTotalPrice ||
+            <p
+                className={clsx(
+                    styles.columnValue,
+                    styles.column,
+                    styles.totalLabel
+                )}
+            >
+                Total(€):
+            </p>
+            {isAnyProductOnSale(cartContent) ||
+            cartContent.discountOnTotalPrice ||
             cartContent.lineItems[0].discountedPricePerQuantity ? (
                 <>
                     <p

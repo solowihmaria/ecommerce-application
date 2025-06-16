@@ -6,6 +6,6 @@ export const CartErrorMessages = {
     FAILED_TO_DELETE_MESSAGE: 'Failed to delete item',
     FAILED_TO_APPLY_DISCOUNT: 'The discount code is not applicable',
     FAILED_TO_APPLY_BIRTHDAY_DISCOUNT:
-        'Birthday discount is applicable during your birthday month',
+        'Birthday discount is applicable during birthday month for logged in users',
     FAILED_TO_APPLY_DISCOUNT_GENERIC: 'Unable to apply discount code',
 };

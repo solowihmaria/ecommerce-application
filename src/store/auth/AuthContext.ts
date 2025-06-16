@@ -13,6 +13,7 @@ export interface AuthContextType {
     setCartContent: React.Dispatch<React.SetStateAction<CustomCart | null>>;
     isCartLoading: boolean;
     cartItemsCount: number;
+    cartError: string | null;
 }
 
 export const AuthContext = createContext<AuthContextType>({
@@ -26,4 +27,5 @@ export const AuthContext = createContext<AuthContextType>({
     setCartContent: () => {},
     isCartLoading: false,
     cartItemsCount: 0,
+    cartError: null,
 });
