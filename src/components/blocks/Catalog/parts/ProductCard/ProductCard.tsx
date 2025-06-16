@@ -20,8 +20,8 @@ export const ProductCard = ({ product, setSelectedProduct }: CardProps) => {
         'https://upload.wikimedia.org/wikipedia/commons/thumb/d/d1/Image_not_available.png/800px-Image_not_available.png';
 
     function isInCart(productId: string) {
-        return Boolean(
-            cartContent?.lineItems.find((item) => item.productId === productId)
+        return cartContent?.lineItems.some(
+            (item) => item.productId === productId
         );
     }
 

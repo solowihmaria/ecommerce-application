@@ -18,8 +18,14 @@ import { BigSlider } from './parts/BigSlider/BigSlider';
 import clsx from 'clsx';
 import { Button } from '../../ui/Button';
 import styles from './ProductDetails.module.scss';
+import { useAddToCart } from '../Cart/lib/useAddToCart';
+import { useAuth } from '../../../store/auth/useAuth';
+// import { useCart } from '../Cart/lib/useCart';
+// import { useDiscountError } from '../Cart/lib/useDiscountError';
+// import type { CartHook } from '../Cart/Cart.types';
 
 export const ProductDetails = () => {
+    const { handleAddToCart, isAdding } = useAddToCart();
     const [currentProduct, error]: [CustomProduct | null, string | null] =
         useGetProductData();
     const [currentProductVariant, changeVariant, variantError]: [
@@ -29,6 +35,29 @@ export const ProductDetails = () => {
     ] = useSetVariant(currentProduct);
     const [isModalOpened, setIsModalOpened] = useState<boolean>(false);
     const [clickedSlide, setClickedSlide] = useState<number | null>(null);
+    const { cartContent } = useAuth();
+    // const [handleDiscountApiError, clearDiscountError] = useDiscountError();
+    // const { handleCartItemDelete }: CartHook = useCart(
+    //     handleDiscountApiError,
+    //     clearDiscountError
+    // );
+
+    const isInCart = () => {
+        return (
+            currentProductVariant &&
+            cartContent?.lineItems.some(
+                (item) => item.variant.sku === currentProductVariant.sku
+            )
+        );
+    };
+
+    // const getLineItemId = (variantSKU: string) => {
+    //     const matchingLineItem = cartContent?.lineItems.find(
+    //         (item) => item.variant.sku === variantSKU
+    //     );
+
+    //     return matchingLineItem?.id;
+    // };
 
     const showModal = (index: number) => {
         setClickedSlide(index);
@@ -40,9 +69,11 @@ export const ProductDetails = () => {
         setIsModalOpened(false);
         document.body.style.overflow = 'unset';
     };
+
     if (error || variantError) {
         return <p className={styles.productError}>{error || variantError}</p>;
     }
+
     return (
         <>
             {currentProduct && currentProductVariant ? (
@@ -203,7 +234,36 @@ export const ProductDetails = () => {
                                     </div>
                                 )}
                                 <div className={styles.productActions}>
-                                    <Button>Add to cart</Button>
+                                    {!isInCart() && (
+                                        <Button
+                                            disabled={isAdding}
+                                            loading={isAdding}
+                                            onClick={() => {
+                                                void handleAddToCart(
+                                                    currentProduct.name,
+                                                    currentProductVariant.sku
+                                                );
+                                            }}
+                                        >
+                                            Add to cart
+                                        </Button>
+                                    )}
+                                    {isInCart() && (
+                                        <Button
+                                            disabled={isAdding}
+                                            loading={isAdding}
+                                            onClick={() => {
+                                                // handleCartItemDelete(
+                                                //     cartContent,
+                                                //     getLineItemId(
+                                                //         currentProductVariant.sku
+                                                //     )
+                                                // );
+                                            }}
+                                        >
+                                            Remove from cart
+                                        </Button>
+                                    )}
                                 </div>
                             </div>
                         </div>

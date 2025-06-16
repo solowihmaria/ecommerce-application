@@ -30,18 +30,16 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
 
     useEffect(() => {
         const initSession = async () => {
-            console.log('INIT SESSION');
             const token = getToken();
 
             if (token && !customer) {
                 try {
                     const profile = await fetchMyProfile(token);
-                    console.log('GOT PROFILE');
                     setCustomer(profile);
                 } catch (error) {
                     console.error('Failed to load profile', error);
                 }
-            } else {
+            } else if (!token) {
                 await initAnonymousSession();
             }
 
