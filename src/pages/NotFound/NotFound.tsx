@@ -4,7 +4,7 @@ import styles from './NotFound.module.scss';
 
 export const NotFoundPage = () => {
     return (
-        <div className={styles.wrapper}>
+        <div className={styles.wrapper} data-testid="not-found-container">
             <div className={styles.contentContainer}>
                 <div className={styles.contentCard}>
                     <div className={styles.textContent}>

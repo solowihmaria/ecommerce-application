@@ -105,7 +105,7 @@ exports[`Render Header component 1`] = `
       <a
         class="cartLink"
         data-discover="true"
-        href="/basket"
+        href="/cart"
       >
         <div
           class="cartIconWrapper"
@@ -113,11 +113,6 @@ exports[`Render Header component 1`] = `
           <svg
             data-testid="mock-svg"
           />
-          <span
-            class="cartBadge"
-          >
-            39
-          </span>
         </div>
       </a>
       <div
