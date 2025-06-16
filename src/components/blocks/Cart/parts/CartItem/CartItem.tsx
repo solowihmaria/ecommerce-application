@@ -26,6 +26,7 @@ export const CartItem = ({
                         void deleteProductHandler(cartContent, product.id)
                     }
                     aria-hidden="true"
+                    title="Remove from Cart"
                 >
                     <IoMdClose className={styles.deleteIcon} />
                 </span>
