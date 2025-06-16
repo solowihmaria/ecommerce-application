@@ -8,7 +8,7 @@ export type CartHook = [
     (cartContent: CustomCart) => Promise<void>,
     (code: string, cartContent: CustomCart) => Promise<void>,
     (id: string, cartContent: CustomCart) => Promise<void>,
-    // string | null,
+    string | null,
 ];
 
 export type DiscountHook = [

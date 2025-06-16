@@ -18,28 +18,15 @@ export const useCart = (
     handleDiscountApiError: (error: unknown) => void,
     clearDiscountError: () => void
 ): CartHook => {
-    const { loginStatus, cartContent, setCartContent, isCartLoading } =
-        useAuth();
+    const {
+        loginStatus,
+        cartContent,
+        setCartContent,
+        isCartLoading,
+        cartError,
+    } = useAuth();
 
     const { showToast } = useContext(ToastContext);
-
-    // const handleCartError = (error: unknown) => {
-    //     if (error instanceof AxiosError) {
-    //         if (error.response) {
-    //             if (error.status === 404) {
-    //                 setCartContent(null);
-    //             } else {
-    //                 setCartError(CartErrorMessages.GENERIC_ERROR_MESSAGE);
-    //             }
-    //         } else if (error.request) {
-    //             setCartError(CartErrorMessages.NETWORK_ERROR_MESSAGE);
-    //         } else {
-    //             setCartError(CartErrorMessages.GENERIC_ERROR_MESSAGE);
-    //         }
-    //     } else {
-    //         setCartError(CartErrorMessages.GENERIC_ERROR_MESSAGE);
-    //     }
-    // };
 
     const handleQtyChange = async (
         qty: string,
@@ -140,21 +127,6 @@ export const useCart = (
         }
     };
 
-    // useEffect(() => {
-    //     setIsLoading(true);
-    //     getUserCart()
-    //         .then((cartData) => {
-    //             console.log(cartData);
-    //             setCartContent(prepareCartData(cartData));
-    //             setIsLoading(false);
-    //         })
-    //         .catch((err) => {
-    //             console.error(err);
-    //             setIsLoading(false);
-    //             handleCartError(err);
-    //         });
-    // }, []);
-
     return [
         cartContent,
         isCartLoading,
@@ -163,6 +135,6 @@ export const useCart = (
         handleCartDelete,
         handleDiscountApply,
         handleDiscountRemove,
-        // cartError,
+        cartError,
     ];
 };
