@@ -360,7 +360,7 @@ exports[`<MainPage/> component Render MainPage component 1`] = `
                   <p
                     class="discountDescription"
                   >
-                    OFF your first purchase with us
+                    OFF your first purchase with us to total price
                   </p>
                 </div>
                 <div
@@ -446,7 +446,7 @@ exports[`<MainPage/> component Render MainPage component 1`] = `
                   <p
                     class="discountDescription"
                   >
-                    OFF on your birthday month
+                    OFF on your birthday month to each item
                   </p>
                 </div>
                 <div
@@ -532,7 +532,7 @@ exports[`<MainPage/> component Render MainPage component 1`] = `
                   <p
                     class="discountDescription"
                   >
-                    OFF when you buy 3+ plants
+                    OFF when you buy 3+ plants to total price
                   </p>
                 </div>
                 <div
