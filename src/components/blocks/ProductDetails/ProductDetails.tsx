@@ -10,7 +10,7 @@ import { useGetProductData } from './lib/useGetProductData';
 import { useSetVariant } from './lib/useSetVariant';
 import { Attribute } from './parts/Attribute/Attribute';
 import CareIcon from '../../../assets/icons/care.svg';
-import Height from '../../../assets/images/height.png';
+import Height from '../../../assets/icons/height.png';
 import LightIcon from '../../../assets/icons/light.svg';
 import ToxicityIcon from '../../../assets/icons/toxicity.svg';
 import { useState } from 'react';
