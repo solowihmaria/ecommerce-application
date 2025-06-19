@@ -31,9 +31,7 @@ export const useAddToCart = () => {
             });
 
             return true;
-        } catch (err) {
-            console.error('Failed adding item', err);
-
+        } catch {
             showToast({
                 message: CartErrorMessages.FAILED_TO_ADD_ITEM_MESSAGE,
                 variant: 'error',

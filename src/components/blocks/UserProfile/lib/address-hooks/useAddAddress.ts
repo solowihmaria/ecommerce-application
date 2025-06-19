@@ -57,8 +57,7 @@ export const useAddAddress = () => {
             updateCustomer(updatedCustomer);
             showToast({ message: 'Address added!', variant: 'success' });
             closeModal();
-        } catch (error) {
-            console.error('Failed to add address:', error);
+        } catch {
             showToast({ message: 'Failed to add address', variant: 'error' });
         } finally {
             setIsAdding(false);

@@ -68,8 +68,7 @@ export const usePersonalInfo = () => {
                 message: 'Profile updated successfully!',
                 variant: 'success',
             });
-        } catch (error) {
-            console.error('Failed to update profile:', error);
+        } catch {
             showToast({
                 message: 'Failed to update profile',
                 variant: 'error',

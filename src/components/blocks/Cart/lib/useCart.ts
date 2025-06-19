@@ -42,8 +42,11 @@ export const useCart = (
                 loginStatus
             );
             setCartContent(prepareCartData(updatedCart));
-        } catch (err) {
-            console.error(err);
+        } catch {
+            showToast({
+                message: CartErrorMessages.GENERIC_ERROR_MESSAGE,
+                variant: 'error',
+            });
         }
     };
 
@@ -59,8 +62,7 @@ export const useCart = (
                 loginStatus
             );
             setCartContent(prepareCartData(updatedCart));
-        } catch (err) {
-            console.error(err);
+        } catch {
             showToast({
                 message: CartErrorMessages.FAILED_TO_DELETE_MESSAGE,
                 variant: 'error',
@@ -80,8 +82,7 @@ export const useCart = (
                 message: 'All cart items are removed',
                 variant: 'success',
             });
-        } catch (err) {
-            console.error(err);
+        } catch {
             showToast({
                 message: CartErrorMessages.FAILED_CLEAR_MESSAGE,
                 variant: 'error',
@@ -105,7 +106,6 @@ export const useCart = (
                 variant: 'success',
             });
         } catch (err) {
-            console.error(err);
             handleDiscountApiError(err);
         }
     };
@@ -123,7 +123,10 @@ export const useCart = (
             setCartContent(prepareCartData(updatedCart));
             clearDiscountError();
         } catch (err) {
-            console.error(err);
+            showToast({
+                message: CartErrorMessages.GENERIC_ERROR_MESSAGE,
+                variant: 'error',
+            });
             handleDiscountApiError(err);
         }
     };

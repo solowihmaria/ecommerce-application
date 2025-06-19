@@ -71,8 +71,8 @@ export const ProductDetails = () => {
                     message: `${currentProduct?.name} removed from your cart!`,
                     variant: 'success',
                 });
-            } catch (err) {
-                console.error(err);
+            } catch {
+                //console.error(err);
             }
         }
     };

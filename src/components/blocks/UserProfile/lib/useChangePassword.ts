@@ -82,10 +82,8 @@ export const useChangePassword = () => {
                         'Failed to change password. Please try again later.'
                     );
                 }
-                console.error('Password change failed:', error);
             } else {
                 setApiError('Something went wrong. Please try again.');
-                console.error('Unknown error:', error);
             }
         }
     };
