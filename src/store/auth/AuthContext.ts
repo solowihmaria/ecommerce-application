@@ -14,6 +14,7 @@ export interface AuthContextType {
     isCartLoading: boolean;
     cartItemsCount: number;
     cartError: string | null;
+    handleCartError: (error: unknown) => void;
 }
 
 export const AuthContext = createContext<AuthContextType>({
@@ -28,4 +29,5 @@ export const AuthContext = createContext<AuthContextType>({
     isCartLoading: false,
     cartItemsCount: 0,
     cartError: null,
+    handleCartError: () => {},
 });

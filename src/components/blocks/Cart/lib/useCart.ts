@@ -1,10 +1,11 @@
-import { useContext } from 'react';
+import { useContext, useEffect } from 'react';
 import type { CustomCart } from '../../../../api/cart/cart.types';
 import {
     addDiscountCode,
     changeItemQty,
     createCart,
     deleteCart,
+    getCart,
     removeCartItem,
     removeDiscountCode,
 } from '../../../../api/cart/cart';
@@ -24,9 +25,16 @@ export const useCart = (
         setCartContent,
         isCartLoading,
         cartError,
+        handleCartError,
     } = useAuth();
 
     const { showToast } = useContext(ToastContext);
+
+    useEffect(() => {
+        getCart(loginStatus)
+            .then((cartData) => setCartContent(prepareCartData(cartData)))
+            .catch((error) => handleCartError(error));
+    }, [setCartContent, loginStatus, handleCartError]);
 
     const handleQtyChange = async (
         qty: string,
