@@ -62,6 +62,10 @@ export const useCart = (
                 loginStatus
             );
             setCartContent(prepareCartData(updatedCart));
+            showToast({
+                message: `Removed successfully!`,
+                variant: 'success',
+            });
         } catch {
             showToast({
                 message: CartErrorMessages.FAILED_TO_DELETE_MESSAGE,
