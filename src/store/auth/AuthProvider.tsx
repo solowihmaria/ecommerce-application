@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import { AuthContext } from './AuthContext';
 import { getToken } from '../../api/token';
 import { fetchMyProfile } from '../../api/profile/profile';
@@ -31,6 +31,20 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
     const [cartError, setCartError] = useState<null | string>(null);
     const [cartItemsCount, setCartItemsCount] = useState(0);
 
+    const handleCartError = useCallback((error: unknown) => {
+        if (error instanceof AxiosError) {
+            if (error.response) {
+                setCartError(CartErrorMessages.GENERIC_ERROR_MESSAGE);
+            } else if (error.request) {
+                setCartError(CartErrorMessages.NETWORK_ERROR_MESSAGE);
+            } else {
+                setCartError(CartErrorMessages.GENERIC_ERROR_MESSAGE);
+            }
+        } else {
+            setCartError(CartErrorMessages.GENERIC_ERROR_MESSAGE);
+        }
+    }, []);
+
     useEffect(() => {
         const initSession = async () => {
             const token = getToken();
@@ -40,7 +54,7 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
                     const profile = await fetchMyProfile(token);
                     setCustomer(profile);
                 } catch {
-                    //console.error('Failed to load profile', error);
+                    // console.error('Failed to load profile', error);
                 }
             } else if (!token) {
                 initAnonymousSession();
@@ -81,7 +95,7 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
                 //console.error(err);
                 handleCartError(err);
             });
-    }, [loginStatus, customer]);
+    }, [loginStatus, customer, handleCartError]);
 
     const initAnonymousSession = () => {
         if (!getAnonymousId()) {
@@ -105,19 +119,6 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
         }
     }, [cartContent]);
 
-    const handleCartError = (error: unknown) => {
-        if (error instanceof AxiosError) {
-            if (error.response) {
-                setCartError(CartErrorMessages.GENERIC_ERROR_MESSAGE);
-            } else if (error.request) {
-                setCartError(CartErrorMessages.NETWORK_ERROR_MESSAGE);
-            } else {
-                setCartError(CartErrorMessages.GENERIC_ERROR_MESSAGE);
-            }
-        } else {
-            setCartError(CartErrorMessages.GENERIC_ERROR_MESSAGE);
-        }
-    };
     return (
         <AuthContext.Provider
             value={{
@@ -132,6 +133,7 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
                 isCartLoading,
                 cartItemsCount,
                 cartError,
+                handleCartError,
             }}
         >
             {children}

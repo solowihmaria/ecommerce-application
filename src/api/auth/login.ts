@@ -37,7 +37,10 @@ export const login = async (
     return response.data;
 };
 
-export const mergeCartsOnLogin = async (email: string, password: string) => {
+export const mergeCartsOnLogin = async (
+    email: string,
+    password: string
+): Promise<void> => {
     const apiUrl = process.env.CTP_API_URL;
     const projectKey = process.env.CTP_PROJECT_KEY;
 
