@@ -12,8 +12,8 @@ export const authenticateUser = async (
 ): Promise<{ token: string; customer: Customer }> => {
     try {
         await mergeCartsOnLogin(email, password);
-    } catch (error) {
-        console.error(error);
+    } catch {
+        //console.error(error);
     }
 
     const response = await loginRequest(email, password);

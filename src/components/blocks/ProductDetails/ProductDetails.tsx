@@ -13,7 +13,7 @@ import CareIcon from '../../../assets/icons/care.svg';
 import Height from '../../../assets/images/height.png';
 import LightIcon from '../../../assets/icons/light.svg';
 import ToxicityIcon from '../../../assets/icons/toxicity.svg';
-import { useContext, useState } from 'react';
+import { useState } from 'react';
 import { BigSlider } from './parts/BigSlider/BigSlider';
 import clsx from 'clsx';
 import { Button } from '../../ui/Button';
@@ -23,7 +23,7 @@ import { useAuth } from '../../../store/auth/useAuth';
 import { useCart } from '../Cart/lib/useCart';
 import { useDiscountError } from '../Cart/lib/useDiscountError';
 import type { CartHook } from '../Cart/Cart.types';
-import { ToastContext } from '../../ui/Toast/ToastContext';
+
 import { RxCross1 } from 'react-icons/rx';
 
 export const ProductDetails = () => {
@@ -43,7 +43,6 @@ export const ProductDetails = () => {
         handleDiscountApiError,
         clearDiscountError
     );
-    const { showToast } = useContext(ToastContext);
 
     const isInCart = () => {
         return (
@@ -67,12 +66,8 @@ export const ProductDetails = () => {
         if (cartContent && sku) {
             try {
                 await handleCartItemDelete(cartContent, sku);
-                showToast({
-                    message: `${currentProduct?.name} removed from your cart!`,
-                    variant: 'success',
-                });
-            } catch (err) {
-                console.error(err);
+            } catch {
+                //console.error(err);
             }
         }
     };

@@ -39,8 +39,8 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
                 try {
                     const profile = await fetchMyProfile(token);
                     setCustomer(profile);
-                } catch (error) {
-                    console.error('Failed to load profile', error);
+                } catch {
+                    //console.error('Failed to load profile', error);
                 }
             } else if (!token) {
                 initAnonymousSession();
@@ -64,7 +64,7 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
                         }
                         // console.log('CARTDATA', cartData);
                     } catch (error) {
-                        console.error(error);
+                        //console.error(error);
                         handleCartError(error);
                     }
                 } else {
@@ -78,7 +78,7 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
         loadCart()
             .then(() => setIsCartLoading(false))
             .catch((err) => {
-                console.error(err);
+                //console.error(err);
                 handleCartError(err);
             });
     }, [loginStatus, customer]);

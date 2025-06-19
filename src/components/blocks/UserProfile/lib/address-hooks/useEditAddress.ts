@@ -93,8 +93,7 @@ export const useEditAddress = () => {
             updateCustomer(updatedCustomerWithDefaults);
             setEditingAddressId(null);
             showToast({ message: 'Address updated!', variant: 'success' });
-        } catch (error) {
-            console.error('Failed to update address:', error);
+        } catch {
             showToast({ message: 'Update failed', variant: 'error' });
         } finally {
             setIsLoading(false);

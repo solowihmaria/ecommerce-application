@@ -37,8 +37,7 @@ export const useDeleteAddress = () => {
                 message: 'Address deleted successfully!',
                 variant: 'success',
             });
-        } catch (error) {
-            console.error('Failed to delete address:', error);
+        } catch {
             showToast({
                 message: 'Failed to delete address',
                 variant: 'error',
