@@ -79,7 +79,7 @@ export const MembersSection = () => {
             id: 'member-2',
             name: 'Alexandra Sharovatova',
             role: 'Design Wizard & UI Goddess',
-            bio: 'I discovered programming while trying to customize my blog template and immediately got hooked. After completing an intensive coding bootcamp, I realized frontend development combines everything I love - problem solving, continuous learning and seeing immediate results of my work. Now I specialize in building responsive, accessible interfaces with React and TypeScript.',
+            bio: 'As a designer by education, I’ve always believed that truly great interfaces demand both visual polish and technical execution. That’s why I took the leap into coding—completing intensive training at RSSchool, where I studied React, JavaScript, and TypeScript. Now, I combine my design eye with development skills to build seamless, responsive applications from start to finish. What excites me most? Having end-to-end ownership—crafting not just how things look, but how they work—with pixel-perfect precision.',
             photo: customer2,
             github: 'https://github.com/asharovatova',
             contributions: [
