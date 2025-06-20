@@ -1,5 +1,6 @@
 import axios from 'axios';
-import type { Address, Customer } from './profile.types';
+import type { Customer } from './profile.types';
+import type { Address } from '../../types/customer.types';
 import { getToken } from '../token';
 
 export const updateAddress = async (

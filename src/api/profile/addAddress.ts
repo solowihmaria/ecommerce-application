@@ -1,5 +1,6 @@
 import axios from 'axios';
-import type { Address, Customer } from './profile.types';
+import type { Customer } from './profile.types';
+import type { Address } from '../../types/customer.types';
 import { getToken } from '../token';
 
 type AddressAction =
@@ -55,7 +56,7 @@ export const addAddress = async (
 
     const actions: AddressAction[] = [];
 
-    if (addressData.type) {
+    if (addressData.type && newAddressId) {
         actions.push({
             action:
                 addressData.type === 'shipping'
@@ -65,7 +66,7 @@ export const addAddress = async (
         });
     }
 
-    if (addressData.isDefault && addressData.type) {
+    if (addressData.isDefault && addressData.type && newAddressId) {
         actions.push({
             action:
                 addressData.type === 'shipping'

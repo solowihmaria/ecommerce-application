@@ -1,15 +1,12 @@
 import { getProductByID, getUserToken } from './getProduct';
 import type {
     AttributesList,
-    Care,
     CustomAttributes,
     CustomProduct,
-    CustomVariant,
-    Light,
     ProductResponse,
-    Sizes,
-    Variant,
 } from './product.types';
+import type { Variant, CustomVariant } from '../../types/product.types';
+import type { Sizes, Light, Care } from '../../types/product.types';
 
 export const getProductData = async (id: string, loginStatus: boolean) => {
     const token = await getUserToken(loginStatus);

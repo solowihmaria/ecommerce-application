@@ -1,4 +1,4 @@
-import type { Image } from '../../../../../api/product/product.types';
+import type { Image } from '../../../../../types/product.types';
 
 export interface BigSliderProps {
     currentSlide: number;
