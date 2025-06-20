@@ -1,0 +1,139 @@
+@use '../../assets/styles/constants.module' as c;
+
+.wrapper {
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    min-height: 90vh;
+    padding: 2rem;
+    background: url('../../assets/images/bkg-form.jpg') center/cover no-repeat;
+}
+
+.contentContainer {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    max-width: 1200px;
+}
+
+.contentCard {
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    max-width: 1000px;
+    padding: 1rem;
+    border: 1px solid rgba(c.$color-white, 0.3);
+    border-radius: 24px;
+    background: rgba(c.$color-white, 0.7);
+    box-shadow: 0 10px 30px rgb(0 0 0 / 15%);
+    backdrop-filter: blur(8px);
+
+    @media (width >= 1024px) {
+        flex-direction: row;
+        gap: 1rem;
+        align-items: center;
+        padding: 2rem;
+    }
+}
+
+.textContent {
+    flex: 1;
+    order: 2;
+    text-align: center;
+
+    @media (width >= 1024px) {
+        order: 1;
+        text-align: left;
+    }
+}
+
+.plantImage {
+    flex: 1;
+    order: 1;
+    width: 100%;
+    min-height: 300px;
+    margin-bottom: 0.7rem;
+    background-image: url('../../assets/images/404-img.png');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+
+    @media (width >= 768px) {
+        min-height: 400px;
+    }
+
+    @media (width >= 1024px) {
+        order: 2;
+        min-height: 500px;
+        margin-bottom: 0;
+    }
+}
+
+.errorCode {
+    margin-bottom: 1rem;
+    font-size: 6rem;
+    font-weight: 800;
+    line-height: 1;
+    color: c.$color-primary-dark;
+
+    @media (width >= 768px) {
+        font-size: 8rem;
+    }
+}
+
+.message {
+    margin-bottom: 1rem;
+    font-size: 1.75rem;
+    font-weight: 700;
+    color: c.$color-primary-dark;
+
+    @media (width >= 768px) {
+        font-size: 2.25rem;
+    }
+}
+
+.description {
+    margin-bottom: 2rem;
+    font-size: 1.1rem;
+    line-height: 1.6;
+    color: c.$color-gray-800;
+
+    @media (width >= 768px) {
+        font-size: 1.25rem;
+    }
+}
+
+.button {
+    border: none;
+    border-radius: 50px;
+    font-weight: 600;
+
+    &:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 6px 20px rgb(0 0 0 / 15%);
+    }
+}
+
+@media (width <= 480px) {
+    .contentCard {
+        padding: 2rem 1.5rem;
+        border-radius: 16px;
+    }
+
+    .errorCode {
+        font-size: 4rem;
+    }
+
+    .message {
+        font-size: 1.5rem;
+    }
+
+    .description {
+        font-size: 1rem;
+    }
+}

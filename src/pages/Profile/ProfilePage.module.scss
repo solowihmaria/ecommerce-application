@@ -1,0 +1,11 @@
+@use '../../assets/styles/constants.module' as c;
+
+.profilePage {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    background: c.$color-accent-dark;
+    background: url('../../assets/images/bkg-profile.jpg') no-repeat center
+        center;
+    background-size: cover;
+}

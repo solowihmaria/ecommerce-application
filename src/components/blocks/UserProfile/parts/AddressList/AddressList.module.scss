@@ -1,0 +1,259 @@
+@use '../../../../../assets/styles/constants.module' as c;
+
+.addresses {
+    position: relative;
+    z-index: 1;
+    margin-top: 2rem;
+    padding: 1.5rem;
+    border: 1px solid c.$color-text-primary;
+    border-radius: 0.5rem;
+    color: c.$color-text-primary;
+
+    &::before {
+        position: absolute;
+        z-index: -1;
+        inset: 0;
+        border-radius: 0.5rem;
+        background: rgba(c.$color-black, 0.45);
+        content: '';
+        backdrop-filter: blur(35px);
+    }
+}
+
+.sectionHeader {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 1.5rem;
+}
+
+.addButton {
+    display: flex;
+    gap: 0.7rem;
+    align-items: center;
+    padding: 0.75rem 2rem;
+    border: 1px solid c.$color-accent-dark;
+    color: c.$color-text-primary;
+    background-color: c.$color-accent-primary;
+
+    &:hover {
+        background-color: c.$color-accent-light;
+    }
+}
+
+.icon {
+    width: 1rem;
+    height: 1rem;
+}
+
+.addIcon {
+    font-size: 1.2rem;
+    color: inherit;
+}
+
+.addressList {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+
+    @media (width <= 768px) {
+        grid-template-columns: 1fr;
+    }
+}
+
+.addressCard {
+    padding: 1rem;
+    border-radius: 0.5rem;
+    background-color: c.$color-primary;
+    background-color: rgba(c.$color-primary, 0.55);
+    box-shadow:
+        0 2px 4px rgb(0 0 0 / 5%),
+        0 1px 2px rgb(0 0 0 / 10%);
+}
+
+.viewMode {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.addressHeader {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.addressMeta {
+    display: flex;
+    gap: 0.5rem;
+}
+
+.typeBadge,
+.defaultBadge {
+    padding: 0.25rem 0.5rem;
+    border: 1px solid rgba(c.$color-primary-light, 0.3);
+    border-radius: 0.25rem;
+    font-size: 0.75rem;
+    font-weight: 500;
+    color: c.$color-text-primary;
+    background-color: c.$color-primary-dark;
+}
+
+.defaultBadge {
+    background-color: c.$color-primary;
+}
+
+.addressActions {
+    display: flex;
+    gap: 0.25rem;
+}
+
+.editButton,
+.deleteButton {
+    border: 1px solid c.$color-gray-600;
+    color: c.$color-text-primary;
+    background-color: transparent;
+
+    &:hover {
+        background-color: c.$color-gray-800;
+    }
+}
+
+.addressLine {
+    padding: 0.5rem 0;
+    font-size: 0.9rem;
+    color: c.$color-text-primary;
+}
+
+.editForm {
+    display: grid;
+    gap: 1rem;
+    padding-top: 0.5rem;
+}
+
+.field {
+    display: grid;
+    gap: 0.25rem;
+    margin-bottom: 1rem;
+}
+
+.checkboxField {
+    display: flex;
+    gap: 0.5rem;
+    align-items: center;
+    padding: 0.5rem 0;
+}
+
+.formActions {
+    display: flex;
+    gap: 0.5rem;
+    justify-content: flex-end;
+    padding-top: 0.5rem;
+}
+
+.cancelButton {
+    color: c.$color-text-primary;
+    background-color: c.$color-error;
+}
+
+.saveButton {
+    color: c.$color-text-primary;
+    background-color: c.$color-success;
+}
+
+.modalOverlay {
+    position: fixed;
+    z-index: 1000;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    backdrop-filter: blur(c.$blur5);
+}
+
+.modal {
+    max-width: 27rem;
+    padding: 2rem;
+    border: 1px solid c.$color-text-primary;
+    border-radius: 20px;
+    background: c.$color-primary-dark;
+}
+
+.addAdressForm {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.modalTitle {
+    text-align: center;
+}
+
+.modalActions {
+    display: flex;
+    gap: 1rem;
+    justify-content: flex-end;
+    margin-top: 2rem;
+}
+
+.headerRow {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 2rem;
+
+    @media (width <= 768px) {
+        flex-direction: column;
+    }
+}
+
+@media (width <= 980px) {
+    .modal {
+        max-width: 95%;
+    }
+
+    .modalActions button {
+        width: 100%;
+        padding: 0.5rem;
+        font-size: 0.8rem;
+    }
+
+    .field {
+        margin-bottom: 0.4rem;
+    }
+
+    .field input {
+        padding: 0.5rem 0.75rem;
+        font-size: 0.9rem;
+    }
+
+    .field select {
+        padding: 0.1rem;
+        font-size: 0.7rem;
+    }
+
+    .modalActions {
+        margin-top: 0.1rem;
+    }
+
+    .modalLabel {
+        margin-bottom: 0.1rem;
+        font-size: 0.7rem;
+    }
+}
+
+@media (width <= 500px) {
+    .formActions {
+        flex-direction: column;
+    }
+}
+
+@media (width <= 400px) {
+    .addressCard {
+        max-width: 15rem;
+    }
+
+    .addressCard .deleteButton {
+        padding: 0.2rem;
+    }
+}

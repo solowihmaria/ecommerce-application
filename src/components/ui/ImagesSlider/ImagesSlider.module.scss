@@ -1,0 +1,21 @@
+.slider {
+    --swiper-navigation-color: #f8f8f8;
+    --swiper-pagination-color: #124a428a;
+
+    width: 101%;
+    border-radius: 1rem;
+}
+
+.slider div:nth-child(3) {
+    text-shadow: 1px 1px 6px rgb(23 80 52 / 87.7%);
+}
+
+.slider div:nth-child(2) {
+    text-shadow: 1px 1px 6px rgb(23 80 52 / 87.7%);
+}
+
+@media (width <= 992px) {
+    .slider {
+        width: 100%;
+    }
+}

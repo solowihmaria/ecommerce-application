@@ -1,0 +1,9 @@
+@use '../../assets//styles/constants.module' as c;
+
+.loginPage {
+    display: flex;
+    flex-direction: column;
+    background: c.$color-accent-dark;
+    background: url('../../assets/images/bkg-form.jpg') no-repeat center center;
+    background-size: cover;
+}

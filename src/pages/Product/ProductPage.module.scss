@@ -1,0 +1,37 @@
+@use '../../assets/styles/constants.module' as c;
+
+.productPageContainer {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+.main {
+    display: flex;
+    flex-grow: 1;
+    justify-content: center;
+    min-height: 90vh;
+    padding: 4rem 6rem;
+    background-color: c.$color-primary;
+    background-image: url('../../assets/images/bkg-hero.jpg');
+    background-position: center;
+    background-size: cover;
+}
+
+@media (width <= 992px) {
+    .main {
+        padding: 2rem 3rem;
+    }
+}
+
+@media (width <= 700px) {
+    .main {
+        padding: 0;
+    }
+}
+
+@media (width <= 500px) {
+    .main {
+        padding: 0;
+    }
+}

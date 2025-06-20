@@ -1,0 +1,4 @@
+{
+    "(src/**/*.css)|(src/**/*.scss)": ["stylelint --fix", "prettier --write"],
+    "(src/**/*.tsx)|(src/**/*.ts)": ["prettier --write", "eslint"]
+}
