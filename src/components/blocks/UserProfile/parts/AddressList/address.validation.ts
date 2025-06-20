@@ -1,6 +1,6 @@
 import * as yup from 'yup';
-import type { CountryCode } from '../../../../../api/signup/createCustomer.types';
-import type { AddressType } from '../../../../../api/profile/profile.types';
+import type { CountryCode } from '../../../../../types/customer.types';
+import type { AddressType } from '../../../../../types/customer.types';
 
 const ruleForStreet = yup
     .string()

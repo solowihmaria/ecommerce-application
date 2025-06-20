@@ -7,7 +7,7 @@ import { useAuth } from '../../../../../store/auth/useAuth';
 import { ToastContext } from '../../../../ui/Toast/ToastContext';
 import { useContext } from 'react';
 import type { AddressFormData } from '../../UserProfile.types';
-import { CountryCode } from '../../../../../api/signup/createCustomer.types';
+import { CountryCode } from '../../../../../types/customer.types';
 
 export const useAddAddress = () => {
     const { customer, updateCustomer } = useAuth();

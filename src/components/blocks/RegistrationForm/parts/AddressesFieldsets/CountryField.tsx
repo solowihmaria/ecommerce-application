@@ -2,7 +2,7 @@ import { useFormContext } from 'react-hook-form';
 import type { addressFieldProps } from '../../Registration.types';
 import { Label } from '../../../../ui/Label/Label';
 import { Select } from '../../../../ui/Select/Select';
-import { CountryCode } from '../../../../../api/signup/createCustomer.types';
+import { CountryCode } from '../../../../../types/customer.types';
 
 export const CountryField = ({ type, disabled }: addressFieldProps) => {
     const { register } = useFormContext();
