@@ -1,5 +1,5 @@
 import * as yup from 'yup';
-import { CountryCode } from '../../../../api/createCustomer/createCustomer.types';
+import { CountryCode } from '../../../../types/customer.types';
 
 const ruleForEmail = yup
     .string()

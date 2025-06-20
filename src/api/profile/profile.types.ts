@@ -1,27 +1,8 @@
-import type { CountryCode } from '../createCustomer/createCustomer.types';
+import type { BaseCustomer } from '../../types/customer.types';
 
-export interface Customer {
+export interface Customer extends BaseCustomer {
     id: string;
-    email: string;
-    firstName: string;
-    lastName: string;
-    dateOfBirth?: string;
-    addresses: Address[];
+    version: number;
     billingAddressIds?: string[];
     shippingAddressIds?: string[];
-    defaultShippingAddressId?: string | null;
-    defaultBillingAddressId?: string | null;
-    version: number;
-}
-
-export type AddressType = 'shipping' | 'billing';
-
-export interface Address {
-    id: string;
-    streetName: string;
-    postalCode: string;
-    city: string;
-    country: CountryCode;
-    type?: AddressType;
-    isDefault?: boolean;
 }
