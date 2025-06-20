@@ -1,4 +1,4 @@
-import type { CountryCode } from '../../../api/createCustomer/createCustomer.types';
+import type { CountryCode } from '../../../api/signup/createCustomer.types';
 
 export interface PersonalData {
     firstName: string;

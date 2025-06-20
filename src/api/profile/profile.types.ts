@@ -1,4 +1,4 @@
-import type { CountryCode } from '../createCustomer/createCustomer.types';
+import type { CountryCode } from '../signup/createCustomer.types';
 
 export interface Customer {
     id: string;

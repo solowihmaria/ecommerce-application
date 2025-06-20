@@ -5,7 +5,7 @@ import { Input } from '../../../../../components/ui/Input';
 import { Label } from '../../../../../components/ui/Label';
 import { Select } from '../../../../../components/ui/Select';
 import { ConfirmModal } from '../../../../../components/ui/ConfirmModal';
-import { CountryCode } from '../../../../../api/createCustomer/createCustomer.types';
+import { CountryCode } from '../../../../../api/signup/createCustomer.types';
 import type { Address } from '../../../../../api/profile/profile.types';
 import { FiEdit2, FiTrash2, FiPlus } from 'react-icons/fi';
 import styles from './AddressList.module.scss';

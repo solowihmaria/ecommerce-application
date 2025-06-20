@@ -5,7 +5,7 @@ import { useNavigate } from 'react-router-dom';
 import { registrationSchema } from '../lib/registration.validation';
 import type { RegistrationFormData } from '../Registration.types';
 import { useRegistrationErrors } from './useRegistrationErrors';
-import { createCustomer } from '../../../../api/createCustomer/createCustomer';
+import { createCustomer } from '../../../../api/signup/createCustomer';
 import { authenticateUser } from '../../../../api/auth/authService';
 import { useAuth } from '../../../../store/auth/useAuth';
 import { ToastContext } from '../../../ui/Toast/ToastContext';
