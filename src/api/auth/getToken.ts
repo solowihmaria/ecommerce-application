@@ -2,7 +2,8 @@ import axios from 'axios';
 import type { AuthResponse } from './auth.types';
 import { getUserToken } from '../cart/cart';
 import { getAnonymousId } from '../anonymousId';
-import { getAnonToken, setAnonToken } from '../token';
+import { ANON_TOKEN_KEY } from '../../utilities/constants/constants';
+import { getToken, setToken } from '../token';
 
 export const getGuestToken = async () => {
     const authUrl = process.env.CTP_AUTH_URL;
@@ -69,12 +70,12 @@ export const getCustomerToken = async (loginStatus: boolean) => {
         // console.log(`anon id${anonymousId}`);
 
         if (anonymousId) {
-            const anonToken = getAnonToken();
+            const anonToken = getToken(ANON_TOKEN_KEY);
             if (!anonToken) {
                 const tokenResponse = await getAnonymousToken(anonymousId);
 
                 if (tokenResponse) {
-                    setAnonToken(tokenResponse.access_token);
+                    setToken(tokenResponse.access_token, ANON_TOKEN_KEY);
                     token = tokenResponse.access_token;
                 }
             } else {

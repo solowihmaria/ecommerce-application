@@ -2,6 +2,7 @@ import axios from 'axios';
 import type { Customer } from './profile.types';
 import type { Address } from '../../types/customer.types';
 import { getToken } from '../token';
+import { AUTH_TOKEN_KEY } from '../../utilities/constants/constants';
 
 export const updateAddress = async (
     customerId: string,
@@ -87,7 +88,7 @@ export const updateAddress = async (
     const response = await axios.post<Customer>(
         `${process.env.CTP_API_URL}/${process.env.CTP_PROJECT_KEY}/customers/${customerId}`,
         { version, actions },
-        { headers: { Authorization: `Bearer ${getToken()}` } }
+        { headers: { Authorization: `Bearer ${getToken(AUTH_TOKEN_KEY)}` } }
     );
 
     return response.data;
