@@ -13,6 +13,7 @@ import { createCart, getCart } from '../../api/cart/cart';
 import { prepareCartData } from '../../api/cart/helpers';
 import { AxiosError } from 'axios';
 import { CartErrorMessages } from '../../components/blocks/Cart/lib/constants';
+import { AUTH_TOKEN_KEY } from '../../utilities/constants/constants';
 
 /**
  * Провайдер аутентификации.
@@ -23,7 +24,7 @@ import { CartErrorMessages } from '../../components/blocks/Cart/lib/constants';
  * - Получает или создает корзину
  */
 export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
-    const [loginStatus, setLoginStatus] = useState(!!getToken());
+    const [loginStatus, setLoginStatus] = useState(!!getToken(AUTH_TOKEN_KEY));
     const [isAnonymous, setIsAnonymous] = useState(false);
     const [customer, setCustomer] = useState<Customer | null>(null);
     const [cartContent, setCartContent] = useState<null | CustomCart>(null);
@@ -47,7 +48,7 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
 
     useEffect(() => {
         const initSession = async () => {
-            const token = getToken();
+            const token = getToken(AUTH_TOKEN_KEY);
 
             if (token && !customer) {
                 try {
@@ -76,9 +77,7 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
                         if (cartData) {
                             setCartContent(prepareCartData(cartData));
                         }
-                        // console.log('CARTDATA', cartData);
                     } catch (error) {
-                        //console.error(error);
                         handleCartError(error);
                     }
                 } else {
@@ -92,7 +91,6 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
         loadCart()
             .then(() => setIsCartLoading(false))
             .catch((err) => {
-                //console.error(err);
                 handleCartError(err);
             });
     }, [loginStatus, customer, handleCartError]);

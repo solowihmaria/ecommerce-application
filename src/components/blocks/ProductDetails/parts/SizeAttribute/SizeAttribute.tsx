@@ -1,9 +1,7 @@
 import clsx from 'clsx';
-import { Sizes } from '../../../../../api/product/product.types';
-import type {
-    CustomProduct,
-    CustomVariant,
-} from '../../../../../api/product/product.types';
+import { Sizes } from '../../../../../types/product.types';
+import type { CustomProduct } from '../../../../../api/product/product.types';
+import type { CustomVariant } from '../../../../../types/product.types';
 import styles from './SizeAttribute.module.scss';
 import { Button } from '../../../../ui/Button';
 import type { SizeAttributeProps } from './SizeAttribute.types';

@@ -11,11 +11,12 @@ import type {
 } from './cart.types';
 import { getCustomerToken } from '../auth/getToken';
 import { getToken } from '../token';
+import { AUTH_TOKEN_KEY } from '../../utilities/constants/constants';
 
 export const getUserToken = () => {
     let accessToken: string = '';
 
-    const storedToken = getToken();
+    const storedToken = getToken(AUTH_TOKEN_KEY);
     if (storedToken) {
         accessToken = storedToken;
     }

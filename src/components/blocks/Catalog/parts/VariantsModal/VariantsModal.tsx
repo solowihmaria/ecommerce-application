@@ -1,8 +1,7 @@
 import { useState } from 'react';
-import type {
-    Product,
-    ProductVariant,
-} from '../../../../../api/catalog/catalog.types';
+import type { Product } from '../../../../../api/catalog/catalog.types';
+import type { Variant } from '../../../../../types/product.types';
+import { Attributes } from '../../../../../types/product.types';
 import { Button } from '../../../../ui/Button';
 import styles from './VariantsModal.module.scss';
 import { useAddToCart } from '../../../Cart/lib/useAddToCart';
@@ -18,7 +17,7 @@ export const VariantsModal = ({ product, onCancel }: VariantsModalProps) => {
         null
     );
 
-    const onAddToCart = async (variant: ProductVariant) => {
+    const onAddToCart = async (variant: Variant) => {
         setSelectedVariantId(variant.id);
 
         const success = await handleAddToCart(product.name, variant.sku);
@@ -28,9 +27,9 @@ export const VariantsModal = ({ product, onCancel }: VariantsModalProps) => {
         }
     };
 
-    function getVariantLabel(variant: ProductVariant) {
+    function getVariantLabel(variant: Variant) {
         const sizeAttr = variant.attributes.find(
-            (attr) => attr.name === 'size'
+            (attr) => attr.name === Attributes.size
         );
         const sizeValue = sizeAttr?.value;
         const size =
@@ -42,13 +41,13 @@ export const VariantsModal = ({ product, onCancel }: VariantsModalProps) => {
         return `Size ${size}, €${price}`;
     }
 
-    function getVariantDiscount(variant: ProductVariant) {
+    function getVariantDiscount(variant: Variant) {
         return variant.prices[0].discounted
             ? (variant.prices[0].value.centAmount / 100).toFixed(2)
             : '';
     }
 
-    const variants: ProductVariant[] = product.variants
+    const variants: Variant[] = product.variants
         ? [product.masterVariant, ...product.variants]
         : [product.masterVariant];
 
