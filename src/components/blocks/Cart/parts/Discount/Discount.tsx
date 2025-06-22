@@ -35,8 +35,7 @@ export const Discount = ({
             const birthdayDiscount = await getDiscountCodeByKey(
                 DiscountKeys.Birthday
             );
-            console.log(birthdayDiscount.code);
-            console.log(code);
+
             return code === birthdayDiscount.code;
         } catch {
             return false;

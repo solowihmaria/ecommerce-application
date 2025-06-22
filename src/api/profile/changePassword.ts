@@ -1,6 +1,7 @@
 import axios from 'axios';
 import { getToken } from '../token';
 import type { Customer } from './profile.types';
+import { AUTH_TOKEN_KEY } from '../../utilities/constants/constants';
 
 export const changePassword = async (
     id: string,
@@ -18,7 +19,7 @@ export const changePassword = async (
         },
         {
             headers: {
-                Authorization: `Bearer ${getToken()}`,
+                Authorization: `Bearer ${getToken(AUTH_TOKEN_KEY)}`,
             },
         }
     );

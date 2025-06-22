@@ -15,6 +15,8 @@ export interface AuthContextType {
     cartItemsCount: number;
     cartError: string | null;
     handleCartError: (error: unknown) => void;
+    isCartExist: boolean;
+    setIsCartExist: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 export const AuthContext = createContext<AuthContextType>({
@@ -30,4 +32,6 @@ export const AuthContext = createContext<AuthContextType>({
     cartItemsCount: 0,
     cartError: null,
     handleCartError: () => {},
+    isCartExist: false,
+    setIsCartExist: () => {},
 });

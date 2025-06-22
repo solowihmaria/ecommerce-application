@@ -17,7 +17,7 @@ export const authenticateUser = async (
     try {
         await mergeCartsOnLogin(email, password);
     } catch (error) {
-        console.log(error);
+        console.error(error);
     }
     const response = await loginRequest(email, password);
 

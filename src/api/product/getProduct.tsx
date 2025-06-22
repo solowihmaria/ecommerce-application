@@ -2,12 +2,13 @@ import axios from 'axios';
 import type { ProductResponse } from './product.types';
 import { getToken } from '../token';
 import { getGuestToken } from '../auth/getToken';
+import { AUTH_TOKEN_KEY } from '../../utilities/constants/constants';
 
 export const getUserToken = async (loginStatus: boolean) => {
     let accessToken: string = '';
 
     if (loginStatus) {
-        const storedToken = getToken();
+        const storedToken = getToken(AUTH_TOKEN_KEY);
         if (storedToken) {
             accessToken = storedToken;
         }

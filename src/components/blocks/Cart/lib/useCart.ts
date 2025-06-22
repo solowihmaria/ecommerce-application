@@ -26,15 +26,19 @@ export const useCart = (
         isCartLoading,
         cartError,
         handleCartError,
+        isCartExist,
+        setIsCartExist,
     } = useAuth();
 
     const { showToast } = useContext(ToastContext);
 
     useEffect(() => {
-        getCart(loginStatus)
-            .then((cartData) => setCartContent(prepareCartData(cartData)))
-            .catch((error) => handleCartError(error));
-    }, [setCartContent, loginStatus, handleCartError]);
+        if (isCartExist) {
+            getCart(loginStatus)
+                .then((cartData) => setCartContent(prepareCartData(cartData)))
+                .catch((error) => handleCartError(error));
+        }
+    }, [setCartContent, loginStatus, handleCartError, isCartExist]);
 
     const handleQtyChange = async (
         qty: string,
@@ -86,9 +90,11 @@ export const useCart = (
         try {
             await deleteCart(cartContent, loginStatus);
             setCartContent(null);
+            setIsCartExist(false);
             const newCart = await createCart(loginStatus);
             if (newCart) {
                 setCartContent(prepareCartData(newCart));
+                setIsCartExist(true);
             }
             showToast({
                 message: 'All cart items are removed',
