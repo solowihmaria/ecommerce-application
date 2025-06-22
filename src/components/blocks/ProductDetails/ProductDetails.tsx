@@ -1,8 +1,5 @@
-import type {
-    CustomProduct,
-    CustomVariant,
-    Sizes,
-} from '../../../api/product/product.types';
+import type { CustomProduct } from '../../../api/product/product.types';
+import type { Sizes, CustomVariant } from '../../../types/product.types';
 import { Slider } from '../../ui/ImagesSlider/ImagesSlider';
 
 import { SizeAttribute } from './parts/SizeAttribute/SizeAttribute';
@@ -48,7 +45,7 @@ export const ProductDetails = () => {
         return (
             currentProductVariant &&
             cartContent?.lineItems.some(
-                (item) => item.variant.sku === currentProductVariant.sku
+                (item) => item.variant?.sku === currentProductVariant.sku
             )
         );
     };
@@ -64,11 +61,7 @@ export const ProductDetails = () => {
     const handleRemove = async (variantSku: string) => {
         const sku = getLineItemId(variantSku);
         if (cartContent && sku) {
-            try {
-                await handleCartItemDelete(cartContent, sku);
-            } catch {
-                //console.error(err);
-            }
+            await handleCartItemDelete(cartContent, sku);
         }
     };
 

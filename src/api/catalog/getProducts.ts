@@ -1,20 +1,19 @@
-import { getUserToken } from '../product/getProduct';
+import { getUserToken } from '../auth/getToken';
 import type {
     ProductProjection,
     Product,
     requestGetProductsParams,
 } from './catalog.types';
 import { requestGetProducts } from './requestGetProducts';
+import { Attributes } from '../../types/product.types';
 
 const transformProductData = (productsData: ProductProjection[]) => {
     const products: Product[] = productsData.map((productData) => {
         const previewAttr = productData.masterVariant.attributes.find(
-            (attr) => attr.name === 'preview'
+            (attr) => attr.name === Attributes.preview
         );
         const preview =
-            typeof previewAttr?.value === 'string'
-                ? previewAttr.value
-                : previewAttr?.value.label;
+            typeof previewAttr?.value === 'string' ? previewAttr.value : '';
 
         return {
             id: productData.id,

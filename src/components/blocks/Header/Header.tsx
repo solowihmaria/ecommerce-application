@@ -13,7 +13,8 @@ import { CgProfile } from 'react-icons/cg';
 import { MdLogin } from 'react-icons/md';
 
 export const Header = () => {
-    const { loginStatus, setLoginStatus, cartItemsCount } = useAuth();
+    const { loginStatus, setLoginStatus, cartItemsCount, setIsCartExist } =
+        useAuth();
     const [isHamburgerMenuOpened, setIsHamburgerMenuOpened] = useState(false);
     const [isProfileMenuOpened, setIsProfileMenuOpened] = useState(false);
     const profileMenuRef = useRef<null | HTMLDivElement>(null);
@@ -23,6 +24,7 @@ export const Header = () => {
     const onLogout = () => {
         logoutUser()
             .then(() => {
+                setIsCartExist(false);
                 setLoginStatus(false);
                 void navigate('/main');
             })

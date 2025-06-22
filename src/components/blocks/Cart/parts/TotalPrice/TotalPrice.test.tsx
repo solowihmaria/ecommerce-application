@@ -2,7 +2,7 @@ import { render, screen } from '@testing-library/react';
 
 import '@testing-library/jest-dom';
 import type { CustomCart } from '../../../../../api/cart/cart.types';
-import { Care, Light, Sizes } from '../../../../../api/product/product.types';
+import { Care, Light, Sizes } from '../../../../../types/product.types';
 import { TotalPrice } from './TotalPrice';
 
 const cartDataWithoutSale: CustomCart = {

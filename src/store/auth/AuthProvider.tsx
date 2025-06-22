@@ -13,6 +13,7 @@ import { createCart, getCart } from '../../api/cart/cart';
 import { prepareCartData } from '../../api/cart/helpers';
 import { AxiosError } from 'axios';
 import { CartErrorMessages } from '../../components/blocks/Cart/lib/constants';
+import { AUTH_TOKEN_KEY } from '../../utilities/constants/constants';
 
 /**
  * Провайдер аутентификации.
@@ -23,13 +24,14 @@ import { CartErrorMessages } from '../../components/blocks/Cart/lib/constants';
  * - Получает или создает корзину
  */
 export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
-    const [loginStatus, setLoginStatus] = useState(!!getToken());
+    const [loginStatus, setLoginStatus] = useState(!!getToken(AUTH_TOKEN_KEY));
     const [isAnonymous, setIsAnonymous] = useState(false);
     const [customer, setCustomer] = useState<Customer | null>(null);
     const [cartContent, setCartContent] = useState<null | CustomCart>(null);
     const [isCartLoading, setIsCartLoading] = useState(true);
     const [cartError, setCartError] = useState<null | string>(null);
     const [cartItemsCount, setCartItemsCount] = useState(0);
+    const [isCartExist, setIsCartExist] = useState(!!cartContent);
 
     const handleCartError = useCallback((error: unknown) => {
         if (error instanceof AxiosError) {
@@ -47,7 +49,7 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
 
     useEffect(() => {
         const initSession = async () => {
-            const token = getToken();
+            const token = getToken(AUTH_TOKEN_KEY);
 
             if (token && !customer) {
                 try {
@@ -68,6 +70,7 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
                 const cartData = await getCart(loginStatus);
                 if (cartData) {
                     setCartContent(prepareCartData(cartData));
+                    setIsCartExist(true);
                 }
             } catch (error) {
                 if (error instanceof AxiosError && error.status === 404) {
@@ -75,10 +78,9 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
                         cartData = await createCart(loginStatus);
                         if (cartData) {
                             setCartContent(prepareCartData(cartData));
+                            setIsCartExist(true);
                         }
-                        // console.log('CARTDATA', cartData);
                     } catch (error) {
-                        //console.error(error);
                         handleCartError(error);
                     }
                 } else {
@@ -87,14 +89,15 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
             }
         };
 
-        void initSession();
-
-        loadCart()
-            .then(() => setIsCartLoading(false))
-            .catch((err) => {
-                //console.error(err);
-                handleCartError(err);
-            });
+        initSession()
+            .then(() => {
+                loadCart()
+                    .then(() => setIsCartLoading(false))
+                    .catch((err) => {
+                        handleCartError(err);
+                    });
+            })
+            .catch((error) => console.error(error));
     }, [loginStatus, customer, handleCartError]);
 
     const initAnonymousSession = () => {
@@ -134,6 +137,8 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
                 cartItemsCount,
                 cartError,
                 handleCartError,
+                isCartExist,
+                setIsCartExist,
             }}
         >
             {children}

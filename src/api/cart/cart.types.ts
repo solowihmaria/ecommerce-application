@@ -1,5 +1,4 @@
-import type { CustomVariant, Variant } from '../product/product.types';
-import type { Price } from '../product/product.types';
+import type { CustomVariant, Variant, Price } from '../../types/product.types';
 
 export interface CartResponse {
     id: string;

@@ -1,6 +1,7 @@
 import axios from 'axios';
 import type { Customer } from './profile.types';
 import { getToken } from '../token';
+import { AUTH_TOKEN_KEY } from '../../utilities/constants/constants';
 
 export const updatePersonalData = async (
     id: string,
@@ -33,7 +34,7 @@ export const updatePersonalData = async (
         },
         {
             headers: {
-                Authorization: `Bearer ${getToken()}`,
+                Authorization: `Bearer ${getToken(AUTH_TOKEN_KEY)}`,
             },
         }
     );

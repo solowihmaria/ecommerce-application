@@ -1,5 +1,6 @@
 import axios from 'axios';
 import type { CreateCustomerResponse, Customer } from './createCustomer.types';
+
 import type { RegistrationFormData } from '../../components/blocks/RegistrationForm/Registration.types';
 import { getGuestToken } from '../auth/getToken';
 

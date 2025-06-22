@@ -1,4 +1,4 @@
-import { prepareVariant } from '../product/productService';
+import { prepareVariant } from '../product/helpers';
 import type {
     CartItem,
     CartResponse,

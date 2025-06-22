@@ -367,20 +367,26 @@ export const AddressList = () => {
                             <div className={styles.viewMode}>
                                 <div className={styles.addressHeader}>
                                     <div className={styles.addressMeta}>
-                                        {customer.shippingAddressIds?.includes(
-                                            address.id
-                                        ) && (
-                                            <span className={styles.typeBadge}>
-                                                Shipping
-                                            </span>
-                                        )}
-                                        {customer.billingAddressIds?.includes(
-                                            address.id
-                                        ) && (
-                                            <span className={styles.typeBadge}>
-                                                Billing
-                                            </span>
-                                        )}
+                                        {address.id &&
+                                            customer.shippingAddressIds?.includes(
+                                                address.id
+                                            ) && (
+                                                <span
+                                                    className={styles.typeBadge}
+                                                >
+                                                    Shipping
+                                                </span>
+                                            )}
+                                        {address.id &&
+                                            customer.billingAddressIds?.includes(
+                                                address.id
+                                            ) && (
+                                                <span
+                                                    className={styles.typeBadge}
+                                                >
+                                                    Billing
+                                                </span>
+                                            )}
                                         {(customer.defaultShippingAddressId ===
                                             address.id ||
                                             customer.defaultBillingAddressId ===
@@ -402,9 +408,13 @@ export const AddressList = () => {
                                         </Button>
                                         <Button
                                             variant="ghost"
-                                            onClick={() =>
-                                                handleDeleteClick(address.id)
-                                            }
+                                            onClick={() => {
+                                                if (address.id) {
+                                                    handleDeleteClick(
+                                                        address.id
+                                                    );
+                                                }
+                                            }}
                                             className={styles.deleteButton}
                                             disabled={isLoading}
                                             loading={

@@ -5,6 +5,8 @@ export interface Customer extends BaseCustomer {
     customerNumber?: string;
     shippingAddresses: number[];
     billingAddresses: number[];
+    defaultShippingAddress?: number;
+    defaultBillingAddress?: number;
 }
 
 export interface CreateCustomerResponse {

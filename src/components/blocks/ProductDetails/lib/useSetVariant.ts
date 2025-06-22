@@ -1,11 +1,9 @@
 import { useEffect, useState } from 'react';
 import { useSearchParams } from 'react-router-dom';
 
-import type {
-    CustomProduct,
-    CustomVariant,
-    Sizes,
-} from '../../../../api/product/product.types';
+import type { CustomProduct } from '../../../../api/product/product.types';
+import type { CustomVariant } from '../../../../types/product.types';
+import type { Sizes } from '../../../../types/product.types';
 
 const identifyVariantBySize = (
     size: string | null | Sizes,

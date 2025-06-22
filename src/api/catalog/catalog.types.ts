@@ -1,3 +1,5 @@
+import type { Variant } from '../../types/product.types';
+
 interface ProductType {
     id: string;
     version: number;
@@ -30,87 +32,12 @@ interface CategoryReference {
     obj: Category;
 }
 
-interface CentPrecisionMoney {
-    centAmount: number;
-    currencyCode: 'EUR';
-    type: 'centPrecision';
-    fractionDigits: 2;
-}
-
-interface ProductDiscountValueRelative {
-    type: 'relative';
-    permyriad: number;
-}
-
-interface Reference {
-    id: string;
-    typeId: 'product';
-}
-
-interface ProductDiscount {
-    id: string;
-    version: number;
-    name: string;
-    value: ProductDiscountValueRelative;
-    predicate: string;
-    sortOrder: string; // Unique decimal value between 0 and 1
-    isActive: boolean;
-    references: Reference[];
-    createdAt: string;
-    lastModifiedAt: string;
-}
-
-interface ProductDiscountReference {
-    id: string;
-    typeId: 'product-discount';
-    obj?: ProductDiscount;
-}
-
-interface DiscountedPrice {
-    value: CentPrecisionMoney;
-    discount: ProductDiscountReference;
-}
-
-interface Price {
-    id: string;
-    value: CentPrecisionMoney;
-    discounted?: DiscountedPrice;
-}
-
-interface ImageDimensions {
-    w: number;
-    h: number;
-}
-
-interface Image {
-    url: string;
-    dimensions: ImageDimensions;
-}
-
-interface Attribute {
-    name: string;
-    value: string | AttributeValueObject;
-}
-
-interface AttributeValueObject {
-    key: string;
-    label: string;
-}
-
-export interface ProductVariant {
-    id: number;
-    prices: Price[];
-    price?: Price;
-    attributes: Attribute[];
-    images: Image[];
-    sku: string;
-}
 export interface Product {
     id: string;
     name: string;
     description: string;
-    masterVariant: ProductVariant;
-    variants: ProductVariant[];
+    masterVariant: Variant;
+    variants: Variant[];
     forCatalog: {
         id: number;
         price: {
@@ -122,26 +49,6 @@ export interface Product {
     };
 }
 
-// export interface Product {
-//     id: string;
-//     name: string;
-//     description: string;
-//     masterVariant: {
-//         id: number;
-//         sku?: string;
-//         price: {
-//             value: number;
-//             currency: string;
-//             discounted?: { value: number };
-//         };
-//         images: Image[];
-//         family?: string;
-//         preview?: string;
-//         attributes: Attribute[];
-//     };
-//     variants?: ProductVariant[];
-// }
-
 export interface ProductProjection {
     id: string;
     version: number;
@@ -150,8 +57,8 @@ export interface ProductProjection {
     name: { 'en-US': string };
     description: { 'en-US': string };
     categories: CategoryReference[];
-    masterVariant: ProductVariant;
-    variants: ProductVariant[];
+    masterVariant: Variant;
+    variants: Variant[];
 }
 
 export interface ProductProjectionPagedSearchResponse {

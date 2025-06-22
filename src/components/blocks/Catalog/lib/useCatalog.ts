@@ -1,14 +1,13 @@
 import { useEffect, useState } from 'react';
-import type { Filter, Product } from '../../../../api/catalog/catalog.types';
-import type { Category } from '../../../../api/catalog/catalog.types';
+import type {
+    Filter,
+    Product,
+    Category,
+} from '../../../../api/catalog/catalog.types';
 import { getProducts } from '../../../../api/catalog/getProducts';
 import { getCategories } from '../../../../api/catalog/getCategories';
 import { useAuth } from '../../../../store/auth/useAuth';
 import { getPageCount } from './pagination';
-// import { createCart, getUserCart } from '../../../../api/cart/cart';
-// import type { CustomCart } from '../../../../api/cart/cart.types';
-// import { prepareCartData } from '../../../../api/cart/helpers';
-// import { AxiosError } from 'axios';
 
 export const useCatalog = () => {
     const { loginStatus, cartContent } = useAuth();
@@ -37,36 +36,6 @@ export const useCatalog = () => {
     const [selectedProduct, setSelectedProduct] = useState<Product | null>(
         null
     );
-
-    // const [cartContent, setCartContent] = useState<null | CustomCart>(null);
-
-    // useEffect(() => {
-    //     const getOrCreateCart = async () => {
-    //         let cartData;
-    //         try {
-    //             cartData = await getUserCart();
-    //             console.log('CARTDATA 1', cartData);
-    //         } catch (error: unknown) {
-    //             console.log('GET CART ERR', error);
-
-    //             if (error instanceof AxiosError && error.status === 401) {
-    //                 try {
-    //                     cartData = await createCart();
-    //                     console.log('CARTDATA 2', cartData);
-    //                 } catch (error) {
-    //                     console.log('CREATE CART ERR', error);
-    //                 }
-    //             }
-    //         }
-
-    //         if (cartData) {
-    //             setCartContent(prepareCartData(cartData));
-    //         }
-    //     };
-
-    //     void getOrCreateCart();
-    // }, []);
-    // console.log('CARTCONTENT', cartContent);
 
     useEffect(() => {
         const loadProducts = async () => {

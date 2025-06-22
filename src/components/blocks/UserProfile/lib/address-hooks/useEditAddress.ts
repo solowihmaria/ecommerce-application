@@ -7,7 +7,7 @@ import { useAuth } from '../../../../../store/auth/useAuth';
 import { useContext } from 'react';
 import { ToastContext } from '../../../../ui/Toast/ToastContext';
 import type { AddressFormData } from '../../UserProfile.types';
-import type { Address } from '../../../../../api/profile/profile.types';
+import type { Address } from '../../../../../types/customer.types';
 
 export const useEditAddress = () => {
     const { customer, updateCustomer } = useAuth();
@@ -29,6 +29,9 @@ export const useEditAddress = () => {
 
     const handleEdit = (address: Address) => {
         let currentType: 'shipping' | 'billing' = 'shipping';
+        if (!address.id) {
+            return;
+        }
         if (customer?.billingAddressIds?.includes(address.id)) {
             currentType = 'billing';
         }

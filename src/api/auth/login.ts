@@ -1,7 +1,8 @@
 import axios from 'axios';
 import type { LoginResponse } from './auth.types';
 import { getAnonymousId } from '../anonymousId';
-import { getAnonToken } from '../token';
+import { getToken } from '../token';
+import { ANON_TOKEN_KEY } from '../../utilities/constants/constants';
 
 export const login = async (
     email: string,
@@ -45,7 +46,7 @@ export const mergeCartsOnLogin = async (email: string, password: string) => {
     const anonymousId: string | null = getAnonymousId();
     let token: string | null;
     if (anonymousId) {
-        token = getAnonToken();
+        token = getToken(ANON_TOKEN_KEY);
     } else {
         return;
     }
