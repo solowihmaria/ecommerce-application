@@ -1,29 +1,12 @@
 import axios from 'axios';
-import { getToken } from '../../token';
 import type { DiscountResponse } from './discountCodes.types';
-import { getGuestToken } from '../../auth/getToken';
-import { AUTH_TOKEN_KEY } from '../../../utilities/constants/constants';
-
-export const getUserToken = async () => {
-    let accessToken: string = '';
-
-    const storedToken = getToken(AUTH_TOKEN_KEY);
-    if (storedToken) {
-        accessToken = storedToken;
-    } else {
-        const tokenResponse = await getGuestToken();
-        if (tokenResponse) {
-            accessToken = tokenResponse.access_token;
-        }
-    }
-
-    return accessToken;
-};
+import { getUserToken } from '../../auth/getToken';
 
 export const getDiscountCodeById = async (
-    id: string
+    id: string,
+    loginStatus: boolean
 ): Promise<DiscountResponse> => {
-    const token = await getUserToken();
+    const token = await getUserToken(loginStatus);
 
     const apiUrl = process.env.CTP_API_URL;
     const projectKey = process.env.CTP_PROJECT_KEY;
@@ -39,9 +22,10 @@ export const getDiscountCodeById = async (
 };
 
 export const getDiscountCodeByKey = async (
-    key: string
+    key: string,
+    loginStatus: boolean
 ): Promise<DiscountResponse> => {
-    const token = await getUserToken();
+    const token = await getUserToken(loginStatus);
 
     const apiUrl = process.env.CTP_API_URL;
     const projectKey = process.env.CTP_PROJECT_KEY;

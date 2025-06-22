@@ -1,4 +1,4 @@
-import { getUserToken } from '../product/getProduct';
+import { getUserToken } from '../auth/getToken';
 import type {
     ProductProjection,
     Product,

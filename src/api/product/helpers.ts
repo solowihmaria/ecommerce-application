@@ -1,4 +1,3 @@
-import { getProductByID, getUserToken } from './getProduct';
 import type {
     AttributesList,
     CustomAttributes,
@@ -7,13 +6,6 @@ import type {
 } from './product.types';
 import type { Variant, CustomVariant } from '../../types/product.types';
 import type { Sizes, Light, Care } from '../../types/product.types';
-
-export const getProductData = async (id: string, loginStatus: boolean) => {
-    const token = await getUserToken(loginStatus);
-    const productData = await getProductByID(id, token);
-
-    return productData;
-};
 
 export const prepareVariant = (initialVariant: Variant): CustomVariant => {
     const { id, sku, images, prices } = initialVariant;

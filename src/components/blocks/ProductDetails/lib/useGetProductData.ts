@@ -1,9 +1,8 @@
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import {
-    getProductData,
-    transformProductData,
-} from '../../../../api/product/productService';
+
+import { getProductByID } from '../../../../api/product/getProduct';
+import { transformProductData } from '../../../../api/product/helpers';
 import type { CustomProduct } from '../../../../api/product/product.types';
 import { useAuth } from '../../../../store/auth/useAuth';
 
@@ -23,7 +22,7 @@ export const useGetProductData = (): [CustomProduct | null, string | null] => {
         if (!id) {
             return;
         }
-        getProductData(id, loginStatus)
+        getProductByID(id, loginStatus)
             .then((data) => {
                 const product = transformProductData(data);
                 setCurrentProduct(product);

@@ -22,7 +22,7 @@ export const Discount = ({
     onInput,
 }: DiscountProps) => {
     const promoRef = useRef<HTMLInputElement | null>(null);
-    const { customer } = useAuth();
+    const { loginStatus, customer } = useAuth();
 
     const [currentDiscountCode, setCurrentDiscountCode] = useState<{
         id: string;
@@ -33,7 +33,8 @@ export const Discount = ({
     async function isBirthdayDiscount(code: string) {
         try {
             const birthdayDiscount = await getDiscountCodeByKey(
-                DiscountKeys.Birthday
+                DiscountKeys.Birthday,
+                loginStatus
             );
 
             return code === birthdayDiscount.code;
@@ -91,13 +92,13 @@ export const Discount = ({
                     'Add more 3 or more items to get the discount'
                 );
             }
-            getDiscountCodeById(currentDiscountCodeId)
+            getDiscountCodeById(currentDiscountCodeId, loginStatus)
                 .then((discount) => {
                     setCurrentDiscountCode(discount);
                 })
                 .catch((err) => console.log(err));
         }
-    }, [cartContent.discountCodes, setDiscountError, cartContent]);
+    }, [cartContent.discountCodes, setDiscountError, cartContent, loginStatus]);
 
     return (
         <div className={styles.discountContainer}>
