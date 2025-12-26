@@ -1,0 +1,10 @@
+@use '../../assets//styles/constants.module' as c;
+
+.registrationPage {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    background: c.$color-accent-dark;
+    background: url('../../assets/images/bkg-form.jpg') no-repeat center center;
+    background-size: cover;
+}

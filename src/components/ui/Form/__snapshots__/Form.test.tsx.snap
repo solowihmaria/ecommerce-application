@@ -1,0 +1,15 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Form/> component Render Form component without any properties 1`] = `
+<form
+  class="form"
+  data-testid="form-test-id"
+>
+  <input
+    placeholder="input1"
+  />
+  <input
+    placeholder="input2"
+  />
+</form>
+`;

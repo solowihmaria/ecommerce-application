@@ -1,0 +1,125 @@
+@use '../../../../../assets/styles/constants.module' as c;
+
+.card {
+    min-width: 226px;
+    max-width: 336px;
+    color: c.$color-text-secondary;
+    text-decoration: none;
+    transition: all 0.3s;
+}
+
+.card:hover {
+    transform: scale(102%);
+    color: c.$color-text-primary;
+    cursor: pointer;
+}
+
+.frame {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: end;
+    aspect-ratio: 0.55 / 1;
+    width: 100%;
+    border: 1px solid c.$color-primary-light;
+    border-radius: 20px;
+    background-color: c.$opacity-40;
+    backdrop-filter: blur(10px);
+}
+
+.card.discounted .frame::after {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    padding: 4px 8px;
+    border-radius: 10px;
+    color: c.$color-white;
+    background-color: c.$color-warning;
+    content: '%';
+}
+
+.preview {
+    position: absolute;
+    z-index: 100;
+    top: -10px;
+    left: -30px;
+    width: 120%;
+    max-height: 100%;
+}
+
+.info {
+    position: relative;
+    z-index: 200;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    align-items: center;
+    justify-content: end;
+    padding: 1rem;
+    border-radius: 20px;
+    background-color: c.$color-gray-bkg;
+}
+
+.name {
+    margin-bottom: 0;
+    color: inherit;
+    text-transform: uppercase;
+}
+
+.description {
+    overflow: hidden;
+    display: -webkit-box;
+    margin: 0;
+    font-size: 0.8rem;
+    font-weight: 400;
+    text-align: left;
+    -webkit-line-clamp: 2;
+    line-clamp: 2;
+    -webkit-box-orient: vertical;
+}
+
+.price {
+    width: 100%;
+    font-size: 0.7rem;
+    text-align: right;
+}
+
+.priceDiscounted {
+    position: relative;
+    font-size: 1rem;
+    line-height: 0.5rem;
+    opacity: 0.5;
+}
+
+.priceDiscounted::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 0;
+    width: 100%;
+    height: 1px;
+    background-color: c.$color-text-secondary;
+}
+
+.card:hover .priceDiscounted::after {
+    background-color: c.$color-text-primary;
+}
+
+.priceValue {
+    font-size: 1.4rem;
+}
+
+.buttonBuy {
+    z-index: 300;
+    width: 100%;
+    padding: 0.75rem 1.5rem;
+    font-size: 0.8rem;
+}
+
+.buttonBuyLabel {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+}

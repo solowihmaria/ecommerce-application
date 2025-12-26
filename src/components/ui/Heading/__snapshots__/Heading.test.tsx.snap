@@ -1,0 +1,17 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Heading/> component Render Heading component with properties 1`] = `
+<h2
+  class="heading heading--h2 classExample"
+>
+  HEADING2
+</h2>
+`;
+
+exports[`<Heading/> component Render Heading component without any properties 1`] = `
+<h1
+  class="heading heading--h1"
+>
+  heading text
+</h1>
+`;

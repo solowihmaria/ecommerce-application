@@ -1,0 +1,147 @@
+import { useState, useEffect, useCallback } from 'react';
+import { AuthContext } from './AuthContext';
+import { getToken } from '../../api/token';
+import { fetchMyProfile } from '../../api/profile/profile';
+import type { Customer } from '../../api/profile/profile.types';
+import type { CartResponse, CustomCart } from '../../api/cart/cart.types';
+import {
+    generateAnonymousId,
+    getAnonymousId,
+    setAnonymousId,
+} from '../../api/anonymousId';
+import { createCart, getCart } from '../../api/cart/cart';
+import { prepareCartData } from '../../api/cart/helpers';
+import { AxiosError } from 'axios';
+import { CartErrorMessages } from '../../components/blocks/Cart/lib/constants';
+import { AUTH_TOKEN_KEY } from '../../utilities/constants/constants';
+
+/**
+ * Провайдер аутентификации.
+ * Обеспечивает:
+ * - Управление состоянием авторизации
+ * - Загрузку профиля при наличии токена
+ * - Обновление данных пользователя
+ * - Получает или создает корзину
+ */
+export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
+    const [loginStatus, setLoginStatus] = useState(!!getToken(AUTH_TOKEN_KEY));
+    const [isAnonymous, setIsAnonymous] = useState(false);
+    const [customer, setCustomer] = useState<Customer | null>(null);
+    const [cartContent, setCartContent] = useState<null | CustomCart>(null);
+    const [isCartLoading, setIsCartLoading] = useState(true);
+    const [cartError, setCartError] = useState<null | string>(null);
+    const [cartItemsCount, setCartItemsCount] = useState(0);
+    const [isCartExist, setIsCartExist] = useState(!!cartContent);
+
+    const handleCartError = useCallback((error: unknown) => {
+        if (error instanceof AxiosError) {
+            if (error.response) {
+                setCartError(CartErrorMessages.GENERIC_ERROR_MESSAGE);
+            } else if (error.request) {
+                setCartError(CartErrorMessages.NETWORK_ERROR_MESSAGE);
+            } else {
+                setCartError(CartErrorMessages.GENERIC_ERROR_MESSAGE);
+            }
+        } else {
+            setCartError(CartErrorMessages.GENERIC_ERROR_MESSAGE);
+        }
+    }, []);
+
+    useEffect(() => {
+        const initSession = async () => {
+            const token = getToken(AUTH_TOKEN_KEY);
+
+            if (token && !customer) {
+                try {
+                    const profile = await fetchMyProfile(token);
+                    setCustomer(profile);
+                } catch {
+                    //console.error('Failed to load profile', error);
+                }
+            } else if (!token) {
+                initAnonymousSession();
+            }
+        };
+
+        const loadCart = async () => {
+            let cartData: CartResponse;
+
+            try {
+                const cartData = await getCart(loginStatus);
+                if (cartData) {
+                    setCartContent(prepareCartData(cartData));
+                    setIsCartExist(true);
+                }
+            } catch (error) {
+                if (error instanceof AxiosError && error.status === 404) {
+                    try {
+                        cartData = await createCart(loginStatus);
+                        if (cartData) {
+                            setCartContent(prepareCartData(cartData));
+                            setIsCartExist(true);
+                        }
+                    } catch (error) {
+                        handleCartError(error);
+                    }
+                } else {
+                    handleCartError(error);
+                }
+            }
+        };
+
+        initSession()
+            .then(() => {
+                loadCart()
+                    .then(() => setIsCartLoading(false))
+                    .catch((err) => {
+                        handleCartError(err);
+                    });
+            })
+            .catch((error) => console.error(error));
+    }, [loginStatus, customer, handleCartError]);
+
+    const initAnonymousSession = () => {
+        if (!getAnonymousId()) {
+            const id = generateAnonymousId();
+            setAnonymousId(id);
+            setIsAnonymous(true);
+        }
+    };
+
+    const updateCustomer = (newData: Partial<Customer>) => {
+        if (customer) {
+            setCustomer({ ...customer, ...newData });
+        }
+    };
+
+    useEffect(() => {
+        if (cartContent) {
+            setCartItemsCount(cartContent.totalLineItemQuantity || 0);
+        } else {
+            setCartItemsCount(0);
+        }
+    }, [cartContent]);
+
+    return (
+        <AuthContext.Provider
+            value={{
+                loginStatus,
+                setLoginStatus,
+                customer,
+                setCustomer,
+                updateCustomer,
+                isAnonymous,
+                cartContent,
+                setCartContent,
+                isCartLoading,
+                cartItemsCount,
+                cartError,
+                handleCartError,
+                isCartExist,
+                setIsCartExist,
+            }}
+        >
+            {children}
+        </AuthContext.Provider>
+    );
+};

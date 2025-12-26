@@ -1,0 +1,21 @@
+@use '../../../assets/styles/constants.module' as c;
+
+.label {
+    display: inline-block;
+    margin-bottom: 0.5rem;
+    font-family: inherit;
+    font-size: 1rem;
+    font-weight: 500;
+    line-height: 1.5;
+    color: c.$color-text-primary;
+
+    &.disabled {
+        cursor: not-allowed;
+        color: c.$color-gray-500;
+    }
+
+    span[aria-hidden='true'] {
+        margin-left: 0.25rem;
+        color: c.$color-error;
+    }
+}

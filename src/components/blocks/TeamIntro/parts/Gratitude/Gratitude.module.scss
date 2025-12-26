@@ -1,0 +1,54 @@
+@use '../../../../../assets/styles/constants.module' as c;
+
+.gratitude {
+    padding: 4rem 1rem;
+    background-color: c.$color-primary-dark;
+
+    @media (width >= 768px) {
+        padding: 5rem 1rem;
+    }
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.content {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    align-items: center;
+    text-align: center;
+
+    @media (width >= 768px) {
+        flex-direction: row;
+        align-items: flex-start;
+        text-align: left;
+    }
+}
+
+.logoLink {
+    display: inline-block;
+    transition: transform 0.3s ease;
+
+    &:hover {
+        transform: scale(1.05);
+    }
+}
+
+.logo {
+    flex-shrink: 0;
+    width: 200px;
+    height: 100px;
+    background-image: url('../../../../../assets/icons/logo3.svg');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+}
+
+.description {
+    font-size: 1.125rem;
+    line-height: 1.6;
+    color: c.$color-text-primary;
+}

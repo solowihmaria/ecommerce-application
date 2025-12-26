@@ -1,0 +1,19 @@
+.miniImageContainer {
+    opacity: 0.5;
+    cursor: pointer;
+}
+
+.activeMiniSlide {
+    opacity: 1;
+}
+
+.imageContainer {
+    height: 100%;
+}
+
+.smallImage {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}

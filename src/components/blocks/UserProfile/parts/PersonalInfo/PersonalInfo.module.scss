@@ -1,0 +1,96 @@
+@use '../../../../../assets//styles/constants.module' as c;
+
+.personalInfo {
+    padding: 1.5rem;
+    border: 1px solid c.$color-text-primary;
+    border-radius: 0.5rem;
+    background-color: rgba(c.$color-black, 0.25);
+    backdrop-filter: blur(35px);
+}
+
+.sectionTitle {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 1.5rem;
+}
+
+.actions {
+    display: flex;
+    gap: 0.5rem;
+}
+
+.field {
+    margin-bottom: 1rem;
+
+    p {
+        margin-top: 0.25rem;
+        border-radius: 0.25rem;
+        color: c.$color-primary-light;
+        overflow-wrap: break-word;
+    }
+}
+
+.viewMode,
+.editMode {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+}
+
+.editButton {
+    display: flex;
+    gap: 0.7rem;
+    align-items: center;
+    padding: 0.75rem 2rem;
+}
+
+.editIcon {
+    font-size: 1.2rem;
+    color: inherit;
+}
+
+.title {
+    font-size: 1.2rem;
+}
+
+.info {
+    max-width: 100%;
+    font-size: 1.2rem;
+    word-break: break-all;
+}
+
+@media (width <= 1000px) {
+    .sectionTitle {
+        flex-direction: column;
+    }
+}
+
+@media (width <= 768px) {
+    .viewMode,
+    .editMode {
+        grid-template-columns: 1fr;
+    }
+
+    .cancelButton,
+    .saveButton {
+        padding: 0.75rem 2.5rem;
+    }
+}
+
+@media (width <= 650px) {
+    .sectionTitle {
+        flex-direction: column;
+    }
+
+    .cancelButton,
+    .saveButton {
+        padding: 0.75rem 2rem;
+    }
+}
+
+@media (width <= 500px) {
+    .actions {
+        flex-direction: column;
+    }
+}

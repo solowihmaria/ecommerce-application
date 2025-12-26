@@ -1,0 +1,75 @@
+@use '../../../../../assets/styles/constants.module' as c;
+
+.newsletter {
+    padding: 4rem 1rem;
+    background-color: c.$color-primary-dark;
+}
+
+.container {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.content {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    align-items: center;
+    max-width: 600px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.iconWrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 4rem;
+    height: 4rem;
+    border-radius: 50%;
+    background-color: rgba(c.$color-white, 0.1);
+}
+
+.icon {
+    width: 1.75rem;
+    height: 1.75rem;
+    color: c.$color-white;
+}
+
+.title {
+    margin: 0;
+    font-size: 2rem;
+    font-weight: 600;
+    color: c.$color-white;
+}
+
+.subtitle {
+    margin: 0;
+    font-size: 1.125rem;
+    line-height: 1.5;
+    color: c.$color-primary-light;
+}
+
+.form {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    width: 100%;
+}
+
+.inputGroup {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+
+    @media (width >= 480px) {
+        flex-direction: row;
+    }
+}
+
+.disclaimer {
+    margin: 0;
+    font-size: 0.875rem;
+    color: c.$color-gray-300;
+}

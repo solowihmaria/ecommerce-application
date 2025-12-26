@@ -1,0 +1,143 @@
+@use '../../../../../assets/styles/constants.module' as c;
+
+.productRow {
+    display: flex;
+    justify-content: space-between;
+    padding: 1rem;
+    border: 1px solid c.$border;
+    border-radius: 1rem;
+}
+
+.productInfo {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+}
+
+.deleteProduct {
+    display: block;
+    width: 40px;
+    height: 40px;
+    cursor: pointer;
+}
+
+.deleteIcon {
+    fill: white;
+    width: 40px;
+    height: 40px;
+}
+
+.firstColumn {
+    width: 50%;
+}
+
+.productImage {
+    width: 100px;
+    height: 100px;
+    border-radius: 1rem;
+    object-fit: cover;
+}
+
+.productText {
+    display: flex;
+    flex-direction: column;
+}
+
+.productName {
+    font-size: 1.125rem;
+    color: c.$color-text-primary;
+}
+
+.productSize {
+    font-size: 0.875rem;
+    color: c.$color-text-primary;
+}
+
+.secondColumn {
+    width: 50%;
+}
+
+.productPriceContainer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 1.125rem;
+}
+
+.columnValue {
+    color: c.$color-text-primary;
+    text-align: center;
+}
+
+.column {
+    width: 30%;
+}
+
+.price {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+}
+
+.qtyInput {
+    width: 60%;
+}
+
+.totalLabel {
+    display: none;
+}
+
+.productNameLink {
+    text-decoration: none;
+}
+
+@media (width <= 768px) {
+    .productRow {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+        justify-content: space-between;
+        padding: 1rem;
+        border: 1px solid c.$border;
+        border-radius: 1rem;
+    }
+
+    .qtyInput {
+        width: 100%;
+    }
+
+    .productPriceContainer {
+        justify-content: space-between;
+        width: 100%;
+    }
+
+    .productInfo {
+        width: 100%;
+    }
+
+    .totalLabel {
+        display: inline;
+    }
+
+    .totalContainer {
+        display: flex;
+        gap: 0.5rem;
+        justify-content: center;
+    }
+}
+
+@media (width <= 500px) {
+    .totalContainer {
+        flex-direction: column;
+    }
+
+    .priceOriginContainer {
+        flex-direction: column;
+        width: fit-content;
+    }
+
+    .price {
+        flex-direction: column;
+        align-items: center;
+    }
+}

@@ -1,0 +1,40 @@
+@use '../../../../../assets/styles/constants.module' as c;
+
+.hero {
+    position: relative;
+    padding: 6rem 0 2rem;
+    color: c.$color-text-primary;
+    text-align: center;
+}
+
+.container {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1rem;
+}
+
+.title {
+    margin-bottom: 4rem;
+    font-size: 2.25rem;
+    font-weight: 700;
+    line-height: 1.2;
+    color: c.$color-text-primary;
+
+    @media (width >= 768px) {
+        font-size: 3rem;
+    }
+}
+
+.titleHighlight {
+    color: c.$color-accent-secondary;
+}
+
+.description {
+    max-width: 48rem;
+    margin: 0 auto 3rem;
+    font-size: 1.25rem;
+    line-height: 1.6;
+    color: c.$color-text-primary;
+    opacity: 0.9;
+}

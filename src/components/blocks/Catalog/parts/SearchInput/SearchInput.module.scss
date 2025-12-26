@@ -1,0 +1,16 @@
+@use '../../../../../assets/styles/constants.module' as c;
+
+.searchInputWrapper {
+    position: relative;
+    width: 100%;
+}
+
+.buttonSearch {
+    position: absolute;
+    top: 55%;
+    right: 0.75rem;
+    transform: translateY(-50%);
+    border: none;
+    color: c.$color-gray-800;
+    background: none;
+}

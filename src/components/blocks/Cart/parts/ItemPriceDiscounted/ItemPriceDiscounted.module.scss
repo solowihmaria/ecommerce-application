@@ -1,0 +1,18 @@
+@use '../../../../../assets/styles/constants.module' as c;
+
+.priceOrigin {
+    color: c.$color-gray-600;
+}
+
+.cross {
+    position: absolute;
+    top: 53%;
+    display: block;
+    width: 95%;
+    border-top: 2px solid c.$color-gray-600;
+}
+
+.priceOriginContainer {
+    position: relative;
+    display: inline-block;
+}

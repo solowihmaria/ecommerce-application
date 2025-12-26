@@ -1,0 +1,139 @@
+@use '../../../assets/styles/constants.module' as c;
+
+.footer {
+    padding: 1rem 0 0;
+    color: c.$color-white;
+    background-color: c.$color-black;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    margin: 0 auto;
+}
+
+.columnsWrapper {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2.5rem;
+    justify-content: center;
+    margin-bottom: 2rem;
+
+    @media (width >= 680px) {
+        gap: 1.5rem;
+        justify-content: space-between;
+        width: 90%;
+    }
+
+    @media (width >= 480px) {
+        flex-direction: row;
+    }
+}
+
+.columnTitle {
+    margin-bottom: 1.25rem;
+    font-size: 1.125rem;
+    font-weight: 600;
+    color: c.$color-white;
+}
+
+.linksList {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.link {
+    font-size: 0.9375rem;
+    color: rgba(c.$color-white, 0.7);
+    text-decoration: none;
+    transition: color 0.2s ease;
+
+    &:hover {
+        color: c.$color-primary-light;
+    }
+}
+
+.contactInfo {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    margin-bottom: 1.25rem;
+}
+
+.contactItem {
+    display: flex;
+    gap: 0.75rem;
+    align-items: center;
+    font-size: 0.9375rem;
+    color: rgba(c.$color-white, 0.7);
+}
+
+.contactIcon {
+    min-width: 1.25rem;
+    font-size: 1rem;
+    color: c.$color-primary-light;
+}
+
+.workingHours {
+    margin-bottom: 1.25rem;
+    font-size: 0.8125rem;
+    color: rgba(c.$color-white, 0.6);
+}
+
+.socialLinks {
+    display: flex;
+    gap: 0.75rem;
+}
+
+.socialButton {
+    width: 2rem;
+    height: 2rem;
+    padding: 0;
+    border-color: rgba(c.$color-white, 0.2);
+    border-radius: 50%;
+    color: rgba(c.$color-white, 0.7);
+
+    &:hover {
+        border-color: c.$color-primary-light;
+        color: c.$color-white;
+        background-color: transparent;
+    }
+}
+
+.copyright {
+    width: 100%;
+    border-top: 1px solid rgba(c.$color-white, 0.1);
+}
+
+.copyrightContent {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    align-items: center;
+
+    @media (width >= 768px) {
+        justify-content: space-between;
+    }
+}
+
+.copyrightText {
+    margin-bottom: 0;
+    font-size: 0.875rem;
+    color: rgba(c.$color-white, 0.6);
+}
+
+.disclaimerText {
+    font-size: 0.6875rem;
+    color: rgba(c.$color-white, 0.5);
+    text-align: center;
+
+    @media (width >= 768px) {
+        text-align: right;
+    }
+}

@@ -1,0 +1,52 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<TotalPrice/> component Render TotalPrice component when no products on sale 1`] = `
+<div
+  class="totalPriceContainer"
+  data-testid="total-attribute"
+>
+  <p
+    class="columnValue column totalLabel"
+  >
+    Total(€):
+  </p>
+  <p
+    class="columnValue column cartTotalPrice"
+    data-testid="total-attribute-without-sale"
+  >
+    56.00
+  </p>
+</div>
+`;
+
+exports[`<TotalPrice/> component Render TotalPrice component when there are products on sale 1`] = `
+<div
+  class="totalPriceContainer"
+  data-testid="total-attribute"
+>
+  <p
+    class="columnValue column totalLabel"
+  >
+    Total(€):
+  </p>
+  <p
+    class="columnValue column cartTotalOriginContainer"
+    data-testid="total-attribute-with-sale-old"
+  >
+    <span
+      class="cartTotalOrigin"
+    >
+      161.00
+    </span>
+    <span
+      class="cross"
+    />
+  </p>
+  <p
+    class="columnValue column cartTotalNew"
+    data-testid="total-attribute-with-sale-new"
+  >
+    150.50
+  </p>
+</div>
+`;

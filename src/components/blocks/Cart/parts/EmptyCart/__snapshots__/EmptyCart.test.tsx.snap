@@ -1,0 +1,30 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<ErrorCart/> component Render ErrorCart 1`] = `
+<div
+  class="emptyCartContent"
+  data-testid="empty-cart-test-id"
+>
+  <h1
+    class="heading heading--h1 cartTitle"
+  >
+    Shopping Cart
+  </h1>
+  <p
+    class="emptyCartText"
+  >
+    Shopping cart is empty
+  </p>
+  <a
+    class="emptyCartButtonContainer"
+    data-discover="true"
+    href="/catalog"
+  >
+    <button
+      class="button primary emptyCartButton button"
+    >
+      Start shopping
+    </button>
+  </a>
+</div>
+`;

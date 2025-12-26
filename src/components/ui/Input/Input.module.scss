@@ -1,0 +1,110 @@
+@use '../../../assets/styles/constants.module' as c;
+@use 'sass:color';
+
+.inputContainer {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+    width: 100%;
+
+    &.checkbox {
+        width: auto;
+    }
+}
+
+.inputWrapper {
+    position: relative;
+    width: 100%;
+}
+
+.input {
+    box-sizing: border-box;
+    width: 100%;
+    padding: 0.75rem 1rem;
+    border-color: transparent;
+    border-style: solid;
+    border-width: 3px;
+    border-radius: 1rem;
+    font-family: inherit;
+    font-size: 1rem;
+    background-color: c.$color-primary-light;
+    transition: border-color 0.2s ease;
+
+    &:focus {
+        border-color: c.$color-accent-primary;
+        outline: none;
+    }
+
+    &:disabled {
+        cursor: not-allowed;
+
+        // border-color: c.$color-gray-100;
+        opacity: 0.7;
+    }
+
+    &.error {
+        border-color: c.$color-error;
+
+        &:focus {
+            border-color: color.adjust(c.$color-error, $lightness: -10%);
+            box-shadow: 0 0 0 2px rgba(c.$color-error, 0.2);
+        }
+    }
+
+    &.password {
+        padding: 0.75rem 2.5rem 0.75rem 1rem;
+    }
+}
+
+.toggleButton {
+    position: absolute;
+    top: 55%;
+    right: 0.75rem;
+    transform: translateY(-50%);
+    padding: 0;
+    border: none;
+    color: c.$color-gray-800;
+    background: none;
+    cursor: pointer;
+
+    &:hover {
+        color: c.$color-black;
+    }
+
+    &:focus {
+        outline: none;
+    }
+}
+
+.errorMessage {
+    display: flex;
+    gap: 0.5rem;
+    align-items: center;
+    min-height: 1.25rem;
+    margin-top: 0.25rem;
+    padding: 0.5rem;
+    border-radius: 0.5rem;
+    font-size: 0.8rem;
+    color: c.$color-error;
+    overflow-wrap: break-word;
+    white-space: normal;
+    background-color: rgba(c.$color-error, 0.15);
+    animation: fade-in 0.2s ease-out;
+
+    .errorIcon {
+        flex-shrink: 0;
+        font-size: 1rem;
+    }
+}
+
+@keyframes fade-in {
+    from {
+        transform: translateY(-5px);
+        opacity: 0;
+    }
+
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}

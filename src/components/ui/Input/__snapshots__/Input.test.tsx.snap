@@ -1,0 +1,28 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Input/> component Render Input component - check error message 1`] = `
+<input
+  class="input error"
+  data-testid="test-id-input-field"
+  placeholder="input test"
+  type="text"
+/>
+`;
+
+exports[`<Input/> component Render Input component - disabled input 1`] = `
+<input
+  class="input"
+  data-testid="test-id-input-field"
+  disabled=""
+  placeholder="input test"
+  type="text"
+/>
+`;
+
+exports[`<Input/> component Render Input component - without any properties 1`] = `
+<input
+  class="input"
+  data-testid="test-id-input-field"
+  type="text"
+/>
+`;

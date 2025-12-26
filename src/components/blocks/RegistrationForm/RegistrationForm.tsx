@@ -1,0 +1,91 @@
+import { FormProvider } from 'react-hook-form';
+import styles from './RegistrationForm.module.scss';
+import { Form } from '../../../components/ui/Form';
+import { EmailField } from './parts/EmailField';
+import { PasswordField } from './parts/PasswordField';
+import { PersonalInfoFieldSet } from './parts/PersonalInfoFieldset/PersonalInfoFieldSet';
+import { ShippingAddressFieldSet } from './parts/AddressesFieldsets/ShippingAddressFieldSet';
+import { BillingAddressFieldSet } from './parts/AddressesFieldsets/BillingAddressFieldSet';
+import { useRegistrationForm } from './lib/useRegistrationForm';
+import { Heading } from '../../ui/Heading';
+import { Link } from 'react-router-dom';
+import { Button } from '../../../components/ui/Button';
+import { FiFrown } from 'react-icons/fi';
+
+export const RegistrationForm = () => {
+    const {
+        isPasswordVisible,
+        setIsPasswordVisible,
+        registrationError,
+        methods,
+        errors,
+        getFieldError,
+        handleFormSubmission,
+        isSubmitting,
+    } = useRegistrationForm();
+
+    return (
+        <main className={styles.registrationContent}>
+            <div
+                data-testid="test-id-register-form"
+                className={styles.registrationContainer}
+            >
+                <FormProvider {...methods}>
+                    <Form onSubmit={handleFormSubmission}>
+                        <Heading level="h2" className={styles.formTitle}>
+                            Registration
+                        </Heading>
+
+                        <div className={styles.loginInfo}>
+                            <EmailField
+                                error={errors.email || getFieldError('email')}
+                            />
+
+                            <PasswordField
+                                error={
+                                    errors.password || getFieldError('password')
+                                }
+                                isPasswordVisible={isPasswordVisible}
+                                onTogglePassword={() =>
+                                    setIsPasswordVisible(!isPasswordVisible)
+                                }
+                            />
+                        </div>
+                        <PersonalInfoFieldSet errors={errors} />
+                        <ShippingAddressFieldSet errors={errors} />
+                        <BillingAddressFieldSet errors={errors} />
+
+                        {registrationError && (
+                            <div className={styles.registrationError}>
+                                <FiFrown className={styles.errorIcon} />
+                                <span>{registrationError}</span>
+                            </div>
+                        )}
+
+                        <Button
+                            type="submit"
+                            variant="primary"
+                            disabled={isSubmitting}
+                            className={styles.submitButton}
+                        >
+                            {isSubmitting ? 'Signing up...' : 'Sign Up'}
+                        </Button>
+
+                        <div className={styles.signInRedirect}>
+                            <p className={styles.signInText}>
+                                Already have an account?
+                            </p>
+                            <Link
+                                data-testid="sign-in-link"
+                                to="/login"
+                                className={styles.signInLink}
+                            >
+                                Sign In
+                            </Link>
+                        </div>
+                    </Form>
+                </FormProvider>
+            </div>
+        </main>
+    );
+};

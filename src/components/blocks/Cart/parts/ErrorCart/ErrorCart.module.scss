@@ -1,0 +1,33 @@
+@use '../../../../../assets/styles/constants.module' as c;
+
+.errorCartContent {
+    display: flex;
+    flex-direction: column;
+    gap: 5rem;
+    align-items: center;
+    justify-content: center;
+    height: min-content;
+    padding: 3rem 2rem;
+    border: 1px solid c.$border;
+    border-radius: 1.2rem;
+    backdrop-filter: blur(15px);
+}
+
+.cartTitle {
+    padding: 0 2rem;
+    font-size: 2rem;
+}
+
+.errorCartText {
+    color: c.$color-text-primary;
+}
+
+.button.errorCartButton {
+    width: 100%;
+    background-color: c.$color-accent-primary;
+}
+
+.errorCartButtonContainer {
+    width: 100%;
+    max-width: 32rem;
+}

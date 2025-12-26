@@ -1,0 +1,49 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<NotFoundPage/> component renders NotFoundPage component 1`] = `
+<div
+  class="wrapper"
+  data-testid="not-found-container"
+>
+  <div
+    class="contentContainer"
+  >
+    <div
+      class="contentCard"
+    >
+      <div
+        class="textContent"
+      >
+        <h1
+          class="errorCode"
+        >
+          404
+        </h1>
+        <p
+          class="message"
+        >
+          Page Not Found
+        </p>
+        <p
+          class="description"
+        >
+          The page you're looking for has either wilted away or hasn't bloomed yet.
+        </p>
+        <a
+          data-discover="true"
+          href="/"
+        >
+          <button
+            class="button primary button"
+          >
+            Back to Main
+          </button>
+        </a>
+      </div>
+      <div
+        class="plantImage"
+      />
+    </div>
+  </div>
+</div>
+`;
